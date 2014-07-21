@@ -39,7 +39,6 @@ public class InfoText : MonoBehaviour {
 
 	private float maxDensity = float.MinValue;
 	private float minDenstiy = float.MaxValue;
-	private float avgDenstiy = float.MinValue;
 	private int crossings;
 	
 	private int activeEntry = -1;
@@ -51,7 +50,6 @@ public class InfoText : MonoBehaviour {
 
 	PlaybackControl pc;
 
-	private List<Label> yLabels = new List<Label> ();
 	private List<Label> xLabels = new List<Label> ();
 
 	private List<CurrentValue> currentSpeed = new List<CurrentValue>();

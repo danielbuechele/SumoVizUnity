@@ -17,12 +17,7 @@ public class PlaybackControl : MonoBehaviour {
 	public TileColoringMode tileColoringMode = TileColoringMode.TileColoringNone;
 	public bool trajectoriesShown;
 	public float threshold;
-	public bool fundamental = false;
-
-	private List<Label> yLabels = new List<Label> ();
-	private List<Label> xLabels = new List<Label> ();
-	private List<VectorLine> fundamentalDiagramLines = new List<VectorLine> ();
-	private VectorPoints fundamentalDiagramPoints;
+	
 	bool lineIsDrawn;
 
 

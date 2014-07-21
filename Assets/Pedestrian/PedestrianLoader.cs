@@ -31,7 +31,9 @@ public class PedestrianLoader : MonoBehaviour {
 			currentList.Add (positions[i].getTime (),positions[i]);
 			population[(int) positions[i].getTime ()]++;
 			if ((i == (positions.Count-1) || positions[i].getID()!=positions[i+1].getID()) && currentList.Count>0) {
+
 				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));
+				p.transform.parent = null;
 				p.GetComponent<Pedestrian>().setPositions(currentList);
 				p.GetComponent<Pedestrian>().setID(positions[i].getID());
 				pedestirans.Add(p);

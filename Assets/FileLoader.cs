@@ -10,8 +10,20 @@ public class FileLoader : MonoBehaviour {
 
 		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 		gl.setTheme (new NatureThemingMode ());
-		loadPedestrianFile("Data/b090_combined.txt");
-		loadGeometryFile ("Data/geometry.txt");
+
+		string path = "";
+		if (Application.platform == RuntimePlatform.OSXEditor) {
+			path = "Data/";
+		} else if (Application.platform == RuntimePlatform.OSXPlayer) {
+			path = "../../";
+		} else if (Application.platform == RuntimePlatform.WindowsEditor) {
+			path = "Data/";
+		} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+			path = "../";
+		}
+		
+		loadPedestrianFile(path + "b090_combined.txt");
+		loadGeometryFile (path + "geometry.txt");
 
 	}
 	
@@ -26,7 +38,7 @@ public class FileLoader : MonoBehaviour {
 		sr.Close();
 
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
-		
+
 		string[] lines = fileContents.Split("\n"[0]);
 		foreach (string line in lines) {
 			string[] v = line.Split(' ');
