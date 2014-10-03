@@ -2,7 +2,7 @@
 
 This repository includes the full source-code of the Unity3D project developed during my master thesis. More information on the thesis can be found on [my blog](http://buechele.cc/blog/2014/8/6/master-thesis-post-visualization-of-pedestrian-simulation-data-using-a-game-engine).
 
-The Unity project was tested and developed for use on Mac OS and Windows. Ready-to-run executables, including some demonstration-data can be downloaded from the download-section.
+The Unity project was tested and developed for use on Mac OS and Windows. Ready-to-run executables, including some demonstration-data can be downloaded from the releases-section.
 
 ## Features
 The software takes simulation-data (in this implementation from a text-file) and geometry-data and creates a 3D visualization in real-time. Moreover, it offers tools to analyze trajectories, density, population and speed, create measuring lines and drawing fundamental diagrams.
