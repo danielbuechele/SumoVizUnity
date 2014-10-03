@@ -4,6 +4,9 @@ This repository includes the full source-code of the Unity3D project developed d
 
 The Unity project was tested and developed for use on Mac OS and Windows. Ready-to-run executables, including some demonstration-data can be downloaded from the download-section.
 
+## License
+The software is licensed under the [MIT license](http://opensource.org/licenses/MIT). If this software is used anywhere, I would be more than curios to know and will be happy to help with any problems!
+
 ## Thesis
 
 My thesis "Post-visualization of pedestrian simulation data using a game-engine" was written in 2014 at Technische Universität München. The full PDF-file can be downloaded [here](http://buechele.cc/s/thesis.pdf) (German). And includes the following chapters:
