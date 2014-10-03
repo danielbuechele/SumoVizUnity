@@ -4,6 +4,11 @@ This repository includes the full source-code of the Unity3D project developed d
 
 The Unity project was tested and developed for use on Mac OS and Windows. Ready-to-run executables, including some demonstration-data can be downloaded from the download-section.
 
+## Features
+The software takes simulation-data (in this implementation from a text-file) and geometry-data and creates a 3D visualization in real-time. Moreover, it offers tools to analyze trajectories, density, population and speed, create measuring lines and drawing fundamental diagrams.
+
+![Screenshot](https://raw.githubusercontent.com/danielbuechele/SumoVizUnity/master/Screenshot.png)
+
 ## License
 The software is licensed under the [MIT license](http://opensource.org/licenses/MIT). If this software is used anywhere, I would be more than curios to know and will be happy to help with any problems!
 
