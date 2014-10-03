@@ -40,3 +40,6 @@ My thesis "Post-visualization of pedestrian simulation data using a game-engine"
   1. Vergleich zur Bachelorarbeit
   2. Möglichkeiten der Weiterentwicklung
   3. Fazit
+
+## SumoViz3D
+This work builds upon my Bachelor's thesis on WebGL-based post-visualization, which can be found [here](https://github.com/danielbuechele/SumoViz3D).
