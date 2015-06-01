@@ -23,7 +23,7 @@ public class HUDFPS : MonoBehaviour
 	
 	void Start()
 	{
-		if( !guiText )
+		if( !GetComponent<GUIText>() )
 		{
 			Debug.Log("UtilityFramesPerSecond needs a GUIText component!");
 			enabled = false;
@@ -44,15 +44,15 @@ public class HUDFPS : MonoBehaviour
 			// display two fractional digits (f2 format)
 			float fps = accum/frames;
 			string format = System.String.Format("{0:F2} FPS",fps);
-			guiText.text = format;
+			GetComponent<GUIText>().text = format;
 			
 			if(fps < 30)
-				guiText.material.color = Color.yellow;
+				GetComponent<GUIText>().material.color = Color.yellow;
 			else 
 				if(fps < 10)
-					guiText.material.color = Color.red;
+					GetComponent<GUIText>().material.color = Color.red;
 			else
-				guiText.material.color = Color.green;
+				GetComponent<GUIText>().material.color = Color.green;
 			//	DebugConsole.Log(format,level);
 			timeleft = updateInterval;
 			accum = 0.0F;

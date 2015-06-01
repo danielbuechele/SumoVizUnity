@@ -30,15 +30,15 @@ public class Groundplane : MonoBehaviour {
 		if (pc.drawLine) {
 
 			RaycastHit hit;
-			Ray ray = GameObject.Find("Flycam").camera.ScreenPointToRay(Input.mousePosition);
-			if (collider.Raycast (ray, out hit, Mathf.Infinity)) {
+			Ray ray = GameObject.Find("Flycam").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+			if (GetComponent<Collider>().Raycast (ray, out hit, Mathf.Infinity)) {
 
 				if (!point1active) {
 					point1 = hit.point;
 					point1active = true;
 				} else if (!point2active)  {
 					point2 = hit.point;
-					VectorLine.SetCamera (GameObject.Find ("Flycam").camera);
+					VectorLine.SetCamera (GameObject.Find ("Flycam").GetComponent<Camera>());
 					myLine = VectorLine.SetLine3D (Color.red, new Vector3[] {point1, point2});
 					myLine.lineWidth = 3.0f;
 					point2active = true;
@@ -82,10 +82,10 @@ public class Groundplane : MonoBehaviour {
 
 		if (point1active && !point2active) {
 			RaycastHit hit;
-			Ray ray = GameObject.Find("Flycam").camera.ScreenPointToRay(Input.mousePosition);
-			if (collider.Raycast (ray, out hit, Mathf.Infinity)) {
+			Ray ray = GameObject.Find("Flycam").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+			if (GetComponent<Collider>().Raycast (ray, out hit, Mathf.Infinity)) {
 				VectorLine.Destroy(ref myLine_tmp);
-				VectorLine.SetCamera (GameObject.Find ("Flycam").camera);
+				VectorLine.SetCamera (GameObject.Find ("Flycam").GetComponent<Camera>());
 				myLine_tmp = VectorLine.SetLine3D (Color.red, new Vector3[] {point1, hit.point});
 				myLine_tmp.lineWidth = 3.0f;
 

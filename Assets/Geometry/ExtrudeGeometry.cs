@@ -9,10 +9,10 @@ public class ExtrudeGeometry : Geometry  {
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
 
-		obstacle.renderer.castShadows = true;
+		obstacle.GetComponent<Renderer>().castShadows = true;
 		obstacle.transform.position = new Vector3 (0, height, 0);
 
-		obstacle.renderer.material = topMaterial;
+		obstacle.GetComponent<Renderer>().material = topMaterial;
 
 		Vector2[] vertices2D = verticesList.ToArray();
 		
@@ -36,7 +36,7 @@ public class ExtrudeGeometry : Geometry  {
 
 		GameObject walls = new GameObject (name+"_walls", typeof(MeshFilter), typeof(MeshRenderer));
 		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
-		walls.renderer.material = sideMaterial;
+		walls.GetComponent<Renderer>().material = sideMaterial;
 
 		List<Vector2> uvs_walls = new List<Vector2>();
 		List<Vector3> vertices_walls = new List<Vector3>();

@@ -168,7 +168,7 @@ public class InfoText : MonoBehaviour {
 				}
 			}
 		}
-		guiText.text = text;
+		GetComponent<GUIText>().text = text;
 
 		if (diagram) {
 
@@ -216,7 +216,7 @@ public class InfoText : MonoBehaviour {
 		PlaybackControl pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 		
 		//data points
-		VectorPoints.SetCamera (GameObject.Find ("Flycam").camera);
+		VectorPoints.SetCamera (GameObject.Find ("Flycam").GetComponent<Camera>());
 
 		Vector2[] dp = new Vector2[(int)pc.total_time];
 		for (int i = 0;i<dp.Length;i++) {dp[i] = new Vector2(position.x+position.width*((float)(i/pc.total_time)),position.y);}

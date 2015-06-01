@@ -11,8 +11,8 @@ public class AreaGeometry : Geometry  {
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
 
 		obstacle.transform.position = new Vector3 (0, 0.01f, 0);
-		obstacle.renderer.material.color = new Color (1, 0, 0, .3f);
-		obstacle.renderer.material.shader = Shader.Find ("Transparent/Diffuse");
+		obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
+		obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
 
 		Vector2[] vertices2D = verticesList.ToArray();
 		

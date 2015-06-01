@@ -30,7 +30,7 @@ public class Pedestrian : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameObject.AddComponent("BoxCollider");
+		gameObject.AddComponent<BoxCollider>();
 		transform.Rotate (0,90,0);
 		myColor = new Color (Random.value, Random.value, Random.value);
 		GetComponentInChildren<Renderer>().materials[1].color = myColor;
@@ -58,7 +58,7 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	public void showTrajectory() {
-		VectorLine.SetCamera (GameObject.Find ("Flycam").camera);
+		VectorLine.SetCamera (GameObject.Find ("Flycam").GetComponent<Camera>());
 		
 		List <Vector3> points = new List<Vector3>();
 		for (int i = 0; i<positions.Count-1; i++) {
@@ -76,8 +76,8 @@ public class Pedestrian : MonoBehaviour {
 		float side = 1.0f;
 		tile = new GameObject ("tile"+id, typeof(MeshFilter), typeof(MeshRenderer));
 		MeshFilter mesh_filter = tile.GetComponent<MeshFilter> ();
-		tile.renderer.material = (Material) Resources.Load("Tilematerial", typeof(Material));
-		tile.renderer.material.color = Color.red;
+		tile.GetComponent<Renderer>().material = (Material) Resources.Load("Tilematerial", typeof(Material));
+		tile.GetComponent<Renderer>().material.color = Color.red;
 		Mesh mesh = new Mesh();
 		mesh.vertices = new Vector3[] {new Vector3 (-side/2, 0.01f, -side/2),new Vector3 (side/2, 0.01f, -side/2),new Vector3 (-side/2, 0.01f, side/2),new Vector3 (side/2, 0.01f, side/2)};
 		mesh.triangles = new int[] {2,1,0,1,2,3};
@@ -104,9 +104,9 @@ public class Pedestrian : MonoBehaviour {
 	void Update () {
 
 		if (pc.playing) {
-			animation.Play ();
+			GetComponent<Animation>().Play ();
 		} else {
-			animation.Stop ();
+			GetComponent<Animation>().Stop ();
 		}
 
 		int index = _getTrait(positions, pc.current_time);
@@ -124,7 +124,7 @@ public class Pedestrian : MonoBehaviour {
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
 
-			animation["walking"].speed = getSpeed ();
+			GetComponent<Animation>()["walking"].speed = getSpeed ();
 			if (start!=target) transform.rotation = Quaternion.LookRotation(relativePos);
 
 			//check if line is crossed
@@ -138,10 +138,10 @@ public class Pedestrian : MonoBehaviour {
 			//Tile coloring
 			if (pc.tileColoringMode != TileColoringMode.TileColoringNone) {
 
-				tile.renderer.enabled = true;
+				tile.GetComponent<Renderer>().enabled = true;
 
 				if (pc.tileColoringMode == TileColoringMode.TileColoringSpeed) {
-					tile.renderer.material.color = ColorHelper.ColorForSpeed(getSpeed());
+					tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForSpeed(getSpeed());
 					it.updateSpeed(speed);
 				} else if (pc.tileColoringMode == TileColoringMode.TileColoringDensity) {
 					densityReload = (densityReload+1)%densityReloadInterval;
@@ -150,13 +150,13 @@ public class Pedestrian : MonoBehaviour {
 					}
 					float density = getDensity();
 					if (density>=pc.threshold) {
-						tile.renderer.material.color = ColorHelper.ColorForDensity(density);
+						tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForDensity(density);
 					} else {
-						tile.renderer.enabled = false;
+						tile.GetComponent<Renderer>().enabled = false;
 					}
 				}
 			} else {
-				tile.renderer.enabled = false;
+				tile.GetComponent<Renderer>().enabled = false;
 			}
 
 			transform.position = newPosition;
@@ -164,7 +164,7 @@ public class Pedestrian : MonoBehaviour {
 
 		} else {
 			r.enabled = false;
-			tile.renderer.enabled = false;
+			tile.GetComponent<Renderer>().enabled = false;
 			gameObject.hideFlags = HideFlags.HideInHierarchy;
 		}
 	}

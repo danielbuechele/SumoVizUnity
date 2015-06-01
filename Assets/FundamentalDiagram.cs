@@ -92,7 +92,7 @@ public class FundamentalDiagram : MonoBehaviour {
 			return;
 		}
 
-		VectorPoints.SetCamera (GameObject.Find ("Flycam").camera);
+		VectorPoints.SetCamera (GameObject.Find ("Flycam").GetComponent<Camera>());
 
 		//trendline
 		
