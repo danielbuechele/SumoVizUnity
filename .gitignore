@@ -28,3 +28,7 @@ sysinfo.txt
 *.pidb
 *.resources
 test-results/
+
+# Ignore compiled files
+Builds/
+
