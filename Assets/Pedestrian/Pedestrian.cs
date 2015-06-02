@@ -45,9 +45,9 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		if (!Screen.lockCursor && !trajectoryVisible && !pc.drawLine && hideFlags!=HideFlags.HideInHierarchy) {
+		if (Cursor.lockState != CursorLockMode.None && !trajectoryVisible && !pc.drawLine && hideFlags!=HideFlags.HideInHierarchy) {
 			showTrajectory();
-		} else if (!Screen.lockCursor && trajectoryVisible && !pc.drawLine && hideFlags!=HideFlags.HideInHierarchy) {
+		} else if (Cursor.lockState != CursorLockMode.None && trajectoryVisible && !pc.drawLine && hideFlags!=HideFlags.HideInHierarchy) {
 			hideTrajectory();
 		}
 	}

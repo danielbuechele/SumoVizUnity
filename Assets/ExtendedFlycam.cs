@@ -20,6 +20,15 @@ public class ExtendedFlycam : MonoBehaviour
                     Control:    Move slower
                         End:    Toggle cursor locking to screen (you can also press Ctrl+P to toggle play mode on and off).
 	*/
+
+	/* Changes by Daniel Büchele:
+	 * - changed 'end' key to 'escape' or 'tab' key (use escape or tab to toggle cursor locking)
+	 */
+
+	/* Changes by Florian Sesser:
+	 * - Update to Unity 5 APIs
+	 * - Do not capture cursor on start (since it does not work properly in dev mode, only in the built game)
+	 */
 	
 	public float cameraSensitivity = 90;
 	public float climbSpeed = 4;
@@ -32,7 +41,8 @@ public class ExtendedFlycam : MonoBehaviour
 	
 	void Start ()
 	{
-		Screen.lockCursor = true;
+		// Cursor.lockState = CursorLockMode.Locked;
+		// Cursor.visible = false;
 	}
 	
 	void Update ()
@@ -41,7 +51,7 @@ public class ExtendedFlycam : MonoBehaviour
 		rotationY += Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
 		rotationY = Mathf.Clamp (rotationY, -90, 90);
 
-		if (Screen.lockCursor) {
+		if (Cursor.lockState == CursorLockMode.Locked) {
 			transform.localRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
 			transform.localRotation *= Quaternion.AngleAxis(rotationY, Vector3.left);
 		}
@@ -68,7 +78,8 @@ public class ExtendedFlycam : MonoBehaviour
 		
 		if (Input.GetKeyDown (KeyCode.Tab) || Input.GetKeyDown (KeyCode.Escape))
 		{
-			Screen.lockCursor = !Screen.lockCursor;
+			Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
+			Cursor.visible = (Cursor.visible == false) ? true : false;
 		}
 
 
