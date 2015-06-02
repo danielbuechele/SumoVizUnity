@@ -8,8 +8,8 @@ public class ExtrudeGeometry : Geometry  {
 
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
-
-		obstacle.GetComponent<Renderer>().castShadows = true;
+		
+		obstacle.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 		obstacle.transform.position = new Vector3 (0, height, 0);
 
 		obstacle.GetComponent<Renderer>().material = topMaterial;
