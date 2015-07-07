@@ -25,7 +25,7 @@ public class FileLoaderXML : MonoBehaviour {
 		}
 		
 		// loadPedestrianFile(path + "b090_combined.txt");
-		loadGeometryFile (path + "geometry.txt");
+		// loadGeometryFile (path + "geometry.txt");
 		loadXMLFile(path + "out_flughafen-modell-gruppen.xml");
 
 	}
@@ -45,9 +45,9 @@ public class FileLoaderXML : MonoBehaviour {
 		// Load geometry
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
-			float height = TryParseWithDefault(floor.GetAttribute("height"), 1.0f);
-			foreach(XmlElement openWall in floor.SelectNodes("object[@type = \"openWall\"]")) {
+			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
 
+			foreach(XmlElement openWall in floor.SelectNodes("object[@type = \"openWall\"]")) {
 				List<Vector2> list = new List<Vector2>();
 				foreach(XmlElement point in openWall.SelectNodes("point")) {
 					float x;
@@ -56,8 +56,19 @@ public class FileLoaderXML : MonoBehaviour {
 						list.Add(new Vector2(x, y));
 					}
 				}
-
 				WallExtrudeGeometry.create(openWall.GetAttribute("name"), list, height, -0.2f);
+			}
+
+			foreach(XmlElement wall in floor.SelectNodes("object[@type = \"wall\"]")) {
+				List<Vector2> list = new List<Vector2>();
+				foreach(XmlElement point in wall.SelectNodes("point")) {
+					float x;
+					float y;
+					if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
+						list.Add(new Vector2(x, y));
+					}
+				}
+				ObstacleExtrudeGeometry.create(wall.GetAttribute("name"), list, height);
 			}
 		}
 		
