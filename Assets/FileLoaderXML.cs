@@ -57,8 +57,7 @@ public class FileLoaderXML : MonoBehaviour {
 
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
 		foreach(XmlElement node in output.SelectNodes("floor")) { // TODO: load different floors..
-			string[] stringSeparators = new string[] {";\r\n"};
-			string[] lines = node.InnerText.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
+			string[] lines = node.InnerText.Split(new[]{";\r\n"}, StringSplitOptions.None);
 			foreach (string line in lines) {
 				string[] v = line.Split(',');
 				if (v.Length>=3) {
