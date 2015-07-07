@@ -36,6 +36,7 @@ public class FileLoaderXML : MonoBehaviour {
 	// Load an XML file containing both, geometry and pedestrian positions
 	void loadXMLFile(string filename) {
 		if (!System.IO.File.Exists(Application.dataPath + "/" + filename)) {
+			Debug.Log("Error: File " + Application.dataPath + "/" + filename + " not found.");
 		    return;
 		}
 
@@ -53,7 +54,14 @@ public class FileLoaderXML : MonoBehaviour {
 			foreach(XmlElement wall in floor.SelectNodes("object[@type='wall']"))
 				ObstacleExtrudeGeometry.create(wall.GetAttribute("name"), parsePoints(wall), height);
 
-			foreach(XmlElement area in floor.SelectNodes("object[@type='origin' or @type='destination' or @type='scaledArea' or @type='waitingZone' or @type='portal' or @type='beamExit' or @type='eofWall' or @type='queuingArea']"))
+			foreach(XmlElement area in floor.SelectNodes("object[@type='origin'" +
+			                                                 "or @type='destination' " +
+			                                                 "or @type='scaledArea' " +
+			                                                 "or @type='waitingZone' " +
+			                                                 "or @type='portal' " +
+			                                                 "or @type='beamExit' " +
+			                                                 "or @type='eofWall' " +
+			                                                 "or @type='queuingArea']"))
 				AreaGeometry.create(area.GetAttribute("name"), parsePoints(area));
 		}
 		
