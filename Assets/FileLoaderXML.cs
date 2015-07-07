@@ -45,8 +45,7 @@ public class FileLoaderXML : MonoBehaviour {
 		// Load geometry
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
-			float height = 0.0f;
-			float.TryParse(floor.GetAttribute("height"), out height); // TODO: supply default value (or: error handling)
+			float height = TryParseWithDefault(floor.GetAttribute("height"), 1.0f);
 			foreach(XmlElement openWall in floor.SelectNodes("object[@type = \"openWall\"]")) {
 
 				List<Vector2> list = new List<Vector2>();
