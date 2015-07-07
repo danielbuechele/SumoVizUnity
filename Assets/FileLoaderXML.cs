@@ -47,45 +47,16 @@ public class FileLoaderXML : MonoBehaviour {
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
 			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
 
-			foreach(XmlElement openWall in floor.SelectNodes("object[@type='openWall']")) {
-				List<Vector2> list = new List<Vector2>();
-				foreach(XmlElement point in openWall.SelectNodes("point")) {
-					float x;
-					float y;
-					if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
-						list.Add(new Vector2(x, y));
-					}
-				}
-				WallExtrudeGeometry.create(openWall.GetAttribute("name"), list, height, -0.2f);
-			}
+			foreach(XmlElement openWall in floor.SelectNodes("object[@type='openWall']"))
+				WallExtrudeGeometry.create(openWall.GetAttribute("name"), parsePoints(openWall), height, -0.2f);
 
-			foreach(XmlElement wall in floor.SelectNodes("object[@type='wall']")) {
-				List<Vector2> list = new List<Vector2>();
-				foreach(XmlElement point in wall.SelectNodes("point")) {
-					float x;
-					float y;
-					if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
-						list.Add(new Vector2(x, y));
-					}
-				}
-				ObstacleExtrudeGeometry.create(wall.GetAttribute("name"), list, height);
-			}
+			foreach(XmlElement wall in floor.SelectNodes("object[@type='wall']"))
+				ObstacleExtrudeGeometry.create(wall.GetAttribute("name"), parsePoints(wall), height);
 
-			foreach(XmlElement area in floor.SelectNodes("object[@type='origin' or @type='destination' or @type='scaledArea' or @type='waitingZone' or @type='portal' or @type='beamExit' or @type='eofWall' or @type='queuingArea']")) {
-				List<Vector2> list = new List<Vector2>();
-				foreach(XmlElement point in area.SelectNodes("point")) {
-					float x;
-					float y;
-					if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
-						list.Add(new Vector2(x, y));
-					}
-				}
-				AreaGeometry.create(area.GetAttribute("name"), list);
-			}
+			foreach(XmlElement area in floor.SelectNodes("object[@type='origin' or @type='destination' or @type='scaledArea' or @type='waitingZone' or @type='portal' or @type='beamExit' or @type='eofWall' or @type='queuingArea']"))
+				AreaGeometry.create(area.GetAttribute("name"), parsePoints(area));
 		}
 		
-
-
 
 		// Load pedestrians
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
@@ -115,6 +86,23 @@ public class FileLoaderXML : MonoBehaviour {
 		}
 		pl.createPedestrians ();
 	}
+
+
+	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
+	static List<Vector2> parsePoints(XmlElement polyPoints) {
+		List<Vector2> list = new List<Vector2>();
+
+		foreach(XmlElement point in polyPoints.SelectNodes("point")) {
+			float x;
+			float y;
+			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
+				list.Add(new Vector2(x, y));
+			}
+		}
+
+		return list;
+	}
+
 
 	void loadPedestrianFile(string filename) {
 		var sr = new StreamReader(Application.dataPath + "/" + filename);
