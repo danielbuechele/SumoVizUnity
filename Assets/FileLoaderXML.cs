@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System;
+using UnityEditor;
 
 public class FileLoaderXML : MonoBehaviour {
 
@@ -13,35 +14,42 @@ public class FileLoaderXML : MonoBehaviour {
 		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 		gl.setTheme (new NatureThemingMode ());
 
-		string path = "";
-		if (Application.platform == RuntimePlatform.OSXEditor) {
-			path = "Data/";
-		} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-			path = "../../";
-		} else if (Application.platform == RuntimePlatform.WindowsEditor) {
-			path = "Data/";
-		} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
-			path = "../";
-		}
-		
-		// loadPedestrianFile(path + "b090_combined.txt");
-		// loadGeometryFile (path + "geometry.txt");
-		loadXMLFile(path + "out_flughafen-modell-gruppen.xml");
+		var filename = EditorUtility.OpenFilePanel(
+			"Load simulation output",
+			"",
+			"xml");
 
+		if (filename.Length != 0) {
+			loadXMLFile(filename);
+		} else {
+			string path = "";
+			if (Application.platform == RuntimePlatform.OSXEditor) {
+				path = "Data/";
+			} else if (Application.platform == RuntimePlatform.OSXPlayer) {
+				path = "../../";
+			} else if (Application.platform == RuntimePlatform.WindowsEditor) {
+				path = "Data/";
+			} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+				path = "../";
+			}
+			
+			loadXMLFile(Application.dataPath + "/" + path + "out_flughafen-modell-gruppen.xml");
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {}
 
 	// Load an XML file containing both, geometry and pedestrian positions
+	// 'filename' must contain the absolute path (I think.)
 	void loadXMLFile(string filename) {
-		if (!System.IO.File.Exists(Application.dataPath + "/" + filename)) {
-			Debug.Log("Error: File " + Application.dataPath + "/" + filename + " not found.");
+		if (!System.IO.File.Exists(filename)) {
+			Debug.Log("Error: File " + filename + " not found.");
 		    return;
 		}
 
 		XmlDocument xmlDoc = new XmlDocument();
-		xmlDoc.LoadXml(System.IO.File.ReadAllText(Application.dataPath + "/" + filename));
+		xmlDoc.LoadXml(System.IO.File.ReadAllText(filename));
 
 		// Load geometry
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
@@ -112,7 +120,7 @@ public class FileLoaderXML : MonoBehaviour {
 	}
 
 
-	void loadPedestrianFile(string filename) {
+	/* void loadPedestrianFile(string filename) {
 		var sr = new StreamReader(Application.dataPath + "/" + filename);
 		var fileContents = sr.ReadToEnd();
 		sr.Close();
@@ -137,9 +145,9 @@ public class FileLoaderXML : MonoBehaviour {
 
 		
 		pl.createPedestrians ();
-	}
+	} */
 
-	void loadGeometryFile(string filename) {
+	/* void loadGeometryFile(string filename) {
 		var sr = new StreamReader(Application.dataPath + "/" + filename);
 		var fileContents = sr.ReadToEnd();
 		sr.Close();
@@ -174,7 +182,7 @@ public class FileLoaderXML : MonoBehaviour {
 				}
 			}
 		}
-	}
+	} */
 }
 
 
