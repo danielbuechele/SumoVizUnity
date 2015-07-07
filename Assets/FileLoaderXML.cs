@@ -43,9 +43,27 @@ public class FileLoaderXML : MonoBehaviour {
 		xmlDoc.LoadXml(System.IO.File.ReadAllText(Application.dataPath + "/" + filename));
 
 		// Load geometry
-		//foreach(XmlElement node in xmlDoc.SelectNodes("spatial/object")) { // TODO: load different walls.. xpath?
+		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
+		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
+			float height = 0.0f;
+			float.TryParse(floor.GetAttribute("height"), out height); // TODO: supply default value (or: error handling)
+			foreach(XmlElement openWall in floor.SelectNodes("object[@type = \"openWall\"]")) {
 
-		//}
+				List<Vector2> list = new List<Vector2>();
+				foreach(XmlElement point in openWall.SelectNodes("point")) {
+					float x;
+					float y;
+					if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
+						list.Add(new Vector2(x, y));
+					}
+				}
+
+				WallExtrudeGeometry.create(openWall.GetAttribute("name"), list, height, -0.2f);
+			}
+		}
+		
+
+
 
 		// Load pedestrians
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
@@ -56,8 +74,8 @@ public class FileLoaderXML : MonoBehaviour {
 		}
 
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
-		foreach(XmlElement node in output.SelectNodes("floor")) { // TODO: load different floors..
-			string[] lines = node.InnerText.Split(new[]{";\r\n"}, StringSplitOptions.None);
+		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO: load different floors..
+			string[] lines = floor.InnerText.Split(new[]{";\r\n"}, StringSplitOptions.None);
 			foreach (string line in lines) {
 				string[] v = line.Split(',');
 				if (v.Length>=3) {
@@ -74,7 +92,6 @@ public class FileLoaderXML : MonoBehaviour {
 			}
 		}
 		pl.createPedestrians ();
-		
 	}
 
 	void loadPedestrianFile(string filename) {
