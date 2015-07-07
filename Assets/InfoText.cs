@@ -125,7 +125,7 @@ public class InfoText : MonoBehaviour {
 
 		if (pl.population != null) {
 
-			infos.Add( new Entry("population","",pl.population[(int) pc.current_time],0,true,pl.pedestirans.Count));
+			// infos.Add( new Entry("population","",pl.population[(int) pc.current_time],0,true,pl.pedestirans.Count));
 		}
 
 		if (gp.point1active && gp.point2active) {

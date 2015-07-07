@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 
 public class FileLoaderXML : MonoBehaviour {
 
@@ -22,14 +23,50 @@ public class FileLoaderXML : MonoBehaviour {
 			path = "../";
 		}
 		
-		loadPedestrianFile(path + "b090_combined.txt");
+		// loadPedestrianFile(path + "b090_combined.txt");
 		loadGeometryFile (path + "geometry.txt");
+		loadXMLFile(path + "out_flughafen-modell-gruppen.xml");
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () {}
+
+	// Load an XML file containing both, geometry and pedestrian positions
+	void loadXMLFile(string filename) {
+		if (!System.IO.File.Exists(Application.dataPath + "/" + filename)) {
+		    return;
+		}
+
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.LoadXml(System.IO.File.ReadAllText(Application.dataPath + "/" + filename));
+
+		// Load geometry
+		//foreach(XmlElement node in xmlDoc.SelectNodes("spatial/object")) { // TODO: load different walls.. xpath?
+
+		//}
+
+		// Load pedestrians
+		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
+		foreach(XmlElement node in xmlDoc.SelectNodes("//floor")) { // TODO: load different floors..
+			string[] lines = node.InnerText.Split(';');
+			foreach (string line in lines) {
+				string[] v = line.Split(',');
+				if (v.Length>=3) {
+					decimal time;
+					int id;
+					float x;
+					float y;
+					decimal.TryParse(v[0], out time);
+					int.TryParse(v[1], out id);
+					float.TryParse(v[2], out x);
+					float.TryParse(v[3], out y);
+					pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
+				}
+			}
+		}
+		pl.createPedestrians ();
+		
 	}
 
 	void loadPedestrianFile(string filename) {
