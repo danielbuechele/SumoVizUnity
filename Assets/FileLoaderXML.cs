@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using System;
 
 public class FileLoaderXML : MonoBehaviour {
 
@@ -47,9 +48,17 @@ public class FileLoaderXML : MonoBehaviour {
 		//}
 
 		// Load pedestrians
+		XmlNode output = xmlDoc.SelectSingleNode("//output");
+	
+		if (output == null) {
+			Debug.Log("Debug: No output / pedestrian position data found in file.");
+			return;
+		}
+
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
-		foreach(XmlElement node in xmlDoc.SelectNodes("//floor")) { // TODO: load different floors..
-			string[] lines = node.InnerText.Split(';');
+		foreach(XmlElement node in output.SelectNodes("floor")) { // TODO: load different floors..
+			string[] stringSeparators = new string[] {";\r\n"};
+			string[] lines = node.InnerText.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string line in lines) {
 				string[] v = line.Split(',');
 				if (v.Length>=3) {
