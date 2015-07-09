@@ -110,7 +110,6 @@ public class InfoText : MonoBehaviour {
 	}
 
 	void OnGUI () {
-
 		PlaybackControl pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 		PedestrianLoader pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
@@ -124,13 +123,12 @@ public class InfoText : MonoBehaviour {
 		text += "current time: "+minutes+":"+seconds+"\n";
 
 		if (pl.population != null) {
-
-			// infos.Add( new Entry("population","",pl.population[(int) pc.current_time],0,true,pl.pedestirans.Count));
+			infos.Add( new Entry("population","",pl.population[(int) pc.current_time],0,true,pl.pedestrians.Count));
 		}
 
 		if (gp.point1active && gp.point2active) {
 			infos.Add( new Entry("line length","m",Vector3.Distance(gp.point1, gp.point2),2,false,0));
-			infos.Add( new Entry("line crossings","",gp.lineCrossed,0,true,pl.pedestirans.Count));
+			infos.Add( new Entry("line crossings","",gp.lineCrossed,0,true,pl.pedestrians.Count));
 			infos.Add( new Entry("line flow","/s",gp.crossings.Count,0,true,10.0f));
 			infos.Add( new Entry("avg. crossing speed","m/s",gp.crossingSpeed,2,true,3.0f));
 			infos.Add( new Entry("current flow","/ms",gp.crossings.Count/Vector3.Distance(gp.point1, gp.point2),2,true,3.0f));
@@ -195,7 +193,7 @@ public class InfoText : MonoBehaviour {
 		float maxSpeed = float.MinValue;
 		float maxDensity = float.MinValue;
 		List<Vector2> points = new List<Vector2> ();
-		foreach (GameObject p in pl.pedestirans) {
+		foreach (GameObject p in pl.pedestrians) {
 			Pedestrian ped = p.GetComponent<Pedestrian>();
 			Renderer r = ped.GetComponentInChildren<Renderer>() as Renderer;
 			if (r.enabled) {

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 
@@ -76,7 +76,7 @@ public class FundamentalDiagram : MonoBehaviour {
 		float maxSpeed = float.MinValue;
 		float maxDensity = float.MinValue;
 		List<Vector2> points = new List<Vector2> ();
-		foreach (GameObject p in pl.pedestirans) {
+		foreach (GameObject p in pl.pedestrians) {
 			Pedestrian ped = p.GetComponent<Pedestrian>();
 			if (p.hideFlags != HideFlags.HideInHierarchy) {
 				float speed = ped.getSpeed();

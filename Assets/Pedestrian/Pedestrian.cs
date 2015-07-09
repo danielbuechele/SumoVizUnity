@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Vectrosity;
@@ -175,7 +175,7 @@ public class Pedestrian : MonoBehaviour {
 		if (hideFlags==HideFlags.HideInHierarchy) return -1;
 		int nearbys = 0;
 		float radius = 2.0f;
-		foreach (GameObject p in pl.pedestirans) {
+		foreach (GameObject p in pl.pedestrians) {
 			if (p!=this && Vector3.Distance(transform.position,p.transform.position)<radius && p.hideFlags!=HideFlags.HideInHierarchy) {
 				nearbys++;
 			}
@@ -189,7 +189,7 @@ public class Pedestrian : MonoBehaviour {
 
 		if (hideFlags==HideFlags.HideInHierarchy) return -1;
 		List<float> nearbys = new List<float>();
-		foreach (GameObject p in pl.pedestirans) {
+		foreach (GameObject p in pl.pedestrians) {
 			if (p!=this && p.hideFlags!=HideFlags.HideInHierarchy) {
 				float distance = Vector3.Distance(transform.position,p.transform.position);
 				if (nearbys.Count == 0) nearbys.Add(distance);

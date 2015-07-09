@@ -38,12 +38,11 @@ public class PlaybackControl : MonoBehaviour {
 	void Start () {
 		current_time = 0;
 		total_time = 0;
-		playing = true;
+		playing = false;
 		threshold = 2.0f;
 	}
 
 	void OnGUI () {
-
 		playing = GUI.Toggle(new Rect(30, 25, 100, 30), playing, " PLAY");
 		current_time = (decimal) GUI.HorizontalSlider (new Rect (100, 30, 400, 30), (float) current_time, 0.0f, (float) total_time);
 
@@ -53,12 +52,12 @@ public class PlaybackControl : MonoBehaviour {
 		if (GUI.Button (new Rect (510,20,120,30), btnText)) {
 			PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
 			if (trajectoriesShown) {
-				foreach (GameObject p in pl.pedestirans) {
+				foreach (GameObject p in pl.pedestrians) {
 					p.GetComponent<Pedestrian>().hideTrajectory();
 				}
 				trajectoriesShown = false;
 			} else {
-				foreach (GameObject p in pl.pedestirans) {
+				foreach (GameObject p in pl.pedestrians) {
 					p.GetComponent<Pedestrian>().showTrajectory();
 				}
 				trajectoriesShown = true;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq;
 public class PedestrianLoader : MonoBehaviour {
 
 	private List<PedestrianPosition> positions = new List<PedestrianPosition>();
-	public List<GameObject> pedestirans = new List<GameObject>();
+	public List<GameObject> pedestrians = new List<GameObject>();
 	public int[] population;
 
 	// Use this for initialization
@@ -36,7 +36,7 @@ public class PedestrianLoader : MonoBehaviour {
 				p.transform.parent = null;
 				p.GetComponent<Pedestrian>().setPositions(currentList);
 				p.GetComponent<Pedestrian>().setID(positions[i].getID());
-				pedestirans.Add(p);
+				pedestrians.Add(p);
 				currentList.Clear();
 			}
 		}
