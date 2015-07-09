@@ -15,7 +15,7 @@ public class FileLoaderXML : MonoBehaviour {
 		gl.setTheme (new NatureThemingMode ());
 
 		var filename = EditorUtility.OpenFilePanel(
-			"Load simulation output",
+			"Load simulation (XML)",
 			"",
 			"xml");
 
@@ -56,21 +56,33 @@ public class FileLoaderXML : MonoBehaviour {
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
 			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
 
-			foreach(XmlElement openWall in floor.SelectNodes("object[@type='openWall']"))
-				WallExtrudeGeometry.create(openWall.GetAttribute("name"), parsePoints(openWall), height, -0.2f);
+			foreach (XmlElement geomObj in floor.SelectNodes("object")) {
+				switch (geomObj.GetAttribute("type")) {
 
-			foreach(XmlElement wall in floor.SelectNodes("object[@type='wall']"))
-				ObstacleExtrudeGeometry.create(wall.GetAttribute("name"), parsePoints(wall), height);
+				case "openWall":
+					WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
+					break;
 
-			foreach(XmlElement area in floor.SelectNodes("object[@type='origin'" +
-			                                                 "or @type='destination' " +
-			                                                 "or @type='scaledArea' " +
-			                                                 "or @type='waitingZone' " +
-			                                                 "or @type='portal' " +
-			                                                 "or @type='beamExit' " +
-			                                                 "or @type='eofWall' " +
-			                                                 "or @type='queuingArea']"))
-				AreaGeometry.create(area.GetAttribute("name"), parsePoints(area));
+				case "wall":
+					ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
+					break;
+
+				case "origin":
+				case "destination":
+				case "scaledArea":
+				case "waitingZone":
+				case "portal":
+				case "beamExit":
+				case "eofWall":
+				case "queuingArea":
+					AreaGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj));
+					break;
+
+				default:
+					Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");
+					break;
+				}
+			}
 		}
 		
 
