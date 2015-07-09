@@ -4,47 +4,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using System;
-using UnityEditor;
 
-public class FileLoaderXML : MonoBehaviour {
+public class FileLoaderXML {
 
 	// Use this for initialization
 	void Start () {
-
-		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-		gl.setTheme (new NatureThemingMode ());
-
-		var filename = EditorUtility.OpenFilePanel(
-			"Load simulation (XML)",
-			"",
-			"xml");
-
-		if (filename.Length != 0) {
-			loadXMLFile(filename);
-		} else {
-			string path = "";
-			if (Application.platform == RuntimePlatform.OSXEditor) {
-				path = "Data/";
-			} else if (Application.platform == RuntimePlatform.OSXPlayer) {
-				path = "../../";
-			} else if (Application.platform == RuntimePlatform.WindowsEditor) {
-				path = "Data/";
-			} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
-				path = "../";
-			}
-			
-			loadXMLFile(Application.dataPath + "/" + path + "out_flughafen-modell-gruppen.xml");
-		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {}
 
 	// Load an XML file containing both, geometry and pedestrian positions
 	// 'filename' must contain the absolute path (I think.)
-	void loadXMLFile(string filename) {
+	public void loadXMLFile(string filename) {
 		if (!System.IO.File.Exists(filename)) {
-			Debug.Log("Error: File " + filename + " not found.");
+			Debug.LogError("Error: File " + filename + " not found.");
 		    return;
 		}
 
@@ -52,6 +26,9 @@ public class FileLoaderXML : MonoBehaviour {
 		xmlDoc.LoadXml(System.IO.File.ReadAllText(filename));
 
 		// Load geometry
+		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+		gl.setTheme (new NatureThemingMode ());
+
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
 			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
