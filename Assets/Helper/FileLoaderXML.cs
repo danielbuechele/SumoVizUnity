@@ -7,13 +7,6 @@ using System;
 
 public class FileLoaderXML {
 
-	// Use this for initialization
-	void Start () {
-	}
-
-	// Update is called once per frame
-	void Update () {}
-
 	// Load an XML file containing both, geometry and pedestrian positions
 	// 'filename' must contain the absolute path (I think.)
 	public void loadXMLFile(string filename) {

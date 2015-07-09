@@ -20,6 +20,11 @@ public class FileChooser : MonoBehaviour {
 				Debug.Log("Ouput File = \""+fb.outputFile.ToString()+"\"");
 				/*the outputFile variable is of type FileInfo from the .NET library "http://msdn.microsoft.com/en-us/library/system.io.fileinfo.aspx"*/
 				fl.loadXMLFile(fb.outputFile.FullName);
+
+				// Enable Flycam look-around
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+
 				Destroy (this);
 			}
 		}
