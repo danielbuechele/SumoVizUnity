@@ -66,7 +66,7 @@ public class FileLoaderXML {
 
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
 		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO: load different floors..
-			string[] lines = floor.InnerText.Split(new[]{";\r\n"}, StringSplitOptions.None);
+			string[] lines = floor.InnerText.Split(new[]{";" + Environment.NewLine}, StringSplitOptions.None);
 			foreach (string line in lines) {
 				string[] v = line.Split(',');
 				if (v.Length>=3) {
