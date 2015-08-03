@@ -99,6 +99,7 @@ public class FileBrowser{
 								if(di.button()){	getFileList(di.di);	}
 							}
 						}else{
+							parentDir.gc.text = "..";
 							if((backStyle != null)?parentDir.button(backStyle):parentDir.button())
 								getFileList(parentDir.di);
 						}
