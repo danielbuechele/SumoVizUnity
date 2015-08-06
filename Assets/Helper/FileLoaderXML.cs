@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 using System;
+using System.IO;
+using System.Text;
+using System.Xml;
 
 public class FileLoaderXML {
 
@@ -66,19 +67,21 @@ public class FileLoaderXML {
 
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
 		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO: load different floors..
-			string[] lines = floor.InnerText.Split(new[]{";" + Environment.NewLine}, StringSplitOptions.None);
-			foreach (string line in lines) {
-				string[] v = line.Split(',');
-				if (v.Length>=3) {
-					decimal time;
-					int id;
-					float x;
-					float y;
-					decimal.TryParse(v[0], out time);
-					int.TryParse(v[1], out id);
-					float.TryParse(v[2], out x);
-					float.TryParse(v[3], out y);
-					pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
+			using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(floor.InnerText)))) {
+				string line;
+				while((line = reader .ReadLine()) != null) {
+					string[] v = line.Split(',');
+					if (v.Length>=3) {
+						decimal time;
+						int id;
+						float x;
+						float y;
+						decimal.TryParse(v[0], out time);
+						int.TryParse(v[1], out id);
+						float.TryParse(v[2], out x);
+						float.TryParse(v[3], out y);
+						pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
+					}
 				}
 			}
 		}
