@@ -118,13 +118,16 @@ public class Pedestrian : MonoBehaviour {
 			start = new Vector3 (pos.getX(),0,pos.getY());
 			target = new Vector3 (pos2.getX(),0,pos2.getY());
 			float time = (float) pc.current_time;
-			float movement_percentage = (float) time-(float)pos.getTime();
+			// Clamp so we don't divide by zero.
+			// ATM, this is the same every time. ~ FS 2015-08-10
+			float timeStepLengh = Mathf.Clamp((float)pos2.getTime() - (float)pos.getTime(), 0.1f, 10f); 
+			float movement_percentage = ((float)time - (float)pos.getTime()) / timeStepLengh;
 			Vector3 newPosition = Vector3.Lerp(start,target,movement_percentage);
 
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
 
-			GetComponent<Animation>()["walking"].speed = getSpeed ();
+			GetComponent<Animation>()["walking"].speed = getSpeed () / timeStepLengh;
 			if (start!=target) transform.rotation = Quaternion.LookRotation(relativePos);
 
 			//check if line is crossed
