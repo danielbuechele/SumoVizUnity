@@ -16,15 +16,6 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 
 	public void addPedestrianPosition(PedestrianPosition p) {
-		// TODO: This is an expensive check. Would be much better to test this in the rather convoluted createPedestrians() method below,
-		// after the positions list has been sorted by pedestrian ID.
-		PedestrianPosition lastPforId = positions.FindLast((e) => {return e.getID() == p.getID();});
-		if (lastPforId != null
-		    && Mathf.Approximately(p.getX(), lastPforId.getX())
-		    && Mathf.Approximately(p.getY(), lastPforId.getY())) {
-			// do not add position if it does not differ from the last one. We want smooth animation.
-			return;
-		}
 		positions.Add (p);
 		PlaybackControl pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
 		if (p.getTime ()>pc.total_time) pc.total_time = p.getTime ();
@@ -37,7 +28,11 @@ public class PedestrianLoader : MonoBehaviour {
 		population = new int[(int)pc.total_time+1];
 
 		for (int i = 0; i< positions.Count;i++) {
-			currentList.Add (positions[i].getTime (),positions[i]);
+			if (positions.Count() > (i+1) && positions[i].getX() == positions[i+1].getX() && positions[i].getY() == positions[i+1].getY()) {
+				// Only take into account time steps with changed coordinates. We want smooth animation.
+				continue;
+			}
+			currentList.Add(positions[i].getTime(), positions[i]);
 			population[(int) positions[i].getTime ()]++;
 			if ((i == (positions.Count-1) || positions[i].getID()!=positions[i+1].getID()) && currentList.Count>0) {
 
