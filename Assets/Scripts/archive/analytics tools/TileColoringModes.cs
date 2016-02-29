@@ -1,5 +1,4 @@
-﻿public enum TileColoringMode
-{
+﻿public enum TileColoringMode {
 	TileColoringNone,
 	TileColoringSpeed,
 	TileColoringDensity
