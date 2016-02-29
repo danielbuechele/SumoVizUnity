@@ -9,9 +9,9 @@ using Vectrosity;
 public class PlaybackControl : MonoBehaviour {
 
 	public bool playing = true;
-	public decimal current_time;
+	public decimal current_time = 0;
 	public decimal slider_value;
-	public decimal total_time;
+	public decimal total_time = 0;
 	public int tiles = 0;
 	public bool drawLine;
 	public TileColoringMode tileColoringMode = TileColoringMode.TileColoringNone;
@@ -21,13 +21,11 @@ public class PlaybackControl : MonoBehaviour {
 	bool lineIsDrawn;
 
 
-	public struct Label
-	{
+	public struct Label {
 		public Rect rect;
 		public string label;
 		
-		public Label (Rect r, string s)
-		{
+		public Label (Rect r, string s) {
 			label = s;
 			rect = r;
 		}
@@ -36,9 +34,6 @@ public class PlaybackControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		current_time = 0;
-		total_time = 0;
-		playing = false;
 		threshold = 2.0f;
 	}
 
