@@ -10,33 +10,32 @@ public class PlaybackControl : MonoBehaviour {
 
 	public bool playing = true;
 	public decimal current_time = 0;
-	public decimal slider_value;
 	public decimal total_time = 0;
+	/*
+	public decimal slider_value;
 	public int tiles = 0;
 	public bool drawLine;
 	public TileColoringMode tileColoringMode = TileColoringMode.TileColoringNone;
 	public bool trajectoriesShown;
 	public float threshold;
-	
 	bool lineIsDrawn;
-
 
 	public struct Label {
 		public Rect rect;
 		public string label;
-		
 		public Label (Rect r, string s) {
 			label = s;
 			rect = r;
 		}
 	}
-
+	*/
 
 	// Use this for initialization
 	void Start () {
-		threshold = 2.0f;
+		//threshold = 2.0f;
 	}
 
+	/*
 	void OnGUI () {
 		playing = GUI.Toggle(new Rect(30, 25, 100, 30), playing, " PLAY");
 		current_time = (decimal) GUI.HorizontalSlider (new Rect (100, 30, 400, 30), (float) current_time, 0.0f, (float) total_time);
@@ -58,8 +57,6 @@ public class PlaybackControl : MonoBehaviour {
 				trajectoriesShown = true;
 			}
 		}
-
-
 
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		Groundplane gp = gl.groundplane;
@@ -101,19 +98,16 @@ public class PlaybackControl : MonoBehaviour {
 			threshold = GUI.HorizontalSlider (new Rect (730, 55, 120, 30), threshold, 0.0f, 6.0f);
 			GUI.Label(new Rect (730, 70, 120, 30),"Threshold: "+System.Math.Round(threshold,2)+"/m²");
 		}
-
-
-
 	}
 
 	public void lineDrawn() {
 		drawLine = false;
 		lineIsDrawn = true;
 	}
+	*/
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (playing) {
 			try {
 				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
@@ -121,10 +115,10 @@ public class PlaybackControl : MonoBehaviour {
 				current_time = 0;
 			}
 		}
-
+		/*
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			playing = !playing;
 		}
-
+		*/
 	}
 }

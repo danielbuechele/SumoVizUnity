@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Vectrosity;
 
 public class Groundplane : MonoBehaviour {
-
+	/*
 	public Vector3 point1;
 	public bool point1active;
 	public Vector3 point2;
@@ -102,4 +102,5 @@ public class Groundplane : MonoBehaviour {
 			}
 		}
 	}
+	*/
 }

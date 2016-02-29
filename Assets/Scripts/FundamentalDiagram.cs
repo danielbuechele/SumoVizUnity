@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System;
 using System.Collections;
 
@@ -212,3 +212,4 @@ public class FundamentalDiagram : MonoBehaviour {
 		if (fundamental && pc.playing) removeFundamentalDiagram ();
 	}
 }
+*/

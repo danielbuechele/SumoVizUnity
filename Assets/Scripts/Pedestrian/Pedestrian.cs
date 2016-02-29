@@ -10,23 +10,23 @@ public class Pedestrian : MonoBehaviour {
 	float movement_time_total;
 	float movement_time_elapsed;
 	private float speed;
-	int densityReload;
-	int densityReloadInterval = 10;
+	//int densityReload;
+	//int densityReloadInterval = 10;
 
 	int id;
 	SortedList positions = new SortedList ();
 	Color myColor;
-	bool trajectoryVisible;
-	VectorLine trajectory;
+	//bool trajectoryVisible;
+	//VectorLine trajectory;
 
-	private InfoText it;
+	//private InfoText it;
 	private PedestrianLoader pl;
 	private PlaybackControl pc;
 	private Renderer r;
 	private GeometryLoader gl;
 	private Groundplane gp;
 
-	GameObject tile;
+	//GameObject tile;
 
 	// Use this for initialization
 	void Start () {
@@ -34,9 +34,9 @@ public class Pedestrian : MonoBehaviour {
 		transform.Rotate (0,90,0);
 		myColor = new Color (Random.value, Random.value, Random.value);
 		GetComponentInChildren<Renderer>().materials[1].color = myColor;
-		addTile ();
+		//addTile ();
 
-		it = GameObject.Find ("InfoText").GetComponent<InfoText> ();
+		//it = GameObject.Find ("InfoText").GetComponent<InfoText> ();
 		pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 		r = GetComponentInChildren<Renderer>() as Renderer;
@@ -44,6 +44,7 @@ public class Pedestrian : MonoBehaviour {
 		gp = gl.groundplane;
 	}
 
+	/*
 	void OnMouseDown(){
 		if (Cursor.lockState != CursorLockMode.None && !trajectoryVisible && !pc.drawLine && hideFlags!=HideFlags.HideInHierarchy) {
 			showTrajectory();
@@ -97,8 +98,8 @@ public class Pedestrian : MonoBehaviour {
 
 		tile.transform.position = gameObject.transform.position;
 		tile.transform.parent = gameObject.transform;
-
 	}
+	*/
 
 	// Update is called once per frame
 	void Update () {
@@ -128,6 +129,8 @@ public class Pedestrian : MonoBehaviour {
 			GetComponent<Animation>()["walking"].speed = getSpeed () / timeStepLength;
 			if (start!=target) transform.rotation = Quaternion.LookRotation(relativePos);
 
+
+			/*
 			//check if line is crossed
 
 			if (gp.point1active && gp.point2active) {
@@ -143,7 +146,7 @@ public class Pedestrian : MonoBehaviour {
 
 				if (pc.tileColoringMode == TileColoringMode.TileColoringSpeed) {
 					tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForSpeed(getSpeed());
-					it.updateSpeed(speed);
+					//it.updateSpeed(speed);
 				} else if (pc.tileColoringMode == TileColoringMode.TileColoringDensity) {
 					densityReload = (densityReload+1)%densityReloadInterval;
 					if (densityReload==0) {
@@ -159,18 +162,19 @@ public class Pedestrian : MonoBehaviour {
 			} else {
 				tile.GetComponent<Renderer>().enabled = false;
 			}
+			*/
 
 			transform.position = newPosition;
-			gameObject.hideFlags = HideFlags.None;
+			//gameObject.hideFlags = HideFlags.None;
 
 		} else {
 			r.enabled = false;
-			tile.GetComponent<Renderer>().enabled = false;
-			gameObject.hideFlags = HideFlags.HideInHierarchy;
+			//tile.GetComponent<Renderer>().enabled = false;
+			//gameObject.hideFlags = HideFlags.HideInHierarchy;
 		}
 	}
 
-
+	/*
 	public float getDensity() {
 
 		if (hideFlags==HideFlags.HideInHierarchy) return -1;
@@ -203,13 +207,13 @@ public class Pedestrian : MonoBehaviour {
 
 		return density;
 	}
-
-	
+	*/
 
 	public float getSpeed() {
 		return speed;
 	}
 
+	/*
 	// http://www.stefanbader.ch/faster-line-segment-intersection-for-unity3dc/
 	bool FasterLineSegmentIntersection(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4) {
 
@@ -220,7 +224,7 @@ public class Pedestrian : MonoBehaviour {
 		float alphaNumerator = b.y*c.x - b.x*c.y;
 		float alphaDenominator = a.y*b.x - a.x*b.y;
 		float betaNumerator  = a.x*c.y - a.y*c.x;
-		float betaDenominator  = alphaDenominator; /*2013/07/05, fix by Deniz*/
+		float betaDenominator  = alphaDenominator; //2013/07/05, fix by Deniz
 		
 		bool doIntersect = true;
 		
@@ -244,9 +248,9 @@ public class Pedestrian : MonoBehaviour {
 				doIntersect = false;
 			}
 		}
-		
 		return doIntersect;
 	}
+	*/
 
 	private int _getTrait(SortedList thisList, decimal thisValue) {
 
@@ -285,13 +289,13 @@ public class Pedestrian : MonoBehaviour {
 		//if (thisList.Keys[index + 1] - thisValue < thisValue - (thisList.Keys[index])) { index++; }
 		
 		// Return the correct/closest string
-		return index;*/
+		return index;
+		*/
 	}
 
-	
 	public void setID(int id) {
 		this.id = id;
-		densityReload = id % densityReloadInterval;
+		//densityReload = id % densityReloadInterval;
 		this.name = "Pedestrian "+id;
 	}
 
@@ -303,8 +307,5 @@ public class Pedestrian : MonoBehaviour {
 		PedestrianPosition pos = (PedestrianPosition)p.GetByIndex (0);
 		transform.position = new Vector3 (pos.getX(),0,pos.getY());
 	}
-
-
-
-
+		
 }
