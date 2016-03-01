@@ -9,8 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 
-public class PedestrianPosition
-{
+public class PedestrianPosition {
 	private int id;
 	private decimal time;
 	private float x;
@@ -27,4 +26,3 @@ public class PedestrianPosition
 	public float getX() {return this.x;}
 	public float getY() {return this.y;}
 }
-

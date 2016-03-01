@@ -15,7 +15,7 @@ public class TangentHelper : MonoBehaviour {
 		Vector3[] tan1 = new Vector3[vertexCount];
 		Vector3[] tan2 = new Vector3[vertexCount];
 		int tri = 0;
-		for (int i = 0; i < (triangleCount); i++)
+		for (int i = 0; i < (triangleCount); i ++)
 		{
 			int i1 = triangles[tri];
 			int i2 = triangles[tri + 1];

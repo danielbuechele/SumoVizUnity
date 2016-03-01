@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class ExtrudeGeometry : Geometry  {
 
 	public static void create (string name, List<Vector2> verticesList, float height, Material topMaterial, Material sideMaterial) {
-
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		gl.setWorldAsParent (obstacle);
@@ -23,21 +22,21 @@ public class ExtrudeGeometry : Geometry  {
 		Triangulator tr = new Triangulator(vertices2D);
 		int[] indicesArray = tr.Triangulate();
 		List<int> indices = new List<int>();
-		for (int i = 0;i<indicesArray.Length;i++) {
+		for (int i = 0; i < indicesArray.Length; i ++) {
 			indices.Add (indicesArray[i]);
 		}
 
 		// Create the Vector3 vertices
 		List<Vector3> vertices = new List<Vector3>();
 
-		for (int i=0; i<vertices2D.Length; i++) {
+		for (int i = 0; i < vertices2D.Length; i ++) {
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
 
 		// Create the mesh
 		Mesh mesh = new Mesh();
 
-		GameObject walls = new GameObject (name+"_walls", typeof(MeshFilter), typeof(MeshRenderer));
+		GameObject walls = new GameObject (name + "_walls", typeof(MeshFilter), typeof(MeshRenderer));
 		walls.transform.SetParent(obstacle.transform);
 
 		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
@@ -47,37 +46,37 @@ public class ExtrudeGeometry : Geometry  {
 		List<Vector3> vertices_walls = new List<Vector3>();
 		List<int> indices_walls = new List<int>();
 
-		foreach (Vector3 v in vertices) {;
+		foreach (Vector3 v in vertices) {
 			vertices_walls.Add(new Vector3(v.x,v.y,v.z));
 			vertices_walls.Add(new Vector3(v.x,v.y,v.z));
 			vertices_walls.Add(new Vector3(v.x, height, v.z));
 			vertices_walls.Add(new Vector3(v.x, height, v.z));
 		}
 
-		for (int i=1; i<=vertices_walls.Count; i=i+4) {
+		for (int i = 1; i <= vertices_walls.Count; i = i + 4) {
 			indices_walls.Add(i);
-			indices_walls.Add((i+3)%vertices_walls.Count);
-			indices_walls.Add(i+2);
+			indices_walls.Add((i + 3) % vertices_walls.Count);
+			indices_walls.Add(i + 2);
 
-			indices_walls.Add(i+2);
-			indices_walls.Add((i+3)%vertices_walls.Count);
-			indices_walls.Add((i+5)%vertices_walls.Count);
+			indices_walls.Add(i + 2);
+			indices_walls.Add((i + 3) % vertices_walls.Count);
+			indices_walls.Add((i + 5) % vertices_walls.Count);
 		}
 
 		//double sided walls
 		int indices_walls_count = indices_walls.Count;
-		for (int i = indices_walls_count-1;i>=0;i--) {
+		for (int i = indices_walls_count - 1; i >=0 ; i --) {
 			indices_walls.Add (indices_walls[i]);
 		}
 
-		for (int i =0;i<vertices_walls.Count;i++) {
+		for (int i = 0; i < vertices_walls.Count; i ++) {
 			float uv_height = height;
-			int a = i-3;
-			if (a<0) a = a+vertices_walls.Count;
-			float uv_width = Vector3.Distance(vertices_walls[i],vertices_walls[a]);
-			if ((i-1)%4==0) uvs_walls.Add (new Vector2 (0, 0));
-			else if ((i-3)%4==0) uvs_walls.Add (new Vector2 (0, uv_height));
-			else if (i%4==0) uvs_walls.Add (new Vector2 (uv_width, 0)); 
+			int a = i - 3;
+			if (a < 0) a += vertices_walls.Count;
+			float uv_width = Vector3.Distance(vertices_walls[i], vertices_walls[a]);
+			if ((i - 1) % 4 == 0) uvs_walls.Add (new Vector2 (0, 0));
+			else if ((i - 3) % 4 == 0) uvs_walls.Add (new Vector2 (0, uv_height));
+			else if (i % 4 == 0) uvs_walls.Add (new Vector2 (uv_width, 0)); 
 			else  uvs_walls.Add (new Vector2 (uv_width, uv_height));
 		}
 
@@ -90,7 +89,6 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
 	
-
 		mesh.vertices = vertices.ToArray();
 		mesh.uv = verticesList.ToArray();
 		mesh.triangles = indices.ToArray();

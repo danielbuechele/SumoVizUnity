@@ -6,7 +6,6 @@ public class AreaGeometry : Geometry  {
 
 	public static void create (string name, List<Vector2> verticesList) {
 
-
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
 
@@ -23,14 +22,14 @@ public class AreaGeometry : Geometry  {
 		Triangulator tr = new Triangulator(vertices2D);
 		int[] indicesArray = tr.Triangulate();
 		List<int> indices = new List<int>();
-		for (int i = 0;i<indicesArray.Length;i++) {
+		for (int i = 0; i < indicesArray.Length; i ++) {
 			indices.Add (indicesArray[i]);
 		}
 
 		// Create the Vector3 vertices
 		List<Vector3> vertices = new List<Vector3>();
 
-		for (int i=0; i<vertices2D.Length; i++) {
+		for (int i = 0; i < vertices2D.Length; i ++) {
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
 
