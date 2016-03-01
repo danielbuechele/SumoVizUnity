@@ -35,4 +35,11 @@ public class ScenarioImporter : MonoBehaviour {
 		}
 	}
 
+	[MenuItem("Assets/change product name")]
+
+	static void changeProductName() {
+		PlayerSettings.productName = "app_name"; //TODO
+		Debug.Log (PlayerSettings.productName);
+	}
+
 }
