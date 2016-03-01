@@ -13,18 +13,18 @@ public class Pedestrian : MonoBehaviour {
 	//int densityReload;
 	//int densityReloadInterval = 10;
 
-	int id;
+	//int id;
 	SortedList positions = new SortedList ();
 	Color myColor;
 	//bool trajectoryVisible;
 	//VectorLine trajectory;
 
 	//private InfoText it;
-	private PedestrianLoader pl;
+	//private PedestrianLoader pl;
 	private PlaybackControl pc;
 	private Renderer r;
-	private GeometryLoader gl;
-	private Groundplane gp;
+	//private GeometryLoader gl;
+	//private Groundplane gp;
 
 	//GameObject tile;
 
@@ -37,11 +37,11 @@ public class Pedestrian : MonoBehaviour {
 		//addTile ();
 
 		//it = GameObject.Find ("InfoText").GetComponent<InfoText> ();
-		pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
+		//pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 		r = GetComponentInChildren<Renderer>() as Renderer;
-		gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		gp = gl.groundplane;
+		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
+		//gp = gl.groundplane;
 	}
 
 	/*
@@ -294,7 +294,7 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	public void setID(int id) {
-		this.id = id;
+		//this.id = id;
 		//densityReload = id % densityReloadInterval;
 		this.name = "Pedestrian "+id;
 	}

@@ -7,6 +7,9 @@ public class ExtrudeGeometry : Geometry  {
 	public static void create (string name, List<Vector2> verticesList, float height, Material topMaterial, Material sideMaterial) {
 
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
+		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
+		gl.setWorldAsParent (obstacle);
+
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
 		
 		obstacle.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
@@ -35,6 +38,8 @@ public class ExtrudeGeometry : Geometry  {
 		Mesh mesh = new Mesh();
 
 		GameObject walls = new GameObject (name+"_walls", typeof(MeshFilter), typeof(MeshRenderer));
+		walls.transform.SetParent(obstacle.transform);
+
 		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
 		walls.GetComponent<Renderer>().material = sideMaterial;
 
@@ -103,4 +108,3 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_filter.mesh = mesh;
 	}
 }
-

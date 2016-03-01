@@ -11,8 +11,11 @@ public class AreaGeometry : Geometry  {
 		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
 
 		obstacle.transform.position = new Vector3 (0, 0.01f, 0);
-		obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
-		obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
+		//obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
+		//obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
+		var renderer = obstacle.GetComponent<Renderer>();
+		renderer.sharedMaterial = new Material (Shader.Find ("Transparent/Diffuse"));
+		renderer.sharedMaterial.color = new Color (1, 0, 0, .3f);
 
 		Vector2[] vertices2D = verticesList.ToArray();
 		
@@ -48,6 +51,8 @@ public class AreaGeometry : Geometry  {
 		}
 
 		mesh_filter.mesh = mesh;
+
+		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
+		gl.setWorldAsParent (obstacle);
 	}
 }
-

@@ -10,10 +10,6 @@ public class PedestrianLoader : MonoBehaviour {
 	public List<GameObject> pedestrians = new List<GameObject>();
 	public int[] population;
 
-	// Use this for initialization
-	void Start () {
-
-	}
 
 	public void addPedestrianPosition(PedestrianPosition p) {
 		positions.Add (p);
@@ -35,9 +31,8 @@ public class PedestrianLoader : MonoBehaviour {
 			currentList.Add(positions[i].getTime(), positions[i]);
 			population[(int) positions[i].getTime ()]++;
 			if ((i == (positions.Count-1) || positions[i].getID()!=positions[i+1].getID()) && currentList.Count>0) {
-
-				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));
-				p.transform.parent = null;
+				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));		
+				setPedestriansAsParent (p);
 				p.GetComponent<Pedestrian>().setPositions(currentList);
 				p.GetComponent<Pedestrian>().setID(positions[i].getID());
 				pedestrians.Add(p);
@@ -46,9 +41,7 @@ public class PedestrianLoader : MonoBehaviour {
 		}
 	}
 
-
-	// Update is called once per frame
-	void Update () {
-	
+	private void setPedestriansAsParent (GameObject obj){
+		obj.transform.SetParent (GameObject.Find ("Pedestrians").transform);
 	}
 }

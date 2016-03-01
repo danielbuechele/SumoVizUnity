@@ -9,8 +9,14 @@ public class GeometryLoader : MonoBehaviour {
 	public Groundplane groundplane;
 
 	public void setTheme(ThemingMode mode) {
-		theme = mode;
-		groundplane = theme.getTerrain().GetComponent<Groundplane> ();
+		this.theme = mode;
+		GameObject terrain = theme.getTerrain ();
+		groundplane = terrain.GetComponent<Groundplane> ();
+		setWorldAsParent (terrain);
+	}
+
+	public void setWorldAsParent (GameObject obj){
+		obj.transform.SetParent (GameObject.Find ("World").transform);
 	}
 
 	public void addObject(Geometry obj) {
