@@ -3,8 +3,7 @@ using System.Collections;
 
 public class TangentHelper : MonoBehaviour {
 
-	public static Mesh TangentSolver(Mesh theMesh)
-	{
+	public static Mesh TangentSolver(Mesh theMesh) {
 		int vertexCount = theMesh.vertexCount;
 		Vector3[] vertices = theMesh.vertices;
 		Vector3[] normals = theMesh.normals;
@@ -15,8 +14,7 @@ public class TangentHelper : MonoBehaviour {
 		Vector3[] tan1 = new Vector3[vertexCount];
 		Vector3[] tan2 = new Vector3[vertexCount];
 		int tri = 0;
-		for (int i = 0; i < (triangleCount); i ++)
-		{
+		for (int i = 0; i < (triangleCount); i ++) {
 			int i1 = triangles[tri];
 			int i2 = triangles[tri + 1];
 			int i3 = triangles[tri + 2];
@@ -56,8 +54,7 @@ public class TangentHelper : MonoBehaviour {
 			tri += 3;
 		}
 		
-		for (int i = 0; i < (vertexCount); i++)
-		{
+		for (int i = 0; i < (vertexCount); i ++) {
 			Vector3 n = normals[i];
 			Vector3 t = tan1[i];
 			

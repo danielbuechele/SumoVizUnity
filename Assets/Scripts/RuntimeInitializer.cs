@@ -9,8 +9,7 @@ public class RuntimeInitializer : MonoBehaviour {
 	public bool trajAtEditingTime = true;*/
 	[HideInInspector]
 	public GeometryLoader geometryLoader;
-	[HideInInspector]
-	public string trajectoryFilePath; // TODO allow more floors
+	public string trajectoryFilePath; // TODO more floors
 
 	void Start () { // = Play button was pressed in unity
 		TrajectoryLoader tl = new TrajectoryLoader (trajectoryFilePath);

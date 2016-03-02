@@ -15,7 +15,7 @@ public class ExtrudeGeometry : Geometry  {
 		top.transform.position = new Vector3 (0, height, 0);
 		top.GetComponent<Renderer>().sharedMaterial = topMaterial;
 
-		MeshFilter mesh_filter = top.GetComponent<MeshFilter> ();
+		MeshFilter mesh_filter_top = top.GetComponent<MeshFilter> ();
 
 
 		Vector2[] vertices2D = verticesList.ToArray();
@@ -46,8 +46,8 @@ public class ExtrudeGeometry : Geometry  {
 		List<int> indices_walls = new List<int>();
 
 		foreach (Vector3 v in vertices) {
-			vertices_walls.Add(new Vector3(v.x,v.y,v.z));
-			vertices_walls.Add(new Vector3(v.x,v.y,v.z));
+			vertices_walls.Add(new Vector3(v.x, v.y, v.z));
+			vertices_walls.Add(new Vector3(v.x, v.y, v.z));
 			vertices_walls.Add(new Vector3(v.x, height, v.z));
 			vertices_walls.Add(new Vector3(v.x, height, v.z));
 		}
@@ -63,7 +63,7 @@ public class ExtrudeGeometry : Geometry  {
 
 		//double sided walls
 		int indices_walls_count = indices_walls.Count;
-		for (int i = indices_walls_count - 1; i >=0 ; i --) {
+		for (int i = indices_walls_count - 1; i >= 0; i --) {
 			indices_walls.Add (indices_walls[i]);
 		}
 
@@ -87,21 +87,19 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
 	
-		Mesh mesh = new Mesh();
-		mesh.vertices = vertices.ToArray();
-		mesh.uv = verticesList.ToArray();
-		mesh.triangles = indices.ToArray();
-		mesh.RecalculateNormals();
-		mesh.RecalculateBounds();
-
-		//flip if needed
-		if (mesh.normals [0].y == -1) {
+		Mesh mesh_top = new Mesh();
+		mesh_top.vertices = vertices.ToArray();
+		mesh_top.uv = verticesList.ToArray();
+		mesh_top.triangles = indices.ToArray();
+		mesh_top.RecalculateNormals();
+		mesh_top.RecalculateBounds();
+		if (mesh_top.normals[0].y == -1) { // flip if needed
 			indices.Reverse ();
-			mesh.triangles = indices.ToArray ();
-			mesh.RecalculateNormals();
+			mesh_top.triangles = indices.ToArray ();
+			mesh_top.RecalculateNormals();
 		}
-		mesh = TangentHelper.TangentSolver (mesh);
+		mesh_top = TangentHelper.TangentSolver (mesh_top);
+		mesh_filter_top.mesh = mesh_top;
 
-		mesh_filter.mesh = mesh;
 	}
 }
