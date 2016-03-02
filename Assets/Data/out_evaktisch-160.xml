@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="evaktisch" timestamp="20160302.125214" xmlFormat="0.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="evaktisch" timestamp="20160302.124715" xmlFormat="0.3">
 	<!-- All spatial information -->
 	<spatial>
 		<!-- One or more floors , discretization types:
@@ -24,20 +24,6 @@
 					<point x="8.25" y="2.78"/>
 					<point x="8.14" y="2.65"/>
 					<point x="4.71" y="2.65"/>
-				</object>
-			</collection>
-			<collection id="-walls2">
-				<object name="w1" type="wall">
-					<point x="8.3" y="5.34"/>
-					<point x="8.3" y="4.97"/>
-					<point x="8.45" y="4.97"/>
-					<point x="8.45" y="5.34"/>
-				</object>
-				<object name="w2" type="wall">
-					<point x="8.32" y="3.87"/>
-					<point x="8.46" y="3.87"/>
-					<point x="8.46" y="3.46"/>
-					<point x="8.32" y="3.46"/>
 				</object>
 			</collection>
 			<collection id="-walls">
@@ -150,21 +136,6 @@
 					<point x="11.9" y="6.2"/>
 				</object>
 			</collection>
-			<collection id="-walls3">
-				<object name="w1" type="wall">
-					<point x="8.3" y="5.34"/>
-					<point x="8.3" y="4.83"/>
-					<point x="8.45" y="4.83"/>
-					<point x="8.45" y="5.34"/>
-				</object>
-				<object name="w2" type="wall">
-					<point x="8.32" y="3.46"/>
-					<point x="8.46" y="3.46"/>
-					<point x="8.46" y="4.04"/>
-					<point x="8.32" y="4.04"/>
-					<point x="8.32" y="3.46"/>
-				</object>
-			</collection>
 		</floor>
 	</spatial>
 	<!-- All other information -->
@@ -210,75 +181,51 @@
 destination,1,nP_2;
 destination,2,nP_3;
 destination,3,nP_4;
+destination,4,nP_5;
 destination,5,nP_6;
-destination,6,nP_7;
 destination,7,nP_8;
+destination,8,nP_9;
 destination,9,nP_10;
 destination,10,nP_11;
 destination,11,nP_12;
-destination,12,nP_13;
-destination,13,nP_14;
-destination,14,nP_15;
 destination,15,nP_16;
+destination,16,nP_17;
 destination,17,nP_18;
 destination,18,nP_19;
 destination,19,nP_20;
 destination,20,nP_21;
-destination,21,nP_22;
-destination,22,nP_23;
 origin,0,quelle;
-</objectLookup><graphs><graph floorID="0"><vertices>nP_21:nP_21=[12.04142135623731, 6.058578643762691];
-nP_4:nP_4=[7.946446609406727, 4.476446609406726];
+</objectLookup><graphs><graph floorID="0"><vertices>nP_5:nP_5=[8.062202966723692, 5.981208472232275];
+nP_4:nP_4=[8.062202966723692, 2.848791527767725];
 Destination1:ziel=[12.465, 4.44];
-nP_7:nP_7=[8.062202966723692, 5.981208472232275];
-nP_8:nP_8=[8.14857864376269, 5.068578643762691];
-nP_10:nP_10=[8.158578643762691, 3.7014213562373097];
+nP_18:nP_18=[12.04142135623731, 3.78142135623731];
+nP_8:nP_8=[8.158578643762691, 3.7014213562373097];
 Origin0:quelle=[6.48, 4.415];
-nP_14:nP_14=[8.63142135623731, 5.068578643762691];
-nP_20:nP_20=[12.04142135623731, 3.78142135623731];
-nP_16:nP_16=[8.803553390593272, 4.476446609406726];
-nP_15:nP_15=[8.64142135623731, 3.7014213562373097];
-nP_6:nP_6=[8.062202966723692, 2.848791527767725];
-</vertices><edges>nP_10-nP_4,
-nP_10-nP_6,
-nP_10-Origin0,
-Destination1-nP_16,
-nP_16-nP_20,
-nP_14-Destination1,
-nP_4-nP_10,
+nP_6:nP_6=[8.14857864376269, 5.068578643762691];
+nP_19:nP_19=[12.04142135623731, 6.058578643762691];
+</vertices><edges>nP_19-nP_18,
+Destination1-nP_18,
+Destination1-nP_19,
 nP_6-Origin0,
-Origin0-nP_4,
 Origin0-nP_6,
-Origin0-nP_7,
-nP_4-nP_16,
-Destination1-nP_20,
-Destination1-nP_21,
-nP_21-Destination1,
-nP_21-nP_20,
-nP_10-nP_14,
-nP_15-nP_20,
-nP_20-nP_16,
-nP_7-nP_8,
-nP_7-Origin0,
-nP_20-nP_21,
-nP_16-nP_14,
-nP_16-nP_15,
-nP_16-nP_4,
-nP_16-Destination1,
+Origin0-nP_8,
+nP_6-nP_5,
+nP_6-nP_8,
+nP_18-Destination1,
 nP_4-nP_8,
 nP_8-Origin0,
 nP_4-Origin0,
-nP_15-nP_16,
-nP_8-nP_15,
-nP_14-nP_20,
-nP_20-Destination1,
+nP_8-nP_18,
+nP_18-nP_19,
 Origin0-Destination1,
-nP_15-Destination1,
-nP_14-nP_16,
-nP_14-nP_10,
-nP_4-Destination1,
-nP_6-nP_10,
-nP_15-nP_8,
+Destination1-nP_6,
+nP_6-Destination1,
+nP_18-nP_8,
+nP_8-Destination1,
+nP_5-Origin0,
+nP_19-Destination1,
+nP_8-nP_6,
 nP_8-nP_4,
-nP_8-nP_7,
-</edges></graph></graphs><floor csvAt="out_evaktisch-80_res/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/></output></scenario>
+nP_5-nP_6,
+nP_6-nP_18,
+</edges></graph></graphs><floor csvAt="out_evaktisch-160_res/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/></output></scenario>
