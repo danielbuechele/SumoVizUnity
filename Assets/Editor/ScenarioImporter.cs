@@ -10,7 +10,6 @@ public class ScenarioImporter : MonoBehaviour {
 	
 	static void importAccurateOutput() {
 		EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
-
 		var continueOk = true;
 
 		if (EditorSceneManager.GetActiveScene().name == "Base") 
@@ -27,6 +26,7 @@ public class ScenarioImporter : MonoBehaviour {
 			ri.geometryLoader.setTheme (new NatureThemingMode ());
 
 			ScenarioLoader sl = new ScenarioLoader (path);
+			sl.loadScenario ();
 			ri.trajectoryFilePath = sl.getTrajectoryFilePath ();
 		}
 	}
