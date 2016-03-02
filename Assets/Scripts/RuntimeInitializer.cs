@@ -12,8 +12,9 @@ public class RuntimeInitializer : MonoBehaviour {
 	[HideInInspector]
 	public string trajectoryFilePath; // TODO allow more floors
 
-	void Start () {
+	void Start () { // = Play button was pressed in unity
 		TrajectoryLoader tl = new TrajectoryLoader (trajectoryFilePath);
+		tl.loadTrajectories ();
 	}
 
 }

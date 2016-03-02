@@ -1,44 +1,42 @@
 ﻿using UnityEngine;
+using System.IO;
+using System.Text;
 using System.Collections;
 
-public class TrajectoryLoader : MonoBehaviour {
+public class TrajectoryLoader {
+
+	private string filedata;
+
 
 	public TrajectoryLoader(string filepath) {
-		loadTrajectoryFile (filepath);
+		if (!System.IO.File.Exists (filepath)) {
+			Debug.LogError ("Error: trajectory file " + filepath + " not found.");
+		} else {
+			filedata = System.IO.File.ReadAllText (filepath);
+		}
 	}
 
-	public void loadTrajectoryFile(string filepath) {
-		/*
-		XmlNode output = xmlDoc.SelectSingleNode("//output");
-
-		if (output == null) {
-			Debug.Log("Debug: No output / pedestrian position data found in file.");
-			return;
-		}
-
+	public void loadTrajectories() {
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
-		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO: load different floors..
-			// a bit complicated, but this should cope even with totally inconsistent line endings:
-			using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(floor.InnerText)))) {
-				string line;
-				while((line = reader.ReadLine()) != null) {
-					string[] v = line.Split(',');
-					if (v.Length>=3) {
-						decimal time;
-						int id;
-						float x;
-						float y;
-						decimal.TryParse(v[0], out time);
-						int.TryParse(v[1], out id);
-						float.TryParse(v[2], out x);
-						float.TryParse(v[3], out y);
-						pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
-					}
+
+		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
+			string line = reader.ReadLine(); // skip the first line = header
+			while((line = reader.ReadLine()) != null) {
+				string[] values = line.Split(',');
+				if (values.Length == 7) { // TODO will it always be 7?
+					decimal time;
+					int id;
+					float x;
+					float y;
+					decimal.TryParse(values[0], out time);
+					int.TryParse(values[1], out id);
+					float.TryParse(values[2], out x);
+					float.TryParse(values[3], out y);
+					pl.addPedestrianPosition(new PedestrianPosition(id, time, x, y));
 				}
 			}
 		}
 		pl.createPedestrians ();
-		*/
 	}
 		
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 
-public class ScenarioImporter : MonoBehaviour {
+public class ScenarioImporter {
 
 	[MenuItem("Assets/Import accu:rate output")]
 	
@@ -17,6 +17,9 @@ public class ScenarioImporter : MonoBehaviour {
 
 		if (continueOk) {
 			var path = EditorUtility.OpenFilePanel ("", Application.dataPath + "/Data", "xml"); //Path.GetFileName(path))
+
+			if (path == "") // = cancel was clicked in open file dialog
+				return;
 
 			new GameObject("World");
 			new GameObject ("Pedestrians");
@@ -36,6 +39,12 @@ public class ScenarioImporter : MonoBehaviour {
 	static void changeProductName() {
 		PlayerSettings.productName = "app_name"; //TODO
 		Debug.Log (PlayerSettings.productName);
+	}
+
+	[MenuItem("Assets/dev")]
+
+	static void dev() {
+		//...
 	}
 
 }

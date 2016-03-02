@@ -14,7 +14,7 @@ public class ScenarioLoader {
 
 	public ScenarioLoader(string filepath) {
 		if (!System.IO.File.Exists (filepath)) {
-			Debug.LogError ("Error: File " + filepath + " not found.");
+			Debug.LogError ("Error: scenario file " + filepath + " not found.");
 		} else {
 			xmlDoc.LoadXml (System.IO.File.ReadAllText (filepath));
 			directoryName = Path.GetDirectoryName (filepath);
@@ -65,7 +65,6 @@ public class ScenarioLoader {
 	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
 	static List<Vector2> parsePoints(XmlElement polyPoints) {
 		List<Vector2> list = new List<Vector2>();
-
 		foreach(XmlElement point in polyPoints.SelectNodes("point")) {
 			float x;
 			float y;
@@ -73,7 +72,6 @@ public class ScenarioLoader {
 				list.Add(new Vector2(x, y));
 			}
 		}
-
 		return list;
 	}
 }
