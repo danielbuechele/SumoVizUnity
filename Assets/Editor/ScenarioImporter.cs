@@ -26,7 +26,7 @@ public class ScenarioImporter {
 
 			RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
 			ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-			ri.geometryLoader.setTheme (new NatureThemingMode ());
+			ri.geometryLoader.setTheme (new EvaktischThemingMode ());
 
 			ScenarioLoader sl = new ScenarioLoader (path);
 			sl.loadScenario ();
