@@ -22,16 +22,12 @@ public class ScenarioImporter : MonoBehaviour {
 			new GameObject("World");
 			new GameObject ("Pedestrians");
 
-			RuntimeInitializer runtimeInitializer = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
-			runtimeInitializer.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-			runtimeInitializer.geometryLoader.setTheme (new NatureThemingMode ());
+			RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+			ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+			ri.geometryLoader.setTheme (new NatureThemingMode ());
 
-			FileLoaderXML fl = new FileLoaderXML ();
-			fl.loadXMLFile (path);
-			//fl.buildGeometry();
-
-			//if(runtimeInitializer.trajAtEditingTime)
-				//runtimeInitializer.trajectoryLines = fileLoader.loadTrajectoryLines();
+			ScenarioLoader sl = new ScenarioLoader (path);
+			ri.trajectoryFilePath = sl.getTrajectoryFilePath ();
 		}
 	}
 
