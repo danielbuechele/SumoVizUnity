@@ -14,7 +14,7 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  {
 		if (height <= 4.0) {
 			sideMaterial = gl.theme.getBoxMaterial();
 			topMaterial =  gl.theme.getBoxMaterial();
-		} else {
+		} else { // make it a house then
 			topMaterial = gl.theme.getRoofMaterial();
 			sideMaterial = gl.theme.getHouseMaterial();
 			sideMaterial.SetTextureScale("_MainTex", gl.theme.getTextureScaleForHeight((float) height));

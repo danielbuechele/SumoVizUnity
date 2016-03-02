@@ -5,16 +5,18 @@ using System.Collections.Generic;
 public class ExtrudeGeometry : Geometry  {
 
 	public static void create (string name, List<Vector2> verticesList, float height, Material topMaterial, Material sideMaterial) {
-		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
-		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		gl.setWorldAsParent (obstacle);
+		GameObject obstacle = new GameObject (name); // = parent object to top and side planes
+		(GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
 
-		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
-		
-		obstacle.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-		obstacle.transform.position = new Vector3 (0, height, 0);
+		// TOP
+		GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
+		top.transform.SetParent (obstacle.transform);
+		top.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+		top.transform.position = new Vector3 (0, height, 0);
+		top.GetComponent<Renderer>().sharedMaterial = topMaterial;
 
-		obstacle.GetComponent<Renderer>().material = topMaterial;
+		MeshFilter mesh_filter = top.GetComponent<MeshFilter> ();
+
 
 		Vector2[] vertices2D = verticesList.ToArray();
 		
@@ -28,19 +30,16 @@ public class ExtrudeGeometry : Geometry  {
 
 		// Create the Vector3 vertices
 		List<Vector3> vertices = new List<Vector3>();
-
 		for (int i = 0; i < vertices2D.Length; i ++) {
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
 
-		// Create the mesh
-		Mesh mesh = new Mesh();
-
+		// SIDE WALLS
 		GameObject walls = new GameObject (name + "_walls", typeof(MeshFilter), typeof(MeshRenderer));
 		walls.transform.SetParent(obstacle.transform);
 
 		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
-		walls.GetComponent<Renderer>().material = sideMaterial;
+		walls.GetComponent<Renderer>().sharedMaterial = sideMaterial;
 
 		List<Vector2> uvs_walls = new List<Vector2>();
 		List<Vector3> vertices_walls = new List<Vector3>();
@@ -57,7 +56,6 @@ public class ExtrudeGeometry : Geometry  {
 			indices_walls.Add(i);
 			indices_walls.Add((i + 3) % vertices_walls.Count);
 			indices_walls.Add(i + 2);
-
 			indices_walls.Add(i + 2);
 			indices_walls.Add((i + 3) % vertices_walls.Count);
 			indices_walls.Add((i + 5) % vertices_walls.Count);
@@ -89,6 +87,7 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
 	
+		Mesh mesh = new Mesh();
 		mesh.vertices = vertices.ToArray();
 		mesh.uv = verticesList.ToArray();
 		mesh.triangles = indices.ToArray();
