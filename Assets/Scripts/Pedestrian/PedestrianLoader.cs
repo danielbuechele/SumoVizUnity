@@ -13,7 +13,7 @@ public class PedestrianLoader : MonoBehaviour {
 
 	public void addPedestrianPosition(PedestrianPosition p) {
 		positions.Add (p);
-		PlaybackControl pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+		PlaybackControl pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>(); // TODO make pc class variable?
 		if (p.getTime () > pc.total_time) 
 			pc.total_time = p.getTime ();
 	}

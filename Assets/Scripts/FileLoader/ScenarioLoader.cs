@@ -17,43 +17,35 @@ public class ScenarioLoader {
 			Debug.LogError("Error: File " + filepath + " not found.");
 			return;
 		}
-
 		XmlDocument xmlDoc = new XmlDocument();
 		xmlDoc.LoadXml(System.IO.File.ReadAllText(filepath));
-
-		// Load geometry
-		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-		gl.setTheme (new NatureThemingMode ());
 
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: load different floors..
 			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
-
-			foreach (XmlElement geomObj in floor.SelectNodes("object")) {
-				switch (geomObj.GetAttribute("type")) {
-
-				case "openWall":
-					WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
-					break;
-
-				case "wall":
-					ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
-					break;
-
-				case "origin":
-				case "destination":
-				case "scaledArea":
-				case "waitingZone":
-				case "portal":
-				case "beamExit":
-				case "eofWall":
-				case "queuingArea":
-					AreaGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj));
-					break;
-
-				default:
-					Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");
-					break;
+			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
+				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
+					switch (geomObj.GetAttribute("type")) {
+						case "openWall":
+							WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
+							break;
+						case "wall":
+							ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
+							break;
+						case "origin":
+						case "destination":
+						case "scaledArea":
+						case "waitingZone":
+						case "portal":
+						case "beamExit":
+						case "eofWall":
+						case "queuingArea":
+							AreaGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj));
+							break;
+						default:
+							Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");
+							break;
+					}
 				}
 			}
 		}
