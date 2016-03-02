@@ -303,7 +303,9 @@ public class Pedestrian : MonoBehaviour {
 	public void setPositions(SortedList p) {
 		positions.Clear();
 		foreach (PedestrianPosition ped in p.Values) {
-			positions.Add(ped.getTime(), ped);
+			decimal timestamp = ped.getTime ();
+			if(!positions.Contains(timestamp))
+				positions.Add(timestamp, ped);
 		}
 		PedestrianPosition pos = (PedestrianPosition) p.GetByIndex (0);
 		transform.position = new Vector3 (pos.getX(), 0, pos.getY());
