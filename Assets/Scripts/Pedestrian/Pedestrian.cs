@@ -304,7 +304,7 @@ public class Pedestrian : MonoBehaviour {
 		positions.Clear();
 		foreach (PedestrianPosition ped in p.Values) {
 			decimal timestamp = ped.getTime ();
-			if(!positions.Contains(timestamp))
+			if(!positions.Contains(timestamp)) // temp workaround part 2
 				positions.Add(timestamp, ped);
 		}
 		PedestrianPosition pos = (PedestrianPosition) p.GetByIndex (0);

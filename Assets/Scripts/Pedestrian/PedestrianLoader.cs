@@ -29,7 +29,9 @@ public class PedestrianLoader : MonoBehaviour {
 				// Only take into account time steps with changed coordinates. We want smooth animation.
 				continue;
 			}
-			currentList.Add(positions[i].getTime(), positions[i]);
+			decimal timestamp = positions[i].getTime ();
+			if(!currentList.Contains(timestamp)) // temp workaround part 1
+				currentList.Add(timestamp, positions[i]);
 			population[(int) positions[i].getTime ()] ++;
 			if ((i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID()) && currentList.Count > 0) {
 				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));		
