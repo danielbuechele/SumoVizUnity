@@ -8,6 +8,12 @@ public class ExtrudeGeometry : Geometry  {
 		GameObject obstacle = new GameObject (name); // = parent object to top and side planes
 		(GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
 
+		Vector2[] vertices2D = verticesList.ToArray();
+		List<Vector3> vertices = new List<Vector3>();
+		for (int i = 0; i < vertices2D.Length; i ++) {
+			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
+		}
+
 		// TOP
 		GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
 		top.transform.SetParent (obstacle.transform);
@@ -17,22 +23,27 @@ public class ExtrudeGeometry : Geometry  {
 
 		MeshFilter mesh_filter_top = top.GetComponent<MeshFilter> ();
 
-
-		Vector2[] vertices2D = verticesList.ToArray();
-		
-		// Use the triangulator to get indices for creating triangles
-		Triangulator tr = new Triangulator(vertices2D);
+		Triangulator tr = new Triangulator(vertices2D); // Use the triangulator to get indices for creating triangles
 		int[] indicesArray = tr.Triangulate();
 		List<int> indices = new List<int>();
 		for (int i = 0; i < indicesArray.Length; i ++) {
 			indices.Add (indicesArray[i]);
 		}
 
-		// Create the Vector3 vertices
-		List<Vector3> vertices = new List<Vector3>();
-		for (int i = 0; i < vertices2D.Length; i ++) {
-			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
+		Mesh mesh_top = new Mesh();
+		mesh_top.vertices = vertices.ToArray();
+		mesh_top.uv = verticesList.ToArray();
+		mesh_top.triangles = indices.ToArray();
+		mesh_top.RecalculateNormals();
+		mesh_top.RecalculateBounds();
+		if (mesh_top.normals[0].y == -1) { // flip if needed
+			indices.Reverse ();
+			mesh_top.triangles = indices.ToArray ();
+			mesh_top.RecalculateNormals();
 		}
+		mesh_top = TangentHelper.TangentSolver (mesh_top);
+		mesh_filter_top.mesh = mesh_top;
+
 
 		// SIDE WALLS
 		GameObject walls = new GameObject (name + "_walls", typeof(MeshFilter), typeof(MeshRenderer));
@@ -76,12 +87,19 @@ public class ExtrudeGeometry : Geometry  {
 		for (int i = 0; i < vertices_walls.Count; i ++) {
 			float uv_height = height;
 			int a = i - 3;
-			if (a < 0) a += vertices_walls.Count;
+			if (a < 0) 
+				a += vertices_walls.Count;
 			float uv_width = Vector3.Distance(vertices_walls[i], vertices_walls[a]);
-			if ((i - 1) % 4 == 0) uvs_walls.Add (new Vector2 (0, 0));
-			else if ((i - 3) % 4 == 0) uvs_walls.Add (new Vector2 (0, uv_height));
-			else if (i % 4 == 0) uvs_walls.Add (new Vector2 (uv_width, 0)); 
-			else  uvs_walls.Add (new Vector2 (uv_width, uv_height));
+			if ((i - 1) % 4 == 0) 
+				uvs_walls.Add (new Vector2 (0, 0));
+			else 
+				if ((i - 3) % 4 == 0) 
+					uvs_walls.Add (new Vector2 (0, uv_height));
+				else 
+					if (i % 4 == 0)
+						uvs_walls.Add (new Vector2 (uv_width, 0)); 
+					else
+						uvs_walls.Add (new Vector2 (uv_width, uv_height));
 		}
 
 		Mesh mesh_walls = new Mesh();
@@ -92,20 +110,6 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_walls.RecalculateBounds();
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
-	
-		Mesh mesh_top = new Mesh();
-		mesh_top.vertices = vertices.ToArray();
-		mesh_top.uv = verticesList.ToArray();
-		mesh_top.triangles = indices.ToArray();
-		mesh_top.RecalculateNormals();
-		mesh_top.RecalculateBounds();
-		if (mesh_top.normals[0].y == -1) { // flip if needed
-			indices.Reverse ();
-			mesh_top.triangles = indices.ToArray ();
-			mesh_top.RecalculateNormals();
-		}
-		mesh_top = TangentHelper.TangentSolver (mesh_top);
-		mesh_filter_top.mesh = mesh_top;
 
 	}
 }

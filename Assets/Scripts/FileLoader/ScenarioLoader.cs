@@ -33,7 +33,7 @@ public class ScenarioLoader {
 	public void loadScenario() {
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: more floors
-			float height = TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
+			float height = 1f; // TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
 			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
 				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
 					switch (geomObj.GetAttribute("type")) {
