@@ -53,19 +53,25 @@ public class ExtrudeGeometry : Geometry  {
 		}
 
 		for (int i = 1; i <= vertices_walls.Count; i = i + 4) {
+			//one triangle
 			indices_walls.Add(i);
 			indices_walls.Add((i + 3) % vertices_walls.Count);
 			indices_walls.Add(i + 2);
+			//another triangle
 			indices_walls.Add(i + 2);
 			indices_walls.Add((i + 3) % vertices_walls.Count);
 			indices_walls.Add((i + 5) % vertices_walls.Count);
 		}
 
+		indices_walls.Reverse (); // makes the outside appear and the inside invisible instead of the other way round
+
+		/*
 		//double sided walls
 		int indices_walls_count = indices_walls.Count;
 		for (int i = indices_walls_count - 1; i >= 0; i --) {
 			indices_walls.Add (indices_walls[i]);
 		}
+		*/
 
 		for (int i = 0; i < vertices_walls.Count; i ++) {
 			float uv_height = height;
