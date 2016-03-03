@@ -42,6 +42,8 @@ public class Pedestrian : MonoBehaviour {
 		r = GetComponentInChildren<Renderer>() as Renderer;
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
+
+		gameObject.tag = "pedestrian";
 	}
 
 	/*
@@ -101,18 +103,15 @@ public class Pedestrian : MonoBehaviour {
 	}
 	*/
 
-	// Update is called once per frame
 	void Update () {
-
-		if (pc.playing) {
-			GetComponent<Animation>().Play ();
-		} else {
-			GetComponent<Animation>().Stop ();
-		}
+		if (pc.playing)
+			GetComponent < Animation > ().Play ();
+		else
+			GetComponent < Animation > ().Stop ();
 
 		int index = _getTrait(positions, pc.current_time);
 		
-		if (index<positions.Count-1 && index>-1){
+		if (index < positions.Count - 1 && index > -1){
 			r.enabled = true;
 			PedestrianPosition pos = (PedestrianPosition) positions.GetByIndex (index);
 			PedestrianPosition pos2 = (PedestrianPosition) positions.GetByIndex (index+1);
@@ -127,8 +126,8 @@ public class Pedestrian : MonoBehaviour {
 			speed = relativePos.magnitude;
 
 			GetComponent<Animation>()["walking"].speed = getSpeed () / timeStepLength;
-			if (start != target) transform.rotation = Quaternion.LookRotation(relativePos);
-
+			if (start != target) 
+				transform.rotation = Quaternion.LookRotation(relativePos);
 
 			/*
 			//check if line is crossed

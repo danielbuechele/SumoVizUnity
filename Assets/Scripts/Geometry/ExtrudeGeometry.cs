@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class ExtrudeGeometry : Geometry  {
 
+	//info about generating meshes: http://docs.unity3d.com/Manual/AnatomyofaMesh.html
+
+
 	public static void create (string name, List<Vector2> verticesList, float height, Material topMaterial, Material sideMaterial) {
 		GameObject obstacle = new GameObject (name); // = parent object to top and side planes
 		(GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
@@ -63,15 +66,17 @@ public class ExtrudeGeometry : Geometry  {
 			vertices_walls.Add(new Vector3(v.x, height, v.z));
 		}
 
-		for (int i = 1; i <= vertices_walls.Count; i = i + 4) {
+		int verticesWallsCount = vertices_walls.Count;
+
+		for (int i = 1; i <= verticesWallsCount; i += 4) {
 			//one triangle
 			indices_walls.Add(i);
-			indices_walls.Add((i + 3) % vertices_walls.Count);
+			indices_walls.Add((i + 3) % verticesWallsCount);
 			indices_walls.Add(i + 2);
 			//another triangle
 			indices_walls.Add(i + 2);
-			indices_walls.Add((i + 3) % vertices_walls.Count);
-			indices_walls.Add((i + 5) % vertices_walls.Count);
+			indices_walls.Add((i + 3) % verticesWallsCount);
+			indices_walls.Add((i + 5) % verticesWallsCount);
 		}
 
 		indices_walls.Reverse (); // makes the outside appear and the inside invisible instead of the other way round
