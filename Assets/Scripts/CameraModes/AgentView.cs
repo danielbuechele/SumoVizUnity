@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 // idea from Christos Tsiliakis 
 public class AgentView : MonoBehaviour {
@@ -11,10 +13,9 @@ public class AgentView : MonoBehaviour {
 	// LateUpdate is called after all Update functions have been called. 
 	void LateUpdate (){
 
-		/*
-		GameObject[] pedestrians = GameObject.FindGameObjectsWithTag ("pedestrian"); 
-		Debug.Log (pedestrians.Length);
-		*/
+		//List<Pedestrian> pedestrians = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians;
+		//Debug.Log (pedestrians.Count);
+
 
 		if (currentPed != null)
 			followPedestrian (currentPed);

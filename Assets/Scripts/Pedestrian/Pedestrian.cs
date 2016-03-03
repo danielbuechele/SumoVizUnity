@@ -43,7 +43,7 @@ public class Pedestrian : MonoBehaviour {
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
 
-		gameObject.tag = "pedestrian";
+		//gameObject.tag = "pedestrian";
 	}
 
 	/*
