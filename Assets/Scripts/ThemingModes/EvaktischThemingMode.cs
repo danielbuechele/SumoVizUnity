@@ -9,7 +9,7 @@ public class EvaktischThemingMode : ThemingMode {
 	}
 
 	public override Material getWallsMaterial () {
-		return (Material) Resources.Load("Woodbox", typeof(Material));
+		return (Material) Resources.Load("evaktisch/Wand", typeof(Material));
 	}
 
 	public override Material getBoxMaterial () {
