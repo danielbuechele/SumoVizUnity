@@ -24,6 +24,7 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 
 	public void createPedestrians() {
+		pedestrians.Clear ();
 		positions = positions.OrderBy(x => x.getID()).ThenBy(y => y.getTime()).ToList<PedestrianPosition>();
 		SortedList currentList = new SortedList ();
 		//population = new int[(int) pc.total_time + 1];

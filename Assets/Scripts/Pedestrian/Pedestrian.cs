@@ -105,9 +105,9 @@ public class Pedestrian : MonoBehaviour {
 
 	void Update () {
 		if (pc.playing)
-			GetComponent < Animation > ().Play ();
+			GetComponent <Animation> ().Play ();
 		else
-			GetComponent < Animation > ().Stop ();
+			GetComponent <Animation> ().Stop ();
 
 		int index = _getTrait(positions, pc.current_time);
 		
