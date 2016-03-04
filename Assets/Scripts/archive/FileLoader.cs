@@ -90,7 +90,7 @@ public class FileLoader : MonoBehaviour {
 					if (type == "wall") WallExtrudeGeometry.create(name, list, height, -0.2f);
 					else if (type == "obstacle") ObstacleExtrudeGeometry.create(name, list, height);
 					else if (type == "tree") TreeGeometry.create(name, list[0]);
-					else AreaGeometry.create(name, list);
+					else AreaGeometry.createOriginTarget(name, list);
 				}
 			}
 		}
