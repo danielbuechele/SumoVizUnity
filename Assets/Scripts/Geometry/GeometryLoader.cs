@@ -6,13 +6,13 @@ public class GeometryLoader : MonoBehaviour {
 
 	public List<Geometry> geometry;
 	public ThemingMode theme;
-	public Groundplane groundplane;
+	//public Groundplane groundplane;
 
 	public void setTheme(ThemingMode mode) {
 		this.theme = mode;
-		GameObject terrain = theme.getTerrain ();
+		/*GameObject terrain = theme.getTerrain ();
 		groundplane = terrain.GetComponent<Groundplane> ();
-		setWorldAsParent (terrain);
+		setWorldAsParent (terrain);*/
 	}
 
 	public void setWorldAsParent (GameObject obj){
