@@ -12,6 +12,8 @@ public class PedestrianLoader : MonoBehaviour {
 	private PlaybackControl pc;
 	public List<Pedestrian> pedestrians = new List<Pedestrian> ();
 
+	public float pedScaleFactor = 0.9f; // 1 is default size
+
 
 	void Start() {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
@@ -39,7 +41,12 @@ public class PedestrianLoader : MonoBehaviour {
 				currentList.Add(timestamp, positions[i]);
 			//population[(int) positions[i].getTime ()] ++;
 			if ((i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID()) && currentList.Count > 0) {
-				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));		
+				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));
+
+				//pedScaleFactor = Random.value;
+				if(pedScaleFactor != 1f)
+					p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
+
 				setPedestriansAsParent (p);
 				Pedestrian ped = p.GetComponent<Pedestrian> ();
 				ped.setPositions(currentList);
