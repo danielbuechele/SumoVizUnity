@@ -34,17 +34,14 @@ public class ScenarioImporter {
 		}
 	}
 
-	[MenuItem("Assets/change product name")]
-
-	static void changeProductName() {
-		PlayerSettings.productName = "app_name"; //TODO
-		Debug.Log (PlayerSettings.productName);
-	}
-
 	[MenuItem("Assets/dev")]
 
-	static void dev() {
-		//...
+	static void changeProductName() {
+		//PlayerSettings.productName = "app_name";
+		//Debug.Log (PlayerSettings.productName);
+
+		ReCalcCubeTexture script = GameObject.Find("Cube").GetComponent<ReCalcCubeTexture>();
+		script.reCalcCubeTexture ();
 	}
 
 }
