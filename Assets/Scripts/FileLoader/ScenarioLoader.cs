@@ -62,6 +62,12 @@ public class ScenarioLoader {
 			}
 		}
 
+		/*
+		Debug.Log ("minX: " + minX);
+		Debug.Log ("maxX: " + maxX);
+		Debug.Log ("minY: " + minY);
+		Debug.Log ("maxY: " + maxY);
+		*/
 	}
 
 	/*

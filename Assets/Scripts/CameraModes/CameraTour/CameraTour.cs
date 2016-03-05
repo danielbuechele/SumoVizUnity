@@ -13,14 +13,12 @@ public class CameraTour : MonoBehaviour {
 	private float currentTime = 0;
 
 	private List<Waypoint> waypoints = new List<Waypoint> ();
-	//private List<Vector3> waypoints = new List<Vector3>();
 	float s_ges = 0;
 
 	private bool firstUpdateDone = false;
 
 	private List<Section> sections = new List<Section>();
 	private int currentSectionIndex = 0;
-	private List<float> times = new List<float> (); // TODO find better name: stores either velocity percentage or in case of 0 the waiting time
 
 	private float t_ges;
 	private float t_waitSum; // sum of all waiting times in waypoints
@@ -42,9 +40,9 @@ public class CameraTour : MonoBehaviour {
 			addWaitSection (waypoints[0]);
 
 		for (int i = 1; i < waypoints.Count; i ++) {
-			Vector3 startWaypoint = waypoints[i - 1].getCoords();
+			Vector3 startWaypoint = waypoints[i - 1].getPoint();
 			float velocReducerStart = waypoints[i - 1].getVelocReducer();
-			Vector3 endWaypoint = waypoints[i].getCoords();
+			Vector3 endWaypoint = waypoints[i].getPoint();
 			float velocReducerEnd = waypoints[i].getVelocReducer();
 
 			float dist = Vector3.Distance (startWaypoint, endWaypoint);
@@ -107,7 +105,7 @@ public class CameraTour : MonoBehaviour {
 							float.TryParse(values[6], out x);
 							float.TryParse(values[7], out y);
 							float.TryParse(values[8], out z);
-							wp.setFocusCoords (new Vector3 (x, y, z));
+							wp.setFocusPoint (new Vector3 (x, y, z));
 						}
 
 						waypoints.Add (wp);
@@ -118,7 +116,7 @@ public class CameraTour : MonoBehaviour {
 	}
 
 	private void addWaitSection(Waypoint wp) {
-		Section waitSect = new Section(sections.Count, Section.Type.WAIT, wp.getCoords(), wp.getCoords(), 0, 0, 0);
+		Section waitSect = new Section(sections.Count, Section.Type.WAIT, wp.getPoint(), wp.getPoint(), 0, 0, 0);
 		waitSect.setTinSection(wp.getWaitingTime());
 		sections.Add (waitSect);
 		t_waitSum += wp.getWaitingTime();

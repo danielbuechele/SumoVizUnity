@@ -3,17 +3,17 @@ using System.Collections;
 
 public class Waypoint {
 
-	private int id;
-	private Vector3 coords;
+	//private int id;
+	private Vector3 point;
 	private float velocReducer;
 	private float waitingTime;
 	private bool doFocusBool;
-	private Vector3 focusCoords;
+	private Vector3 focusPoint;
 
 
-	public Waypoint(int id, Vector3 coords, float velocReducer, float waitingTime, bool doFocus) {
-		this.id = id;
-		this.coords = coords;
+	public Waypoint(int id, Vector3 point, float velocReducer, float waitingTime, bool doFocus) {
+		//this.id = id;
+		this.point = point;
 		this.velocReducer = velocReducer;
 		this.waitingTime = waitingTime;
 
@@ -23,12 +23,12 @@ public class Waypoint {
 		this.doFocusBool = doFocus;
 	}
 
-	public void setFocusCoords(Vector3 focusCoords) {
-		this.focusCoords = focusCoords;
+	public void setFocusPoint(Vector3 focusPoint) {
+		this.focusPoint = focusPoint;
 	}
 
-	public Vector3 getCoords() {
-		return coords;
+	public Vector3 getPoint() {
+		return point;
 	}
 
 	public bool doWait() {
@@ -45,6 +45,10 @@ public class Waypoint {
 
 	public float getVelocReducer() {
 		return velocReducer;
+	}
+
+	public Vector3 getFocusPoint() {
+		return focusPoint;
 	}
 
 }

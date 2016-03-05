@@ -36,12 +36,14 @@ public class ScenarioImporter {
 
 	[MenuItem("Assets/dev")]
 
-	static void changeProductName() {
+	static void dev() {
+		/* this is the name the app gets on an android smartphone */
 		//PlayerSettings.productName = "app_name";
 		//Debug.Log (PlayerSettings.productName);
 
-		ReCalcCubeTexture script = GameObject.Find("Cube").GetComponent<ReCalcCubeTexture>();
-		script.reCalcCubeTexture ();
+		/* to undo the texture-stretching on a cube that stretching the cube caused */
+		//ReCalcCubeTexture script = GameObject.Find("Cube").GetComponent<ReCalcCubeTexture>();
+		//script.reCalcCubeTexture ();
 	}
 
 }
