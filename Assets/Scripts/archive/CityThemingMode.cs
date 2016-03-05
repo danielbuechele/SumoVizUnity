@@ -8,7 +8,11 @@ public class CityThemingMode : ThemingMode {
 		return "TerrainCity";
 	}
 
-	public override Material getWallsMaterial () {
+	public override Material getOpenWallMaterial () {
+		return (Material) Resources.Load("WallCity", typeof(Material));
+	}
+
+	public override Material getWallMaterial () {
 		return (Material) Resources.Load("WallCity", typeof(Material));
 	}
 

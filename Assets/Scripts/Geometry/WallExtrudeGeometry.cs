@@ -39,6 +39,6 @@ public class WallExtrudeGeometry : ExtrudeGeometry  {
 			verticesList.Add(extrudePoint);
 		}
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		ExtrudeGeometry.create (name, verticesList, height, gl.theme.getWallsMaterial(), gl.theme.getWallsMaterial());
+		ExtrudeGeometry.create (name, verticesList, height, gl.theme.getOpenWallMaterial(), gl.theme.getOpenWallMaterial());
 	}
 }

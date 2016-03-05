@@ -7,8 +7,8 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  {
 	public static void create (string name, List<Vector2> verticesList, float height) {
 
 		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-		Material topMaterial = gl.theme.getWallsMaterial();
-		Material sideMaterial = gl.theme.getWallsMaterial();
+		Material topMaterial = gl.theme.getWallMaterial();
+		Material sideMaterial = gl.theme.getWallMaterial();
 
 		/*
 		if (height <= 4.0) {

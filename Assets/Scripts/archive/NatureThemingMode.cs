@@ -7,8 +7,12 @@ public class NatureThemingMode : ThemingMode {
 	public override string getTerrainName() {
 		return "TerrainNature";
 	}
-	
-	public override Material getWallsMaterial () {
+
+	public override Material getOpenWallMaterial () {
+		return (Material) Resources.Load("WallNature", typeof(Material));
+	}
+
+	public override Material getWallMaterial () {
 		return (Material) Resources.Load("WallNature", typeof(Material));
 	}
 

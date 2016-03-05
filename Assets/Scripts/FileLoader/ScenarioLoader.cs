@@ -37,15 +37,13 @@ public class ScenarioLoader {
 			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
 				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
 					string name = collection.GetAttribute ("id") + "_" + geomObj.GetAttribute ("name");
-
 					switch (geomObj.GetAttribute("type")) {
 						case "openWall":
-						WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
+							WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
 							break;
 						case "wall":
-						ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
+							ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
-						/*
 						case "origin":
 						case "destination":
 						case "scaledArea":
@@ -54,9 +52,8 @@ public class ScenarioLoader {
 						case "beamExit":
 						case "eofWall":
 						case "queuingArea":
-							AreaGeometry.createOriginTarget(geomObj.GetAttribute("name"), parsePoints(geomObj));
+							//AreaGeometry.createOriginTarget(geomObj.GetAttribute("name"), parsePoints(geomObj));
 							break;
-						*/
 						default:
 							Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");
 							break;
@@ -64,50 +61,15 @@ public class ScenarioLoader {
 				}
 			}
 		}
-			
-		// groundplane below scenario
-
-		/*
-		Debug.Log ("minX: " + minX);
-		Debug.Log ("maxX: " + maxX);
-		Debug.Log ("minY: " + minY);
-		Debug.Log ("maxY: " + maxY);
-		*/
-
-		// add wall thickness
-		//minX -= 0.2f;
-		maxX += 0.2f;
-		minY -= 0.2f;
-		maxY += 0.2f;
-		List<Vector2> list = new List<Vector2>();
-		list.Add (new Vector2 (minX, minY));
-		list.Add (new Vector2 (minX, maxY));
-		list.Add (new Vector2 (maxX, maxY));
-		list.Add (new Vector2 (maxX, minY));
-		//AreaGeometry.createPlane ("ground", list, (Material) Resources.Load ("evaktisch/Boden", typeof(Material)));
-
-		// two extra evaktisch areas
-
-		list = new List<Vector2>();
-		list.Add (new Vector2 (8.25f, 2.65f - 0.2f));
-		list.Add (new Vector2 (8.25f, 3.56f + 0.2f));
-		list.Add (new Vector2 (11.9f, 3.56f + 0.2f));
-		list.Add (new Vector2 (11.9f, 2.65f- 0.2f));
-		//AreaGeometry.createPlane ("ground", list, (Material) Resources.Load ("evaktisch/Boden", typeof(Material)));
-
-		list = new List<Vector2>();
-		list.Add (new Vector2 (8.25f, 5.33f + 0.2f));
-		list.Add (new Vector2 (8.25f, 6.18f));
-		list.Add (new Vector2 (11.9f, 6.18f));
-		list.Add (new Vector2 (11.9f, 5.33f + 0.2f));
-		//AreaGeometry.createPlane ("ground", list, (Material) Resources.Load ("evaktisch/Boden", typeof(Material)));
 
 	}
 
+	/*
 	static float minX = float.MaxValue; 
 	static float maxX = 0;
 	static float minY = float.MaxValue;
 	static float maxY = 0;
+	*/
 
 	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
 	static List<Vector2> parsePoints(XmlElement polyPoints) {
@@ -118,7 +80,7 @@ public class ScenarioLoader {
 			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
 				list.Add(new Vector2(x, y));
 			}
-
+			/*
 			if (x < minX)
 				minX = x;
 			if (x > maxX)
@@ -127,10 +89,12 @@ public class ScenarioLoader {
 				minY = y;
 			if(y > maxY)
 				maxY = y;
+			*/
 		}
 		return list;
 	}
 
+	/*
 	static string listToString(List<Vector2> list) {
 		string str = "";
 		foreach (Vector2 v in list) {
@@ -138,5 +102,5 @@ public class ScenarioLoader {
 		}
 		return str;
 	}
-
+	*/
 }

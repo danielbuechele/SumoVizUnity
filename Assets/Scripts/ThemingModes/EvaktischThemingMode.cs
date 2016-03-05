@@ -8,8 +8,12 @@ public class EvaktischThemingMode : ThemingMode {
 		return "TerrainCity";
 	}
 
-	public override Material getWallsMaterial () {
-		return (Material) Resources.Load("evaktisch/Wand", typeof(Material));
+	public override Material getOpenWallMaterial () {
+		return (Material) Resources.Load("evaktisch/Wand1", typeof(Material));
+	}
+
+	public override Material getWallMaterial () {
+		return (Material) Resources.Load("evaktisch/Wand2", typeof(Material));
 	}
 
 	public override Material getBoxMaterial () {
