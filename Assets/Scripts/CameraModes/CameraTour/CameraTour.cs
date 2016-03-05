@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,7 +12,8 @@ public class CameraTour : MonoBehaviour {
 	private PlaybackControl pc;
 	private float currentTime = 0;
 
-	private List<Vector3> waypoints = new List<Vector3>();
+	private List<Waypoint> waypoints = new List<Waypoint> ();
+	//private List<Vector3> waypoints = new List<Vector3>();
 	float s_ges = 0;
 
 	private bool firstUpdateDone = false;
@@ -25,24 +28,24 @@ public class CameraTour : MonoBehaviour {
 	private float accelEndMarkerPerc = 0.2f; // 1/5
 	private float decelStartMarkerPerc = 0.8f; // 4/5
 
+	private string waypointsFilepath;
+
 
 	void Start () {
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 		//cameraObj = GameObject.Find ("Sphere");
 
-		addWaypoint (0, 7, 5, 0f);
-		addWaypoint (5, 7, 5, -1.5f);
-		addWaypoint (5, 7, -5, 0.4f);
-		addWaypoint (5, 12, -5, 0f);
+		waypointsFilepath = Application.dataPath + "/Data/waypoints/waypointsEvaktischBig2.csv";
+		importWaypoints ();
 
-		if (times [0] < 0) // because i starts at 1 in for loop
-			addWaitSection (waypoints [0], Math.Abs(times [0]));
+		if (waypoints[0].doWait()) // extra check this, because i starts at 1 in following for-loop
+			addWaitSection (waypoints[0]);
 
 		for (int i = 1; i < waypoints.Count; i ++) {
-			Vector3 startWaypoint = waypoints [i - 1];
-			float velocReducerStart = times[i - 1] < 0 ? 0 : times[i - 1]; // below 0 means waiting time
-			Vector3 endWaypoint = waypoints [i];
-			float velocReducerEnd = times[i] < 0 ? 0 : times[i];
+			Vector3 startWaypoint = waypoints[i - 1].getCoords();
+			float velocReducerStart = waypoints[i - 1].getVelocReducer();
+			Vector3 endWaypoint = waypoints[i].getCoords();
+			float velocReducerEnd = waypoints[i].getVelocReducer();
 
 			float dist = Vector3.Distance (startWaypoint, endWaypoint);
 			//Debug.Log ("dist: " + dist);
@@ -65,24 +68,67 @@ public class CameraTour : MonoBehaviour {
 			//Debug.Log ("DECEL-SECT: " + decelSect);
 			sections.Add(decelSect);
 
-			if (times [i] < 0)
-				addWaitSection (waypoints [i], Math.Abs(times [i]));
+			if (waypoints[i].doWait())
+				addWaitSection (waypoints[i]);
 
 			s_ges += dist;
 		}
 	}
+		
+	private void importWaypoints() {
+		string filedata = "";
+		if (!System.IO.File.Exists (waypointsFilepath))
+			Debug.LogError ("Error: waypoints file " + waypointsFilepath + " not found.");
+		else
+			filedata = System.IO.File.ReadAllText (waypointsFilepath);
 
-	private void addWaitSection(Vector3 waypoint, float waitingTime){
-		Section waitSect = new Section(sections.Count, Section.Type.WAIT, waypoint, waypoint, 0, 0, 0);
-		waitSect.setTinSection(waitingTime);
-		sections.Add (waitSect);
-		t_waitSum += waitingTime;
+		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) {
+			string line = reader.ReadLine(); // skip the first line = header
+			while((line = reader.ReadLine()) != null) {
+				if (line.Length > 0) {
+					if (line.Substring (0, 1) != "#") {
+						string[] values = line.Split(',');
+						float x;
+						float y;
+						float z;
+						float velocReducer;
+						float waitingTime;
+						bool doFocus;
+						float.TryParse(values[0], out x);
+						float.TryParse(values[1], out y);
+						float.TryParse(values[2], out z);
+						float.TryParse(values[3], out velocReducer);
+						float.TryParse(values[4], out waitingTime);
+						bool.TryParse (values [5], out doFocus);
+
+						Waypoint wp = new Waypoint (waypoints.Count, new Vector3 (x, y, z), velocReducer, waitingTime, doFocus);
+
+						if (doFocus) {
+							float.TryParse(values[6], out x);
+							float.TryParse(values[7], out y);
+							float.TryParse(values[8], out z);
+							wp.setFocusCoords (new Vector3 (x, y, z));
+						}
+
+						waypoints.Add (wp);
+					}
+				}
+			}
+		}
 	}
 
+	private void addWaitSection(Waypoint wp) {
+		Section waitSect = new Section(sections.Count, Section.Type.WAIT, wp.getCoords(), wp.getCoords(), 0, 0, 0);
+		waitSect.setTinSection(wp.getWaitingTime());
+		sections.Add (waitSect);
+		t_waitSum += wp.getWaitingTime();
+	}
+
+	/*
 	private void addWaypoint(float x, float y, float z, float timeVal){
 		waypoints.Add (new Vector3 (x, y, z));
 		times.Add (timeVal); // below 0 means waiting time
-	}
+	}*/
 
 	private void onFirstUpdate(){// because pc.total_time is not know when Start() is executed
 		firstUpdateDone = true;
@@ -131,6 +177,9 @@ public class CameraTour : MonoBehaviour {
 
 		//cameraObj.transform.position = newPos;
 		Camera.main.transform.position = newPos;
+
+		Transform focusPoint = GameObject.Find ("FocusPoint").transform;
+		Camera.main.transform.LookAt(focusPoint);
 	}
 
 }
