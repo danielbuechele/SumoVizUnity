@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="evaktisch_big2" timestamp="20160304.152356" xmlFormat="0.3">
+	<!-- All spatial information -->
+	<spatial>
+		<!-- One or more floors , discretization types:
+		0 = CA Quadratic CellsNeumann Neighborhood
+		1 = OSM Discretization -->
+		<floor cellDist="0.1" discretizationType="1" elevation="0" height="2" id="0" maxX="18" maxY="8" minX="4" minY="2">
+			<collection id="_destination">
+				<object capacityRestriction="false" name="ziel" type="destination">
+					<point x="15.49" y="5.99"/>
+					<point x="15.49" y="2.65"/>
+					<point x="17.21" y="2.65"/>
+					<point x="17.21" y="7.94"/>
+					<point x="15.49" y="7.94"/>
+				</object>
+			</collection>
+			<collection id="_origin">
+				<object name="quelle" sortedBirthCells="false" type="origin">
+					<point x="4.71" y="7.94"/>
+					<point x="9.81" y="7.94"/>
+					<point x="9.85" y="7.94"/>
+					<point x="10.01" y="7.75"/>
+					<point x="10.01" y="2.85"/>
+					<point x="9.85" y="2.65"/>
+					<point x="4.71" y="2.65"/>
+				</object>
+			</collection>
+			<collection id="-walls2">
+				<object name="w1" type="wall">
+					<point x="10.1" y="6.68"/>
+					<point x="10.1" y="6.13"/>
+					<point x="10.32" y="6.13"/>
+					<point x="10.32" y="6.68"/>
+				</object>
+				<object name="w2" type="wall">
+					<point x="10.12" y="4.48"/>
+					<point x="10.33" y="4.48"/>
+					<point x="10.33" y="3.87"/>
+					<point x="10.12" y="3.87"/>
+				</object>
+			</collection>
+			<collection id="-walls">
+				<object name="ow1" type="openWall">
+					<point x="4.71" y="7.94"/>
+					<point x="4.71" y="2.65"/>
+				</object>
+				<object name="ow2" type="openWall">
+					<point x="15.38" y="4.02"/>
+					<point x="10.39" y="4.02"/>
+				</object>
+				<object name="ow3" type="openWall">
+					<point x="10.39" y="4.02"/>
+					<point x="10.39" y="4.09"/>
+				</object>
+				<object name="ow4" type="openWall">
+					<point x="10.39" y="4.09"/>
+					<point x="10.1" y="4.09"/>
+				</object>
+				<object name="ow5" type="openWall">
+					<point x="10.1" y="4.09"/>
+					<point x="10.1" y="4.02"/>
+				</object>
+				<object name="ow6" type="openWall">
+					<point x="10.1" y="4.02"/>
+					<point x="10.01" y="4.02"/>
+				</object>
+				<object name="ow7" type="openWall">
+					<point x="10.01" y="4.02"/>
+					<point x="10.01" y="2.85"/>
+				</object>
+				<object name="ow8" type="openWall">
+					<point x="10.01" y="2.85"/>
+					<point x="9.85" y="2.65"/>
+				</object>
+				<object name="ow9" type="openWall">
+					<point x="9.85" y="2.65"/>
+					<point x="4.71" y="2.65"/>
+				</object>
+				<object name="ow10" type="openWall">
+					<point x="4.71" y="7.94"/>
+					<point x="17.21" y="7.94"/>
+				</object>
+				<object name="ow11" type="openWall">
+					<point x="9.85" y="7.94"/>
+					<point x="10.01" y="7.75"/>
+				</object>
+				<object name="ow12" type="openWall">
+					<point x="10.01" y="7.75"/>
+					<point x="10.01" y="6.68"/>
+				</object>
+				<object name="ow13" type="openWall">
+					<point x="10.01" y="6.68"/>
+					<point x="10.07" y="6.68"/>
+				</object>
+				<object name="ow14" type="openWall">
+					<point x="10.07" y="6.68"/>
+					<point x="10.07" y="6.5"/>
+				</object>
+				<object name="ow15" type="openWall">
+					<point x="10.07" y="6.5"/>
+					<point x="10.38" y="6.5"/>
+				</object>
+				<object name="ow16" type="openWall">
+					<point x="10.38" y="6.5"/>
+					<point x="10.38" y="6.68"/>
+				</object>
+				<object name="ow17" type="openWall">
+					<point x="10.38" y="6.68"/>
+					<point x="15.37" y="6.68"/>
+				</object>
+				<object name="ow18" type="openWall">
+					<point x="15.37" y="6.68"/>
+					<point x="15.37" y="6.46"/>
+				</object>
+				<object name="ow19" type="openWall">
+					<point x="15.37" y="6.46"/>
+					<point x="15.49" y="6.46"/>
+				</object>
+				<object name="ow20" type="openWall">
+					<point x="15.49" y="6.46"/>
+					<point x="15.49" y="7.94"/>
+				</object>
+				<object name="ow21" type="openWall">
+					<point x="15.38" y="4.14"/>
+					<point x="15.38" y="4.02"/>
+				</object>
+				<object name="ow22" type="openWall">
+					<point x="15.49" y="4.14"/>
+					<point x="15.38" y="4.14"/>
+				</object>
+				<object name="ow23" type="openWall">
+					<point x="15.49" y="2.65"/>
+					<point x="15.49" y="4.14"/>
+				</object>
+				<object name="ow24" type="openWall">
+					<point x="17.21" y="2.65"/>
+					<point x="15.49" y="2.65"/>
+				</object>
+				<object name="ow25" type="openWall">
+					<point x="17.21" y="7.94"/>
+					<point x="17.21" y="2.65"/>
+				</object>
+				<object name="ow26" type="openWall">
+					<point x="15.49" y="7.94"/>
+					<point x="17.21" y="7.94"/>
+				</object>
+				<object name="ow27" type="openWall">
+					<point x="9.85" y="2.65"/>
+					<point x="15.49" y="2.65"/>
+				</object>
+			</collection>
+			<collection id="-walls3">
+				<object name="w1" type="wall">
+					<point x="10.1" y="6.68"/>
+					<point x="10.1" y="5.73"/>
+					<point x="10.32" y="5.73"/>
+					<point x="10.32" y="6.68"/>
+				</object>
+				<object name="w2" type="wall">
+					<point x="10.12" y="3.87"/>
+					<point x="10.33" y="3.87"/>
+					<point x="10.33" y="4.93"/>
+					<point x="10.12" y="4.93"/>
+					<point x="10.12" y="3.87"/>
+				</object>
+			</collection>
+		</floor>
+	</spatial>
+	<!-- All other information -->
+	<meta>
+		<!-- Motion model: could be euklid, floorField -->
+		<motionModel floorID="0">floorField</motionModel>
+		<!-- Pedestrian characteristics: could be FPWalking, SPWalking, SALLWalking, ACOWalking -->
+		<PedCharacters>
+			<type name="FPLMWalking" ratio="1"/>
+		</PedCharacters>
+		<!-- Groups sizes and ratios. Usage: <groupsize>,<ratio> -->
+		<groups>
+			<row>1,1.0</row>
+		</groups>
+		<!-- Time intervals: <from[s]>,<to[s]>:<number of pedestrians> -->
+		<Intervals>
+			<Interval name="i1" value="0,1:24"/>
+			<Interval name="i2" value="0,?:24"/>
+		</Intervals>
+		<!-- Interval Matrix: <source|dest>,<interval> -->
+		<Interval-Matrix>
+			<row>quelle,i1</row>
+			<row>ziel,i2</row>
+		</Interval-Matrix>
+		<!-- Landmarks are intermediate destinations which have to be passed -->
+		<Landmarks>
+			<!-- <path id="p1">d2</path> -->
+		</Landmarks>
+		<!-- The landmark matrix defines which landmarks path with which probability
+		for which origin-destination pair shall be set -->
+		<LandmarkMatrix/>
+		<!-- Origin-Destination matrix: <origin>,<destination>=<probability> -->
+		<OD-Matrix>
+			<row>quelle,ziel=1.0</row>
+		</OD-Matrix>
+		<!-- Portal matrix: <portal>,<beamExit> -->
+		<portal-matrix>
+			<!-- <row>p-eg-ug2,be-ug2</row> -->
+		</portal-matrix>
+	</meta>
+	<settings alphaDerivAngle="1.0" alphaForAStar="1.5" alphaPheromone="1.0" betaDistToDest="1.0" betaMaxDir="1.0" deviation="0.26" errorRatio="0.9" haloDistance="2.0" maxAlpha="60.0" maxTorsoSize="0.3" maxVeloc="1.61" meanVeloc="1.34" minDistanceBetweenVertices="0.5" minTorsoSize="0.22" minVeloc="0.46" navPointDistance="0.5" navPointSize="0.2" randForAStar="true" rhoAngle="1.0" rhoRelEnh="1.0" statisticRuns="false" useDynamicFloorField="true"/>
+<output><kernelVersion branch="develop" buildhost="ak-t1700" gitDescribe="0.8.0-464-g5086a25" isoDate="2016-02-23"/><usedSettings EUKLID="0" FLOORFIELD="1" alphaDerivAngle="1.0" alphaForAStar="1.5" alphaPheromone="1.0" betaDistToDest="1.0" betaMaxDir="1.0" cellSize="2.0" comfortDistanceInQueue="0.1" deviation="0.26" distBetweenTwoPts="0.15" errorRatio="0.9" haloDistance="2.0" heightNeighborSeitzPotential="1.05" heightObstacleSeitzPotential="2.0" lastStep="50" maxAlpha="60.0" maxQueueDerivation="30.0" maxTorsoSize="0.3" maxVeloc="1.61" meanVeloc="1.34" minDistanceBetweenVertices="0.5" minTorsoSize="0.22" minVeloc="0.46" navPointDistance="0.5" navPointName="nP_" navPointSize="0.2" newOutputWriteInterval="300.0" perceptionRadius="2.0" queueWidthFactor="1.0" randForAStar="true" rhoAngle="1.0" rhoRelEnh="1.0" statisticRuns="false" stayInDestDefault="false" useDynamicFloorField="true" useVisibilityGraph="true" widthNeighborSeitzPotential="0.33" widthObstacleSeitzPotential="0.25"/><parameter><backgroundImg/></parameter><statistics><noOfPeds>24</noOfPeds><simTime>50.053954037267076</simTime></statistics><pedestrianLookup>0,0,-1,0.22;1,0,-1,0.22;2,0,-1,0.22;3,0,-1,0.22;4,0,-1,0.22;5,0,-1,0.22;6,0,-1,0.22;7,0,-1,0.22;8,0,-1,0.22;9,0,-1,0.22;10,0,-1,0.22;11,0,-1,0.22;12,0,-1,0.22;13,0,-1,0.22;14,0,-1,0.22;15,0,-1,0.22;16,0,-1,0.22;17,0,-1,0.22;18,0,-1,0.22;19,0,-1,0.22;20,0,-1,0.22;21,0,-1,0.22;22,0,-1,0.22;23,0,-1,0.22;</pedestrianLookup><objectLookup>destination,0,ziel;
+destination,1,nP_2;
+destination,2,nP_3;
+destination,3,nP_4;
+destination,5,nP_6;
+destination,6,nP_7;
+destination,9,nP_10;
+destination,10,nP_11;
+destination,11,nP_12;
+destination,13,nP_14;
+destination,14,nP_15;
+destination,15,nP_16;
+destination,17,nP_18;
+destination,18,nP_19;
+destination,20,nP_21;
+destination,21,nP_22;
+origin,0,quelle;
+</objectLookup><graphs><graph floorID="0"><vertices>nP_4:nP_4=[9.746446609406727, 5.3764466094067265];
+Destination1:ziel=[16.35, 5.295];
+nP_18:nP_18=[15.22857864376269, 6.318578643762691];
+nP_7:nP_7=[9.928578643762691, 6.358578643762691];
+Origin0:quelle=[7.359999999999999, 5.295];
+nP_14:nP_14=[10.52142135623731, 6.358578643762691];
+nP_16:nP_16=[10.673553390593273, 5.3764466094067265];
+nP_15:nP_15=[10.53142135623731, 4.161421356237309];
+nP_6:nP_6=[9.86857864376269, 4.161421356237309];
+nP_19:nP_19=[15.63142135623731, 4.281421356237309];
+</vertices><edges>nP_19-nP_16,
+nP_19-nP_18,
+Destination1-nP_16,
+Destination1-nP_18,
+Destination1-nP_19,
+nP_14-Destination1,
+nP_6-Origin0,
+Origin0-nP_4,
+nP_4-nP_16,
+nP_6-nP_4,
+nP_7-Origin0,
+nP_7-nP_4,
+nP_16-nP_14,
+nP_16-nP_15,
+nP_18-Destination1,
+nP_16-nP_18,
+nP_16-nP_4,
+nP_16-Destination1,
+nP_4-nP_7,
+nP_4-nP_6,
+nP_4-Origin0,
+nP_15-nP_19,
+nP_18-nP_16,
+nP_15-nP_16,
+nP_18-nP_19,
+Origin0-Destination1,
+nP_15-Destination1,
+nP_14-nP_16,
+nP_14-nP_18,
+nP_4-Destination1,
+nP_19-Destination1,
+</edges></graph></graphs><floor csvAt="out_evaktisch_big2-80_res/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/></output></scenario>
