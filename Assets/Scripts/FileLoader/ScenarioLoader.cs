@@ -36,12 +36,14 @@ public class ScenarioLoader {
 			float height = 1f; // TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
 			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
 				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
+					string name = collection.GetAttribute ("id") + "_" + geomObj.GetAttribute ("name");
+
 					switch (geomObj.GetAttribute("type")) {
 						case "openWall":
-						WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
+						WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
 							break;
 						case "wall":
-						ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
+						ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						/*
 						case "origin":
