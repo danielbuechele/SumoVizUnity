@@ -17,8 +17,8 @@ public class Waypoint {
 		this.velocReducer = velocReducer;
 		this.waitingTime = waitingTime;
 
-		if(waitingTime > 0 && velocReducer != 0)
-			Debug.LogError ("Error in waypoint " + id + ": setting a waiting time requires the deceleration percentage to be 0, that wasn't the case");
+		if (waitingTime > 0 && velocReducer != 0)
+			utils.crash ("Error in waypoint " + id + ": setting a waiting time requires the deceleration percentage to be 0, that wasn't the case");
 
 		this.doFocusBool = doFocus;
 	}

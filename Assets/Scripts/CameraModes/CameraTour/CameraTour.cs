@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.IO;
 using System.Text;
 using System.Collections;
@@ -122,20 +121,14 @@ public class CameraTour : MonoBehaviour {
 		t_waitSum += wp.getWaitingTime();
 	}
 
-	/*
-	private void addWaypoint(float x, float y, float z, float timeVal){
-		waypoints.Add (new Vector3 (x, y, z));
-		times.Add (timeVal); // below 0 means waiting time
-	}*/
-
-	private void onFirstUpdate(){// because pc.total_time is not know when Start() is executed
+	private void onFirstUpdate(){ // because pc.total_time is not know when Start() is executed
 		firstUpdateDone = true;
 
 		t_ges = (float) pc.total_time - t_waitSum;
 		//Debug.Log (pc.total_time);
 
 		if (t_ges <= 0)
-			throw new Exception ("The sum of waiting times in camera tour waypoints is bigger than the total simulation time.");
+			utils.crash("the sum of waiting times in camera tour waypoints is bigger than the total simulation time");
 
 		float v_max = 0;
 		foreach (var section in sections)
