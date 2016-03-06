@@ -11,7 +11,6 @@ public class CameraTour : MonoBehaviour {
 	private float currentTime = 0;
 
 	private List<Waypoint> waypoints = new List<Waypoint> ();
-	private List<FocusPointCommand> focusPointCommands = new List<FocusPointCommand>(); // same amount as waypoints
 
 	float s_ges = 0;
 
@@ -99,28 +98,19 @@ public class CameraTour : MonoBehaviour {
 						float z;
 						float velocReducer;
 						float waitingTime;
-						bool changeFocus;
-						float.TryParse(values[0], out x);
-						float.TryParse(values[1], out y);
-						float.TryParse(values[2], out z);
-						float.TryParse(values[3], out velocReducer);
-						float.TryParse(values[4], out waitingTime);
-						bool.TryParse (values [5], out changeFocus);
+						float.TryParse(values[0].Trim(), out x);
+						float.TryParse(values[1].Trim(), out y);
+						float.TryParse(values[2].Trim(), out z);
+						float.TryParse(values[3].Trim(), out velocReducer);
+						float.TryParse(values[4].Trim(), out waitingTime);
 
 						Vector3 point = new Vector3 (x, y, z);
-						FocusPointCommand fpc;
 
-						if (changeFocus) {
-							float.TryParse (values [6], out x);
-							float.TryParse (values [7], out y);
-							float.TryParse (values [8], out z);
-							fpc = new FocusPointCommand (new Vector3 (x, y, z));
-						} else
-							fpc = new FocusPointCommand ();
-						
-						Waypoint wp = new Waypoint (waypoints.Count, point, velocReducer, waitingTime, fpc);
+						float.TryParse (values[5].Trim(), out x);
+						float.TryParse (values[6].Trim(), out y);
+						float.TryParse (values[7].Trim(), out z);
 
-						waypoints.Add (wp);
+						waypoints.Add (new Waypoint (waypoints.Count, point , velocReducer, waitingTime, new Vector3 (x, y, z)));
 					}
 				}
 			}
@@ -128,7 +118,7 @@ public class CameraTour : MonoBehaviour {
 	}
 
 	private void addWaitSection(Waypoint wp) {
-		Section waitSect = new Section(Section.Type.WAIT, null, null, wp.getPoint(), wp.getPoint(), 0, 0);
+		Section waitSect = new Section(Section.Type.WAIT, wp , null, wp.getPoint(), wp.getPoint(), 0, 0);
 		waitSect.setTinSection(wp.getWaitingTime());
 		sections.Add (waitSect);
 		t_waitSum += wp.getWaitingTime();
@@ -178,20 +168,21 @@ public class CameraTour : MonoBehaviour {
 		while (!sec.thatsMe (currentTime))
 			sec = sections [++ currentSectionIndex];
 
-
 		Vector3 newPos = sec.getCoordAtT (currentTime);
 		cam.position = newPos; //Debug.Log (currentTime + ": " + newPos);
+
 
 		Waypoint secStartWp = sec.sectionStartWaypoint;
 		Waypoint secEndWp = sec.sectionEndWaypoint;
 
 		if (!sec.isWaitSection ()) {
-			float dist = Vector3.Distance (secStartWp.getPoint (), secEndWp.getPoint ());
-			float distToStart = Vector3.Distance (secStartWp.getPoint (), newPos);
-			float perc = dist / distToStart;
-			focusPoint.position = Vector3.Lerp (secStartWp.focusPoint, secEndWp.focusPoint, perc);
+			float distBtwnWps = Vector3.Distance (secStartWp.getPoint (), secEndWp.getPoint ());
+			float distToSecStartWp = Vector3.Distance (secStartWp.getPoint (), newPos);
+			float perc = distToSecStartWp / distBtwnWps;
+			//Debug.Log (dist + "  /  " + distToStart + "  /  " + perc);
+			focusPoint.position = Vector3.Lerp (secStartWp.getFocusPoint (), secEndWp.getFocusPoint (), perc);
 		}
-
+				
 		cam.LookAt (focusPoint);
 	}
 }

@@ -3,24 +3,20 @@ using System.Collections;
 
 public class Waypoint {
 
-	//private int id;
 	private Vector3 point;
 	private float velocReducer;
 	private float waitingTime;
-	private FocusPointCommand fpc;
-	public Vector3 focusPoint;
+	private Vector3 focusPoint;
 
-
-	public Waypoint(int id, Vector3 point, float velocReducer, float waitingTime, FocusPointCommand fpc) {
-		//this.id = id;
+	public Waypoint(int id, Vector3 point, float velocReducer, float waitingTime, Vector3 focusPoint) {
 		this.point = point;
 		this.velocReducer = velocReducer;
 		this.waitingTime = waitingTime;
 
 		if (waitingTime > 0 && velocReducer != 0)
 			utils.crash ("Error in waypoint " + id + ": setting a waiting time requires the deceleration percentage to be 0, that wasn't the case");
-
-		this.focusPoint = fpc.getFocusPoint ();
+	
+		this.focusPoint = focusPoint;
 	}
 
 	public Vector3 getPoint() {
@@ -39,8 +35,8 @@ public class Waypoint {
 		return velocReducer;
 	}
 
-	public FocusPointCommand getFocusPointCommand() {
-		return fpc;
+	public Vector3 getFocusPoint() {
+		return focusPoint;
 	}
 
 }
