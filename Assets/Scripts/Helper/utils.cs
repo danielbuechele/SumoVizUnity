@@ -5,23 +5,18 @@ public class utils {
 
 
 	public static string loadFileIntoEditor(string filepath) {
-		string filedata = "";
 		if (!System.IO.File.Exists (filepath)) {
 			string msg = "Error: file " + filepath + " not found";
 			Debug.LogError (msg);
 			DebugConsole.Log (msg);
+			return "";
 		}
-		else
-			filedata = System.IO.File.ReadAllText (filepath);
-		return filedata;
+		return System.IO.File.ReadAllText (filepath);
 	}
 
 	public static string loadFileAtRuntimeIntoBuild(string filepath) {
-		string filedata = "";
-
-		//TODO
-
-		return filedata;	
+		var textAsset = Resources.Load (filepath) as TextAsset; // TODO find file.exists equivalent
+		return textAsset.text;
 	}
 
 }

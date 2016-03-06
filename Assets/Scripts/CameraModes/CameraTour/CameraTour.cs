@@ -37,7 +37,7 @@ public class CameraTour : MonoBehaviour {
 		cam = Camera.main.transform; // = cameraObj.transform;
 		//cameraObj = GameObject.Find ("Sphere");
 
-		waypointsFilepath = Application.dataPath + "/Data/waypoints/waypointsEvaktischBig2.csv";
+		waypointsFilepath = "Data/waypoints/waypointsEvaktischBig2"; // no .csv!
 		importWaypoints ();
 
 		if (waypoints[0].doWait()) // extra check this, because i starts at 1 in following for-loop
@@ -81,7 +81,9 @@ public class CameraTour : MonoBehaviour {
 	}
 		
 	private void importWaypoints() {
-		string filedata = utils.loadFileIntoEditor (waypointsFilepath);
+		//string filedata = utils.loadFileIntoEditor (waypointsFilepath);
+
+		string filedata = utils.loadFileAtRuntimeIntoBuild(waypointsFilepath);
 
 		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) {
 			string line = reader.ReadLine (); // skip the first line = header
