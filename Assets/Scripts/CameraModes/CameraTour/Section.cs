@@ -113,7 +113,7 @@ public class Section {
 		return type == Type.WAIT;
 	}
 
-	public float getProcProgressWithinSection(float absoluteTime) {
+	private float getProcProgressWithinSection(float absoluteTime) {
 		float relativeTime = absoluteTime - t_upToHere; // within section
 		float s_add = 0;
 		switch (type) {

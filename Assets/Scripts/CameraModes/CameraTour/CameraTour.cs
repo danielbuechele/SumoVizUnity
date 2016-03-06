@@ -17,7 +17,7 @@ public class CameraTour : MonoBehaviour {
 	private bool firstUpdateDone = false;
 
 	private List<Section> sections = new List<Section>();
-	private int currentSectionIndex = 0;
+	private int currentSectionIndex;
 
 	private float t_ges;
 	private float t_waitSum; // sum of all waiting times in waypoints
@@ -149,10 +149,14 @@ public class CameraTour : MonoBehaviour {
 		foreach (var section in sections) {
 			Debug.Log(section.check());
 		}*/
+
+		newLoop ();
 	}
 
 	private void newLoop() {
 		currentSectionIndex = 0;
+		//Quaternion q = new Quaternion (0.5f, -0.5f, 0.5f, 0.5f);
+		//cam.eulerAngles = q.eulerAngles;
 	}
 
 	void Update () {
