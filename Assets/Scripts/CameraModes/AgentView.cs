@@ -15,7 +15,7 @@ public class AgentView : MonoBehaviour {
 		else
 			findRandomPedestrian ();
 
-		if(Input.GetKeyDown (KeyCode.Space)) // (Cardboard.SDK.Triggered)
+		if(Cardboard.SDK.Triggered || Input.GetKeyDown (KeyCode.Space))
 			findRandomPedestrian ();
 	}
 		
