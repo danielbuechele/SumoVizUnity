@@ -16,7 +16,7 @@ public class ScenarioImporter {
 			continueOk = !EditorUtility.DisplayDialog("duplicate scene", "It is recommend that you first duplicate the Scene (select it in the Scenes folder and use Edit > Duplicate), rename it optionally and doubleclick the new scene.", "ok, let me duplicate", "continue");
 
 		if (continueOk) {
-			var path = EditorUtility.OpenFilePanel ("", Application.dataPath + "/Data", "xml"); //Path.GetFileName(path))
+			var path = EditorUtility.OpenFilePanel ("", Application.dataPath + "/Resources/Data", "xml"); //Path.GetFileName(path))
 
 			if (path == "") // = cancel was clicked in open file dialog
 				return;

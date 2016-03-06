@@ -9,11 +9,9 @@ using System.Xml;
 public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
-	private string directoryName;
 
 
 	public ScenarioLoader(string filepath) {
-		directoryName = Path.GetDirectoryName (filepath);
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 	}
 
@@ -21,7 +19,7 @@ public class ScenarioLoader {
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
 		string trajectoryFilePath = "";
 		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO more floors
-			trajectoryFilePath = directoryName + "/" + floor.GetAttribute("csvAt");
+			trajectoryFilePath = "Data/" + floor.GetAttribute("csvAt");
 		}
 		return trajectoryFilePath;
 	}

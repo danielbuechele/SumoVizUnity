@@ -9,7 +9,7 @@ public class TrajectoryLoader {
 
 
 	public TrajectoryLoader(string filepath) {
-		filedata = utils.loadFileIntoEditor (filepath);
+		filedata = utils.loadFileAtRuntimeIntoBuild (filepath);
 	}
 
 	public void loadTrajectories() {
