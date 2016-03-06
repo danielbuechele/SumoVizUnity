@@ -116,7 +116,7 @@ public class CameraTour : MonoBehaviour {
 	}
 
 	private void addWaitSection(Waypoint wp) {
-		Section waitSect = new Section(Section.Type.WAIT, wp , null, wp.getPoint(), wp.getPoint(), 0, 0);
+		Section waitSect = new Section(Section.Type.WAIT, null, null, wp.getPoint(), wp.getPoint(), 0, 0);
 		waitSect.setTinSection(wp.getWaitingTime());
 		sections.Add (waitSect);
 		t_waitSum += wp.getWaitingTime();
@@ -172,7 +172,6 @@ public class CameraTour : MonoBehaviour {
 
 		Vector3 newPos = sec.getCoordAtT (currentTime);
 		cam.position = newPos; //Debug.Log (currentTime + ": " + newPos);
-
 
 		Waypoint secStartWp = sec.sectionStartWaypoint;
 		Waypoint secEndWp = sec.sectionEndWaypoint;
