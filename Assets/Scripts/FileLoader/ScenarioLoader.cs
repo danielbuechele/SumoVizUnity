@@ -13,12 +13,8 @@ public class ScenarioLoader {
 
 
 	public ScenarioLoader(string filepath) {
-		if (!System.IO.File.Exists (filepath)) {
-			Debug.LogError ("Error: scenario file " + filepath + " not found.");
-		} else {
-			xmlDoc.LoadXml (System.IO.File.ReadAllText (filepath));
-			directoryName = Path.GetDirectoryName (filepath);
-		}
+		directoryName = Path.GetDirectoryName (filepath);
+		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 	}
 
 	public string getTrajectoryFilePath() {

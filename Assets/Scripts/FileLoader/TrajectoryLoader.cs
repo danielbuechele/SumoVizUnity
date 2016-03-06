@@ -9,13 +9,7 @@ public class TrajectoryLoader {
 
 
 	public TrajectoryLoader(string filepath) {
-		if (!System.IO.File.Exists (filepath)) {
-			string msg = "Error: trajectory file " + filepath + " not found.";
-			Debug.LogError (msg);
-			DebugConsole.Log (msg);
-		} else {
-			filedata = System.IO.File.ReadAllText (filepath);
-		}
+		filedata = utils.loadFileIntoEditor (filepath);
 	}
 
 	public void loadTrajectories() {

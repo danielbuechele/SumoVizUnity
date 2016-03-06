@@ -81,14 +81,7 @@ public class CameraTour : MonoBehaviour {
 	}
 		
 	private void importWaypoints() {
-		string filedata = "";
-		if (!System.IO.File.Exists (waypointsFilepath)) {
-			string msg = "Error: waypoints file " + waypointsFilepath + " not found.";
-			Debug.LogError (msg);
-			DebugConsole.Log (msg);
-		}
-		else
-			filedata = System.IO.File.ReadAllText (waypointsFilepath);
+		string filedata = utils.loadFileIntoEditor (waypointsFilepath);
 
 		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) {
 			string line = reader.ReadLine (); // skip the first line = header
