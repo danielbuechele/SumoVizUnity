@@ -27,7 +27,7 @@ public class ScenarioLoader {
 	public void loadScenario() {
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: more floors
-			float height = 1f; // TryParseWithDefault.ToSingle(floor.GetAttribute("height"), 1.0f);
+			float height = 1f; // used 2.4 in disco scene
 			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
 				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
 					string name = collection.GetAttribute ("id") + "_" + geomObj.GetAttribute ("name");
