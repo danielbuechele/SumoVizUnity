@@ -10,7 +10,9 @@ public class TrajectoryLoader {
 
 	public TrajectoryLoader(string filepath) {
 		if (!System.IO.File.Exists (filepath)) {
-			Debug.LogError ("Error: trajectory file " + filepath + " not found.");
+			string msg = "Error: trajectory file " + filepath + " not found.";
+			Debug.LogError (msg);
+			DebugConsole.Log (msg);
 		} else {
 			filedata = System.IO.File.ReadAllText (filepath);
 		}
