@@ -22,8 +22,7 @@ public class TrajectoryLoader {
 				if (values.Length == 7) { // TODO will it always be 7?
 					decimal time;
 					int id;
-					float x;
-					float y;
+					float x, y;
 					decimal.TryParse(values[0], out time);
 					int.TryParse(values[1], out id);
 					float.TryParse(values[2], out x);

@@ -119,7 +119,9 @@ BaseVRDevice
   }
 
   public override void PostRender() {
-    GL.IssuePluginEvent(kCardboardRenderEvent);
+#pragma warning disable 618 // suppress deprecation warning
+	GL.IssuePluginEvent(kCardboardRenderEvent);
+#pragma warning restore 618
   }
 
   public override void OnPause(bool pause) {

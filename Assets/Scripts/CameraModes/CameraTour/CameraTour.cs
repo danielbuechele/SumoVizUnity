@@ -91,11 +91,8 @@ public class CameraTour : MonoBehaviour {
 				if (line.Length > 0) {
 					if (line.Substring (0, 1) != "#") {
 						string[] values = line.Split(',');
-						float x;
-						float y;
-						float z;
-						float velocReducer;
-						float waitingTime;
+						float x, y, z, velocReducer, waitingTime;
+
 						float.TryParse(values[0].Trim(), out x);
 						float.TryParse(values[1].Trim(), out y);
 						float.TryParse(values[2].Trim(), out z);
