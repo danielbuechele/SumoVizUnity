@@ -130,7 +130,7 @@ public class CameraTour : MonoBehaviour {
 		t_ges = (float) pc.total_time - t_waitSum; // Debug.Log (pc.total_time);
 
 		if (t_ges <= 0)
-			utils.crash("the sum of waiting times in camera tour waypoints is bigger than the total simulation time");
+			throw new UnityException ("the sum of waiting times in camera tour waypoints is bigger than the total simulation time");
 
 		float v_max = 0;
 		foreach (var section in sections)

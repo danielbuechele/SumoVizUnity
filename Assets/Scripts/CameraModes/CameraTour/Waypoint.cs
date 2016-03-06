@@ -14,7 +14,7 @@ public class Waypoint {
 		this.waitingTime = waitingTime;
 
 		if (waitingTime > 0 && velocReducer != 0)
-			utils.crash ("Error in waypoint " + id + ": setting a waiting time requires the deceleration percentage to be 0, that wasn't the case");
+			throw new UnityException ("Error in waypoint " + id + ": setting a waiting time requires the deceleration percentage to be 0, that wasn't the case");
 	
 		this.focusPoint = focusPoint;
 	}
