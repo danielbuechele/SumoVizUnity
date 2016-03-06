@@ -11,6 +11,8 @@ public class Section {
 
 	private Type type;
 
+	public Waypoint sectionStartWaypoint;
+	public Waypoint sectionEndWaypoint;
 	private Vector3 sectionStartCoord;
 	private Vector3 sectionEndCoord;
 
@@ -29,8 +31,10 @@ public class Section {
 	private float accel = 0; // acceleration/deceleration
 
 
-	public Section (Type type, Vector3 sectionStartCoord, Vector3 sectionEndCoord, float velocReducer, float s_inSection) {
+	public Section (Type type, Waypoint sectionStartWaypoint, Waypoint sectionEndWaypoint, Vector3 sectionStartCoord, Vector3 sectionEndCoord, float velocReducer, float s_inSection) {
 		this.type = type;
+		this.sectionStartWaypoint = sectionStartWaypoint;
+		this.sectionEndWaypoint = sectionEndWaypoint;
 		this.sectionStartCoord = sectionStartCoord;
 		this.sectionEndCoord = sectionEndCoord;
 		this.velocReducer = velocReducer;
@@ -105,22 +109,8 @@ public class Section {
 		return false;		
 	}
 
-	private bool gaveSignal = false;
-
-	public bool getIndexIncrementSignal() {
-		if (type == Type.ACCELERATION && !gaveSignal) {
-			gaveSignal = true;
-			return true;
-		}
-		return false;			
-	}
-
-	public bool isDecel() {
-		return type == Type.DECELERATION;
-	}
-
-	public void reset() {
-		gaveSignal = false;
+	public bool isWaitSection() {
+		return type == Type.WAIT;
 	}
 
 	public float getProcProgressWithinSection(float absoluteTime) {

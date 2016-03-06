@@ -31,9 +31,6 @@ public class CameraTour : MonoBehaviour {
 	private Transform cam;
 	//private GameObject cameraObj;
 
-	private int currentSectionStartWaypointIndex = 0;
-	private FocusPointCommand current_fpc;
-
 
 	void Start () {
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
@@ -67,13 +64,13 @@ public class CameraTour : MonoBehaviour {
 			Vector3 accelEndPoint = Vector3.Lerp (startWaypointCoords, endWaypointCoords, accelEndMarkerPerc);
 			Vector3 decelStartPoint = Vector3.Lerp (startWaypointCoords, endWaypointCoords, decelStartMarkerPerc);
 
-			Section accelSect = new Section(Section.Type.ACCELERATION, startWaypointCoords, accelEndPoint, velocReducerStart, s_accel);
+			Section accelSect = new Section(Section.Type.ACCELERATION, startWaypoint, endWaypoint, startWaypointCoords, accelEndPoint, velocReducerStart, s_accel);
 			//float s_upToHere = s_ges; // Debug.Log ("ACCEL-SECT: " + accelSect);
 			sections.Add(accelSect);
-			Section constSect = new Section(Section.Type.CONSTANT, accelEndPoint, decelStartPoint, 1, s_const);
+			Section constSect = new Section(Section.Type.CONSTANT, startWaypoint, endWaypoint, accelEndPoint, decelStartPoint, 1, s_const);
 			//float s_upToHere = s_ges + s_accel; // Debug.Log ("CONST-SECT: " + constSect);
 			sections.Add(constSect);
-			Section decelSect = new Section(Section.Type.DECELERATION, decelStartPoint, endWaypointCoords, velocReducerEnd, s_decel);
+			Section decelSect = new Section(Section.Type.DECELERATION, startWaypoint, endWaypoint, decelStartPoint, endWaypointCoords, velocReducerEnd, s_decel);
 			//float s_upToHere = s_ges + s_accel + s_const; // Debug.Log ("DECEL-SECT: " + decelSect);
 			sections.Add(decelSect);
 
@@ -110,7 +107,7 @@ public class CameraTour : MonoBehaviour {
 						float.TryParse(values[4], out waitingTime);
 						bool.TryParse (values [5], out changeFocus);
 
-						Waypoint wp = new Waypoint (waypoints.Count, new Vector3 (x, y, z), velocReducer, waitingTime);
+						Vector3 point = new Vector3 (x, y, z);
 						FocusPointCommand fpc;
 
 						if (changeFocus) {
@@ -120,18 +117,18 @@ public class CameraTour : MonoBehaviour {
 							fpc = new FocusPointCommand (new Vector3 (x, y, z));
 						} else
 							fpc = new FocusPointCommand ();
+						
+						Waypoint wp = new Waypoint (waypoints.Count, point, velocReducer, waitingTime, fpc);
 
-						focusPointCommands.Add (fpc);
 						waypoints.Add (wp);
 					}
 				}
 			}
 		}
-		current_fpc = focusPointCommands[0];
 	}
 
 	private void addWaitSection(Waypoint wp) {
-		Section waitSect = new Section(Section.Type.WAIT, wp.getPoint(), wp.getPoint(), 0, 0);
+		Section waitSect = new Section(Section.Type.WAIT, null, null, wp.getPoint(), wp.getPoint(), 0, 0);
 		waitSect.setTinSection(wp.getWaitingTime());
 		sections.Add (waitSect);
 		t_waitSum += wp.getWaitingTime();
@@ -166,9 +163,6 @@ public class CameraTour : MonoBehaviour {
 
 	private void newLoop() {
 		currentSectionIndex = 0;
-		currentSectionStartWaypointIndex = 0;
-		foreach(Section sec in sections)
-			sec.reset (); //TODO there should be a better way
 	}
 
 	void Update () {
@@ -184,19 +178,20 @@ public class CameraTour : MonoBehaviour {
 		while (!sec.thatsMe (currentTime))
 			sec = sections [++ currentSectionIndex];
 
-		if(sec.getIndexIncrementSignal ()) {
-			current_fpc = focusPointCommands [currentSectionStartWaypointIndex ++];
-			if (current_fpc.doChangeFocus ())
-				focusPoint.position = current_fpc.getFocusPoint ();
-		}
-			
-		if(sec.isDecel () && current_fpc.doChangeFocus ()) {	
-			float perc = sec.getProcProgressWithinSection (currentTime);
-			FocusPointCommand next_fpc = focusPointCommands[currentSectionStartWaypointIndex];
-			focusPoint.position = Vector3.Lerp (current_fpc.getFocusPoint (), next_fpc.getFocusPoint (), perc);
+
+		Vector3 newPos = sec.getCoordAtT (currentTime);
+		cam.position = newPos; //Debug.Log (currentTime + ": " + newPos);
+
+		Waypoint secStartWp = sec.sectionStartWaypoint;
+		Waypoint secEndWp = sec.sectionEndWaypoint;
+
+		if (!sec.isWaitSection ()) {
+			float dist = Vector3.Distance (secStartWp.getPoint (), secEndWp.getPoint ());
+			float distToStart = Vector3.Distance (secStartWp.getPoint (), newPos);
+			float perc = dist / distToStart;
+			focusPoint.position = Vector3.Lerp (secStartWp.focusPoint, secEndWp.focusPoint, perc);
 		}
 
-		cam.position = sec.getCoordAtT (currentTime); // Debug.Log (currentTime + ": " + newPos);
 		cam.LookAt (focusPoint);
 	}
 }
