@@ -59,11 +59,11 @@
 			<!--<object name="ow5" type="openWall">
 					<point x="10.1" y="4.09"/>
 					<point x="10.1" y="4.02"/>
-				</object>-->
+				</object>
 				<object name="ow6" type="openWall">
 					<point x="10.1" y="4.02"/>
 					<point x="10.01" y="4.02"/>
-				</object>
+				</object>-->
 				<object name="ow7" type="openWall">
 					<point x="10.01" y="4.02"/>
 					<point x="10.01" y="2.85"/>
@@ -88,11 +88,11 @@
 					<point x="10.01" y="7.75"/>-->
 					<point x="10.01" y="6.68"/>
 				</object>
-				<object name="ow13" type="openWall">
+		<!--<object name="ow13" type="openWall">
 					<point x="10.01" y="6.68"/>
 					<point x="10.07" y="6.68"/>
 				</object>
-			<!--<object name="ow14" type="openWall">
+				<object name="ow14" type="openWall">
 					<point x="10.07" y="6.68"/>
 					<point x="10.07" y="6.5"/>
 				</object>-->
