@@ -1,3 +1,8 @@
+
+Assets/Scenes/_ignore/
+Assets/Resources/Data/_ignore/
+
+
 # Created by http://www.gitignore.io
 
 ### Unity ###
@@ -31,4 +36,3 @@ test-results/
 
 # Ignore compiled files
 Builds/
-

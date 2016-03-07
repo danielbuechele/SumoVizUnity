@@ -146,6 +146,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &724262770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 724262771}
+  m_Layer: 0
+  m_Name: FocusPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &724262771
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 724262770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2036783770}
+  m_RootOrder: 0
 --- !u!1 &857675391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2345,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  pedScaleFactor: 0.9
+  pedScaleFactor: 1
 --- !u!4 &1003934481
 Transform:
   m_ObjectHideFlags: 0
@@ -2401,7 +2428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   geometryLoader: {fileID: 1054666162}
-  trajectoryFilePath: /Users/benja/git/SumoVizUnity/Assets/Data/out_evaktisch_big2-80_res/floor-0.csv
+  trajectoryFilePath: 
 --- !u!4 &1057102354
 Transform:
   m_ObjectHideFlags: 0
@@ -2451,7 +2478,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 724262771}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!114 &2036783771
