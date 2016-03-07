@@ -28,20 +28,20 @@ public class ExtrudeGeometry : Geometry  {
 
 		Triangulator tr = new Triangulator(vertices2D); // Use the triangulator to get indices for creating triangles
 		int[] indicesArray = tr.Triangulate();
-		List<int> indices = new List<int>();
+		List<int> indices_top = new List<int>();
 		for (int i = 0; i < indicesArray.Length; i ++) {
-			indices.Add (indicesArray[i]);
+			indices_top.Add (indicesArray[i]);
 		}
 
 		Mesh mesh_top = new Mesh();
 		mesh_top.vertices = vertices.ToArray();
 		mesh_top.uv = verticesList.ToArray();
-		mesh_top.triangles = indices.ToArray();
+		mesh_top.triangles = indices_top.ToArray();
 		mesh_top.RecalculateNormals();
 		mesh_top.RecalculateBounds();
 		if (mesh_top.normals[0].y == -1) { // flip if needed
-			indices.Reverse ();
-			mesh_top.triangles = indices.ToArray ();
+			indices_top.Reverse ();
+			mesh_top.triangles = indices_top.ToArray ();
 			mesh_top.RecalculateNormals();
 		}
 		mesh_top = TangentHelper.TangentSolver (mesh_top);
@@ -78,8 +78,8 @@ public class ExtrudeGeometry : Geometry  {
 			indices_walls.Add((i + 3) % verticesWallsCount);
 			indices_walls.Add((i + 5) % verticesWallsCount);
 		}
-
-		indices_walls.Reverse (); // makes the outside appear and the inside invisible instead of the other way round
+			
+		//indices_walls.Reverse (); // makes the outside appear and the inside invisible instead of the other way round
 
 		/*
 		//double sided walls

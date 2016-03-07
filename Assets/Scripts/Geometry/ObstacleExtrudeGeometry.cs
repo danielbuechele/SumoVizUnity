@@ -21,6 +21,9 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  {
 		}
 		*/
 
+		if(verticesList[verticesList.Count - 1] == verticesList[0])
+			verticesList.RemoveAt (verticesList.Count - 1);
+
 		ExtrudeGeometry.create (name, verticesList, height, topMaterial, sideMaterial);
 	}
 }

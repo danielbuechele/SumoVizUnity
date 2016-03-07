@@ -9,7 +9,9 @@ public class ScenarioImporter {
 	[MenuItem("Assets/Import accu:rate output")]
 	
 	static void importAccurateOutput() {
-		EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
+		var ret = EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
+		//TODO Debug.Log (ret.ToString ());
+
 		var continueOk = true;
 
 		if (EditorSceneManager.GetActiveScene().name == "Base") 

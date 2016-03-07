@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WallExtrudeGeometry : ExtrudeGeometry  {
+public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessarily closed, width is set here, not in verticesList
 
 	public static void create  (string name, List<Vector2> verticesList, float height, float width) {
 		int wallpoints = verticesList.Count;
@@ -38,6 +38,10 @@ public class WallExtrudeGeometry : ExtrudeGeometry  {
 			}
 			verticesList.Add(extrudePoint);
 		}
+
+		//TODO distinguish Drehrichtung
+		verticesList.Reverse ();
+
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		ExtrudeGeometry.create (name, verticesList, height, gl.theme.getOpenWallMaterial(), gl.theme.getOpenWallMaterial());
 	}
