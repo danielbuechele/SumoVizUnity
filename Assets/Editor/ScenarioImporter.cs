@@ -44,6 +44,22 @@ public class ScenarioImporter {
 		/* to undo the texture-stretching on a cube that stretching the cube caused */
 		//ReCalcCubeTexture script = GameObject.Find("Cube").GetComponent<ReCalcCubeTexture>();
 		//script.reCalcCubeTexture ();
-	}
 
+		/*
+		string dir = "Assets/Resources/Data/_ignore/out_***REMOVED***/";
+		FileInfo fi = new FileInfo (dir + "floor-0.csv");
+		StreamReader reader = fi.OpenText ();
+		StreamWriter writer = new StreamWriter(dir + "floor-0_reduced.csv", false);
+		using (reader) {
+			string line;
+			int i = 0;
+			while((line = reader.ReadLine()) != null && i++ < 100000) {
+				writer.WriteLine (line); 
+			}
+			reader.Close ();
+			writer.Close();
+		}
+		Debug.Log ("DONE");
+		*/
+	}
 }
