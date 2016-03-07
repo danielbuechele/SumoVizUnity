@@ -5,17 +5,23 @@ using System.Collections;
 
 public class TrajectoryLoader {
 
-	private string filedata;
+	private StreamReader reader;
 
 
-	public TrajectoryLoader(string filepath) {
-		filedata = utils.loadFileAtRuntimeIntoBuild (filepath);
+	public TrajectoryLoader(string relativeTrajFilePath, bool properStreamReading) {
+		if (properStreamReading) {
+			FileInfo fi = new FileInfo ("Assets/Resources/Data/" + relativeTrajFilePath); //_ignore
+			reader = fi.OpenText ();
+		} else {
+			string filedata = utils.loadFileAtRuntimeIntoBuild ("Data/" + relativeTrajFilePath);
+			reader = new StreamReader (new MemoryStream (Encoding.UTF8.GetBytes (filedata)));
+		}
 	}
 
 	public void loadTrajectories() {
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
 
-		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
+		using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
 			string line = reader.ReadLine(); // skip the first line = header
 			while((line = reader.ReadLine()) != null) {
 				string[] values = line.Split(',');
@@ -30,6 +36,7 @@ public class TrajectoryLoader {
 					pl.addPedestrianPosition(new PedestrianPosition(id, time, x, y));
 				}
 			}
+			reader.Close ();
 		}
 		pl.createPedestrians ();
 	}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,10 +10,11 @@ public class RuntimeInitializer : MonoBehaviour {
 	public bool trajAtEditingTime = true;*/
 	[HideInInspector]
 	public GeometryLoader geometryLoader;
-	public string trajectoryFilePath; // TODO more floors
+	public string relativeTrajFilePath; // TODO more floors
 
 	void Start () { // = Play button was pressed in unity
-		TrajectoryLoader tl = new TrajectoryLoader (trajectoryFilePath);
+		//TrajectoryLoader tl = new TrajectoryLoader (trajectoryFilePath, false); // for mobile: load using TextAsset
+		TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath, true); // NOT working on mobile: load using stream reader
 		tl.loadTrajectories ();
 	}
 

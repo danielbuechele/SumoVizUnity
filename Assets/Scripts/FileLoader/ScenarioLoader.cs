@@ -15,13 +15,13 @@ public class ScenarioLoader {
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 	}
 
-	public string getTrajectoryFilePath() {
+	public string getRelativeTrajFilePath() {
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
-		string trajectoryFilePath = "";
+		string relativeTrajFilePath = "";
 		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO more floors
-			trajectoryFilePath = "Data/" + floor.GetAttribute("csvAt");
+			relativeTrajFilePath = floor.GetAttribute("csvAt");
 		}
-		return trajectoryFilePath;
+		return relativeTrajFilePath;
 	}
 		
 	public void loadScenario() {

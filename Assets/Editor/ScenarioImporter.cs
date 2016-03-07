@@ -30,7 +30,7 @@ public class ScenarioImporter {
 
 			ScenarioLoader sl = new ScenarioLoader (path);
 			sl.loadScenario ();
-			ri.trajectoryFilePath = sl.getTrajectoryFilePath ();
+			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath ();
 		}
 	}
 
