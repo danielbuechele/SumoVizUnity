@@ -9,10 +9,10 @@ public class ScenarioImporter {
 	[MenuItem("Assets/Import accu:rate output")]
 	
 	static void importAccurateOutput() {
-		var ret = EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ();
-		//TODO Debug.Log (ret.ToString ());
+		if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ())
+			return;
 
-		var continueOk = true;
+		bool continueOk = true;
 
 		if (EditorSceneManager.GetActiveScene().name == "Base") 
 			continueOk = !EditorUtility.DisplayDialog("duplicate scene", "It is recommend that you first duplicate the Scene (select it in the Scenes folder and use Edit > Duplicate), rename it optionally and doubleclick the new scene.", "ok, let me duplicate", "continue");
