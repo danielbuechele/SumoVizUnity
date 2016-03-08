@@ -5599,7 +5599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   geometryLoader: {fileID: 1054666162}
-  trajectoryFilePath: Data/out_evaktisch_big2-80_res/floor-0.csv
+  relativeTrajFilePath: out_evaktisch_big2-80_res/floor-0.csv
 --- !u!4 &1057102354
 Transform:
   m_ObjectHideFlags: 0
