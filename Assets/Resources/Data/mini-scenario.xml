@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="***REMOVED***" timestamp="20160115.172923" xmlFormat="0.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="miniScenario" timestamp="20160115.172923" xmlFormat="0.3">
 	<spatial>
 		<floor cellDist="0.2" discretizationType="1" elevation="0" height="2" id="0" maxX="828" maxY="238" minX="5" minY="3">
 			<collection id="0">
@@ -48,6 +48,6 @@
     </floor>
   </spatial>
 <output>
-<floor csvAt="out_***REMOVED***/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/>
+<floor csvAt="out_folder/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/>
 </output>
 </scenario>

@@ -9,10 +9,18 @@ using System.Xml;
 public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
-
+	private List<string> specials = new List<string> ();
 
 	public ScenarioLoader(string filepath) {
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
+		 
+		// for big project
+		string wallToOpenWallCasesFilecontent = utils.loadFileIntoEditor (Application.dataPath + "/Resources/Data/_ignore/wallToOpenWallCases.txt");
+		string[] lines = wallToOpenWallCasesFilecontent.Split("\n"[0]);
+		foreach (string line in lines)
+			if (line.Length > 0)
+				if (line.Substring (0, 1) != "#")
+					specials.Add (line.Split ('#')[0].Trim ());
 	}
 
 	public string getRelativeTrajFilePath() {
@@ -30,13 +38,29 @@ public class ScenarioLoader {
 			float height = 1f; // used 2.4 in disco scene
 			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
 				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
-					string name = collection.GetAttribute ("id") + "_" + geomObj.GetAttribute ("name");
+					string name = collection.GetAttribute ("id") + "-" + geomObj.GetAttribute ("name");
 					switch (geomObj.GetAttribute("type")) {
 						case "openWall":
 							WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
 							break;
 						case "wall":
-							ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
+							if (specials.Contains (name)) {
+								List<Vector2> vertices = parsePoints (geomObj);
+								Vector2 first = vertices [0];	
+								Vector2 last = vertices[vertices.Count - 1];
+								Vector2 secondLast = vertices[vertices.Count - 2];
+								if (first == last) {
+									Vector2 newLast = Vector2.Lerp (secondLast, last, 0.99f);
+									vertices.RemoveAt (vertices.Count - 1);
+									vertices.Add (newLast);
+								} else {
+									Vector2 newLast = Vector2.Lerp (last, first, 0.99f);
+									vertices.Add (newLast);
+								}
+								WallExtrudeGeometry.create (name, vertices, height, -0.2f);
+							}
+							else
+								ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						case "origin":
 						case "destination":

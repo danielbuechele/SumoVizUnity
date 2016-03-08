@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ObstacleExtrudeGeometry : ExtrudeGeometry  {
+public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 
 	public static void create (string name, List<Vector2> verticesList, float height) {
 

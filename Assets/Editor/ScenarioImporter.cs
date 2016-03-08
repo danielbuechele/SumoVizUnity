@@ -48,7 +48,7 @@ public class ScenarioImporter {
 		//script.reCalcCubeTexture ();
 
 		/*
-		string dir = "Assets/Resources/Data/_ignore/out_***REMOVED***/";
+		string dir = "Assets/Resources/Data/_ignore/.../";
 		FileInfo fi = new FileInfo (dir + "floor-0.csv");
 		StreamReader reader = fi.OpenText ();
 		StreamWriter writer = new StreamWriter(dir + "floor-0_reduced.csv", false);
