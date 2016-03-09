@@ -7,8 +7,32 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 	public static void create (string name, List<Vector2> verticesList, float height) {
 
 		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+
+		/*
+		Material material = (Material) Resources.Load("SolidColor", typeof(Material));
+
+		Material mat = new Material (material.shader);
+
+		Color[] colors = new Color[3];
+
+		colors [0] = new Color (1, 0, 0);
+		colors [1] = new Color (0, 1, 0);
+		colors [2] = new Color (0, 0, 1);
+
+		Color choice = colors [(int)(Random.value * 3)];
+
+		Debug.Log (choice.ToString ());
+
+		mat.color = choice;
+
+		Material topMaterial = mat;
+		Material sideMaterial = mat;
+		*/
+
+
 		Material topMaterial = gl.theme.getWallMaterial();
 		Material sideMaterial = gl.theme.getWallMaterial();
+
 
 		/*
 		if (height <= 4.0) {
