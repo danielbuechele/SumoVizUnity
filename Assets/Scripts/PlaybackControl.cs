@@ -30,7 +30,6 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	// Use this for initialization
 	void Start () {
 		//threshold = 2.0f;
 	}
@@ -105,12 +104,25 @@ public class PlaybackControl : MonoBehaviour {
 		lineIsDrawn = true;
 	}
 	*/
-	
-	// Update is called once per frame
+
+
+	float deltaTime = 1f / 25f;
+	int screenshotCounter = 0;
+	decimal old_current_time = 0;
+	bool takeScreenshots = true;
+
 	void Update () {
 		if (playing) {
 			try {
-				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
+				//float deltaTime = Time.deltaTime;
+				current_time = (current_time + (decimal) deltaTime) % total_time;
+				if(old_current_time > current_time) // one complete round
+					takeScreenshots = false;
+				old_current_time = current_time;
+
+				if (takeScreenshots)
+					Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", 5);
+				
 			} catch (DivideByZeroException) {
 				current_time = 0;
 			}
@@ -121,4 +133,26 @@ public class PlaybackControl : MonoBehaviour {
 		}
 		*/
 	}
+
+	/*
+	//http://answers.unity3d.com/answers/22959/view.html
+	public void takeScreenshot(){
+		int resWidth = 3840;
+		int resHeight = 2160;
+		RenderTexture rt = new RenderTexture (resWidth, resHeight, 24);
+		Camera camera = Camera.main;
+		camera.targetTexture = rt;
+		Texture2D screenShot = new Texture2D (resWidth, resHeight, TextureFormat.RGB24, false);
+		camera.Render ();
+		RenderTexture.active = rt;
+		screenShot.ReadPixels (new Rect (0, 0, resWidth, resHeight), 0, 0);
+		camera.targetTexture = null;
+		RenderTexture.active = null; // JC: added to avoid errors
+		Destroy (rt);
+		byte[] bytes = screenShot.EncodeToPNG ();
+		string filename = "Screenshots/screenshot" + (screenshotCounter ++) + ".png";
+		System.IO.File.WriteAllBytes (filename, bytes);
+		Debug.Log (string.Format ("Took screenshot to: {0}", filename));
+	}
+	*/
 }
