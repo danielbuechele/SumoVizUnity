@@ -109,13 +109,13 @@ public class PlaybackControl : MonoBehaviour {
 	float deltaTime = 1f / 25f;
 	int screenshotCounter = 0;
 	decimal old_current_time = 0;
-	bool takeScreenshots = true;
+	bool takeScreenshots = false;
 
 	void Update () {
 		if (playing) {
 			try {
 				//float deltaTime = Time.deltaTime;
-				current_time = (current_time + (decimal) deltaTime) % total_time;
+				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
 				if(old_current_time > current_time) // one complete round
 					takeScreenshots = false;
 				old_current_time = current_time;

@@ -15,8 +15,10 @@ public class AgentView : MonoBehaviour {
 		else
 			findRandomPedestrian ();
 
-		if(Cardboard.SDK.Triggered || Input.GetKeyDown (KeyCode.Space))
-			findRandomPedestrian ();
+		//if(Cardboard.SDK.Triggered || Input.GetKeyDown (KeyCode.Space))
+		//	findRandomPedestrian ();
+
+		//TODO find trigger for gear vr oculus
 	}
 		
 	private void followPedestrian (GameObject pedestrian) {

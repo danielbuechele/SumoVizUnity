@@ -1,6 +1,7 @@
 
-Assets/Scenes/_ignore/
+# added by benjaminaaron
 Assets/Resources/Data/_ignore/
+oculussig_*
 
 
 # Created by http://www.gitignore.io
