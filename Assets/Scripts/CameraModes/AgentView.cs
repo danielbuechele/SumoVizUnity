@@ -6,8 +6,13 @@ using System.Collections.Generic;
 // initial implementation from Christos Tsiliakis 
 public class AgentView : MonoBehaviour {
 
-	private GameObject currentPed = null;
 
+	private GameObject currentPed = null;
+	private GameObject mainCameraParent;
+
+	void Start() {
+		mainCameraParent = GameObject.Find ("MainCameraParent");
+	}
 
 	void LateUpdate (){
 		if (currentPed != null)
@@ -15,16 +20,14 @@ public class AgentView : MonoBehaviour {
 		else
 			findRandomPedestrian ();
 
-		//if(Cardboard.SDK.Triggered || Input.GetKeyDown (KeyCode.Space))
-		//	findRandomPedestrian ();
-
-		//TODO find trigger for gear vr oculus
+		if(Input.GetMouseButtonDown(0))
+			findRandomPedestrian ();
 	}
 		
 	private void followPedestrian (GameObject pedestrian) {
 		Vector3 pedPos = pedestrian.transform.position;
 		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 2f, pedPos.z);
-		Camera.main.transform.position = newPos;
+		mainCameraParent.transform.position = newPos;
 	}
 
 	private void findRandomPedestrian () {
