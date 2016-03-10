@@ -28,7 +28,9 @@ public class Pedestrian : MonoBehaviour {
 
 	//GameObject tile;
 
-	// Use this for initialization
+	private AgentView agentView;
+
+
 	void Start () {
 		gameObject.AddComponent<BoxCollider>();
 		transform.Rotate (0, 90, 0);
@@ -42,8 +44,9 @@ public class Pedestrian : MonoBehaviour {
 		r = GetComponentInChildren<Renderer>() as Renderer;
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
-
 		//gameObject.tag = "pedestrian";
+
+		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 	}
 
 	/*
@@ -109,12 +112,15 @@ public class Pedestrian : MonoBehaviour {
 		else
 			GetComponent <Animation> ().Stop ();
 
+		bool showPed = true;
+
 		int index = _getTrait(positions, pc.current_time);
-		
-		if (index < positions.Count - 1 && index > -1){
-			r.enabled = true;
+
+		if (index < positions.Count - 1 && index > -1) {
+			showPed = true;
+
 			PedestrianPosition pos = (PedestrianPosition) positions.GetByIndex (index);
-			PedestrianPosition pos2 = (PedestrianPosition) positions.GetByIndex (index+1);
+			PedestrianPosition pos2 = (PedestrianPosition) positions.GetByIndex (index + 1);
 			start = new Vector3 (pos.getX(), 0, pos.getY());
 			target = new Vector3 (pos2.getX(), 0, pos2.getY());
 			float time = (float) pc.current_time;
@@ -167,10 +173,16 @@ public class Pedestrian : MonoBehaviour {
 			//gameObject.hideFlags = HideFlags.None;
 
 		} else {
-			r.enabled = false;
+			showPed = false;
+			//r.enabled = false;
 			//tile.GetComponent<Renderer>().enabled = false;
 			//gameObject.hideFlags = HideFlags.HideInHierarchy;
 		}
+
+		if (agentView.getCurrentPed() == gameObject)
+			showPed = false;
+
+		r.enabled = showPed;
 	}
 
 	/*

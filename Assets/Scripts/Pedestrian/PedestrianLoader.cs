@@ -12,7 +12,7 @@ public class PedestrianLoader : MonoBehaviour {
 	private PlaybackControl pc;
 	public List<Pedestrian> pedestrians = new List<Pedestrian> ();
 
-	public float pedScaleFactor = 0.9f; // 1 is default size
+	public float pedScaleFactor = 1f; // 1 is default size
 
 
 	void Start() {

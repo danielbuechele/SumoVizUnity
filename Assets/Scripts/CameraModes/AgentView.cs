@@ -12,6 +12,11 @@ public class AgentView : MonoBehaviour {
 
 	void Start() {
 		mainCameraParent = GameObject.Find ("MainCameraParent");
+		Camera.main.nearClipPlane = 0.05f;
+	}
+
+	public GameObject getCurrentPed() {
+		return currentPed;
 	}
 
 	void LateUpdate (){
@@ -20,13 +25,13 @@ public class AgentView : MonoBehaviour {
 		else
 			findRandomPedestrian ();
 
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown (0))
 			findRandomPedestrian ();
 	}
 		
 	private void followPedestrian (GameObject pedestrian) {
 		Vector3 pedPos = pedestrian.transform.position;
-		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 2f, pedPos.z);
+		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 1.49f, pedPos.z);
 		mainCameraParent.transform.position = newPos;
 	}
 
@@ -43,8 +48,8 @@ public class AgentView : MonoBehaviour {
 				if (i ++ > peds.Count)
 					cancelled = true;
 			}
-			if(!cancelled)
-				currentPed = peds[randIndex].gameObject;
+			if (!cancelled)
+				currentPed = peds [randIndex].gameObject;
 		}	
 	}
 }
