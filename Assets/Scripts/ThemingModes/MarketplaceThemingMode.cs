@@ -21,15 +21,24 @@ public class MarketplaceThemingMode : ThemingMode {
 	}
 
 	public override Material getHouseMaterial () {
-		return null;
+		return (Material) Resources.Load("House", typeof(Material));
 	}
 
 	public override Material getRoofMaterial () {
-		return null;
+		return (Material) Resources.Load("Roof", typeof(Material));
 	}
 
 	public override Vector2 getTextureScaleForHeight (float height) {
-		return new Vector2();
+		float y = 0;
+		if (height < 5) 
+			y = height / 0.44f;
+		else if 
+			(height < 7) y = height / 0.67f;
+		else {
+			int fulltextures = (int) height / 7;
+			y = height / fulltextures;
+		}
+		return new Vector2 (0.5f, 1 / y);
 	}
 
 	#endregion

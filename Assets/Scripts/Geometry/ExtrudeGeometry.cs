@@ -55,6 +55,11 @@ public class ExtrudeGeometry : Geometry  {
 		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
 		walls.GetComponent<Renderer>().sharedMaterial = sideMaterial;
 
+		/*
+		Color myColor = new Color (Random.value, Random.value, Random.value);
+		walls.GetComponent<Renderer>().material.color = myColor;
+		*/
+
 		List<Vector2> uvs_walls = new List<Vector2>();
 		List<Vector3> vertices_walls = new List<Vector3>();
 		List<int> indices_walls = new List<int>();

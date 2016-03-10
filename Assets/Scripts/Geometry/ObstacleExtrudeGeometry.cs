@@ -35,6 +35,14 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 
 
 		/*
+		if(name.Contains ("_house")) {
+			topMaterial = gl.theme.getRoofMaterial();
+			sideMaterial = gl.theme.getHouseMaterial();
+			sideMaterial.SetTextureScale("_MainTex", gl.theme.getTextureScaleForHeight(4f));
+		}
+		*/
+
+		/*
 		if (height <= 4.0) {
 			topMaterial = gl.theme.getBoxMaterial();
 			sideMaterial = gl.theme.getBoxMaterial();
