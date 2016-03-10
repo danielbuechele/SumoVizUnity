@@ -30,12 +30,13 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	public bool takeScreenshots = false;
+	public bool takeScreenshots;
 	public int superSizeFactor = 5;
 	public int fps = 25;
 
 	void Start () {
 		//threshold = 2.0f;
+		takeScreenshots = false;
 		if (takeScreenshots)
 			Time.captureFramerate = fps;
 	}
@@ -118,15 +119,14 @@ public class PlaybackControl : MonoBehaviour {
 		if (playing) {
 			try {
 				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
+			
+				if(old_current_time > current_time) // if that condition is reached, one round is completed
+					takeScreenshots = false;
+				old_current_time = current_time;
 
-				if(takeScreenshots) {
-					if(old_current_time > current_time) // one complete round
-						takeScreenshots = false;
-					else
-						Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
-					old_current_time = current_time;
-				}
-				
+				if(takeScreenshots)
+					Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
+	
 			} catch (DivideByZeroException) {
 				current_time = 0;
 			}
