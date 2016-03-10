@@ -14,7 +14,7 @@ public class RuntimeInitializer : MonoBehaviour {
 
 	void Start () { // = Play button was pressed in unity
 		//TrajectoryLoader tl = new TrajectoryLoader (trajectoryFilePath, false); // for mobile: load using TextAsset
-		TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath, false); // NOT working on mobile: load using stream reader
+		TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath, true); // NOT working on mobile: load using stream reader
 		tl.loadTrajectories ();
 	}
 

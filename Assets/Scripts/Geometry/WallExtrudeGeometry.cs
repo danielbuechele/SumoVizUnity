@@ -42,6 +42,8 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 		verticesList.Reverse ();
 
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		ExtrudeGeometry.create (name, verticesList, height, gl.theme.getOpenWallMaterial(), gl.theme.getOpenWallMaterial());
+		Material topMaterial = gl.theme.getOpenWallMaterial ();
+		Material sideMaterial = topMaterial;
+		ExtrudeGeometry.create (name, verticesList, height, topMaterial, sideMaterial);
 	}
 }

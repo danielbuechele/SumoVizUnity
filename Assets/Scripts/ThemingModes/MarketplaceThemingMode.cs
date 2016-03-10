@@ -1,19 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class MarketplaceThemingMode : ThemingMode {
 	#region ThemingMode implementation
+
+
+	List<Material> solidColorMaterials = new List<Material>();
+
+	public MarketplaceThemingMode() {
+		solidColorMaterials.Add ((Material) Resources.Load ("SolidColorMaterials/White", typeof(Material)));
+		solidColorMaterials.Add ((Material) Resources.Load ("SolidColorMaterials/Gelb", typeof(Material)));
+		solidColorMaterials.Add ((Material) Resources.Load ("SolidColorMaterials/Green", typeof(Material)));
+		solidColorMaterials.Add ((Material) Resources.Load ("SolidColorMaterials/Red", typeof(Material)));
+		solidColorMaterials.Add ((Material) Resources.Load ("SolidColorMaterials/Blue", typeof(Material)));
+	}
 
 	public override string getTerrainName() {
 		return "TerrainCity";
 	}
 
+	private Material getRandomSolidColorMaterial() {
+		return solidColorMaterials [Random.Range (0, solidColorMaterials.Count)];
+	}
+
 	public override Material getOpenWallMaterial () {
-		return (Material) Resources.Load("evaktisch/Wand1", typeof(Material));
+		return getRandomSolidColorMaterial ();
 	}
 
 	public override Material getWallMaterial () {
-		return (Material) Resources.Load("evaktisch/Wand2", typeof(Material));
+		return getRandomSolidColorMaterial ();
 	}
 
 	public override Material getBoxMaterial () {
