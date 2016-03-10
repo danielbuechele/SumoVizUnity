@@ -30,8 +30,14 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
+	public bool takeScreenshots = false;
+	public int superSizeFactor = 5;
+	public int fps = 25;
+
 	void Start () {
 		//threshold = 2.0f;
+		if (takeScreenshots)
+			Time.captureFramerate = fps;
 	}
 
 	/*
@@ -105,23 +111,21 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-
-	float deltaTime = 1f / 25f;
-	int screenshotCounter = 0;
-	decimal old_current_time = 0;
-	bool takeScreenshots = false;
+	private int screenshotCounter = 0;
+	private decimal old_current_time = 0;
 
 	void Update () {
 		if (playing) {
 			try {
-				//float deltaTime = Time.deltaTime;
 				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
-				if(old_current_time > current_time) // one complete round
-					takeScreenshots = false;
-				old_current_time = current_time;
 
-				if (takeScreenshots)
-					Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", 5);
+				if(takeScreenshots) {
+					if(old_current_time > current_time) // one complete round
+						takeScreenshots = false;
+					else
+						Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
+					old_current_time = current_time;
+				}
 				
 			} catch (DivideByZeroException) {
 				current_time = 0;

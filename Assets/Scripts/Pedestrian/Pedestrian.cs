@@ -28,7 +28,7 @@ public class Pedestrian : MonoBehaviour {
 
 	//GameObject tile;
 
-	private AgentView agentView;
+	//private AgentView agentView;
 
 
 	void Start () {
@@ -46,7 +46,7 @@ public class Pedestrian : MonoBehaviour {
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
-		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
+		//agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 	}
 
 	/*
@@ -179,8 +179,8 @@ public class Pedestrian : MonoBehaviour {
 			//gameObject.hideFlags = HideFlags.HideInHierarchy;
 		}
 
-		if (agentView.getCurrentPed() == gameObject)
-			showPed = false;
+		//if (agentView.getCurrentPed() == gameObject)
+		//	showPed = false;
 
 		r.enabled = showPed;
 	}
