@@ -42,7 +42,7 @@ public class TrajectoryLoader {
 
 			while(line != null) {
 				string[] values = line.Split(',');
-				if (values.Length == 7) { // TODO will it always be 7?
+				if (values.Length >= 4) {
 					decimal time;
 					int id;
 					float x, y;

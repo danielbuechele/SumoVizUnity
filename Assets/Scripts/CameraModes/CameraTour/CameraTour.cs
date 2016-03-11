@@ -25,7 +25,6 @@ public class CameraTour : MonoBehaviour {
 	private float accelEndMarkerPerc = 0.2f; // 1/5
 	private float decelStartMarkerPerc = 0.8f; // 4/5
 
-	private string waypointsFilepath;
 	private Transform focusPoint;
 	private Transform cam;
 	//private GameObject cameraObj;
@@ -37,7 +36,6 @@ public class CameraTour : MonoBehaviour {
 		cam = Camera.main.transform; // = cameraObj.transform;
 		//cameraObj = GameObject.Find ("Sphere");
 
-		waypointsFilepath = "Data/waypoints/waypointsEvaktischBig2.csv";
 		importWaypoints ();
 
 		if (waypoints[0].doWait()) // extra check this, because i starts at 1 in following for-loop

@@ -45,25 +45,25 @@ public class PedestrianLoader : MonoBehaviour {
 			if (currentList.Count > 0
 				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
 				if (currentList.Count > 1) { // don't instantiate peds that stay in the same place for the entire total_time, they will throw index out of bound arrows in the index-while-loop in Pedestrian
-				GameObject p = (GameObject)Instantiate (Resources.Load ("Pedestrian"));
-				Renderer carlMidGeoRenderer = p.transform.GetChild (0).GetComponent<Renderer> ();
-				carlMidGeoRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-				carlMidGeoRenderer.receiveShadows = false;
+					GameObject p = (GameObject) Instantiate (Resources.Load ("Pedestrian"));
+					Renderer carlMidGeoRenderer = p.transform.GetChild (0).GetComponent<Renderer> ();
+					carlMidGeoRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+					carlMidGeoRenderer.receiveShadows = false;
 
-				//pedScaleFactor = Random.value;
-				if(pedScaleFactor != 1f)
-					p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
+					//pedScaleFactor = Random.value;
+					if(pedScaleFactor != 1f)
+						p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
 
-				setPedestriansAsParent (p);
-				Pedestrian ped = p.GetComponent<Pedestrian> ();
+					setPedestriansAsParent (p);
+					Pedestrian ped = p.GetComponent<Pedestrian> ();
 
-				List<PedestrianPosition> list = new List<PedestrianPosition> ();
-				foreach (PedestrianPosition pedPos in currentList.Values)
-					list.Add (pedPos);
-				
-				ped.setPositions(list);
-				ped.setID(positions[i].getID());
-				pedestrians.Add(ped);
+					List<PedestrianPosition> list = new List<PedestrianPosition> ();
+					foreach (PedestrianPosition pedPos in currentList.Values)
+						list.Add (pedPos);
+					
+					ped.setPositions (list);
+					ped.setID (positions [i].getID ());
+					pedestrians.Add (ped);
 				}
 				currentList.Clear ();
 			}

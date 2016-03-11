@@ -118,108 +118,108 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	void Update () {
-	if(!targetReached) {
-		/*
-		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-		if (dist > 300f)
-			r.enabled = false;
-		else
-			r.enabled = true;
-		*/
-
-		if (pc.playing && r.enabled)
-			GetComponent <Animation> ().Play ();
-		else
-			GetComponent <Animation> ().Stop ();
-
-		//int index = _getTrait(positions, pc.current_time);
-
-		/*
-		if (pc.current_time > positions [index + 1].getTime ()
-		    && index != positions.Count - 2) {
-			index += 1;
-		}*/
-
-		/*
-		if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
-			index += 1;
-		}*/
-
-		while (pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
-			index += 1;
-
-		//if (index < positions.Count - 1) {
-			PedestrianPosition pos = (PedestrianPosition)positions [index];
-			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
-			start = new Vector3 (pos.getX (), 0, pos.getY ());
-			target = new Vector3 (pos2.getX (), 0, pos2.getY ());
-			float time = (float)pc.current_time;
-			float timeStepLength = Mathf.Clamp ((float)pos2.getTime () - (float)pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
-			float movement_percentage = ((float)time - (float)pos.getTime ()) / timeStepLength;
-			Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
-
-			Vector3 relativePos = target - start;
-			speed = relativePos.magnitude;
-
-			GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
-			if (start != target)
-				transform.rotation = Quaternion.LookRotation (relativePos);
-
+		if(!targetReached) {
 			/*
-			//check if line is crossed
-
-			if (gp.point1active && gp.point2active) {
-				if (FasterLineSegmentIntersection(new Vector2(gp.point1.x,gp.point1.z), new Vector2(gp.point2.x,gp.point2.z), new Vector2(transform.position.x, transform.position.z), new Vector2(newPosition.x, newPosition.z))) {
-					gp.lineCross(speed);
-				}
-			}
-
-			//Tile coloring
-			if (pc.tileColoringMode != TileColoringMode.TileColoringNone) {
-
-				tile.GetComponent<Renderer>().enabled = true;
-
-				if (pc.tileColoringMode == TileColoringMode.TileColoringSpeed) {
-					tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForSpeed(getSpeed());
-					//it.updateSpeed(speed);
-				} else if (pc.tileColoringMode == TileColoringMode.TileColoringDensity) {
-					densityReload = (densityReload+1)%densityReloadInterval;
-					if (densityReload==0) {
-						getDensity();
-					}
-					float density = getDensity();
-					if (density>=pc.threshold) {
-						tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForDensity(density);
-					} else {
-						tile.GetComponent<Renderer>().enabled = false;
-					}
-				}*/
-			/*else {
-				tile.GetComponent<Renderer>().enabled = false;
-			}
+			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
+			if (dist > 300f)
+				r.enabled = false;
+			else
+				r.enabled = true;
 			*/
 
-			transform.position = newPosition;
-			//gameObject.hideFlags = HideFlags.None;
-		//}
-			
-		if (index >= positions.Count - 2) {
-			r.enabled = false;
-			targetReached = true;
+			if (pc.playing && r.enabled)
+				GetComponent <Animation> ().Play ();
+			else
+				GetComponent <Animation> ().Stop ();
+
+			//int index = _getTrait(positions, pc.current_time);
+
+			/*
+			if (pc.current_time > positions [index + 1].getTime ()
+			    && index != positions.Count - 2) {
+				index += 1;
+			}*/
+
+			/*
+			if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
+				index += 1;
+			}*/
+
+			while (pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
+				index += 1;
+
+			//if (index < positions.Count - 1) {
+				PedestrianPosition pos = (PedestrianPosition) positions [index];
+				PedestrianPosition pos2 = (PedestrianPosition) positions [index + 1];
+				start = new Vector3 (pos.getX (), 0, pos.getY ());
+				target = new Vector3 (pos2.getX (), 0, pos2.getY ());
+				float time = (float)pc.current_time;
+				float timeStepLength = Mathf.Clamp ((float) pos2.getTime () - (float) pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
+				float movement_percentage = ((float) time - (float) pos.getTime ()) / timeStepLength;
+				Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
+
+				Vector3 relativePos = target - start;
+				speed = relativePos.magnitude;
+
+				GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
+				if (start != target)
+					transform.rotation = Quaternion.LookRotation (relativePos);
+
+				/*
+				//check if line is crossed
+
+				if (gp.point1active && gp.point2active) {
+					if (FasterLineSegmentIntersection(new Vector2(gp.point1.x,gp.point1.z), new Vector2(gp.point2.x,gp.point2.z), new Vector2(transform.position.x, transform.position.z), new Vector2(newPosition.x, newPosition.z))) {
+						gp.lineCross(speed);
+					}
+				}
+
+				//Tile coloring
+				if (pc.tileColoringMode != TileColoringMode.TileColoringNone) {
+
+					tile.GetComponent<Renderer>().enabled = true;
+
+					if (pc.tileColoringMode == TileColoringMode.TileColoringSpeed) {
+						tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForSpeed(getSpeed());
+						//it.updateSpeed(speed);
+					} else if (pc.tileColoringMode == TileColoringMode.TileColoringDensity) {
+						densityReload = (densityReload+1)%densityReloadInterval;
+						if (densityReload==0) {
+							getDensity();
+						}
+						float density = getDensity();
+						if (density>=pc.threshold) {
+							tile.GetComponent<Renderer>().material.color = ColorHelper.ColorForDensity(density);
+						} else {
+							tile.GetComponent<Renderer>().enabled = false;
+						}
+					}*/
+				/*else {
+					tile.GetComponent<Renderer>().enabled = false;
+				}
+				*/
+
+				transform.position = newPosition;
+				//gameObject.hideFlags = HideFlags.None;
+			//}
+				
+			if (index >= positions.Count - 2) {
+				r.enabled = false;
+				targetReached = true;
+			}
+
+			/*}
+			else {
+				showPed = false;
+				//r.enabled = false;
+				//tile.GetComponent<Renderer>().enabled = false;
+				//gameObject.hideFlags = HideFlags.HideInHierarchy;
+			}*/
+
+			//r.enabled = showPed;
+			//if (agentView.getCurrentPed() == gameObject)
+			//showPed = false;
 		}
-
-		/*}
-		else {
-			showPed = false;
-			//r.enabled = false;
-			//tile.GetComponent<Renderer>().enabled = false;
-			//gameObject.hideFlags = HideFlags.HideInHierarchy;
-		}*/
-
-		//r.enabled = showPed;
-		//if (agentView.getCurrentPed() == gameObject)
-		//showPed = false;
-	}
 	}
 
 	/*
