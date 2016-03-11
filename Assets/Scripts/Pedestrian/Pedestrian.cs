@@ -32,7 +32,6 @@ public class Pedestrian : MonoBehaviour {
 
 
 	void Start () {
-		index = 0;
 		gameObject.AddComponent<BoxCollider>();
 		transform.Rotate (0, 90, 0);
 		myColor = new Color (Random.value, Random.value, Random.value);
@@ -48,6 +47,8 @@ public class Pedestrian : MonoBehaviour {
 		//gameObject.tag = "pedestrian";
 
 		//agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
+
+		resetPedestrian ();
 	}
 
 	/*
@@ -108,14 +109,25 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
 	int index;
+	bool targetReached = true;
 
 	public void resetPedestrian() {
 		index = 0;
 		r.enabled = true;
+		targetReached = false;
 	}
 
 	void Update () {
-		if (pc.playing)
+	if(!targetReached) {
+		/*
+		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
+		if (dist > 300f)
+			r.enabled = false;
+		else
+			r.enabled = true;
+		*/
+
+		if (pc.playing && r.enabled)
 			GetComponent <Animation> ().Play ();
 		else
 			GetComponent <Animation> ().Stop ();
@@ -133,10 +145,10 @@ public class Pedestrian : MonoBehaviour {
 			index += 1;
 		}*/
 
-		while (index < positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ())
+		while (pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
 			index += 1;
 
-		if (index < positions.Count - 1) {
+		//if (index < positions.Count - 1) {
 			PedestrianPosition pos = (PedestrianPosition)positions [index];
 			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
 			start = new Vector3 (pos.getX (), 0, pos.getY ());
@@ -189,10 +201,12 @@ public class Pedestrian : MonoBehaviour {
 
 			transform.position = newPosition;
 			//gameObject.hideFlags = HideFlags.None;
-		}
+		//}
 			
-		if (index == positions.Count - 2)
+		if (index >= positions.Count - 2) {
 			r.enabled = false;
+			targetReached = true;
+		}
 
 		/*}
 		else {
@@ -205,6 +219,7 @@ public class Pedestrian : MonoBehaviour {
 		//r.enabled = showPed;
 		//if (agentView.getCurrentPed() == gameObject)
 		//showPed = false;
+	}
 	}
 
 	/*
@@ -333,7 +348,6 @@ public class Pedestrian : MonoBehaviour {
 		positions = p;
 		PedestrianPosition pos = (PedestrianPosition) p[0];
 		transform.position = new Vector3 (pos.getX(), 0, pos.getY());
-		//index = 0;
 	}
 		
 }
