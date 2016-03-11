@@ -80,13 +80,14 @@ public class CameraTour : MonoBehaviour {
 		}
 	}
 		
-	private void importWaypoints() {
-		//string filedata = utils.loadFileIntoEditor (waypointsFilepath);
+	public string waypointsFile = "EvakTischBig2.csv";
 
-		string filedata = utils.loadFileAtRuntimeIntoBuild(waypointsFilepath);
+	private void importWaypoints() {	
+		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath ("CameraTourWaypoints/" + waypointsFile));
+		StreamReader reader = fi.OpenText ();
 
-		using (StreamReader reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(filedata)))) {
-			string line = reader.ReadLine (); // skip the first line = header
+		using (reader) {
+			string line = reader.ReadLine (); // skip the header
 			while((line = reader.ReadLine ()) != null) {
 				if (line.Length > 0) {
 					if (line.Substring (0, 1) != "#") {
@@ -109,6 +110,7 @@ public class CameraTour : MonoBehaviour {
 					}
 				}
 			}
+			reader.Close ();
 		}
 	}
 

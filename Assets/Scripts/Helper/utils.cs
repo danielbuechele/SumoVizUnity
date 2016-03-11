@@ -4,6 +4,20 @@ using System.Collections;
 public class utils {
 
 
+	public static string getStreamingAssetsPath(string relativePath) {
+		string realPath = "";
+		if (Application.platform == RuntimePlatform.Android) { // https://gist.github.com/amowu/8121334
+			string oriPath = System.IO.Path.Combine (Application.streamingAssetsPath, relativePath);
+			WWW wwwreader = new WWW (oriPath);
+			while (!wwwreader.isDone) {}
+			realPath = Application.persistentDataPath + "/db";
+			System.IO.File.WriteAllBytes (realPath, wwwreader.bytes);
+		} 
+		else
+			realPath = Application.streamingAssetsPath + "/" + relativePath;
+		return realPath;
+	}
+
 	public static string loadFileIntoEditor(string filepath) {
 		if (!System.IO.File.Exists (filepath)) {
 			string msg = "Error: file " + filepath + " not found";

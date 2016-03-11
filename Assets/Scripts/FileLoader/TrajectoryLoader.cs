@@ -8,14 +8,19 @@ public class TrajectoryLoader {
 	private StreamReader reader;
 
 
-	public TrajectoryLoader(string relativeTrajFilePath, bool properStreamReading) {
+	public TrajectoryLoader(string relativeTrajFilePath) {
+		string relativePath = "Scenarios/" + relativeTrajFilePath;
+		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativePath));
+		reader = fi.OpenText ();
+
+		/*
 		if (properStreamReading) {
 			FileInfo fi = new FileInfo ("Assets/Resources/Data/" + relativeTrajFilePath); //_ignore
 			reader = fi.OpenText ();
 		} else {
 			string filedata = utils.loadFileAtRuntimeIntoBuild ("Data/" + relativeTrajFilePath);
 			reader = new StreamReader (new MemoryStream (Encoding.UTF8.GetBytes (filedata)));
-		}
+		}*/
 	}
 
 	public bool forceStartAtZero = true;

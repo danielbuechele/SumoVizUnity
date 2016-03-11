@@ -8266,6 +8266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc004675bcd4fdc4098bdd472fc7402a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypointsFile: EvakTischBig2.csv
 --- !u!43 &2036988531
 Mesh:
   m_ObjectHideFlags: 0
