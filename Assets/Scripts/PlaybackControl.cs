@@ -30,13 +30,15 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	public bool takeScreenshots;
-	public int superSizeFactor = 5;
-	public int fps = 25;
+	private bool takeScreenshots;
+	private int superSizeFactor;
+	private int fps;
 
 	void Start () {
 		//threshold = 2.0f;
 		takeScreenshots = false;
+		superSizeFactor = 1;
+		fps = 25;
 		if (takeScreenshots)
 			Time.captureFramerate = fps;
 	}
@@ -113,19 +115,22 @@ public class PlaybackControl : MonoBehaviour {
 	*/
 
 	private int screenshotCounter = 0;
-	private decimal old_current_time = 0;
 
 	void Update () {
 		if (playing) {
 			try {
-				current_time = (current_time + (decimal) Time.deltaTime) % total_time;
+				current_time = (current_time + (decimal) Time.deltaTime);// % total_time; // modulo, ha ha! nobody will ever notice that this leads to current_time = 0
 			
-				if(old_current_time > current_time) // if that condition is reached, one round is completed
+				if(current_time >= total_time) {
+					current_time = 0;
 					takeScreenshots = false;
-				old_current_time = current_time;
-
-				if(takeScreenshots)
+					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians)
+						ped.resetPedestrian();
+				}
+				if(takeScreenshots) {
 					Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
+					Debug.Log("screenshot taken: " + screenshotCounter);
+				}
 	
 			} catch (DivideByZeroException) {
 				current_time = 0;

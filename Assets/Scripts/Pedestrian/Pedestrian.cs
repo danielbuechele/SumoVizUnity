@@ -14,7 +14,7 @@ public class Pedestrian : MonoBehaviour {
 	//int densityReloadInterval = 10;
 
 	//int id;
-	SortedList positions = new SortedList ();
+	List<PedestrianPosition> positions = new List<PedestrianPosition> ();
 	Color myColor;
 	//bool trajectoryVisible;
 	//VectorLine trajectory;
@@ -32,6 +32,7 @@ public class Pedestrian : MonoBehaviour {
 
 
 	void Start () {
+		index = 0;
 		gameObject.AddComponent<BoxCollider>();
 		transform.Rotate (0, 90, 0);
 		myColor = new Color (Random.value, Random.value, Random.value);
@@ -106,34 +107,51 @@ public class Pedestrian : MonoBehaviour {
 	}
 	*/
 
+	int index;
+
+	public void resetPedestrian() {
+		index = 0;
+		r.enabled = true;
+	}
+
 	void Update () {
 		if (pc.playing)
 			GetComponent <Animation> ().Play ();
 		else
 			GetComponent <Animation> ().Stop ();
 
-		bool showPed = true;
+		//int index = _getTrait(positions, pc.current_time);
 
-		int index = _getTrait(positions, pc.current_time);
+		/*
+		if (pc.current_time > positions [index + 1].getTime ()
+		    && index != positions.Count - 2) {
+			index += 1;
+		}*/
 
-		if (index < positions.Count - 1 && index > -1) {
-			showPed = true;
+		/*
+		if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
+			index += 1;
+		}*/
 
-			PedestrianPosition pos = (PedestrianPosition) positions.GetByIndex (index);
-			PedestrianPosition pos2 = (PedestrianPosition) positions.GetByIndex (index + 1);
-			start = new Vector3 (pos.getX(), 0, pos.getY());
-			target = new Vector3 (pos2.getX(), 0, pos2.getY());
-			float time = (float) pc.current_time;
-			float timeStepLength = Mathf.Clamp((float) pos2.getTime() - (float) pos.getTime(), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
-			float movement_percentage = ((float) time - (float) pos.getTime()) / timeStepLength;
-			Vector3 newPosition = Vector3.Lerp(start, target, movement_percentage);
+		while (index < positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ())
+			index += 1;
+
+		if (index < positions.Count - 1) {
+			PedestrianPosition pos = (PedestrianPosition)positions [index];
+			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
+			start = new Vector3 (pos.getX (), 0, pos.getY ());
+			target = new Vector3 (pos2.getX (), 0, pos2.getY ());
+			float time = (float)pc.current_time;
+			float timeStepLength = Mathf.Clamp ((float)pos2.getTime () - (float)pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
+			float movement_percentage = ((float)time - (float)pos.getTime ()) / timeStepLength;
+			Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
 
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
 
-			GetComponent<Animation>()["walking"].speed = getSpeed () / timeStepLength;
-			if (start != target) 
-				transform.rotation = Quaternion.LookRotation(relativePos);
+			GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
+			if (start != target)
+				transform.rotation = Quaternion.LookRotation (relativePos);
 
 			/*
 			//check if line is crossed
@@ -163,26 +181,30 @@ public class Pedestrian : MonoBehaviour {
 					} else {
 						tile.GetComponent<Renderer>().enabled = false;
 					}
-				}
-			} else {
+				}*/
+			/*else {
 				tile.GetComponent<Renderer>().enabled = false;
 			}
 			*/
 
 			transform.position = newPosition;
 			//gameObject.hideFlags = HideFlags.None;
+		}
+			
+		if (index == positions.Count - 2)
+			r.enabled = false;
 
-		} else {
+		/*}
+		else {
 			showPed = false;
 			//r.enabled = false;
 			//tile.GetComponent<Renderer>().enabled = false;
 			//gameObject.hideFlags = HideFlags.HideInHierarchy;
-		}
+		}*/
 
+		//r.enabled = showPed;
 		//if (agentView.getCurrentPed() == gameObject)
-		//	showPed = false;
-
-		r.enabled = showPed;
+		//showPed = false;
 	}
 
 	/*
@@ -219,10 +241,6 @@ public class Pedestrian : MonoBehaviour {
 		return density;
 	}
 	*/
-
-	public float getSpeed() {
-		return speed;
-	}
 
 	/*
 	// http://www.stefanbader.ch/faster-line-segment-intersection-for-unity3dc/
@@ -263,13 +281,12 @@ public class Pedestrian : MonoBehaviour {
 	}
 	*/
 
-	private int _getTrait(SortedList thisList, decimal thisValue) {
-
+	/*private int _getTrait(SortedList thisList, decimal thisValue) {
 		for (int i = 0; i < thisList.Count; i ++) {
 			if ((decimal) thisList.GetKey(i) > thisValue) 
 				return i - 1;
 		}
-		return -1;
+		return -1;*/
 		/*
 		// Check to see if we need to search the list.
 		if (thisList == null || thisList.Count <= 0) { return -1; }
@@ -303,7 +320,7 @@ public class Pedestrian : MonoBehaviour {
 		// Return the correct/closest string
 		return index;
 		*/
-	}
+	//}
 
 	public void setID(int id) {
 		//this.id = id;
@@ -311,15 +328,12 @@ public class Pedestrian : MonoBehaviour {
 		this.name = "Pedestrian " + id;
 	}
 
-	public void setPositions(SortedList p) {
-		positions.Clear();
-		foreach (PedestrianPosition ped in p.Values) {
-			decimal timestamp = ped.getTime ();
-			if(!positions.Contains(timestamp)) // temp workaround part 2
-				positions.Add(timestamp, ped);
-		}
-		PedestrianPosition pos = (PedestrianPosition) p.GetByIndex (0);
+	public void setPositions(List<PedestrianPosition> p) { // comes in sorted here
+		//positions.Clear();
+		positions = p;
+		PedestrianPosition pos = (PedestrianPosition) p[0];
 		transform.position = new Vector3 (pos.getX(), 0, pos.getY());
+		//index = 0;
 	}
 		
 }

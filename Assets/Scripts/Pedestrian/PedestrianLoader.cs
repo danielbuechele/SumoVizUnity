@@ -36,11 +36,12 @@ public class PedestrianLoader : MonoBehaviour {
 				// Only take into account time steps with changed coordinates. We want smooth animation.
 				continue;
 			}
-			decimal timestamp = positions[i].getTime ();
-			if(!currentList.Contains(timestamp)) // temp workaround part 1
+			decimal timestamp = positions[i].getTime();
+			if(!currentList.Contains(timestamp)) // temp workaround part 1: output error kernel issue #116
 				currentList.Add(timestamp, positions[i]);
 			//population[(int) positions[i].getTime ()] ++;
-			if ((i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID()) && currentList.Count > 0) {
+			if (currentList.Count > 0
+				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
 				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));
 
 				//pedScaleFactor = Random.value;
@@ -49,7 +50,12 @@ public class PedestrianLoader : MonoBehaviour {
 
 				setPedestriansAsParent (p);
 				Pedestrian ped = p.GetComponent<Pedestrian> ();
-				ped.setPositions(currentList);
+
+				List<PedestrianPosition> list = new List<PedestrianPosition> ();
+				foreach (PedestrianPosition pedPos in currentList.Values)
+					list.Add (pedPos);
+				
+				ped.setPositions(list);
 				ped.setID(positions[i].getID());
 				pedestrians.Add(ped);
 				currentList.Clear();
