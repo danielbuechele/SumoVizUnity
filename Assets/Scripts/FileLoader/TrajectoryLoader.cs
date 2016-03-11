@@ -18,12 +18,24 @@ public class TrajectoryLoader {
 		}
 	}
 
+	public bool forceStartAtZero = true;
+	private bool timeSubstractTaken = false;
+
+
 	public void loadTrajectories() {
 		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
+		decimal timeSubtract = 0;
 
 		using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
-			string line = reader.ReadLine(); // skip the first line = header
-			while((line = reader.ReadLine()) != null) {
+			string line = reader.ReadLine(); // skip the 1st line = header
+			line = reader.ReadLine(); // 2nd line
+
+			if (forceStartAtZero && !timeSubstractTaken) {
+				decimal.TryParse(line.Split(',')[0], out timeSubtract);
+				timeSubstractTaken = true;
+			}
+
+			while(line != null) {
 				string[] values = line.Split(',');
 				if (values.Length == 7) { // TODO will it always be 7?
 					decimal time;
@@ -33,8 +45,9 @@ public class TrajectoryLoader {
 					int.TryParse(values[1], out id);
 					float.TryParse(values[2], out x);
 					float.TryParse(values[3], out y);
-					pl.addPedestrianPosition(new PedestrianPosition(id, time, x, y));
+					pl.addPedestrianPosition(new PedestrianPosition(id, time - timeSubtract, x, y));
 				}
+				line = reader.ReadLine ();
 			}
 			reader.Close ();
 		}

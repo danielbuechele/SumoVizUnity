@@ -128,7 +128,7 @@ public class PlaybackControl : MonoBehaviour {
 						ped.resetPedestrian();
 				}
 				if(takeScreenshots) {
-					Application.CaptureScreenshot ("Screenshots/screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
+					Application.CaptureScreenshot ("screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
 					Debug.Log("screenshot taken: " + screenshotCounter);
 				}
 	
