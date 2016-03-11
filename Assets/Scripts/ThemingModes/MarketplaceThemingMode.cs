@@ -26,7 +26,7 @@ public class MarketplaceThemingMode : ThemingMode {
 	}
 
 	public override Material getOpenWallMaterial () {
-		return getRandomSolidColorMaterial ();
+		return (Material) Resources.Load ("SolidColorMaterials/Silver", typeof(Material));
 	}
 
 	public override Material getWallMaterial () {

@@ -10,16 +10,16 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 		Material topMaterial;
 		Material sideMaterial;
 
-		if (name.Contains ("_house")) {
+		/*if (name.Contains ("_house")) {
 			topMaterial = gl.theme.getRoofMaterial ();
 			sideMaterial = gl.theme.getHouseMaterial ();
 			sideMaterial.SetTextureScale ("_MainTex", gl.theme.getTextureScaleForHeight (4f));
 			height = 6f;
-		} else {
+		} else {*/
 			topMaterial = gl.theme.getWallMaterial();
 			sideMaterial = topMaterial;
 			height = 2.2f + Random.value * 1.2f;
-		}
+		//}
 
 		if(verticesList[verticesList.Count - 1] == verticesList[0])
 			verticesList.RemoveAt (verticesList.Count - 1);
