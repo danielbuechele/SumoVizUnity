@@ -26,6 +26,8 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 
 	public void createPedestrians() {
+		//pc.total_time += 1; // ~bd: attempt to avoid the while-loop in pedestrian update() ever to grab an index thats beyond positions
+
 		pedestrians.Clear ();
 		positions = positions.OrderBy(x => x.getID()).ThenBy(y => y.getTime()).ToList<PedestrianPosition>();
 		SortedList currentList = new SortedList ();
@@ -42,7 +44,11 @@ public class PedestrianLoader : MonoBehaviour {
 			//population[(int) positions[i].getTime ()] ++;
 			if (currentList.Count > 0
 				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
-				GameObject p = (GameObject) Instantiate(Resources.Load("Pedestrian"));
+				if (currentList.Count > 1) { // don't instantiate peds that stay in the same place for the entire total_time, they will throw index out of bound arrows in the index-while-loop in Pedestrian
+				GameObject p = (GameObject)Instantiate (Resources.Load ("Pedestrian"));
+				Renderer carlMidGeoRenderer = p.transform.GetChild (0).GetComponent<Renderer> ();
+				carlMidGeoRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+				carlMidGeoRenderer.receiveShadows = false;
 
 				//pedScaleFactor = Random.value;
 				if(pedScaleFactor != 1f)
@@ -58,7 +64,8 @@ public class PedestrianLoader : MonoBehaviour {
 				ped.setPositions(list);
 				ped.setID(positions[i].getID());
 				pedestrians.Add(ped);
-				currentList.Clear();
+				}
+				currentList.Clear ();
 			}
 		}
 	}
