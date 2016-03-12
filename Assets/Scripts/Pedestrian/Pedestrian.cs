@@ -22,35 +22,45 @@ public class Pedestrian : MonoBehaviour {
 	//private InfoText it;
 	//private PedestrianLoader pl;
 	private PlaybackControl pc;
-	private Renderer r;
+	//private Renderer r;
+	private Renderer rendererLOD0;
+	private Renderer rendererLOD1;
 	//private GeometryLoader gl;
 	//private Groundplane gp;
 
 	//GameObject tile;
 
 	//private AgentView agentView;
+	//public Renderer rCylinder;
 
-	public Renderer rCylinder;
+	private Animation animation;
 
 	void Start () {
-		gameObject.AddComponent<BoxCollider>();
+		gameObject.AddComponent<BoxCollider>(); // TODO what for?
 		transform.Rotate (0, 90, 0);
 		myColor = new Color (Random.value, Random.value, Random.value);
-		GetComponentInChildren<Renderer>().materials[1].color = myColor;
+		//GetComponentInChildren<Renderer>().materials[1].color = myColor;
 		//addTile ();
-
 		//it = GameObject.Find ("InfoText").GetComponent<InfoText> ();
 		//pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
-		r = GetComponentInChildren<Renderer>() as Renderer;
+
+		Transform main = gameObject.transform.GetChild (0);
+		rendererLOD0 = main.transform.GetChild (0).GetComponent<Renderer> () as Renderer;
+		rendererLOD1 = main.transform.GetChild (1).GetComponent<Renderer> () as Renderer;
+		rendererLOD0.materials [1].color = myColor;
+		rendererLOD1.materials [1].color = myColor;
+		animation = main.gameObject.GetComponent<Animation> ();
+
+		resetPedestrian ();
+		//r = GetComponentInChildren<Renderer>() as Renderer;
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
 		//agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 
-		rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
-		resetPedestrian ();
+		//rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
 	}
 
 	/*
@@ -113,16 +123,17 @@ public class Pedestrian : MonoBehaviour {
 
 	int index;
 	bool targetReached = true;
-	int updateCalls;
+	//int updateCalls;
 
 	public void resetPedestrian() {
 		index = 0;
-		r.enabled = true;
-		rCylinder.enabled = false;
+		rendererEnabled (true);
 		targetReached = false;
-		updateCalls = 0;
+		//rCylinder.enabled = false;
+		//updateCalls = 0;
 	}
 
+	/*
 	bool iAmVisible() {
 		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
 		if (GeometryUtility.TestPlanesAABB (planes, GetComponent<Collider> ().bounds))
@@ -139,13 +150,23 @@ public class Pedestrian : MonoBehaviour {
 	enum ShowMode {
 		FULLSHOW, REDUCESHOW, MINIMALSHOW, NOSHOW
 	}
+	*/
+
+	private void rendererEnabled(bool truefalse) {
+		rendererLOD0.enabled = truefalse;
+		rendererLOD1.enabled = truefalse;
+	}
 
 	void Update () {
+		if (!targetReached) {
+			rendererEnabled (true);
+
+			/*
 		updateCalls ++;
 		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-
+		 
 		ShowMode mode;
-
+		
 		if (targetReached || dist > 140f || !iAmVisible ())
 			mode = ShowMode.NOSHOW;
 		else if (dist > 90f)
@@ -154,10 +175,7 @@ public class Pedestrian : MonoBehaviour {
 			mode = ShowMode.REDUCESHOW;
 		else
 			mode = ShowMode.FULLSHOW;
-		
-
-		bool computeNewPos = true;
-
+			
 		switch (mode) {
 			case ShowMode.FULLSHOW:
 				r.enabled = true;
@@ -179,27 +197,32 @@ public class Pedestrian : MonoBehaviour {
 				computeNewPos = false;
 				break;
 		}
-			
-		if (r.enabled) // pc.playing &&
-			GetComponent <Animation> ().Play ();
-		else
-			GetComponent <Animation> ().Stop ();
+		bool computeNewPos = true;
 
-		//int index = _getTrait(positions, pc.current_time);
-		/*
+		if (r.enabled) // pc.playing &&
+			animation.Play ();
+		else
+			animation.Stop ();*/
+
+			//GetComponent <Animation> ().Play ();
+			//else
+			//		GetComponent <Animation> ().Stop ();
+
+			//int index = _getTrait(positions, pc.current_time);
+			/*
 		if (pc.current_time > positions [index + 1].getTime ()
 		    && index != positions.Count - 2) {
 			index += 1;
 		}
 		if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
 			index += 1;
-		}*/
+		}
+		if (index < positions.Count - 1) {
+		*/
 
-		while (index <= positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
+			while (index <= positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
 			index += 1;
 
-		//if (index < positions.Count - 1) {
-		if (computeNewPos) {
 			PedestrianPosition pos = (PedestrianPosition)positions [index];
 			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
 			start = new Vector3 (pos.getX (), 0, pos.getY ());
@@ -210,16 +233,17 @@ public class Pedestrian : MonoBehaviour {
 			Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
-			GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
+			animation ["walking"].speed = speed / timeStepLength;
 			if (start != target)
 				transform.rotation = Quaternion.LookRotation (relativePos);
 			transform.position = newPosition;
-		}
 
-		if (index >= positions.Count - 2) {
-			r.enabled = false;
-			rCylinder.enabled = false;
-			targetReached = true;
+			if (index >= positions.Count - 2) { // = target reached
+				rendererEnabled (false);
+				animation.Stop ();
+				//rCylinder.enabled = false;
+				targetReached = true;
+			}
 		}
 				/*
 				//check if line is crossed

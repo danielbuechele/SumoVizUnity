@@ -12,7 +12,7 @@ public class PedestrianLoader : MonoBehaviour {
 	private PlaybackControl pc;
 	public List<Pedestrian> pedestrians = new List<Pedestrian> ();
 
-	public float pedScaleFactor = 1f; // 1 is default size
+	//public float pedScaleFactor = 1f; // 1 is default size
 
 
 	void Start() {
@@ -45,22 +45,23 @@ public class PedestrianLoader : MonoBehaviour {
 			if (currentList.Count > 0
 				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
 				if (currentList.Count > 1) { // don't instantiate peds that stay in the same place for the entire total_time, they will throw index out of bound arrows in the index-while-loop in Pedestrian
-					GameObject p = (GameObject) Instantiate (Resources.Load ("Pedestrian"));
+					GameObject p = (GameObject) Instantiate (Resources.Load ("LODped")); // "Pedestrian"
+					/*
 					Renderer carlMidGeoRenderer = p.transform.GetChild (0).GetComponent<Renderer> ();
 					carlMidGeoRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 					carlMidGeoRenderer.receiveShadows = false;
-
-					//pedScaleFactor = Random.value;
-					//if(pedScaleFactor != 1f)
-					//	p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
-
+					pedScaleFactor = Random.value;
+					if(pedScaleFactor != 1f)
+						p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
+					*/
 					setPedestriansAsParent (p);
-					Pedestrian ped = p.GetComponent<Pedestrian> ();
-									
+					Pedestrian ped = p.GetComponent<Pedestrian> ();	
+					/*
 					var cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 					cylinder.transform.localScale = new Vector3 (0.4f, 0.87f, 0.4f);
 					cylinder.transform.SetParent (p.transform);
 					ped.rCylinder = cylinder.GetComponent<Renderer>();
+					*/
 
 					List<PedestrianPosition> list = new List<PedestrianPosition> ();
 					foreach (PedestrianPosition pedPos in currentList.Values)
