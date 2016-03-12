@@ -160,6 +160,7 @@ public class Pedestrian : MonoBehaviour {
 	void Update () {
 		if (!targetReached) {
 			rendererEnabled (true);
+			animation.Play ();
 
 			/*
 		updateCalls ++;
