@@ -110,8 +110,10 @@ public class Pedestrian : MonoBehaviour {
 	}
 	*/
 
+
 	int index;
 	bool targetReached = true;
+	int updateCalls;
 
 	public void resetPedestrian() {
 		index = 0;
@@ -128,75 +130,97 @@ public class Pedestrian : MonoBehaviour {
 		return false;
 	}
 
-	int updateCalls;
-
 	bool suspensionFrames() {
-		if (updateCalls % 5 == 0)
+		if (updateCalls % 10 == 0)
 			return true;
 		return false;
 	}
-		
-	bool doUpdate() {
-		return iAmVisible () && suspensionFrames ();
+
+	enum ShowMode {
+		FULLSHOW, REDUCESHOW, MINIMALSHOW, NOSHOW
 	}
-		
+
 	void Update () {
 		updateCalls ++;
+		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
 
-		if(doUpdate() && !targetReached) {
-			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-			if (dist > 120f) {
+		ShowMode mode;
+
+		if (targetReached || dist > 140f || !iAmVisible ())
+			mode = ShowMode.NOSHOW;
+		else if (dist > 90f)
+			mode = ShowMode.MINIMALSHOW;
+		else if (dist > 60f)
+			mode = ShowMode.REDUCESHOW;
+		else
+			mode = ShowMode.FULLSHOW;
+		
+
+		bool computeNewPos = true;
+
+		switch (mode) {
+			case ShowMode.FULLSHOW:
+				r.enabled = true;
+				rCylinder.enabled = false;
+				break;
+			case ShowMode.REDUCESHOW:
+				r.enabled = false;
+				rCylinder.transform.position = gameObject.transform.position + new Vector3 (0f, 0.87f, 0f);
+				rCylinder.enabled = true;
+				break;
+			case ShowMode.MINIMALSHOW:
+				if (suspensionFrames ())
+					goto case ShowMode.REDUCESHOW;
+				else
+					goto case ShowMode.NOSHOW;
+			case ShowMode.NOSHOW:
 				r.enabled = false;
 				rCylinder.enabled = false;
-			} 
-			else
-				if (dist > 60f) {
-					r.enabled = false;
-					rCylinder.transform.position = gameObject.transform.position + new Vector3 (0f, 0.87f, 0f);
-					rCylinder.enabled = true;
-				} else {
-					r.enabled = true;
-					rCylinder.enabled = false;
-				}
+				computeNewPos = false;
+				break;
+		}
+			
+		if (r.enabled) // pc.playing &&
+			GetComponent <Animation> ().Play ();
+		else
+			GetComponent <Animation> ().Stop ();
 
-			if (pc.playing && r.enabled)
-				GetComponent <Animation> ().Play ();
-			else
-				GetComponent <Animation> ().Stop ();
+		//int index = _getTrait(positions, pc.current_time);
+		/*
+		if (pc.current_time > positions [index + 1].getTime ()
+		    && index != positions.Count - 2) {
+			index += 1;
+		}
+		if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
+			index += 1;
+		}*/
 
-			//int index = _getTrait(positions, pc.current_time);
+		while (index <= positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
+			index += 1;
 
-			/*
-			if (pc.current_time > positions [index + 1].getTime ()
-			    && index != positions.Count - 2) {
-				index += 1;
-			}*/
+		//if (index < positions.Count - 1) {
+		if (computeNewPos) {
+			PedestrianPosition pos = (PedestrianPosition)positions [index];
+			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
+			start = new Vector3 (pos.getX (), 0, pos.getY ());
+			target = new Vector3 (pos2.getX (), 0, pos2.getY ());
+			float time = (float)pc.current_time;
+			float timeStepLength = Mathf.Clamp ((float)pos2.getTime () - (float)pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
+			float movement_percentage = ((float)time - (float)pos.getTime ()) / timeStepLength;
+			Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
+			Vector3 relativePos = target - start;
+			speed = relativePos.magnitude;
+			GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
+			if (start != target)
+				transform.rotation = Quaternion.LookRotation (relativePos);
+			transform.position = newPosition;
+		}
 
-			/*
-			if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
-				index += 1;
-			}*/
-
-			while (pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
-				index += 1;
-
-			//if (index < positions.Count - 1) {
-				PedestrianPosition pos = (PedestrianPosition) positions [index];
-				PedestrianPosition pos2 = (PedestrianPosition) positions [index + 1];
-				start = new Vector3 (pos.getX (), 0, pos.getY ());
-				target = new Vector3 (pos2.getX (), 0, pos2.getY ());
-				float time = (float)pc.current_time;
-				float timeStepLength = Mathf.Clamp ((float) pos2.getTime () - (float) pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
-				float movement_percentage = ((float) time - (float) pos.getTime ()) / timeStepLength;
-				Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
-
-				Vector3 relativePos = target - start;
-				speed = relativePos.magnitude;
-
-				GetComponent<Animation> () ["walking"].speed = speed / timeStepLength;
-				if (start != target)
-					transform.rotation = Quaternion.LookRotation (relativePos);
-
+		if (index >= positions.Count - 2) {
+			r.enabled = false;
+			rCylinder.enabled = false;
+			targetReached = true;
+		}
 				/*
 				//check if line is crossed
 
@@ -231,15 +255,8 @@ public class Pedestrian : MonoBehaviour {
 				}
 				*/
 
-				transform.position = newPosition;
 				//gameObject.hideFlags = HideFlags.None;
 			//}
-				
-			if (index >= positions.Count - 2) {
-				r.enabled = false;
-				rCylinder.enabled = false;
-				targetReached = true;
-			}
 
 			/*}
 			else {
@@ -252,9 +269,9 @@ public class Pedestrian : MonoBehaviour {
 			//r.enabled = showPed;
 			//if (agentView.getCurrentPed() == gameObject)
 			//showPed = false;
-		}
+	  /*}
 		else
-			GetComponent <Animation> ().Stop ();
+			GetComponent <Animation> ().Stop ();*/
 	}
 
 	/*
