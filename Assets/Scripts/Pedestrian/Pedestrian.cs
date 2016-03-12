@@ -118,6 +118,7 @@ public class Pedestrian : MonoBehaviour {
 		r.enabled = true;
 		rCylinder.enabled = false;
 		targetReached = false;
+		updateCalls = 0;
 	}
 
 	bool iAmVisible() {
@@ -126,9 +127,23 @@ public class Pedestrian : MonoBehaviour {
 			return true;
 		return false;
 	}
+
+	int updateCalls;
+
+	bool suspensionFrames() {
+		if (updateCalls % 5 == 0)
+			return true;
+		return false;
+	}
+		
+	bool doUpdate() {
+		return iAmVisible () && suspensionFrames ();
+	}
 		
 	void Update () {
-		if(iAmVisible() && !targetReached) {
+		updateCalls ++;
+
+		if(doUpdate() && !targetReached) {
 			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
 			if (dist > 120f) {
 				r.enabled = false;
@@ -238,6 +253,8 @@ public class Pedestrian : MonoBehaviour {
 			//if (agentView.getCurrentPed() == gameObject)
 			//showPed = false;
 		}
+		else
+			GetComponent <Animation> ().Stop ();
 	}
 
 	/*
