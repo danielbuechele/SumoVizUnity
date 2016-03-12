@@ -34,6 +34,8 @@ public class PlaybackControl : MonoBehaviour {
 	private int superSizeFactor;
 	private int fps;
 
+	public bool pressP = false;
+
 	void Start () {
 		//threshold = 2.0f;
 		takeScreenshots = false;
@@ -41,6 +43,16 @@ public class PlaybackControl : MonoBehaviour {
 		fps = 25;
 		if (takeScreenshots)
 			Time.captureFramerate = fps;
+
+		pressP = true;
+	}
+
+	public bool getPressP() {
+		if (pressP) {
+			pressP = false;
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -124,7 +136,8 @@ public class PlaybackControl : MonoBehaviour {
 				if(current_time >= total_time) {
 					current_time = 0;
 					takeScreenshots = false;
-					Time.captureFramerate = 0;
+					pressP = true;
+					//Time.captureFramerate = 0;
 					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians)
 						ped.resetPedestrian();
 				}

@@ -366,7 +366,8 @@ namespace CapturePanorama
 
         public void Update()
         {
-            bool captureKeyPressed = Input.GetKeyDown(captureKey);
+			PlaybackControl pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+			bool captureKeyPressed = pc.getPressP() || Input.GetKeyDown(captureKey);
 
             if (initializeFailed || panoramaWidth < 4 || (captureStereoscopic && numCirclePoints < 8)) // Can occur temporarily while modifying properties in editor
             {
