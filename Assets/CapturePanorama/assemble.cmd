@@ -1,0 +1,1 @@
+ffmpeg -framerate %4 -i %1%%06d.%2 -an -c:v libx264 -r %4 -pix_fmt yuv420p -preset %6 -crf %5 %3
