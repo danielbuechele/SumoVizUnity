@@ -6964,7 +6964,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  pedScaleFactor: 0.9
+  pedScaleFactor: 1
 --- !u!4 &1003934481
 Transform:
   m_ObjectHideFlags: 0

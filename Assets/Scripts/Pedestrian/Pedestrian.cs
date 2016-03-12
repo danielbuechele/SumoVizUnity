@@ -30,6 +30,7 @@ public class Pedestrian : MonoBehaviour {
 
 	//private AgentView agentView;
 
+	public Renderer rCylinder;
 
 	void Start () {
 		gameObject.AddComponent<BoxCollider>();
@@ -48,6 +49,7 @@ public class Pedestrian : MonoBehaviour {
 
 		//agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 
+		rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
 		resetPedestrian ();
 	}
 
@@ -114,18 +116,33 @@ public class Pedestrian : MonoBehaviour {
 	public void resetPedestrian() {
 		index = 0;
 		r.enabled = true;
+		rCylinder.enabled = false;
 		targetReached = false;
 	}
 
+	bool iAmVisible() {
+		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+		if (GeometryUtility.TestPlanesAABB (planes, GetComponent<Collider> ().bounds))
+			return true;
+		return false;
+	}
+		
 	void Update () {
-		if(!targetReached) {
-			/*
+		if(iAmVisible() && !targetReached) {
 			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-			if (dist > 300f)
+			if (dist > 120f) {
 				r.enabled = false;
+				rCylinder.enabled = false;
+			} 
 			else
-				r.enabled = true;
-			*/
+				if (dist > 60f) {
+					r.enabled = false;
+					rCylinder.transform.position = gameObject.transform.position + new Vector3 (0f, 0.87f, 0f);
+					rCylinder.enabled = true;
+				} else {
+					r.enabled = true;
+					rCylinder.enabled = false;
+				}
 
 			if (pc.playing && r.enabled)
 				GetComponent <Animation> ().Play ();
@@ -205,6 +222,7 @@ public class Pedestrian : MonoBehaviour {
 				
 			if (index >= positions.Count - 2) {
 				r.enabled = false;
+				rCylinder.enabled = false;
 				targetReached = true;
 			}
 

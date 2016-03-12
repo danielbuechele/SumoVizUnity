@@ -51,11 +51,16 @@ public class PedestrianLoader : MonoBehaviour {
 					carlMidGeoRenderer.receiveShadows = false;
 
 					//pedScaleFactor = Random.value;
-					if(pedScaleFactor != 1f)
-						p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
+					//if(pedScaleFactor != 1f)
+					//	p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
 
 					setPedestriansAsParent (p);
 					Pedestrian ped = p.GetComponent<Pedestrian> ();
+									
+					var cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+					cylinder.transform.localScale = new Vector3 (0.4f, 0.87f, 0.4f);
+					cylinder.transform.SetParent (p.transform);
+					ped.rCylinder = cylinder.GetComponent<Renderer>();
 
 					List<PedestrianPosition> list = new List<PedestrianPosition> ();
 					foreach (PedestrianPosition pedPos in currentList.Values)

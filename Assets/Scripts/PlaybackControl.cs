@@ -124,6 +124,7 @@ public class PlaybackControl : MonoBehaviour {
 				if(current_time >= total_time) {
 					current_time = 0;
 					takeScreenshots = false;
+					Time.captureFramerate = 0;
 					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians)
 						ped.resetPedestrian();
 				}
