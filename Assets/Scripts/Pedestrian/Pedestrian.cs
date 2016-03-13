@@ -150,6 +150,10 @@ public class Pedestrian : MonoBehaviour {
 	enum ShowMode {
 		FULLSHOW, REDUCESHOW, MINIMALSHOW, NOSHOW
 	}
+
+	public float getDistTo(Vector3 location) {
+		return Vector3.Distance (transform.position, location);
+	}
 	*/
 
 	private void rendererEnabled(bool truefalse) {
