@@ -30,7 +30,7 @@ public class Pedestrian : MonoBehaviour {
 
 	//GameObject tile;
 
-	//private AgentView agentView;
+	private AgentView agentView;
 	//public Renderer rCylinder;
 
 	private Animation animation;
@@ -58,7 +58,7 @@ public class Pedestrian : MonoBehaviour {
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
-		//agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
+		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 
 		//rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
 	}
@@ -155,14 +155,18 @@ public class Pedestrian : MonoBehaviour {
 	private void rendererEnabled(bool truefalse) {
 		rendererLOD0.enabled = truefalse;
 		rendererLOD1.enabled = truefalse;
+		if (truefalse)
+			animation.Play ();
 	}
 
 	void Update () {
 		if (!targetReached) {
-			rendererEnabled (true);
-			animation.Play ();
+			if (agentView.getCurrentPed () == gameObject)
+				rendererEnabled (false);
+			else
+				rendererEnabled (true);
 
-			/*
+		/*
 		updateCalls ++;
 		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
 		 
