@@ -2992,6 +2992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playing: 1
+  pressP: 0
 --- !u!4 &857675394
 Transform:
   m_ObjectHideFlags: 0

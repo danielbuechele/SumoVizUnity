@@ -39,7 +39,7 @@ public class PlaybackControl : MonoBehaviour {
 	void Start () {
 		//threshold = 2.0f;
 		takeScreenshots = false;
-		superSizeFactor = 1;
+		superSizeFactor = 2;
 		fps = 25;
 		if (takeScreenshots)
 			Time.captureFramerate = fps;
@@ -48,6 +48,7 @@ public class PlaybackControl : MonoBehaviour {
 	}
 
 	public bool getPressP() {
+		//return false;
 		if (pressP) {
 			pressP = false;
 			return true;

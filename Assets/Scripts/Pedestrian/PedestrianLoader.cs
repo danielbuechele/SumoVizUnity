@@ -45,7 +45,7 @@ public class PedestrianLoader : MonoBehaviour {
 			if (currentList.Count > 0
 				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
 				if (currentList.Count > 1) { // don't instantiate peds that stay in the same place for the entire total_time, they will throw index out of bound arrows in the index-while-loop in Pedestrian
-					GameObject p = (GameObject) Instantiate (Resources.Load ("LODped")); // "Pedestrian"
+					GameObject p = (GameObject) Instantiate (Resources.Load ("Pedestrian")); // "LODped"
 					/*
 					Renderer carlMidGeoRenderer = p.transform.GetChild (0).GetComponent<Renderer> ();
 					carlMidGeoRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

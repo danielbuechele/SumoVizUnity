@@ -25,15 +25,16 @@ public class AgentView : MonoBehaviour {
 		else
 			getOneOfLastPeds ();
 
-		//if (Input.GetMouseButtonDown (0))
-		//	findRandomPedestrian ();
+		if (Input.GetMouseButtonDown (0))
+			getOneOfLastPeds ();
 	}
 		
 	private void followPedestrian (GameObject pedestrian) {
 		Vector3 pedPos = pedestrian.transform.position;
-		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 1.49f, pedPos.z);
+		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 1.66f, pedPos.z);
 		mainCameraParent.transform.position = newPos;
 	}
+
 
 	private void getOneOfLastPeds () {
 		List<int> indizes = new List<int> ();

@@ -22,9 +22,9 @@ public class Pedestrian : MonoBehaviour {
 	//private InfoText it;
 	//private PedestrianLoader pl;
 	private PlaybackControl pc;
-	//private Renderer r;
-	private Renderer rendererLOD0;
-	private Renderer rendererLOD1;
+	private Renderer r;
+	//private Renderer rendererLOD0;
+	//private Renderer rendererLOD1;
 	//private GeometryLoader gl;
 	//private Groundplane gp;
 
@@ -45,20 +45,25 @@ public class Pedestrian : MonoBehaviour {
 		//pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 
-		Transform main = gameObject.transform.GetChild (0);
+		/*Transform main = gameObject.transform.GetChild (0);
 		rendererLOD0 = main.transform.GetChild (0).GetComponent<Renderer> () as Renderer;
 		rendererLOD1 = main.transform.GetChild (1).GetComponent<Renderer> () as Renderer;
 		rendererLOD0.materials [1].color = myColor;
 		rendererLOD1.materials [1].color = myColor;
-		animation = main.gameObject.GetComponent<Animation> ();
+		animation = main.gameObject.GetComponent<Animation> ();*/
 
-		resetPedestrian ();
-		//r = GetComponentInChildren<Renderer>() as Renderer;
+		animation = gameObject.GetComponent<Animation> ();
+
+
+		r = GetComponentInChildren<Renderer>() as Renderer;
+		r.materials [1].color = myColor;
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
 		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
+
+		resetPedestrian ();
 
 		//rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
 	}
@@ -157,14 +162,18 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
 	private void rendererEnabled(bool truefalse) {
-		rendererLOD0.enabled = truefalse;
-		rendererLOD1.enabled = truefalse;
+		//rendererLOD0.enabled = truefalse;
+		//rendererLOD1.enabled = truefalse;
+		r.enabled = truefalse;
 		if (truefalse)
 			animation.Play ();
 	}
 
 	void Update () {
 		if (!targetReached) {
+
+			//rendererEnabled (true);
+
 			if (agentView.getCurrentPed () == gameObject)
 				rendererEnabled (false);
 			else
