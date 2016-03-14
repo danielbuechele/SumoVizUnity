@@ -37,6 +37,11 @@ public class PlaybackControl : MonoBehaviour {
 	public bool pressP = false;
 
 	void Start () {
+
+		//TODO order GameObject hierarchy, associated scripts etc.
+
+		//TODO move this stuff into the GUI in a nice way
+
 		//threshold = 2.0f;
 		takeScreenshots = false;
 		superSizeFactor = 2;

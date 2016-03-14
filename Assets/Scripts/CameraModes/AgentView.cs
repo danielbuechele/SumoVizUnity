@@ -23,7 +23,7 @@ public class AgentView : MonoBehaviour {
 		if (currentPed != null)
 			followPedestrian (currentPed);
 		else
-			getOneOfLastPeds ();
+			getOneOfLastPeds (); //TODO add choice into GUI
 
 		if (Input.GetMouseButtonDown (0))
 			getOneOfLastPeds ();

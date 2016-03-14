@@ -33,6 +33,8 @@ public class PedestrianLoader : MonoBehaviour {
 		SortedList currentList = new SortedList ();
 		//population = new int[(int) pc.total_time + 1];
 
+		//TODO try to get rid of SortedList here as well by using HashMaps and passing the entries directly to the respective Peds to handle them
+
 		for (int i = 0; i < positions.Count; i ++) {
 			if (positions.Count() > (i + 1) && positions[i].getX() == positions[i + 1].getX() && positions[i].getY() == positions[i + 1].getY()) {
 				// Only take into account time steps with changed coordinates. We want smooth animation.

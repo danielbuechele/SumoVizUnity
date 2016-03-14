@@ -56,6 +56,7 @@ public class TrajectoryLoader {
 			}
 			reader.Close ();
 		}
+		//TODO instead of disabling this for CameraTour-dev, read total_time from traj file and don't load trajectories beyond that in CameraTour-dev
 		pl.createPedestrians ();
 	}
 		

@@ -53,7 +53,9 @@ public class Pedestrian : MonoBehaviour {
 		animation = main.gameObject.GetComponent<Animation> ();*/
 
 		animation = gameObject.GetComponent<Animation> ();
-
+		//TODO instead of toggling both renderers separately
+		//LODGroup lodGroup = gameObject.GetComponent<LODGroup> ();
+		//lodGroup.enabled = ...
 
 		r = GetComponentInChildren<Renderer>() as Renderer;
 		r.materials [1].color = myColor;
@@ -61,6 +63,7 @@ public class Pedestrian : MonoBehaviour {
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
+		//TODO only look for it AgentView is active
 		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
 
 		resetPedestrian ();
