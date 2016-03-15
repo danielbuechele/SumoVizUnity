@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class GeometryLoader : MonoBehaviour {
 
+	[HideInInspector]
 	public List<Geometry> geometry;
+	[HideInInspector]
 	public ThemingMode theme;
+	[HideInInspector]
 	public Groundplane groundplane;
 
 	public void setTheme(ThemingMode mode) {

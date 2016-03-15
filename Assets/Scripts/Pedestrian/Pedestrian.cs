@@ -130,40 +130,14 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
 
-	int index;
-	bool targetReached = true;
-	//int updateCalls;
+	private int index;
+	private bool targetReached = true;
 
 	public void resetPedestrian() {
 		index = 0;
 		rendererEnabled (true);
 		targetReached = false;
-		//rCylinder.enabled = false;
-		//updateCalls = 0;
 	}
-
-	/*
-	bool iAmVisible() {
-		Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
-		if (GeometryUtility.TestPlanesAABB (planes, GetComponent<Collider> ().bounds))
-			return true;
-		return false;
-	}
-
-	bool suspensionFrames() {
-		if (updateCalls % 10 == 0)
-			return true;
-		return false;
-	}
-
-	enum ShowMode {
-		FULLSHOW, REDUCESHOW, MINIMALSHOW, NOSHOW
-	}
-
-	public float getDistTo(Vector3 location) {
-		return Vector3.Distance (transform.position, location);
-	}
-	*/
 
 	private void rendererEnabled(bool truefalse) {
 		//rendererLOD0.enabled = truefalse;
@@ -187,64 +161,28 @@ public class Pedestrian : MonoBehaviour {
 			else
 				rendererEnabled (false);
 
-		/*
-		updateCalls ++;
-		float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-		 
-		ShowMode mode;
-		
-		if (targetReached || dist > 140f || !iAmVisible ())
-			mode = ShowMode.NOSHOW;
-		else if (dist > 90f)
-			mode = ShowMode.MINIMALSHOW;
-		else if (dist > 60f)
-			mode = ShowMode.REDUCESHOW;
-		else
-			mode = ShowMode.FULLSHOW;
-			
-		switch (mode) {
-			case ShowMode.FULLSHOW:
-				r.enabled = true;
-				rCylinder.enabled = false;
-				break;
-			case ShowMode.REDUCESHOW:
-				r.enabled = false;
-				rCylinder.transform.position = gameObject.transform.position + new Vector3 (0f, 0.87f, 0f);
-				rCylinder.enabled = true;
-				break;
-			case ShowMode.MINIMALSHOW:
-				if (suspensionFrames ())
-					goto case ShowMode.REDUCESHOW;
-				else
-					goto case ShowMode.NOSHOW;
-			case ShowMode.NOSHOW:
-				r.enabled = false;
-				rCylinder.enabled = false;
-				computeNewPos = false;
-				break;
-		}
-		bool computeNewPos = true;
-
-		if (r.enabled) // pc.playing &&
-			animation.Play ();
-		else
-			animation.Stop ();*/
-
-			//GetComponent <Animation> ().Play ();
-			//else
-			//		GetComponent <Animation> ().Stop ();
-
-			//int index = _getTrait(positions, pc.current_time);
 			/*
-		if (pc.current_time > positions [index + 1].getTime ()
-		    && index != positions.Count - 2) {
-			index += 1;
-		}
-		if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
-			index += 1;
-		}
-		if (index < positions.Count - 1) {
-		*/
+			updateCalls ++;
+			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
+
+			[...]
+
+			if (r.enabled) // pc.playing &&
+				animation.Play ();
+			else
+				animation.Stop ();
+
+			int index = _getTrait(positions, pc.current_time);
+
+			if (pc.current_time > positions [index + 1].getTime ()
+			    && index != positions.Count - 2) {
+				index += 1;
+			}
+			if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
+				index += 1;
+			}
+			if (index < positions.Count - 1) {
+			*/
 
 			while (index <= positions.Count - 2 && pc.current_time >= positions [index + 1].getTime ()) // && index < positions.Count - 2
 			index += 1;
@@ -267,7 +205,6 @@ public class Pedestrian : MonoBehaviour {
 			if (index >= positions.Count - 2) { // = target reached
 				rendererEnabled (false);
 				animation.Stop ();
-				//rCylinder.enabled = false;
 				targetReached = true;
 			}
 		}
@@ -299,27 +236,24 @@ public class Pedestrian : MonoBehaviour {
 						} else {
 							tile.GetComponent<Renderer>().enabled = false;
 						}
-					}*/
-				/*else {
+					}
+				else {
 					tile.GetComponent<Renderer>().enabled = false;
 				}
-				*/
-
-				//gameObject.hideFlags = HideFlags.None;
-			//}
-
-			/*}
+				gameObject.hideFlags = HideFlags.None;
+			}
+			}
 			else {
 				showPed = false;
 				//r.enabled = false;
 				//tile.GetComponent<Renderer>().enabled = false;
 				//gameObject.hideFlags = HideFlags.HideInHierarchy;
-			}*/
+			}
 
 			//r.enabled = showPed;
 			//if (agentView.getCurrentPed() == gameObject)
 			//showPed = false;
-	  /*}
+	  	}
 		else
 			GetComponent <Animation> ().Stop ();*/
 	}
