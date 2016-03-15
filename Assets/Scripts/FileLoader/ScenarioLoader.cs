@@ -9,18 +9,19 @@ using System.Xml;
 public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
-	private List<string> specials = new List<string> ();
+	//private List<string> specials = new List<string> ();
 
 	public ScenarioLoader(string filepath) {
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 		 
+		/*
 		// for big project
 		string wallToOpenWallCasesFilecontent = utils.loadFileIntoEditor (Application.dataPath + "/Resources/Data/_ignore/wallToOpenWallCases.txt");
 		string[] lines = wallToOpenWallCasesFilecontent.Split("\n"[0]);
 		foreach (string line in lines)
 			if (line.Length > 0)
 				if (line.Substring (0, 1) != "#")
-					specials.Add (line.Split ('#')[0].Trim ());
+					specials.Add (line.Split ('#')[0].Trim ());*/
 	}
 
 	public string getRelativeTrajFilePath() {
@@ -44,7 +45,7 @@ public class ScenarioLoader {
 							WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
 							break;
 						case "wall":
-							if (specials.Contains (name)) {
+							/*if (specials.Contains (name)) {
 								List<Vector2> vertices = parsePoints (geomObj);
 								Vector2 first = vertices [0];	
 								Vector2 last = vertices[vertices.Count - 1];
@@ -59,7 +60,7 @@ public class ScenarioLoader {
 								}
 								WallExtrudeGeometry.create (name, vertices, height, -0.2f);
 							}
-							else
+							else*/
 								ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						case "origin":
@@ -70,7 +71,7 @@ public class ScenarioLoader {
 						case "beamExit":
 						case "eofWall":
 						case "queuingArea":
-							//AreaGeometry.createOriginTarget(geomObj.GetAttribute("name"), parsePoints(geomObj));
+							AreaGeometry.createOriginTarget(name, parsePoints(geomObj));
 							break;
 						default:
 							Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");

@@ -7,15 +7,15 @@ public class Pedestrian : MonoBehaviour {
 	
 	Vector3 start;
 	Vector3 target;
-	float movement_time_total;
-	float movement_time_elapsed;
+	//float movement_time_total;
+	//float movement_time_elapsed;
 	private float speed;
 	//int densityReload;
 	//int densityReloadInterval = 10;
 
 	//int id;
-	List<PedestrianPosition> positions = new List<PedestrianPosition> ();
-	Color myColor;
+	private List<PedestrianPosition> positions = new List<PedestrianPosition> ();
+	private Color myColor;
 	//bool trajectoryVisible;
 	//VectorLine trajectory;
 
@@ -23,17 +23,17 @@ public class Pedestrian : MonoBehaviour {
 	//private PedestrianLoader pl;
 	private PlaybackControl pc;
 	private Renderer r;
-	//private Renderer rendererLOD0;
-	//private Renderer rendererLOD1;
 	//private GeometryLoader gl;
 	//private Groundplane gp;
-
 	//GameObject tile;
 
 	private AgentView agentView = null;
-	//public Renderer rCylinder;
-
 	private Animation animation;
+	private LODGroup lodGroup;
+
+	private int index;
+	private bool targetReached = true;
+
 
 	void Start () {
 		gameObject.AddComponent<BoxCollider>(); // TODO what for?
@@ -45,31 +45,26 @@ public class Pedestrian : MonoBehaviour {
 		//pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 
-		/*Transform main = gameObject.transform.GetChild (0);
-		rendererLOD0 = main.transform.GetChild (0).GetComponent<Renderer> () as Renderer;
-		rendererLOD1 = main.transform.GetChild (1).GetComponent<Renderer> () as Renderer;
-		rendererLOD0.materials [1].color = myColor;
-		rendererLOD1.materials [1].color = myColor;
-		animation = main.gameObject.GetComponent<Animation> ();*/
+		animation = GetComponentInChildren<Animation> ();
+		lodGroup = GetComponentInChildren<LODGroup> ();
 
-		animation = gameObject.GetComponent<Animation> ();
-		//TODO instead of toggling both renderers separately
-		//LODGroup lodGroup = gameObject.GetComponent<LODGroup> ();
-		//lodGroup.enabled = ...
+		if (lodGroup == null) { // "Pedestrian" model
+			r = GetComponentInChildren<Renderer>() as Renderer;
+			r.materials [1].color = myColor;
+		} else { // "LOD_Ped" model
+			Transform PedModelsTransform = transform.GetChild (0).transform;
+			PedModelsTransform.GetChild (0).GetComponent<Renderer> ().materials [1].color = myColor;
+			PedModelsTransform.GetChild (1).GetComponent<Renderer> ().materials [1].color = myColor;
+		}
 
-		r = GetComponentInChildren<Renderer>() as Renderer;
-		r.materials [1].color = myColor;
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
-		//gameObject.tag = "pedestrian";
 
 		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
 		if (agentViewComponent.enabled)
 			agentView = agentViewComponent;
 
 		resetPedestrian ();
-
-		//rCylinder.material.color = myColor - new Color (0.45f, 0.45f, 0.45f); // make it darker to compensate for the black legs
 	}
 
 	/*
@@ -129,10 +124,6 @@ public class Pedestrian : MonoBehaviour {
 	}
 	*/
 
-
-	private int index;
-	private bool targetReached = true;
-
 	public void resetPedestrian() {
 		index = 0;
 		rendererEnabled (true);
@@ -140,13 +131,13 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	private void rendererEnabled(bool truefalse) {
-		//rendererLOD0.enabled = truefalse;
-		//rendererLOD1.enabled = truefalse;
-		r.enabled = truefalse;
+		if (lodGroup == null)
+			r.enabled = truefalse;
+		else
+			lodGroup.enabled = truefalse;
 		if (truefalse)
 			animation.Play ();
 	}
-
 
 	private bool showPed() {
 		if (agentView != null)
