@@ -30,12 +30,12 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	private bool takeScreenshots;
-	private int superSizeFactor;
-	private int fps;
-
 	public bool pressP = false;
+	private int roundCounter;
 
+	public bool inFirstRound() {
+		return roundCounter == 0;
+	}
 
 	private void checkSettings() {
 		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
@@ -50,17 +50,13 @@ public class PlaybackControl : MonoBehaviour {
 
 	void Start () {
 		checkSettings ();
+		roundCounter = 0;
 
 		//TODO order GameObject hierarchy, associated scripts etc.
 
 		//TODO move this stuff into the GUI in a nice way
 
 		//threshold = 2.0f;
-		takeScreenshots = false;
-		superSizeFactor = 2;
-		fps = 25;
-		if (takeScreenshots)
-			Time.captureFramerate = fps;
 
 		pressP = true;
 	}
@@ -145,7 +141,6 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	private int screenshotCounter = 0;
 
 	void Update () {
 		if (playing) {
@@ -153,18 +148,12 @@ public class PlaybackControl : MonoBehaviour {
 				current_time = (current_time + (decimal) Time.deltaTime);// % total_time; // modulo, ha ha! nobody will ever notice that this leads to current_time = 0
 			
 				if(current_time >= total_time) {
+					roundCounter ++;
 					current_time = 0;
-					takeScreenshots = false;
 					pressP = true;
-					//Time.captureFramerate = 0;
 					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians)
 						ped.resetPedestrian();
-				}
-				if(takeScreenshots) {
-					Application.CaptureScreenshot ("screenshot" + (screenshotCounter ++) + ".png", superSizeFactor);
-					Debug.Log("screenshot taken: " + screenshotCounter);
-				}
-	
+				}	
 			} catch (DivideByZeroException) {
 				current_time = 0;
 			}
