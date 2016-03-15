@@ -30,7 +30,7 @@ public class Pedestrian : MonoBehaviour {
 
 	//GameObject tile;
 
-	private AgentView agentView;
+	private AgentView agentView = null;
 	//public Renderer rCylinder;
 
 	private Animation animation;
@@ -63,8 +63,9 @@ public class Pedestrian : MonoBehaviour {
 		//gp = gl.groundplane;
 		//gameObject.tag = "pedestrian";
 
-		//TODO only look for it AgentView is active
-		agentView = GameObject.Find ("CameraMode").GetComponent<AgentView> ();
+		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
+		if (agentViewComponent.enabled)
+			agentView = agentViewComponent;
 
 		resetPedestrian ();
 
@@ -172,15 +173,19 @@ public class Pedestrian : MonoBehaviour {
 			animation.Play ();
 	}
 
+
+	private bool showPed() {
+		if (agentView != null)
+			return agentView.getCurrentPed () != gameObject;
+		return true;
+	}
+
 	void Update () {
 		if (!targetReached) {
-
-			//rendererEnabled (true);
-
-			if (agentView.getCurrentPed () == gameObject)
-				rendererEnabled (false);
-			else
+			if (showPed ())
 				rendererEnabled (true);
+			else
+				rendererEnabled (false);
 
 		/*
 		updateCalls ++;

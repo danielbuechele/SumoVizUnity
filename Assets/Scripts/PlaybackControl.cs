@@ -36,7 +36,20 @@ public class PlaybackControl : MonoBehaviour {
 
 	public bool pressP = false;
 
+
+	private void checkSettings() {
+		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
+		CameraTour cameraTourComponent = GameObject.Find("CameraMode").GetComponent<CameraTour>();
+
+		if (agentViewComponent.enabled && cameraTourComponent.enabled)
+			throw new UnityException ("AgentView and CameraTour are both enabled, only one can be active.");
+
+		//TODO check other settings... check here that files are existing?
+	}
+
+
 	void Start () {
+		checkSettings ();
 
 		//TODO order GameObject hierarchy, associated scripts etc.
 
