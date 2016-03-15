@@ -10,7 +10,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: accu:rate
-  productName: Disco_EvakTisch
+  productName: AppName
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -89,13 +89,13 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: de.accurate.DiscoEvakTisch
+  bundleIdentifier: de.accurate.AppName
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
-  virtualRealitySupported: 1
+  virtualRealitySupported: 0
   productGUID: 0769ba8124aeb45d8800ad37bee58689
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
