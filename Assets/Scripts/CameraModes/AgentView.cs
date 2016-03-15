@@ -43,7 +43,7 @@ public class AgentView : MonoBehaviour {
 		indizes.Add (16);
 		indizes.Add (17);
 		indizes.Add (10);
-		List<Pedestrian> peds = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians;
+		List<Pedestrian> peds = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().getPedestrians ();
 		currentPed = peds[indizes [Random.Range(0, indizes.Count - 1)]].gameObject;
 	}
 	/*

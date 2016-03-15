@@ -27,36 +27,59 @@ namespace CapturePanorama
 {
     public class CapturePanorama : MonoBehaviour
     {
+		[HideInInspector]
         public string panoramaName;
+		[HideInInspector]
         public string qualitySetting;
         public KeyCode captureKey = KeyCode.P;
         public ImageFormat imageFormat = ImageFormat.PNG;
+		[HideInInspector]
         public bool captureStereoscopic = false;
-        public float interpupillaryDistance = 0.0635f; // Average IPD of all subjects in US Army survey in meters
-        public int numCirclePoints = 128;
+		[HideInInspector]
+		public float interpupillaryDistance = 0.0635f; // Average IPD of all subjects in US Army survey in meters
+		[HideInInspector]
+		public int numCirclePoints = 128;
         public int panoramaWidth = 8192;
         public AntiAliasing antiAliasing = AntiAliasing._8;
         public int ssaaFactor = 1;
         public string saveImagePath = "";
+		[HideInInspector]
         public bool saveCubemap = false;
+		[HideInInspector]
         public bool uploadImages = false;
+		[HideInInspector]
         public bool useDefaultOrientation = false;
+		[HideInInspector]
         public bool useGpuTransform = true;
+		[HideInInspector]
         public float cpuMillisecondsPerFrame = 1000.0f / 120.0f;
         public bool captureEveryFrame = false;
         public int frameRate = 30;
+		[HideInInspector]
         public int maxFramesToRecord = 0;
+		[HideInInspector]
         public int frameNumberDigits = 6;
+		[HideInInspector]
         public AudioClip startSound;
+		[HideInInspector]
         public AudioClip doneSound;
+		[HideInInspector]
         public AudioClip failSound;
+		[HideInInspector]
         public bool fadeDuringCapture = true;
+		[HideInInspector]
         public float fadeTime = 0.25f;
+		[HideInInspector]
         public Color fadeColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+		[HideInInspector]
         public Material fadeMaterial = null;
+		[HideInInspector]
         public ComputeShader convertPanoramaShader;
+		[HideInInspector]
         public ComputeShader convertPanoramaStereoShader;
+		[HideInInspector]
         public ComputeShader textureToBufferShader;
+		[HideInInspector]
         public bool enableDebugging = false;
 
         public enum ImageFormat { PNG, JPEG, BMP };

@@ -10,13 +10,17 @@ public class PedestrianLoader : MonoBehaviour {
 	//public List<GameObject> pedestrians = new List<GameObject>();
 	//public int[] population;
 	private PlaybackControl pc;
-	public List<Pedestrian> pedestrians = new List<Pedestrian> ();
+	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
 
 	//public float pedScaleFactor = 1f; // 1 is default size
 
 
 	void Start() {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+	}
+
+	public List<Pedestrian> getPedestrians (){
+		return pedestrians;
 	}
 
 	public void addPedestrianPosition(PedestrianPosition p) {

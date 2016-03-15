@@ -8,7 +8,7 @@ using Vectrosity;
 
 public class PlaybackControl : MonoBehaviour {
 
-	public bool playing = true;
+	private bool playing = true;
 	public decimal current_time = 0;
 	public decimal total_time = 0;
 	/*
@@ -30,8 +30,18 @@ public class PlaybackControl : MonoBehaviour {
 	}
 	*/
 
-	public bool pressP = false;
+	[Header("automate start/end signal for CapturePanorama script")]
+	public bool pressPMode = false;
+	private bool pressP = false;
 	private int roundCounter;
+
+
+	void Start () {
+		checkSettings ();
+		roundCounter = 0;
+		//threshold = 2.0f;
+		pressP = true;
+	}
 
 	public bool inFirstRound() {
 		return roundCounter == 0;
@@ -40,29 +50,15 @@ public class PlaybackControl : MonoBehaviour {
 	private void checkSettings() {
 		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
 		CameraTour cameraTourComponent = GameObject.Find("CameraMode").GetComponent<CameraTour>();
-
 		if (agentViewComponent.enabled && cameraTourComponent.enabled)
 			throw new UnityException ("AgentView and CameraTour are both enabled, only one can be active.");
-
+		
 		//TODO check other settings... check here that files are existing?
 	}
 
-
-	void Start () {
-		checkSettings ();
-		roundCounter = 0;
-
-		//TODO order GameObject hierarchy, associated scripts etc.
-
-		//TODO move this stuff into the GUI in a nice way
-
-		//threshold = 2.0f;
-
-		pressP = true;
-	}
-
 	public bool getPressP() {
-		//return false;
+		if (!pressPMode)
+			return false;
 		if (pressP) {
 			pressP = false;
 			return true;
@@ -146,13 +142,14 @@ public class PlaybackControl : MonoBehaviour {
 		if (playing) {
 			try {
 				current_time = (current_time + (decimal) Time.deltaTime);// % total_time; // modulo, ha ha! nobody will ever notice that this leads to current_time = 0
-			
-				if(current_time >= total_time) {
-					roundCounter ++;
+
+				if(current_time >= total_time) { // new round
 					current_time = 0;
-					pressP = true;
-					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().pedestrians)
+					if(roundCounter == 0)
+						pressP = true;
+					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().getPedestrians ())
 						ped.resetPedestrian();
+					roundCounter ++;
 				}	
 			} catch (DivideByZeroException) {
 				current_time = 0;
@@ -164,26 +161,4 @@ public class PlaybackControl : MonoBehaviour {
 		}
 		*/
 	}
-
-	/*
-	//http://answers.unity3d.com/answers/22959/view.html
-	public void takeScreenshot(){
-		int resWidth = 3840;
-		int resHeight = 2160;
-		RenderTexture rt = new RenderTexture (resWidth, resHeight, 24);
-		Camera camera = Camera.main;
-		camera.targetTexture = rt;
-		Texture2D screenShot = new Texture2D (resWidth, resHeight, TextureFormat.RGB24, false);
-		camera.Render ();
-		RenderTexture.active = rt;
-		screenShot.ReadPixels (new Rect (0, 0, resWidth, resHeight), 0, 0);
-		camera.targetTexture = null;
-		RenderTexture.active = null; // JC: added to avoid errors
-		Destroy (rt);
-		byte[] bytes = screenShot.EncodeToPNG ();
-		string filename = "Screenshots/screenshot" + (screenshotCounter ++) + ".png";
-		System.IO.File.WriteAllBytes (filename, bytes);
-		Debug.Log (string.Format ("Took screenshot to: {0}", filename));
-	}
-	*/
 }
