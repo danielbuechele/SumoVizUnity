@@ -730,7 +730,7 @@ GameObject:
   - 4: {fileID: 413214}
   - 114: {fileID: 11411684}
   m_Layer: 0
-  m_Name: LODped
+  m_Name: LOD_Ped
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

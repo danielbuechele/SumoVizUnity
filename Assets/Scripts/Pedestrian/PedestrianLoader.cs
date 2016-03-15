@@ -13,6 +13,12 @@ public class PedestrianLoader : MonoBehaviour {
 	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
 	//public float pedScaleFactor = 1f; // 1 is default size
 
+	// creates a dropdown choice in the inspector
+	public enum PedModel {
+		Pedestrian, LOD_Ped
+	}
+	public PedModel pedestrianModel = PedModel.Pedestrian;
+
 
 	void Start() {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
@@ -50,7 +56,7 @@ public class PedestrianLoader : MonoBehaviour {
 			if (currentList.Count > 0
 				&& (i == (positions.Count - 1) || positions[i].getID() != positions[i + 1].getID())) {
 				if (currentList.Count > 1) { // don't instantiate peds that stay in the same place for the entire total_time, they will throw index out of bound arrows in the index-while-loop in Pedestrian
-					GameObject p = (GameObject) Instantiate (Resources.Load ("Pedestrian")); // "LODped"
+					GameObject p = (GameObject) Instantiate (Resources.Load (pedestrianModel.ToString ()));
 					//if(pedScaleFactor != 1f) p.transform.localScale = new Vector3 (pedScaleFactor, pedScaleFactor, pedScaleFactor);
 					setPedestriansAsParent (p);
 					Pedestrian ped = p.GetComponent<Pedestrian> ();	
