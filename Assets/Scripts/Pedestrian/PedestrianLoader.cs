@@ -6,7 +6,7 @@ using System.Linq;
 
 public class PedestrianLoader : MonoBehaviour {
 
-	private List<PedestrianPosition> positions = new List<PedestrianPosition>();
+	//private List<PedestrianPosition> positions = new List<PedestrianPosition>();
 	//public List<GameObject> pedestrians = new List<GameObject>();
 	//public int[] population;
 	private PlaybackControl pc;
@@ -19,7 +19,7 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 	public PedModel pedestrianModel = PedModel.Pedestrian;
 
-	private Dictionary<int, GameObject> peds = new Dictionary<int, GameObject> ();
+	private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian> ();
 
 
 	void Start() {
@@ -30,28 +30,38 @@ public class PedestrianLoader : MonoBehaviour {
 		return pedestrians;
 	}
 
-	public void addPedestrianPosition(PedestrianPosition pedPos) {
-		/*
-		GameObject pedGameObj = null;
-		peds.TryGetValue (pedPos.getID (), out pedGameObj);
+	public void addPedestrianPosition(PedestrianPosition pos) {
+		int id = pos.getID ();
+		Pedestrian ped = null;
+		peds.TryGetValue (id, out ped);
 
-		if(pedGameObj != null) {
-			Pedestrian pedScript = pedGameObj.GetComponent<Pedestrian> ();	
-			pedScript.handlePedPos (pedPos); //TODO
-		} else {
-			pedGameObj = (GameObject) Instantiate (Resources.Load (pedestrianModel.ToString ()));
-			setPedestriansAsParent (pedGameObj);
-			Pedestrian pedScript = pedGameObj.GetComponent<Pedestrian> ();	
-			pedestrians.Add (pedScript);
-			peds.Add(pedPos.getID(), pedGameObj);
-		}
-		*/
-		positions.Add (pedPos);
-		if (pedPos.getTime () > pc.total_time) 
-			pc.total_time = pedPos.getTime ();
+		if (ped == null) {
+			GameObject newPedGameObj = (GameObject) Instantiate (Resources.Load (pedestrianModel.ToString ()));
+			setPedestriansAsParent (newPedGameObj);
+			ped = newPedGameObj.GetComponent<Pedestrian> ();
+			ped.init (id, pos);
+			peds.Add (id, ped);
+			pedestrians.Add (ped); // TODO remove this and go through Dictionary if all peds are needed elsewhere? performance?
+		} else
+			ped.addPos (pos);
+
+		//positions.Add (pos);
+		if (pos.getTime () > pc.total_time) 
+			pc.total_time = pos.getTime ();
 	}
 
+	public void init (){
+		List<int> removeList = new List<int> ();
+		foreach(KeyValuePair<int, Pedestrian> ped in peds)
+			if (ped.Value.getPositionsCount () < 2)
+				removeList.Add (ped.Key);
+		foreach (int id in removeList)
+			peds.Remove (id);
+	}
+
+
 	public void createPedestrians() {
+		/*
 		//pc.total_time += 1; // ~bd: attempt to avoid the while-loop in pedestrian update() ever to grab an index thats beyond positions
 
 		pedestrians.Clear ();
@@ -89,6 +99,7 @@ public class PedestrianLoader : MonoBehaviour {
 				currentList.Clear ();
 			}
 		}
+		*/
 	}
 
 	private void setPedestriansAsParent (GameObject obj){

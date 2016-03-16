@@ -25,4 +25,8 @@ public class PedestrianPosition {
 	public decimal getTime() {return this.time;}
 	public float getX() {return this.x;}
 	public float getY() {return this.y;}
+
+	public bool equals(PedestrianPosition pos) {
+		return x == pos.getX () && y == pos.getY ();
+	}
 }

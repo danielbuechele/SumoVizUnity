@@ -66,6 +66,20 @@ public class Pedestrian : MonoBehaviour {
 
 		resetPedestrian ();
 	}
+		
+	public int getPositionsCount() {
+		return positions.Count;
+	}
+
+	public void init(int id, PedestrianPosition pos) {
+		this.name = "Pedestrian_" + id;
+		positions.Add (pos);
+	}
+
+	public void addPos(PedestrianPosition pos) {
+		if(!positions[positions.Count - 1].equals(pos)) // add only if pos is different to the previously added one
+			positions.Add (pos);
+	}
 
 	/*
 	void OnMouseDown(){
@@ -128,6 +142,8 @@ public class Pedestrian : MonoBehaviour {
 		index = 0;
 		rendererEnabled (true);
 		targetReached = false;
+		PedestrianPosition pos = positions[0];
+		transform.position = new Vector3 (pos.getX (), 0, pos.getY ());
 	}
 
 	private void rendererEnabled(bool truefalse) {
@@ -282,9 +298,7 @@ public class Pedestrian : MonoBehaviour {
 
 		return density;
 	}
-	*/
 
-	/*
 	// http://www.stefanbader.ch/faster-line-segment-intersection-for-unity3dc/
 	bool FasterLineSegmentIntersection(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4) {
 
@@ -321,9 +335,8 @@ public class Pedestrian : MonoBehaviour {
 		}
 		return doIntersect;
 	}
-	*/
 
-	/*private int _getTrait(SortedList thisList, decimal thisValue) {
+	private int _getTrait(SortedList thisList, decimal thisValue) {
 		for (int i = 0; i < thisList.Count; i ++) {
 			if ((decimal) thisList.GetKey(i) > thisValue) 
 				return i - 1;
@@ -361,7 +374,6 @@ public class Pedestrian : MonoBehaviour {
 		
 		// Return the correct/closest string
 		return index;
-		*/
 	//}
 
 	public void setID(int id) {
@@ -376,5 +388,5 @@ public class Pedestrian : MonoBehaviour {
 		PedestrianPosition pos = (PedestrianPosition) p[0];
 		transform.position = new Vector3 (pos.getX(), 0, pos.getY());
 	}
-		
+	*/	
 }
