@@ -19,6 +19,8 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 	public PedModel pedestrianModel = PedModel.Pedestrian;
 
+	private Dictionary<int, GameObject> peds = new Dictionary<int, GameObject> ();
+
 
 	void Start() {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
@@ -28,10 +30,25 @@ public class PedestrianLoader : MonoBehaviour {
 		return pedestrians;
 	}
 
-	public void addPedestrianPosition(PedestrianPosition p) {
-		positions.Add (p);
-		if (p.getTime () > pc.total_time) 
-			pc.total_time = p.getTime ();
+	public void addPedestrianPosition(PedestrianPosition pedPos) {
+		/*
+		GameObject pedGameObj = null;
+		peds.TryGetValue (pedPos.getID (), out pedGameObj);
+
+		if(pedGameObj != null) {
+			Pedestrian pedScript = pedGameObj.GetComponent<Pedestrian> ();	
+			pedScript.handlePedPos (pedPos); //TODO
+		} else {
+			pedGameObj = (GameObject) Instantiate (Resources.Load (pedestrianModel.ToString ()));
+			setPedestriansAsParent (pedGameObj);
+			Pedestrian pedScript = pedGameObj.GetComponent<Pedestrian> ();	
+			pedestrians.Add (pedScript);
+			peds.Add(pedPos.getID(), pedGameObj);
+		}
+		*/
+		positions.Add (pedPos);
+		if (pedPos.getTime () > pc.total_time) 
+			pc.total_time = pedPos.getTime ();
 	}
 
 	public void createPedestrians() {
