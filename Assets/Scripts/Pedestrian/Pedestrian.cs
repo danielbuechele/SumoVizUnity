@@ -28,9 +28,10 @@ public class Pedestrian : MonoBehaviour {
 	//GameObject tile;
 
 	private AgentView agentView = null;
+	#pragma warning disable 108
 	private Animation animation;
+	#pragma warning restore 108
 	private LODGroup lodGroup;
-
 	private int index;
 	private bool targetReached = true;
 
