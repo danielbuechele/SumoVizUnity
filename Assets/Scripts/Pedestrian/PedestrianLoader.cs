@@ -36,14 +36,15 @@ public class PedestrianLoader : MonoBehaviour {
 		peds.TryGetValue (id, out ped);
 
 		if (ped == null) {
-			GameObject newPedGameObj = (GameObject) Instantiate (Resources.Load (pedestrianModel.ToString ()));
+			GameObject newPedGameObj = (GameObject)Instantiate (Resources.Load (pedestrianModel.ToString ()));
 			setPedestriansAsParent (newPedGameObj);
 			ped = newPedGameObj.GetComponent<Pedestrian> ();
 			ped.init (id, pos);
 			peds.Add (id, ped);
 			pedestrians.Add (ped); // TODO remove this and go through Dictionary if all peds are needed elsewhere? performance?
-		} else
+		} else {
 			ped.addPos (pos);
+		}
 
 		//positions.Add (pos);
 		if (pos.getTime () > pc.total_time) 
