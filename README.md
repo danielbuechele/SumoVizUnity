@@ -1,45 +1,23 @@
 # SumoVizUnity
 
-This repository includes the full source-code of the Unity3D project developed during my master thesis. More information on the thesis can be found on [my blog](http://buechele.cc/blog/2014/8/6/master-thesis-post-visualization-of-pedestrian-simulation-data-using-a-game-engine).
 
-The Unity project was tested and developed for use on Mac OS and Windows. Ready-to-run executables, including some demonstration-data can be downloaded from the releases-section.
+This repository constitutes the Unity project that we at accu:rate are using to create 3D visualizations that are based on the 2D output of our crowd simulation software. It builds on [the work of Daniel Büchele](https://github.com/danielbuechele/SumoVizUnity).
+
 
 ## Features
-The software takes simulation-data (in this implementation from a text-file) and geometry-data and creates a 3D visualization in real-time. Moreover, it offers tools to analyze trajectories, density, population and speed, create measuring lines and drawing fundamental diagrams.
 
-![Screenshot](https://raw.githubusercontent.com/danielbuechele/SumoVizUnity/master/Screenshot.png)
+The functionality is divided into two parts. Firstly the scenario is imported at editing time into an Unity scene. Changes can be made like assigning materials, colors, terrains and so on. Secondly the trajectories are being read in at runtime (pressing Play in Unity) and the pedestrians will walk along them in an infinite loop.
+
+So far we have used this setup to create three types of 3D output:
+- **Virtual Reality Apps** for Google Cardboard or Gear VR, where the viewer is immersed in the scene and can either walk around in it freely or see through the eyes of one of the pedestrians
+- **Videos** of flying along a tour through the scenery with a defined viewing angle in each waypoint
+- **360° Videos** of flying along a tour through the scenary, the viewing angle is up to the viewer of the video
+
 
 ## License
-The software is licensed under the [MIT license](http://opensource.org/licenses/MIT). If this software is used anywhere, I would be more than curios to know and will be happy to help with any problems!
 
-## Thesis
+The software is licensed under the **MIT License**:
 
-My thesis "Post-visualization of pedestrian simulation data using a game-engine" was written in 2014 at Technische Universität München. The full PDF-file can be downloaded [here](http://buechele.cc/s/thesis.pdf) (German). And includes the following chapters:
+> The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
-1. Einführung
-  1. Vorhersage von menschlichem Verhalten
-  2. Fußgängerforschung als interdisziplinäres Forschungsfeld
-  3. Motivation und Ziele der Arbeit
-2. Fußgängersimulation
-  1. Modellierungsebenen bei der Fußgängersimulation
-  2. Modellierungsmethoden zur Fußgängersimulation
-  3. Aufzeichnung realer Daten
-  4. ParameterundMessgrößenfürSimulationen
-  5. Bestehende Systeme zur Post-Visualiserung
-3. Implementierung einer Post-Visualisierung für Fußgängersimulationsdaten
-  1. Neuimplementierung von SumoViz3D
-  2. Nutzung von Game-Engines für wissenschaftliche Visualisierungen
-  3. VerwandteArbeiten
-4. Implementierung der Visualisierung auf Basis einer Game-Engine
-  1. ImportderSimulationsergebnisse
-  2. DarstellungderGeometrie
-  3. SteuerungdesVisualisierung
-  4. DarstellungderFußgänger
-  5. Implementierung der Analysewerkzeuge
-5. Ausblick und Fazit
-  1. Vergleich zur Bachelorarbeit
-  2. Möglichkeiten der Weiterentwicklung
-  3. Fazit
-
-## SumoViz3D
-This work builds upon my Bachelor's thesis on WebGL-based post-visualization, which can be found [here](https://github.com/danielbuechele/SumoViz3D).
+*source: [choosealicense.com](http://www.choosealicense.com/)*
