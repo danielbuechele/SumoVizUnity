@@ -1,0 +1,2 @@
+build after this tutorial: http://xenosmashgames.com/playing-with-fire-in-unity3d/
+fire textures from textures.com: http://www.textures.com/download/flames0033/64409

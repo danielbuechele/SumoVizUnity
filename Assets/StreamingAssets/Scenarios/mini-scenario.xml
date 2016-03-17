@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><scenario name="miniScenario" timestamp="20160115.172923" xmlFormat="0.3">
+	<spatial>
+		<floor cellDist="0.2" discretizationType="1" elevation="0" height="2" id="0" maxX="828" maxY="238" minX="5" minY="3">
+			<collection id="0">
+					<!-- cv -->
+				<!--<object name="w188" type="wall">
+						<point x="223.23" y="85.73"/>
+						<point x="227.45" y="85.59"/>
+						<point x="227.38" y="83.48"/>
+						<point x="223.15" y="83.63"/>
+						<point x="223.23" y="85.73"/>
+					</object>-->
+					<object name="w188" type="wall">
+						<!-- ccw -->
+						<!--<point x="0" y="0"/>
+						<point x="10" y="0"/>
+						<point x="10" y="5"/>
+						<point x="0" y="5"/>
+						<point x="0" y="0"/>-->
+						<!-- cw -->
+	          <point x="0" y="0"/>
+	        	<point x="0" y="5"/>
+	        	<point x="10" y="5"/>
+	        	<point x="10" y="0"/>
+	        	<point x="0" y="0"/>
+        	</object>
+        <object name="ow9" type="openWall">
+        	<point x="0" y="0"/>
+        	<point x="0" y="5"/>
+        	<point x="10" y="5"/>
+        	<point x="10" y="0"/>
+        </object>
+<!--  <object name="w101" type="wall">
+					<point x="225.38" y="183.46"/>
+					<point x="230.65" y="182.24"/>
+					<point x="229.43" y="176.98"/>
+					<point x="224.16" y="178.20"/>
+					<point x="225.38" y="183.46"/>
+				</object>
+        <object name="ow9" type="openWall">
+					<point x="219.73" y="180.90"/>
+					<point x="224.85" y="174.46"/>
+					<point x="226.84" y="169.95"/>
+					<point x="233.61" y="167.97"/>
+					<point x="235.55" y="176.00"/>
+				</object>-->
+      </collection>
+    </floor>
+  </spatial>
+<output>
+<floor csvAt="out_folder/floor-0.csv" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/>
+</output>
+</scenario>
