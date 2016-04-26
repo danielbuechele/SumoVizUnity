@@ -17,7 +17,7 @@ public class NormalScreenshots : MonoBehaviour {
 	
 	void Update () {
 		if (pc.inFirstRound ()) {
-			Application.CaptureScreenshot ("screenshot" + (count ++) + ".png", superSizeFactor);
+			Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
 			Debug.Log ("screenshot #" + count + " taken");
 		}
 	}
