@@ -25,10 +25,12 @@ public class ScenarioLoader {
 	}
 
 	public string getRelativeTrajFilePath() {
+		string relativeTrajFilePath = "no_path_to_trajectory_file_set";
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
-		string relativeTrajFilePath = "";
-		foreach(XmlElement floor in output.SelectNodes("floor")) { // TODO more floors
-			relativeTrajFilePath = floor.GetAttribute("csvAt");
+		if (output != null) {
+			foreach (XmlElement floor in output.SelectNodes("floor")) { // TODO more floors
+				relativeTrajFilePath = floor.GetAttribute ("csvAt");
+			}
 		}
 		return relativeTrajFilePath;
 	}
