@@ -35,16 +35,9 @@ public class AgentView : MonoBehaviour {
 		mainCameraParent.transform.position = newPos;
 	}
 
-
 	private void getOneOfLastPeds () {
-		List<int> indizes = new List<int> ();
-		indizes.Add (3);
-		indizes.Add (11);
-		indizes.Add (16);
-		indizes.Add (17);
-		indizes.Add (10);
 		List<Pedestrian> peds = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().getPedestrians ();
-		currentPed = peds[indizes [Random.Range(0, indizes.Count - 1)]].gameObject;
+		currentPed = peds[Random.Range(peds.Count - 6, peds.Count - 1)].gameObject;
 	}
 	/*
 	private void findRandomPedestrian () {
