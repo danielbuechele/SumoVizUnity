@@ -17,8 +17,10 @@ public class ScenarioImporter {
 		if (EditorSceneManager.GetActiveScene().name == "Base") 
 			continueOk = !EditorUtility.DisplayDialog("duplicate scene", "It is recommend that you first duplicate the Scene (select it in the Scenes folder and use Edit > Duplicate), rename it optionally and doubleclick the new scene.", "ok, let me duplicate", "continue");
 
+		string scenariosPath = Application.dataPath + "/StreamingAssets/Scenarios";
+
 		if (continueOk) {
-			var path = EditorUtility.OpenFilePanel ("", Application.dataPath + "/Resources/Data", "xml"); //Path.GetFileName(path))
+			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "xml"); //Path.GetFileName(path))
 
 			if (path == "") // = cancel was clicked in open file dialog
 				return;
@@ -32,7 +34,9 @@ public class ScenarioImporter {
 
 			ScenarioLoader sl = new ScenarioLoader (path);
 			sl.loadScenario ();
-			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath ();
+
+			string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
+			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
 		}
 	}
 

@@ -25,7 +25,7 @@ public class ScenarioLoader {
 	}
 
 	public string getRelativeTrajFilePath() {
-		string relativeTrajFilePath = "no_path_to_trajectory_file_set";
+		string relativeTrajFilePath = "";
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
 		if (output != null) {
 			foreach (XmlElement floor in output.SelectNodes("floor")) { // TODO more floors

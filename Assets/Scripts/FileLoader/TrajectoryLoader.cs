@@ -9,8 +9,7 @@ public class TrajectoryLoader {
 
 
 	public TrajectoryLoader(string relativeTrajFilePath) {
-		string relativePath = "Scenarios/" + relativeTrajFilePath;
-		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativePath));
+		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
 		reader = fi.OpenText ();
 
 		/*
