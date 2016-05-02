@@ -16,8 +16,16 @@ So far we have used this setup to create three types of 3D output:
 
 ## License
 
-The software is licensed under the **MIT License**:
+The software is licensed under the [MIT License](LICENSE.txt):
 
 > The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
 *source: [choosealicense.com](http://www.choosealicense.com/)*
+
+### Required attribution
+
+> Copyright (c) 2015, 2016 accu:rate GmbH, http://www.accu-rate.de/  
+> Copyright (c) 2014 Daniel Büchele
+
+Whenever you use our code (In scientific papers, in your own programs - binary as well as source code, etc.), provide proper attribution.
+
