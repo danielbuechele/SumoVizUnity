@@ -13,11 +13,13 @@ public class RuntimeInitializer : MonoBehaviour {
 	public string relativeTrajFilePath; // TODO more floors
 
 	void Start () { // = Play button was pressed in unity
+
+		/*
 		if (relativeTrajFilePath != "no_path_to_trajectory_file") {
 			TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath);
 			tl.loadTrajectories ();
 		} else {
 			Debug.LogError ("no path to trajectory file -> set one in RuntimeInitializer relative to the StreamingAssets directory");
-		}
+		}*/
 	}
 }

@@ -15,9 +15,19 @@ public class FileChooser : MonoBehaviour {
 				Debug.Log("Choosing file was cancelled");
 				Application.Quit();
 			} else {
-				Debug.Log("Output File = \"" + fb.outputFile.ToString() + "\"");
+				Debug.Log("Loading file " + fb.outputFile.ToString());
 
-				//fl.loadXMLFile(fb.outputFile.FullName);
+				var path = fb.outputFile.FullName;
+
+				new GameObject("World");
+				new GameObject ("Pedestrians");
+
+				RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+				ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+				ri.geometryLoader.setTheme (new MarketplaceThemingMode ());
+
+				ScenarioLoader sl = new ScenarioLoader (path);
+				sl.loadScenario ();
 
 				Destroy (this);
 			}
