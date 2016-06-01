@@ -2,6 +2,9 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Linq;
+
+
 #if thread
 using System.Threading;
 #endif
@@ -20,6 +23,7 @@ public class FileBrowser{
 	public bool isVisible{	get{	return visible;	}	} //check if the file browser is currently visible
 	//File Options
 	public string searchPattern = "*"; //search pattern used to find files
+	public string[] extensionsAllowed;
 	//Output
 	public FileInfo outputFile; //the selected output file
 	//Search
@@ -270,6 +274,11 @@ public class FileBrowser{
 		
 		//get files
 		FileInfo[] fia = di.GetFiles(searchPattern);
+		if (extensionsAllowed != null) {
+			//manually implemented this because with the line above only one extension would be allowed ~BD 1.6.2016
+			fia = di.GetFiles().Where(f => extensionsAllowed.Contains(f.Extension.ToLower())).ToArray(); // from http://stackoverflow.com/a/3527295
+		}
+
 		//FileInfo[] fia = searchDirectory(di,searchPattern);
 		files = new FileInformation[fia.Length];
 		for(int f=0;f<fia.Length;f++){

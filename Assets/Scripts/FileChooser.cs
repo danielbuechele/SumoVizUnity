@@ -6,7 +6,7 @@ public class FileChooser : MonoBehaviour {
 	FileBrowser fb = new FileBrowser();
 
 	void Start () {
-		//fb.extensionsAllowed = new[] {".crowdit", ".xml"};
+		fb.extensionsAllowed = new[] {".crowdit", ".xml"};
 	}
 
 	void OnGUI(){	
