@@ -133,12 +133,12 @@ public class FileBrowser{
 						}
 						GUILayout.BeginHorizontal("box");
 						GUILayout.FlexibleSpace();
-						if((cancelStyle == null)?GUILayout.Button("Cancel"):GUILayout.Button("Cancel",cancelStyle)){
+						if((cancelStyle == null)?GUILayout.Button("Exit"):GUILayout.Button("Cancel",cancelStyle)){
 							outputFile = null;
 							return true;
 						}
 						GUILayout.FlexibleSpace();
-						if((selectStyle == null)?GUILayout.Button("Select"):GUILayout.Button("Select",selectStyle)){	return true;	}
+						if((selectStyle == null)?GUILayout.Button("Open"):GUILayout.Button("Select",selectStyle)){	return true;	}
 						GUILayout.FlexibleSpace();
 						GUILayout.EndHorizontal();
 					GUILayout.EndVertical();
