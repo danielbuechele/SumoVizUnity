@@ -11,7 +11,7 @@ public class AgentView : MonoBehaviour {
 	private GameObject mainCameraParent;
 
 	void Start() {
-		mainCameraParent = GameObject.Find ("MainCameraParent");
+		mainCameraParent = GameObject.Find ("Flycam"); // normally MainCameraParent
 		Camera.main.nearClipPlane = 0.05f;
 	}
 

@@ -36,6 +36,8 @@ public class PlaybackControl : MonoBehaviour {
 	private int roundCounter;
 
 
+	public int cameraMode = 0;
+
 	void Start () {
 		checkSettings ();
 		roundCounter = 0;
@@ -160,5 +162,19 @@ public class PlaybackControl : MonoBehaviour {
 			playing = !playing;
 		}
 		*/
+
+		if (Input.GetKeyDown (KeyCode.C) && GameObject.Find("Pedestrians") != null) {
+			if (++ cameraMode > 1) {
+				cameraMode = 0;
+			}
+			switch (cameraMode) {
+				case 0:
+					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = false;
+					break;
+				case 1:
+					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = true;
+					break;
+			}
+		}
 	}
 }
