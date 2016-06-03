@@ -16,7 +16,7 @@ public class AreaGeometry : Geometry  {
 		}
 
 		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
-		obstacle.transform.position = new Vector3 (0, 0.01f, 0);
+		obstacle.transform.position = new Vector3 (0, 0.02f, 0);
 		//obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
 		//obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
 		var renderer = obstacle.GetComponent<Renderer>();
