@@ -66,9 +66,17 @@ public class ScenarioLoader {
 								ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						case "origin":
+							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.61f, 0.04f, 0, .3f));
+							break;
 						case "destination":
+							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.18f, 0.71f, 0, .3f));
+							break;
 						case "scaledArea":
+							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.43f, 0.98f, 0.39f, .3f));
+							break;
 						case "waitingZone":
+							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.39f, 0.24f, 0, .3f));
+							break;
 						case "portal":
 						case "beamExit":
 						case "eofWall":
