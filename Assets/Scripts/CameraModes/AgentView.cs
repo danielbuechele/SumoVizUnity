@@ -31,7 +31,7 @@ public class AgentView : MonoBehaviour {
 		
 	private void followPedestrian (GameObject pedestrian) {
 		Vector3 pedPos = pedestrian.transform.position;
-		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 1.66f, pedPos.z);
+		Vector3 newPos = new Vector3 (pedPos.x, pedPos.y + 1.9f, pedPos.z);
 		mainCameraParent.transform.position = newPos;
 	}
 
