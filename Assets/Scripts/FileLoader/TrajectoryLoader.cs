@@ -9,7 +9,9 @@ public class TrajectoryLoader {
 
 
 	public TrajectoryLoader(string relativeTrajFilePath) {
-		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
+		//FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
+
+		FileInfo fi = new FileInfo (relativeTrajFilePath);
 		reader = fi.OpenText ();
 
 		/*
