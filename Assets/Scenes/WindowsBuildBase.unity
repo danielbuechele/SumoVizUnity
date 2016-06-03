@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressPMode: 0
+  cameraMode: 0
 --- !u!4 &857675394
 Transform:
   m_ObjectHideFlags: 0
@@ -369,6 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   geometryLoader: {fileID: 1054666162}
   relativeTrajFilePath: 
+  boundingPoints: []
 --- !u!4 &1057102354
 Transform:
   m_ObjectHideFlags: 0
@@ -552,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc004675bcd4fdc4098bdd472fc7402a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointsFile: EvakTischBig2.csv
+  waypointsFile: 
 --- !u!1 &2048823114
 GameObject:
   m_ObjectHideFlags: 0

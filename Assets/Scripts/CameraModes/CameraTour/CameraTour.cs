@@ -36,7 +36,8 @@ public class CameraTour : MonoBehaviour {
 		cam = Camera.main.transform; // = cameraObj.transform;
 		//cameraObj = GameObject.Find ("Sphere");
 
-		importWaypoints ();
+		//importWaypoints ();
+		setWaypoints ();
 
 		if (waypoints[0].doWait()) // extra check this, because i starts at 1 in following for-loop
 			addWaitSection (waypoints[0]);
@@ -79,6 +80,35 @@ public class CameraTour : MonoBehaviour {
 	}
 		
 	public string waypointsFile = "EvakTischBig2.csv";
+
+
+	public void setWaypoints() {
+		List<float> boundingPoints = GameObject.Find ("RuntimeInitializer").GetComponent<RuntimeInitializer> ().boundingPoints;
+		float minX = boundingPoints[0];
+		float minY = boundingPoints[1];
+		float maxX  = boundingPoints[2];
+		float maxY = boundingPoints[3];
+		//Debug.Log (minX + " / " + maxX + " / " + minY + " / " + maxY);
+
+		float middleX = minX + (maxX - minX) / 2;
+		float middleY = minY + (maxY - minY) / 2;
+		Vector3 focusPoint = new Vector3 (middleX, 0, middleY);
+
+		float velocReduce = 0;
+		float wait = 0;
+		float height = 5f;
+
+		Vector3 point1 = new Vector3 (minX, height, minY);
+		Vector3 point2 = new Vector3 (minX, height, maxY);
+		Vector3 point3 = new Vector3 (maxX, height, maxY);
+		Vector3 point4 = new Vector3 (maxX, height, minY);
+
+		waypoints.Add (new Waypoint (waypoints.Count, point1, velocReduce, wait, focusPoint));
+		waypoints.Add (new Waypoint (waypoints.Count, point2, velocReduce, wait, focusPoint));
+		waypoints.Add (new Waypoint (waypoints.Count, point3, velocReduce, wait, focusPoint));
+		waypoints.Add (new Waypoint (waypoints.Count, point4, velocReduce, wait, focusPoint));
+		waypoints.Add (waypoints[0]);
+	}
 
 	private void importWaypoints() {	
 		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath ("CameraTourWaypoints/" + waypointsFile));

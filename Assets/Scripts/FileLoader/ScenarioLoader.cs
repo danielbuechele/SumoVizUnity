@@ -99,12 +99,11 @@ public class ScenarioLoader {
 		*/
 	}
 
-	/*
+
 	static float minX = float.MaxValue; 
 	static float maxX = 0;
 	static float minY = float.MaxValue;
 	static float maxY = 0;
-	*/
 
 	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
 	static List<Vector2> parsePoints(XmlElement polyPoints) {
@@ -115,7 +114,7 @@ public class ScenarioLoader {
 			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
 				list.Add(new Vector2(x, y));
 			}
-			/*
+
 			if (x < minX)
 				minX = x;
 			if (x > maxX)
@@ -124,9 +123,12 @@ public class ScenarioLoader {
 				minY = y;
 			if(y > maxY)
 				maxY = y;
-			*/
 		}
 		return list;
+	}
+
+	public List<float> getBoundingPoints() {
+		return new List<float> (){minX, minY, maxX, maxY};
 	}
 
 	/*

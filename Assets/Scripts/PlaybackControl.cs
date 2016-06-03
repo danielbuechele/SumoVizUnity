@@ -164,15 +164,21 @@ public class PlaybackControl : MonoBehaviour {
 		*/
 
 		if (Input.GetKeyDown (KeyCode.C) && GameObject.Find("Pedestrians") != null) {
-			if (++ cameraMode > 1) {
+			if (++ cameraMode > 2) {
 				cameraMode = 0;
 			}
 			switch (cameraMode) {
 				case 0:
 					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = false;
+					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = false;
 					break;
 				case 1:
 					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = true;
+					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = false;
+					break;
+				case 2:
+					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = false;
+					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = true;
 					break;
 			}
 		}

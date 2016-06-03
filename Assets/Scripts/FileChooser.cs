@@ -31,8 +31,9 @@ public class FileChooser : MonoBehaviour {
 				ScenarioLoader sl = new ScenarioLoader (path);
 				sl.loadScenario ();
 
-				string csvAt = sl.getRelativeTrajFilePath ();
+				ri.boundingPoints = sl.getBoundingPoints ();
 
+				string csvAt = sl.getRelativeTrajFilePath ();
 				if (csvAt != "") {
 					ri.relativeTrajFilePath = path.Substring (0, path.Length - path.Split (Path.DirectorySeparatorChar).Last ().Length) + csvAt;
 					ri.doStart ();

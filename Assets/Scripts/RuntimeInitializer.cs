@@ -12,6 +12,8 @@ public class RuntimeInitializer : MonoBehaviour {
 	public GeometryLoader geometryLoader;
 	public string relativeTrajFilePath; // TODO more floors
 
+	public List<float> boundingPoints;
+
 	/*
 	void Start () { // = Play button was pressed in unity
 		if (relativeTrajFilePath != "no_path_to_trajectory_file") {
