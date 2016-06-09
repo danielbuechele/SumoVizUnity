@@ -36,10 +36,6 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 				lot.Normalize();
 				extrudePoint = verticesList[i] + lot * thickness;
 			}
-			if (!isValidPoint (extrudePoint)) {
-				Debug.LogError (name + ", has an invalid geometry, skipping it");
-				return;
-			}
 			verticesList.Add(extrudePoint);
 		}
 
@@ -50,11 +46,5 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 		Material sideMaterial = topMaterial;
 		ExtrudeGeometry.create (name, verticesList, height, topMaterial, sideMaterial);
 	}
-
-	public static bool isValidPoint(Vector2 point) {
-		if (double.IsNaN (point.x) || double.IsInfinity (point.x) || double.IsNaN (point.y) || double.IsInfinity (point.y)) {
-			return false;
-		}
-		return true;
-	}
+		
 }
