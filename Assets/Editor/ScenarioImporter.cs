@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System.Collections;
 
+
 public class ScenarioImporter {
 
 	[MenuItem("Assets/Import accu:rate output")]
@@ -68,5 +69,25 @@ public class ScenarioImporter {
 		}
 		Debug.Log ("DONE");
 		*/
+
+
+		var absoluteFfmpegExeLoc = ""; // C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
+
+		bool continueOk = true;
+
+		if (absoluteFfmpegExeLoc == "") {
+			if (EditorUtility.DisplayDialog("No ffmpeg.exe found", "Please specify the location of an ffmpeg.exe.", "Ok", "Cancel"))
+				absoluteFfmpegExeLoc = EditorUtility.OpenFilePanel ("", "", "exe");
+		}
+			
+		if (continueOk && absoluteFfmpegExeLoc != "") {
+			var relativeScreenshotFileGenericLoc = "Screenshots\\screenshot%d.png";
+			var relativeOutFileLoc = "out.mp4";
+			var ffmpegCommand = "-i " + relativeScreenshotFileGenericLoc + " -vf scale=trunc(iw/2)*2:trunc(ih/2)*2 -r 25 -c:v libx264 -pix_fmt yuv420p -crf 18 " + relativeOutFileLoc; // keep same resolution code from http://stackoverflow.com/a/20848224
+
+			System.Diagnostics.Process.Start (absoluteFfmpegExeLoc, ffmpegCommand);
+		}
 	}
+		
+
 }
