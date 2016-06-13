@@ -14,6 +14,10 @@ public class RuntimeInitializer : MonoBehaviour {
 
 	public List<float> boundingPoints;
 
+	void Start() {
+		doStart ();
+	}
+
 	/*
 	void Start () { // = Play button was pressed in unity
 		if (relativeTrajFilePath != "no_path_to_trajectory_file") {
