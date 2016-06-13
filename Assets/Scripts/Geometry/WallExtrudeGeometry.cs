@@ -46,4 +46,5 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 		Material sideMaterial = topMaterial;
 		ExtrudeGeometry.create (name, verticesList, height, topMaterial, sideMaterial);
 	}
+		
 }

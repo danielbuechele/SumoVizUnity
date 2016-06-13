@@ -17,7 +17,7 @@ public class PedestrianLoader : MonoBehaviour {
 	public enum PedModel {
 		Pedestrian, LOD_Ped
 	}
-	public PedModel pedestrianModel = PedModel.Pedestrian;
+	public PedModel pedestrianModel = PedModel.LOD_Ped;
 
 	private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian> ();
 

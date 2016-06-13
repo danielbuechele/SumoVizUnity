@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FileChooser : MonoBehaviour {
+public class FileChooser_old : MonoBehaviour {
 
 	FileBrowser fb = new FileBrowser();
 	FileLoaderXML fl = new FileLoaderXML();

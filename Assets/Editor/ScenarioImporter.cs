@@ -20,7 +20,7 @@ public class ScenarioImporter {
 		string scenariosPath = Application.dataPath + "/StreamingAssets/Scenarios";
 
 		if (continueOk) {
-			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "xml"); //Path.GetFileName(path))
+			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "crowdit;*.xml"); //Path.GetFileName(path))
 
 			if (path == "") // = cancel was clicked in open file dialog
 				return;
@@ -34,9 +34,10 @@ public class ScenarioImporter {
 
 			ScenarioLoader sl = new ScenarioLoader (path);
 			sl.loadScenario ();
+			ri.boundingPoints = sl.getBoundingPoints ();
 
 			string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
-			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
+			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
 		}
 	}
 

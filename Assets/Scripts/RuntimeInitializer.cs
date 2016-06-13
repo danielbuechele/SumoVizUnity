@@ -12,6 +12,15 @@ public class RuntimeInitializer : MonoBehaviour {
 	public GeometryLoader geometryLoader;
 	public string relativeTrajFilePath; // TODO more floors
 
+	public List<float> boundingPoints;
+
+	void Start() {
+		if (GameObject.Find ("FileChooser") == null) {
+			doStart ();
+		}
+	}
+
+	/*
 	void Start () { // = Play button was pressed in unity
 		if (relativeTrajFilePath != "no_path_to_trajectory_file") {
 			TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath);
@@ -19,5 +28,10 @@ public class RuntimeInitializer : MonoBehaviour {
 		} else {
 			Debug.LogError ("no path to trajectory file -> set one in RuntimeInitializer relative to the StreamingAssets directory");
 		}
+	}*/
+
+	public void doStart() {
+		TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath);
+		tl.loadTrajectories ();
 	}
 }

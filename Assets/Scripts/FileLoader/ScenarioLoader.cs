@@ -66,9 +66,17 @@ public class ScenarioLoader {
 								ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						case "origin":
+							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.61f, 0.04f, 0, .3f));
+							break;
 						case "destination":
+							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.18f, 0.71f, 0, .3f));
+							break;
 						case "scaledArea":
+							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.43f, 0.98f, 0.39f, .3f));
+							break;
 						case "waitingZone":
+							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.39f, 0.24f, 0, .3f));
+							break;
 						case "portal":
 						case "beamExit":
 						case "eofWall":
@@ -91,12 +99,11 @@ public class ScenarioLoader {
 		*/
 	}
 
-	/*
+
 	static float minX = float.MaxValue; 
 	static float maxX = 0;
 	static float minY = float.MaxValue;
 	static float maxY = 0;
-	*/
 
 	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
 	static List<Vector2> parsePoints(XmlElement polyPoints) {
@@ -107,7 +114,7 @@ public class ScenarioLoader {
 			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
 				list.Add(new Vector2(x, y));
 			}
-			/*
+
 			if (x < minX)
 				minX = x;
 			if (x > maxX)
@@ -116,9 +123,12 @@ public class ScenarioLoader {
 				minY = y;
 			if(y > maxY)
 				maxY = y;
-			*/
 		}
 		return list;
+	}
+
+	public List<float> getBoundingPoints() {
+		return new List<float> (){minX, minY, maxX, maxY};
 	}
 
 	/*

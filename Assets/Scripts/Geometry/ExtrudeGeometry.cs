@@ -14,6 +14,10 @@ public class ExtrudeGeometry : Geometry  {
 		Vector2[] vertices2D = verticesList.ToArray();
 		List<Vector3> vertices = new List<Vector3>();
 		for (int i = 0; i < vertices2D.Length; i ++) {
+			if (!isValidPoint (vertices2D[i])) {
+				Debug.LogError (name + ", has an invalid geometry, skipping it");
+				return;
+			}
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
 
@@ -116,5 +120,12 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
 
+	}
+
+	public static bool isValidPoint(Vector2 point) {
+		if (double.IsNaN (point.x) || double.IsInfinity (point.x) || double.IsNaN (point.y) || double.IsInfinity (point.y)) {
+			return false;
+		}
+		return true;
 	}
 }
