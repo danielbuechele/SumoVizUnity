@@ -15,7 +15,9 @@ public class RuntimeInitializer : MonoBehaviour {
 	public List<float> boundingPoints;
 
 	void Start() {
-		doStart ();
+		if (GameObject.Find ("FileChooser") == null) {
+			doStart ();
+		}
 	}
 
 	/*
