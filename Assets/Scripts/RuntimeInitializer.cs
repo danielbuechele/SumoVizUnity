@@ -11,6 +11,7 @@ public class RuntimeInitializer : MonoBehaviour {
 	[HideInInspector]
 	public GeometryLoader geometryLoader;
 	public string relativeTrajFilePath; // TODO more floors
+	public string absoluteTrajFilePath;
 
 	public List<float> boundingPoints;
 
@@ -31,7 +32,7 @@ public class RuntimeInitializer : MonoBehaviour {
 	}*/
 
 	public void doStart() {
-		TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath);
+		TrajectoryLoader tl = new TrajectoryLoader (absoluteTrajFilePath);
 		tl.loadTrajectories ();
 	}
 }

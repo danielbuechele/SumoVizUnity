@@ -37,8 +37,9 @@ public class ScenarioImporter {
 			sl.loadScenario ();
 			ri.boundingPoints = sl.getBoundingPoints ();
 
-			string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
-			ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
+			//string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
+			//ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
+			ri.absoluteTrajFilePath = Path.GetDirectoryName (path) + "/" + sl.getRelativeTrajFilePath ();
 		}
 	}
 

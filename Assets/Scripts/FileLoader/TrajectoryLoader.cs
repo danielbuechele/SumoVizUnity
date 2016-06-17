@@ -8,10 +8,10 @@ public class TrajectoryLoader {
 	private StreamReader reader;
 
 
-	public TrajectoryLoader(string relativeTrajFilePath) {
+	public TrajectoryLoader(string trajFilePath) {
 		//FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
 
-		FileInfo fi = new FileInfo (relativeTrajFilePath);
+		FileInfo fi = new FileInfo (trajFilePath);
 		reader = fi.OpenText ();
 
 		/*
