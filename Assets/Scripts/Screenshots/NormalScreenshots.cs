@@ -11,7 +11,6 @@ public class NormalScreenshots : MonoBehaviour {
 	private int count = 0;
 
 
-
 	void Start () {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
 		Time.captureFramerate = fps;
@@ -20,26 +19,27 @@ public class NormalScreenshots : MonoBehaviour {
 		Screenrecorder.init ();
 	}
 	
-	//void OnPostRender () {
-	void Update() {
+	void OnPostRender () {
+	//void Update() {
 		if (pc.inFirstRound ()) {
-			Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
+			//Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
 
-			/*
-			Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false); // via http://answers.unity3d.com/answers/1190178/view.html
-			screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-			screenshot.Apply();
+			Texture2D screenshot = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false); // via http://answers.unity3d.com/answers/1190178/view.html
+			screenshot.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
+			screenshot.Apply ();
 
-			byte[] bytes = screenshot.EncodeToPNG();
+			byte[] bytes = screenshot.EncodeToJPG ();
+			//File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".jpg", bytes);
 
-			//Screenrecorder.writeImg (bytes);
+			Screenrecorder.writeImg (bytes);
+			Object.Destroy (screenshot);
 
-			Object.Destroy(screenshot);
-
-			//File.WriteAllBytes(Application.dataPath + "/test.png", bytes);
-			//File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".png", bytes);*/
-
-			UnityEngine.Debug.Log ("screenshot #" + count + " taken");
+			Debug.Log ("frame #" + (count ++) + " captured");
+		} else {
+			if (Screenrecorder.isActive) {
+				Debug.Log ("video exported with " + (count - 1) + " frames");
+				Screenrecorder.close ();
+			}
 		}
 	}
 
