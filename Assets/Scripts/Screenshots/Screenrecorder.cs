@@ -8,11 +8,11 @@ public static class Screenrecorder {
 	public static Process process;
 	public static StreamWriter writer;
 
-	public static bool isActive = false;
+	public static bool isClosed = true;
 
 
 	public static void init() {
-		isActive = true;
+		isClosed = false;
 		process = new Process ();
 
 		var absoluteFfmpegExeLoc = Application.dataPath + "/Plugins/other/ffmpeg/bin/ffmpeg.exe";
@@ -34,8 +34,10 @@ public static class Screenrecorder {
 	}
 
 	public static void close() {
-		process.Close ();
-		isActive = false;
+		writer.Close ();
+		process.WaitForExit ();
+		//process.Close (); // this would be a force-close, shouldn't be necessary
+		isClosed = true;
 	}
 
 }

@@ -36,7 +36,7 @@ public class NormalScreenshots : MonoBehaviour {
 
 			Debug.Log ("frame #" + (count ++) + " captured");
 		} else {
-			if (Screenrecorder.isActive) {
+			if (!Screenrecorder.isClosed) {
 				Debug.Log ("video exported with " + (count - 1) + " frames");
 				Screenrecorder.close ();
 			}
