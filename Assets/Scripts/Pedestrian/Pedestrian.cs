@@ -78,7 +78,7 @@ public class Pedestrian : MonoBehaviour {
 	}
 
 	public void addPos(PedestrianPosition pos) {
-		if(!positions[positions.Count - 1].equals(pos)) // add only if pos is different to the previously added one
+		//if(!positions[positions.Count - 1].equals(pos)) // add only if pos is different to the previously added one
 			positions.Add (pos);
 	}
 

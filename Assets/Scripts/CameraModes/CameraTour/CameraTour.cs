@@ -36,8 +36,9 @@ public class CameraTour : MonoBehaviour {
 		cam = Camera.main.transform; // = cameraObj.transform;
 		//cameraObj = GameObject.Find ("Sphere");
 
-		//importWaypoints ();
-		setWaypoints ();
+		importWaypoints ();
+		//setWaypoints ();
+
 
 		if (waypoints[0].doWait()) // extra check this, because i starts at 1 in following for-loop
 			addWaitSection (waypoints[0]);
@@ -111,7 +112,8 @@ public class CameraTour : MonoBehaviour {
 	}
 
 	private void importWaypoints() {	
-		FileInfo fi = new FileInfo (utils.getStreamingAssetsPath ("CameraTourWaypoints/" + waypointsFile));
+		//FileInfo fi = new FileInfo (utils.getStreamingAssetsPath ("CameraTourWaypoints/" + waypointsFile));
+		FileInfo fi = new FileInfo(waypointsFile);
 		StreamReader reader = fi.OpenText ();
 
 		using (reader) {

@@ -15,15 +15,17 @@ public class NormalScreenshots : MonoBehaviour {
 	void Start () {
 		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
 		Time.captureFramerate = fps;
-
+		Application.runInBackground = true;
 
 		Screenrecorder.init ();
 	}
 	
-	void OnPostRender () {
+	//void OnPostRender () {
+	void Update() {
 		if (pc.inFirstRound ()) {
-			//Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
+			Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
 
+			/*
 			Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false); // via http://answers.unity3d.com/answers/1190178/view.html
 			screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
 			screenshot.Apply();
@@ -35,7 +37,7 @@ public class NormalScreenshots : MonoBehaviour {
 			Object.Destroy(screenshot);
 
 			//File.WriteAllBytes(Application.dataPath + "/test.png", bytes);
-			//File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".png", bytes);
+			//File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".png", bytes);*/
 
 			UnityEngine.Debug.Log ("screenshot #" + count + " taken");
 		}
