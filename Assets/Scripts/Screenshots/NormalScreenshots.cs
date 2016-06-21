@@ -34,10 +34,12 @@ public class NormalScreenshots : MonoBehaviour {
 			Screenrecorder.writeImg (bytes);
 			Object.Destroy (screenshot);
 
-			Debug.Log ("frame #" + (count ++) + " captured");
+			count ++;
+
+			Debug.Log ("frame #" + count + " captured");
 		} else {
 			if (!Screenrecorder.isClosed) {
-				Debug.Log ("video exported with " + (count - 1) + " frames");
+				Debug.Log ("video exported with " + count + " frames");
 				Screenrecorder.close ();
 			}
 		}
