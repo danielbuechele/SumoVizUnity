@@ -3,7 +3,7 @@
 
 This repository constitutes the Unity project that we at accu:rate are using to create 3D visualizations that are based on the 2D output of our crowd simulation software. It builds on [the work of Daniel Büchele](https://github.com/danielbuechele/SumoVizUnity).
 
-![Screenshot: Post-Visualization of a crowd simulation done for Hanse Sail](http://www.accu-rate.de/img/homepage-screen1.png "Screenshot: Post-Visualization of a crowd simulation done for Hanse Sail")
+![Screenshot: Post-Visualization of a crowd simulation done for Hanse Sail](https://raw.githubusercontent.com/accu-rate/SumoVizUnity/develop/homepage-screen1.png "Screenshot: Post-Visualization of a crowd simulation done for Hanse Sail")
 
 
 ## Features
