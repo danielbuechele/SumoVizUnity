@@ -291,7 +291,7 @@ public class StereoController : MonoBehaviour {
     go.AddComponent<Camera>().enabled = false;
 #if !UNITY_5
     if (GetComponent("FlareLayer") != null) {
-      go.AddComponent("FlareLayer");
+      go.AddComponent<FlareLayer>();
     }
 #endif
     var cardboardEye = go.AddComponent<CardboardEye>();

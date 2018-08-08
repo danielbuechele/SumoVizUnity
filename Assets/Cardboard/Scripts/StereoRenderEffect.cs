@@ -39,7 +39,7 @@ public class StereoRenderEffect : MonoBehaviour {
     GL.LoadPixelMatrix(0, width, height, 0);
     // Camera rects are in screen coordinates (bottom left is origin), but DrawTexture takes a
     // rect in GUI coordinates (top left is origin).
-    Rect blitRect = camera.pixelRect;
+    Rect blitRect = GetComponent<Camera>().pixelRect;
     blitRect.y = height - blitRect.height - blitRect.y;
     RenderTexture oldActive = RenderTexture.active;
     RenderTexture.active = dest;
