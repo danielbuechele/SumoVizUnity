@@ -109,8 +109,8 @@ public class ScenarioLoader {
 	static List<Vector2> parsePoints(XmlElement polyPoints) {
 		List<Vector2> list = new List<Vector2>();
 		foreach(XmlElement point in polyPoints.SelectNodes("point")) {
-			float x;
-			float y;
+			float x = 0;
+			float y = 0;
 			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
 				list.Add(new Vector2(x, y));
 			}
