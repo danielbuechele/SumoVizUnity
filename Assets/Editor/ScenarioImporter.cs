@@ -7,7 +7,7 @@ using System.Collections;
 
 public class ScenarioImporter {
 
-	[MenuItem("Assets/Import accu:rate output")]
+	[MenuItem("Assets/Import crowd:it project")]
 	
 	static void importAccurateOutput() {
 		if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo ())
@@ -21,7 +21,7 @@ public class ScenarioImporter {
 		string scenariosPath = Application.dataPath + "/StreamingAssets/Scenarios";
 
 		if (continueOk) {
-			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "crowdit;*.xml"); //Path.GetFileName(path))
+			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "crowdit;*.crowdit"); //Path.GetFileName(path))
 
 			if (path == "") // = cancel was clicked in open file dialog
 				return;
