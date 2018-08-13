@@ -5,6 +5,7 @@ oculussig_*
 Assets/Plugins/other
 Assets/Plugins/other.meta
 Screenshots/*.png
+.vs/
 
 # Created by http://www.gitignore.io
 
