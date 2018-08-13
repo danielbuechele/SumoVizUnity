@@ -34,12 +34,13 @@ public class ScenarioImporter {
 			ri.geometryLoader.setTheme (new MarketplaceThemingMode ()); // EvaktischThemingMode ());
 
 			ScenarioLoader sl = new ScenarioLoader (path);
-			sl.loadScenario ();
-			ri.boundingPoints = sl.getBoundingPoints ();
+            sl.extractFloorFilePaths();
+            //sl.loadScenario ();
+			//ri.boundingPoints = sl.getBoundingPoints ();
 
 			//string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
 			//ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
-			ri.absoluteTrajFilePath = Path.GetDirectoryName (path) + "/" + sl.getRelativeTrajFilePath ();
+			//ri.absoluteTrajFilePath = Path.GetDirectoryName (path) + "/" + sl.getRelativeTrajFilePath ();
 		}
 	}
 

@@ -10,8 +10,12 @@ public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
 	//private List<string> specials = new List<string> ();
+    string filepath;
+    private Dictionary<string, string> floorPaths = new Dictionary<string, string>();
 
-	public ScenarioLoader(string filepath) {
+
+    public ScenarioLoader(string filepath) {
+        this.filepath = filepath;
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 		 
 		/*
@@ -24,7 +28,18 @@ public class ScenarioLoader {
 					specials.Add (line.Split ('#')[0].Trim ());*/
 	}
 
-	public string getRelativeTrajFilePath() {
+    public void extractFloorFilePaths() {
+        XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
+        foreach (XmlElement floor in spatial.SelectNodes("floor")) {
+            string id = floor.GetAttribute("id");
+            string resFolder = Path.Combine(Path.GetDirectoryName(filepath), Path.GetFileNameWithoutExtension(filepath)) + "_res";
+            string floorAtFullPath = Path.Combine(resFolder, floor.GetAttribute("floorAt"));
+            Debug.Log(id + ": " + floorAtFullPath);
+            floorPaths[id] = floorAtFullPath;
+        }
+    }
+
+    public string getRelativeTrajFilePath() {
 		string relativeTrajFilePath = "";
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
 		if (output != null) {
