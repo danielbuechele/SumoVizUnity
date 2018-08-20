@@ -27,15 +27,30 @@ public class ScenarioLoader {
             wunderZoneIdToMorphosisEntry.Add(morphosisEntry.GetAttribute("wunderZone"), morphosisEntry);
         }
 
-        // extract full paths to .floor files
-        Dictionary<string, string> floorPaths = new Dictionary<string, string>();
+        // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         foreach (XmlElement floor in spatial.SelectNodes("floor")) {
-            string id = floor.GetAttribute("id");
+            string floorId = floor.GetAttribute("id");
             string resFolder = Path.Combine(Path.GetDirectoryName(filepath), Path.GetFileNameWithoutExtension(filepath)) + "_res";
             string floorAtFullPath = Path.Combine(resFolder, floor.GetAttribute("floorAt"));
-            Debug.Log(id + ": " + floorAtFullPath);
-            floorPaths[id] = floorAtFullPath;
+            XmlDocument floorXmlDoc = new XmlDocument();
+            floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
+
+            XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
+            foreach (XmlElement layerEl in root.SelectNodes("layer")) {
+                string layerId = layerEl.GetAttribute("id");
+                // WUNDERZONES
+                foreach (XmlElement wunderZoneEl in layerEl.SelectNodes("wunderZone")) {
+                    string wunderZoneId = wunderZoneEl.GetAttribute("id");
+
+                }
+                // WALLS
+                foreach (XmlElement wallEl in layerEl.SelectNodes("wall")) {
+                    string wallId = wallEl.GetAttribute("id");
+                    bool closed = wallEl.GetAttribute("closed") == "true"; // via stackoverflow.com/a/9742736
+
+                }
+            }
         }
     }
 
