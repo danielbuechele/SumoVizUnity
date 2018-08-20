@@ -34,8 +34,7 @@ public class ScenarioImporter {
 			ri.geometryLoader.setTheme (new MarketplaceThemingMode ()); // EvaktischThemingMode ());
 
 			ScenarioLoader sl = new ScenarioLoader (path);
-            sl.extractFloorFilePaths();
-            //sl.loadScenario ();
+            sl.loadScenario ();
 			//ri.boundingPoints = sl.getBoundingPoints ();
 
 			//string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid

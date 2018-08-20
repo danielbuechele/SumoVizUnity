@@ -10,7 +10,6 @@ public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
     string filepath;
-    private Dictionary<string, string> floorPaths = new Dictionary<string, string>();
     private SimData simData = new SimData();
 
 
@@ -19,7 +18,17 @@ public class ScenarioLoader {
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
 	}
 
-    public void extractFloorFilePaths() {
+    public void loadScenario() {
+
+        // store morphosis entries
+        Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
+        XmlNode morphosis = xmlDoc.SelectSingleNode("//morphosis");
+        foreach (XmlElement morphosisEntry in morphosis.SelectNodes("floor")) {
+            wunderZoneIdToMorphosisEntry.Add(morphosisEntry.GetAttribute("wunderZone"), morphosisEntry);
+        }
+
+        // extract full paths to .floor files
+        Dictionary<string, string> floorPaths = new Dictionary<string, string>();
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         foreach (XmlElement floor in spatial.SelectNodes("floor")) {
             string id = floor.GetAttribute("id");
@@ -29,6 +38,8 @@ public class ScenarioLoader {
             floorPaths[id] = floorAtFullPath;
         }
     }
+
+    // ---------------------------------------------------------------------------------------
 
     public string getRelativeTrajFilePath() {
 		string relativeTrajFilePath = "";
@@ -41,7 +52,7 @@ public class ScenarioLoader {
 		return relativeTrajFilePath;
 	}
 		
-	public void loadScenario() {
+	public void loadScenarioOld() {
 		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
 		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: more floors
 			float height = 1f; // used 2.4 in disco scene
