@@ -9,7 +9,6 @@ using System.Xml;
 public class ScenarioLoader {
 
 	private XmlDocument xmlDoc = new XmlDocument();
-	//private List<string> specials = new List<string> ();
     string filepath;
     private Dictionary<string, string> floorPaths = new Dictionary<string, string>();
     private SimData simData = new SimData();
@@ -18,15 +17,6 @@ public class ScenarioLoader {
     public ScenarioLoader(string filepath) {
         this.filepath = filepath;
 		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
-		 
-		/*
-		// for big project
-		string wallToOpenWallCasesFilecontent = utils.loadFileIntoEditor (Application.dataPath + "/Resources/Data/_ignore/wallToOpenWallCases.txt");
-		string[] lines = wallToOpenWallCasesFilecontent.Split("\n"[0]);
-		foreach (string line in lines)
-			if (line.Length > 0)
-				if (line.Substring (0, 1) != "#")
-					specials.Add (line.Split ('#')[0].Trim ());*/
 	}
 
     public void extractFloorFilePaths() {
@@ -63,23 +53,7 @@ public class ScenarioLoader {
 							WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
 							break;
 						case "wall":
-							/*if (specials.Contains (name)) {
-								List<Vector2> vertices = parsePoints (geomObj);
-								Vector2 first = vertices [0];	
-								Vector2 last = vertices[vertices.Count - 1];
-								Vector2 secondLast = vertices[vertices.Count - 2];
-								if (first == last) {
-									Vector2 newLast = Vector2.Lerp (secondLast, last, 0.99f);
-									vertices.RemoveAt (vertices.Count - 1);
-									vertices.Add (newLast);
-								} else {
-									Vector2 newLast = Vector2.Lerp (last, first, 0.99f);
-									vertices.Add (newLast);
-								}
-								WallExtrudeGeometry.create (name, vertices, height, -0.2f);
-							}
-							else*/
-								ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
+							ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
 							break;
 						case "origin":
 							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.61f, 0.04f, 0, .3f));
