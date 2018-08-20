@@ -23,8 +23,9 @@ public class ScenarioLoader {
         // store morphosis entries
         Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
         XmlNode morphosis = xmlDoc.SelectSingleNode("//morphosis");
-        foreach (XmlElement morphosisEntry in morphosis.SelectNodes("floor")) {
-            wunderZoneIdToMorphosisEntry.Add(morphosisEntry.GetAttribute("wunderZone"), morphosisEntry);
+        foreach (XmlElement morphosisEntry in morphosis) {
+            string wunderZoneId = morphosisEntry.GetAttribute("wunderZone");
+            wunderZoneIdToMorphosisEntry[wunderZoneId] = morphosisEntry;
         }
 
         // extract paths to .floor files and parse their content
@@ -32,7 +33,7 @@ public class ScenarioLoader {
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string resFolder = Path.Combine(Path.GetDirectoryName(filepath), Path.GetFileNameWithoutExtension(filepath)) + "_res";
-            string floorAtFullPath = Path.Combine(resFolder, floor.GetAttribute("floorAt"));
+            string floorAtFullPath = Path.Combine(resFolder, floorEl.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 
@@ -44,12 +45,12 @@ public class ScenarioLoader {
                 // WUNDERZONES
                 foreach (XmlElement wunderZoneEl in layerEl.SelectNodes("wunderZone")) {
                     string wunderZoneId = wunderZoneEl.GetAttribute("id");
-                    XmlElement correspondingMorphosisEntry = wunderZoneIdToMorphosisEntry[wunderZoneId];
-                    if (correspondingMorphosisEntry == null) { // verify this works
+                    if (!wunderZoneIdToMorphosisEntry.ContainsKey(wunderZoneId)) {
                         continue;
                     }
                     WunderZone actualization = null;
-                    string geometryElementType = correspondingMorphosisEntry.Name;
+                    string geometryElementType = wunderZoneIdToMorphosisEntry[wunderZoneId].Name;
+                    string actualizationId = wunderZoneIdToMorphosisEntry[wunderZoneId].GetAttribute("id");
 
                     switch (geometryElementType) {
                         case "destination":
@@ -86,22 +87,35 @@ public class ScenarioLoader {
                             Debug.LogWarning("Scenario parser: unknown geometry element type " + geometryElementType);
                             break;
                     }
-                    if (actualization != null) {
-                        actualization.setPoints(parsePoints(wunderZoneEl));
-                        floor.addWunderZone(actualization);
-                        simData.addWunderZoneToMap(wunderZoneId, actualization);
+
+                    if (actualization == null) {
+                        continue;
                     }
-                    
+
+                    actualization.setId(actualizationId);
+                    actualization.setWunderZoneId(wunderZoneId);
+                    actualization.setPoints(parsePoints(wunderZoneEl));
+                    floor.addWunderZone(actualization);
+                    simData.addWunderZoneToMap(wunderZoneId, actualization);
                 }
                 // WALLS
                 foreach (XmlElement wallEl in layerEl.SelectNodes("wall")) {
                     string wallId = wallEl.GetAttribute("id");
                     bool closed = wallEl.GetAttribute("closed") == "true"; // via stackoverflow.com/a/9742736
-
+                    Wall wall = null;
+                    if (closed) {
+                        wall = new ClosedWall();
+                    } else {
+                        wall = new OpenWall();
+                    }
+                    wall.setId(wallId);
+                    wall.setPoints(parsePoints(wallEl));
+                    floor.addWall(wall);
                 }
             }
 
             simData.addFloor(floor);
+            simData.printFloors();
         }
     }
 

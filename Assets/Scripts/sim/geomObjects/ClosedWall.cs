@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public class Escalator : WunderZone {
-
+public class ClosedWall : Wall {
+ 
 }
