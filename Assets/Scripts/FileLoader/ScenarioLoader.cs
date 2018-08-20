@@ -12,6 +12,7 @@ public class ScenarioLoader {
 	//private List<string> specials = new List<string> ();
     string filepath;
     private Dictionary<string, string> floorPaths = new Dictionary<string, string>();
+    private SimData simData = new SimData();
 
 
     public ScenarioLoader(string filepath) {
