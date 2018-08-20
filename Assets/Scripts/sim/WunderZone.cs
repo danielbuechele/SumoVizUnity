@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public class WunderZone {
+public class WunderZone : GeometryElement {
 
-    public void DoIt() {
-
-    }
 }

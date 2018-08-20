@@ -29,12 +29,14 @@ public class ScenarioLoader {
 
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
-        foreach (XmlElement floor in spatial.SelectNodes("floor")) {
-            string floorId = floor.GetAttribute("id");
+        foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
+            string floorId = floorEl.GetAttribute("id");
             string resFolder = Path.Combine(Path.GetDirectoryName(filepath), Path.GetFileNameWithoutExtension(filepath)) + "_res";
             string floorAtFullPath = Path.Combine(resFolder, floor.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
+
+            Floor floor = new Floor(floorId);
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
             foreach (XmlElement layerEl in root.SelectNodes("layer")) {
@@ -42,7 +44,54 @@ public class ScenarioLoader {
                 // WUNDERZONES
                 foreach (XmlElement wunderZoneEl in layerEl.SelectNodes("wunderZone")) {
                     string wunderZoneId = wunderZoneEl.GetAttribute("id");
+                    XmlElement correspondingMorphosisEntry = wunderZoneIdToMorphosisEntry[wunderZoneId];
+                    if (correspondingMorphosisEntry == null) { // verify this works
+                        continue;
+                    }
+                    WunderZone actualization = null;
+                    string geometryElementType = correspondingMorphosisEntry.Name;
 
+                    switch (geometryElementType) {
+                        case "destination":
+                            actualization = new Destination();
+                            break;
+                        case "directedScaledArea":
+                            actualization = new DirectedScaledArea();
+                            break;
+                        case "elevator":
+                            actualization = new Elevator();
+                            break;
+                        case "escalator":
+                            actualization = new Escalator();
+                            break;
+                        case "origin":
+                            actualization = new Origin();
+                             break;
+                        case "portal":
+                            actualization = new Portal();
+                            break;
+                        case "queueingArea":
+                            actualization = new QueueingArea();
+                            break;
+                        case "scaledArea":
+                            actualization = new ScaledArea();
+                            break;
+                        case "stair":
+                            actualization = new Stair();
+                            break;
+                        case "waitingZone":
+                            actualization = new WaitingZone();
+                            break;
+                        default:
+                            Debug.LogWarning("Scenario parser: unknown geometry element type " + geometryElementType);
+                            break;
+                    }
+                    if (actualization != null) {
+                        actualization.setPoints(parsePoints(wunderZoneEl));
+                        floor.addWunderZone(actualization);
+                        simData.addWunderZoneToMap(wunderZoneId, actualization);
+                    }
+                    
                 }
                 // WALLS
                 foreach (XmlElement wallEl in layerEl.SelectNodes("wall")) {
@@ -51,6 +100,8 @@ public class ScenarioLoader {
 
                 }
             }
+
+            simData.addFloor(floor);
         }
     }
 
@@ -144,7 +195,7 @@ public class ScenarioLoader {
 	}
 
 	public List<float> getBoundingPoints() {
-		return new List<float> (){minX, minY, maxX, maxY};
+		return new List<float> () {minX, minY, maxX, maxY};
 	}
 
 	/*

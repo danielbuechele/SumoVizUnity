@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public class Wall {
+public class Wall : GeometryElement {
 
-    public void DoIt() {
-        
-    }
 }
