@@ -48,11 +48,10 @@ public class ScenarioLoader {
                     if (!wunderZoneIdToMorphosisEntry.ContainsKey(wunderZoneId)) {
                         continue;
                     }
+                    XmlElement morphosisEntry = wunderZoneIdToMorphosisEntry[wunderZoneId];
                     WunderZone actualization = null;
-                    string geometryElementType = wunderZoneIdToMorphosisEntry[wunderZoneId].Name;
-                    string actualizationId = wunderZoneIdToMorphosisEntry[wunderZoneId].GetAttribute("id");
 
-                    switch (geometryElementType) {
+                    switch (morphosisEntry.Name) {
                         case "destination":
                             actualization = new Destination();
                             break;
@@ -84,7 +83,7 @@ public class ScenarioLoader {
                             actualization = new WaitingZone();
                             break;
                         default:
-                            Debug.LogWarning("Scenario parser: unknown geometry element type " + geometryElementType);
+                            Debug.LogWarning("Scenario parser: unknown geometry element type " + morphosisEntry.Name);
                             break;
                     }
 
@@ -92,7 +91,8 @@ public class ScenarioLoader {
                         continue;
                     }
 
-                    actualization.setId(actualizationId);
+                    actualization.setId(morphosisEntry.GetAttribute("id"));
+                    actualization.setMorphosisEntry(morphosisEntry);
                     actualization.setWunderZoneId(wunderZoneId);
                     actualization.setPoints(parsePoints(wunderZoneEl));
                     floor.addWunderZone(actualization);
