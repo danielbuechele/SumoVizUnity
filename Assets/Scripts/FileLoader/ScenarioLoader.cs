@@ -41,7 +41,6 @@ public class ScenarioLoader {
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
             foreach (XmlElement layerEl in root.SelectNodes("layer")) {
-                string layerId = layerEl.GetAttribute("id");
                 // WUNDERZONES
                 foreach (XmlElement wunderZoneEl in layerEl.SelectNodes("wunderZone")) {
                     string wunderZoneId = wunderZoneEl.GetAttribute("id");
@@ -92,30 +91,38 @@ public class ScenarioLoader {
                     }
 
                     actualization.setId(morphosisEntry.GetAttribute("id"));
+                    actualization.setLayerId(layerEl.GetAttribute("id"));
                     actualization.setMorphosisEntry(morphosisEntry);
                     actualization.setWunderZoneId(wunderZoneId);
                     actualization.setPoints(parsePoints(wunderZoneEl));
+
+                    // create 3D object
+                    actualization.createObject();
+
                     floor.addWunderZone(actualization);
                     simData.addWunderZoneToMap(wunderZoneId, actualization);
                 }
                 // WALLS
                 foreach (XmlElement wallEl in layerEl.SelectNodes("wall")) {
-                    string wallId = wallEl.GetAttribute("id");
-                    bool closed = wallEl.GetAttribute("closed") == "true"; // via stackoverflow.com/a/9742736
                     Wall wall = null;
-                    if (closed) {
+                    if (wallEl.GetAttribute("closed") == "true") { // via stackoverflow.com/a/9742736
                         wall = new ClosedWall();
                     } else {
                         wall = new OpenWall();
                     }
-                    wall.setId(wallId);
+                    wall.setId(wallEl.GetAttribute("id"));
+                    wall.setLayerId(layerEl.GetAttribute("id"));
                     wall.setPoints(parsePoints(wallEl));
+
+                    // create 3D object
+                    wall.createObject();
+
                     floor.addWall(wall);
                 }
             }
 
             simData.addFloor(floor);
-            simData.printFloors();
+            //simData.printFloors();
         }
     }
 

@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 public class GeometryElement {
 
-    private List<Vector2> points;
-    private string id;
+    internal List<Vector2> points;
+    internal string id;
+    private string layerId;
 
     internal void setPoints(List<Vector2> points) {
         this.points = points;
@@ -19,4 +20,11 @@ public class GeometryElement {
     internal string getId() {
         return id;
     }
+
+    internal void setLayerId(string layerId) {
+        this.layerId = layerId;
+    }
+
+    public virtual void createObject() {}
+
 }
