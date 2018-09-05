@@ -2,7 +2,6 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using System.IO;
-using System.Collections;
 using System.Xml;
 
 public class ScenarioImporter {
@@ -82,7 +81,7 @@ public class ScenarioImporter {
 		Debug.Log ("DONE");
 		*/
 
-
+        /*
 		var absoluteFfmpegExeLoc = ""; // C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe";
 
 		bool continueOk = true;
@@ -99,6 +98,7 @@ public class ScenarioImporter {
 
 			System.Diagnostics.Process.Start (absoluteFfmpegExeLoc, ffmpegCommand);
 		}
+        */
 	}
 		
 

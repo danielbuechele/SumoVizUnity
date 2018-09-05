@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
-using System.Text;
 using System.Xml;
 
 public class ScenarioLoader {
@@ -140,8 +138,38 @@ public class ScenarioLoader {
         }
     }
 
-    // ---------------------------------------------------------------------------------------
+    static float minX = float.MaxValue;
+    static float maxX = 0;
+    static float minY = float.MaxValue;
+    static float maxY = 0;
 
+    // Parse an XmlElement full of <point> XmlElements into a coordinate list 
+    static List<Vector2> parsePoints(XmlElement polyPoints) {
+        List<Vector2> list = new List<Vector2>();
+        foreach (XmlElement point in polyPoints.SelectNodes("point")) {
+            float x = 0;
+            float y = 0;
+            if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
+                list.Add(new Vector2(x, y));
+            }
+
+            if (x < minX)
+                minX = x;
+            if (x > maxX)
+                maxX = x;
+            if (y < minY)
+                minY = y;
+            if (y > maxY)
+                maxY = y;
+        }
+        return list;
+    }
+
+    public List<float> getBoundingPoints() {
+        return new List<float>() { minX, minY, maxX, maxY };
+    }
+
+    /*
     public string getRelativeTrajFilePath() {
 		string relativeTrajFilePath = "";
 		XmlNode output = xmlDoc.SelectSingleNode("//output");
@@ -193,47 +221,12 @@ public class ScenarioLoader {
 			}
 		}
 
-		/*
 		Debug.Log ("minX: " + minX);
 		Debug.Log ("maxX: " + maxX);
 		Debug.Log ("minY: " + minY);
 		Debug.Log ("maxY: " + maxY);
-		*/
 	}
 
-
-	static float minX = float.MaxValue; 
-	static float maxX = 0;
-	static float minY = float.MaxValue;
-	static float maxY = 0;
-
-	// Parse an XmlElement full of <point> XmlElements into a coordinate list 
-	static List<Vector2> parsePoints(XmlElement polyPoints) {
-		List<Vector2> list = new List<Vector2>();
-		foreach(XmlElement point in polyPoints.SelectNodes("point")) {
-			float x = 0;
-			float y = 0;
-			if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
-				list.Add(new Vector2(x, y));
-			}
-
-			if (x < minX)
-				minX = x;
-			if (x > maxX)
-				maxX = x;
-			if (y < minY)
-				minY = y;
-			if(y > maxY)
-				maxY = y;
-		}
-		return list;
-	}
-
-	public List<float> getBoundingPoints() {
-		return new List<float> () {minX, minY, maxX, maxY};
-	}
-
-	/*
 	static string listToString(List<Vector2> list) {
 		string str = "";
 		foreach (Vector2 v in list) {

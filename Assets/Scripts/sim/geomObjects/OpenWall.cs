@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEditor;
-
+﻿
 public class OpenWall : Wall {
 
     public override void createObject() {

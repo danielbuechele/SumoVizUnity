@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEditor;
-
+﻿
 public class ClosedWall : Wall {
 
     public override void createObject() {

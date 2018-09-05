@@ -1,35 +1,13 @@
 ﻿using UnityEngine;
 using System.IO;
-using System.Text;
-using System.Collections;
 using System.IO.Compression;
 
 public class TrajectoryLoader {
 
-	//private StreamReader reader;
-
-	public TrajectoryLoader() {
-		//FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
-
-		//FileInfo fi = new FileInfo (trajFilePath);
-		//reader = fi.OpenText ();
-
-		/*
-		if (properStreamReading) {
-			FileInfo fi = new FileInfo ("Assets/Resources/Data/" + relativeTrajFilePath); //_ignore
-			reader = fi.OpenText ();
-		} else {
-			string filedata = utils.loadFileAtRuntimeIntoBuild ("Data/" + relativeTrajFilePath);
-			reader = new StreamReader (new MemoryStream (Encoding.UTF8.GetBytes (filedata)));
-		}*/
-	}
-
 	public bool forceStartAtZero = true;
 	private bool timeSubstractTaken = false;
 
-
 	public void loadTrajectories(string trajFilePath) {
-
         //if (trajFilePath.EndsWith(".gz")) // TODO
 
         PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
@@ -69,5 +47,23 @@ public class TrajectoryLoader {
 		//pl.createPedestrians ();
 		pl.init ();
 	}
-		
+
+    /*
+    private StreamReader reader;
+
+    public TrajectoryLoader() {
+    //FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
+
+    //FileInfo fi = new FileInfo (trajFilePath);
+    //reader = fi.OpenText ();
+
+
+    if (properStreamReading) {
+        FileInfo fi = new FileInfo ("Assets/Resources/Data/" + relativeTrajFilePath); //_ignore
+        reader = fi.OpenText ();
+    } else {
+        string filedata = utils.loadFileAtRuntimeIntoBuild ("Data/" + relativeTrajFilePath);
+        reader = new StreamReader (new MemoryStream (Encoding.UTF8.GetBytes (filedata)));
+    }
+    */
 }
