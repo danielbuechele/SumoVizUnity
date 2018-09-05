@@ -8,17 +8,14 @@ using System.Xml;
 
 public class ScenarioLoader {
 
-	private XmlDocument xmlDoc = new XmlDocument();
-    string filepath;
+    private XmlDocument xmlDoc = new XmlDocument();
     private SimData simData = new SimData();
 
+    public ScenarioLoader() {}
 
-    public ScenarioLoader(string filepath) {
-        this.filepath = filepath;
-		xmlDoc.LoadXml (utils.loadFileIntoEditor (filepath));
-	}
+    public void loadScenario(string crowditFilePath, string resFolderPath) {
 
-    public void loadScenario() {
+        xmlDoc.LoadXml(utils.loadFileIntoEditor(crowditFilePath));
 
         // store morphosis entries
         Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
@@ -32,8 +29,7 @@ public class ScenarioLoader {
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
-            string resFolder = Path.Combine(Path.GetDirectoryName(filepath), Path.GetFileNameWithoutExtension(filepath)) + "_res";
-            string floorAtFullPath = Path.Combine(resFolder, floorEl.GetAttribute("floorAt"));
+            string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 

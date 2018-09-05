@@ -28,8 +28,8 @@ public class FileChooser : MonoBehaviour {
 				ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 				ri.geometryLoader.setTheme (new DefaultThemingMode ());
 
-				ScenarioLoader sl = new ScenarioLoader (path);
-				sl.loadScenario ();
+				ScenarioLoader sl = new ScenarioLoader ();
+				//sl.loadScenario ();
 
 				ri.boundingPoints = sl.getBoundingPoints ();
 

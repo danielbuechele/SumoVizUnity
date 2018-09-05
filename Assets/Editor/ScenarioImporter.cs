@@ -21,9 +21,9 @@ public class ScenarioImporter {
 		string scenariosPath = Application.dataPath + "/StreamingAssets/Scenarios";
 
 		if (continueOk) {
-			var path = EditorUtility.OpenFilePanel ("", scenariosPath, "crowdit;*.crowdit"); //Path.GetFileName(path))
+			var crowditFilePath = EditorUtility.OpenFilePanel ("", scenariosPath, "crowdit;*.crowdit"); //Path.GetFileName(path))
 
-			if (path == "") // = cancel was clicked in open file dialog
+			if (crowditFilePath == "") // = cancel was clicked in open file dialog
 				return;
 
 			new GameObject("World");
@@ -33,9 +33,11 @@ public class ScenarioImporter {
 			ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 			ri.geometryLoader.setTheme (new MarketplaceThemingMode ()); // EvaktischThemingMode ());
 
-			ScenarioLoader sl = new ScenarioLoader (path);
-            sl.loadScenario ();
-			//ri.boundingPoints = sl.getBoundingPoints ();
+            string resFolderPath = Path.Combine(Path.GetDirectoryName(crowditFilePath), Path.GetFileNameWithoutExtension(crowditFilePath)) + "_res";
+
+            ScenarioLoader sl = new ScenarioLoader ();
+            sl.loadScenario (crowditFilePath, resFolderPath);
+			ri.boundingPoints = sl.getBoundingPoints ();
 
 			//string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
 			//ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
