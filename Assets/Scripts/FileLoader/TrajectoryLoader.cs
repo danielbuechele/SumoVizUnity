@@ -2,17 +2,17 @@
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.IO.Compression;
 
 public class TrajectoryLoader {
 
-	private StreamReader reader;
+	//private StreamReader reader;
 
-
-	public TrajectoryLoader(string trajFilePath) {
+	public TrajectoryLoader() {
 		//FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
 
-		FileInfo fi = new FileInfo (trajFilePath);
-		reader = fi.OpenText ();
+		//FileInfo fi = new FileInfo (trajFilePath);
+		//reader = fi.OpenText ();
 
 		/*
 		if (properStreamReading) {
@@ -28,11 +28,19 @@ public class TrajectoryLoader {
 	private bool timeSubstractTaken = false;
 
 
-	public void loadTrajectories() {
-		PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
-		decimal timeSubtract = 0;
+	public void loadTrajectories(string trajFilePath) {
 
-		using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
+        //if (trajFilePath.EndsWith(".gz")) // TODO
+
+        PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
+        decimal timeSubtract = 0;
+
+        // via https://stackoverflow.com/a/29372751
+        using (FileStream fs = File.OpenRead(trajFilePath))
+        using (GZipStream zip = new GZipStream(fs, CompressionMode.Decompress, true))
+        using (StreamReader reader = new StreamReader(zip)) {
+        //while (!unzip.EndOfStream) {}
+		//using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
 			string line = reader.ReadLine(); // skip the 1st line = header
 			line = reader.ReadLine(); // 2nd line
 

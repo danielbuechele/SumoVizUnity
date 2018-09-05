@@ -35,8 +35,8 @@ public class FileChooser : MonoBehaviour {
 
 				string csvAt = sl.getRelativeTrajFilePath ();
 				if (csvAt != "") {
-					ri.relativeTrajFilePath = path.Substring (0, path.Length - path.Split (Path.DirectorySeparatorChar).Last ().Length) + csvAt;
-					ri.doStart ();
+					//ri.relativeTrajFilePath = path.Substring (0, path.Length - path.Split (Path.DirectorySeparatorChar).Last ().Length) + csvAt;
+					//ri.doStart ();
 				} else {
 					Debug.Log ("No trajectories file found");
 				}

@@ -10,8 +10,7 @@ public class RuntimeInitializer : MonoBehaviour {
 	public bool trajAtEditingTime = true;*/
 	[HideInInspector]
 	public GeometryLoader geometryLoader;
-	public string relativeTrajFilePath; // TODO more floors
-	public string absoluteTrajFilePath;
+	public string trajFilePath; // TODO more floors
 
 	public List<float> boundingPoints;
 
@@ -22,16 +21,16 @@ public class RuntimeInitializer : MonoBehaviour {
 	}*/
 		
 	void Start () { // = Play button was pressed in unity
-		if (relativeTrajFilePath != "no_path_to_trajectory_file") {
-			TrajectoryLoader tl = new TrajectoryLoader (relativeTrajFilePath);
-			tl.loadTrajectories ();
+		if (trajFilePath != "no_path_to_trajectory_file") {
+			TrajectoryLoader tl = new TrajectoryLoader ();
+			tl.loadTrajectories (trajFilePath);
 		} else {
 			Debug.LogError ("no path to trajectory file -> set one in RuntimeInitializer relative to the StreamingAssets directory");
 		}
 	}
 
-	public void doStart() {
+	/*public void doStart() {
 		TrajectoryLoader tl = new TrajectoryLoader (absoluteTrajFilePath);
 		tl.loadTrajectories ();
-	}
+	}*/
 }
