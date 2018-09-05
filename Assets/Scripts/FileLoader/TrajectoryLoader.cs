@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.IO.Compression;
+using System.Xml;
 
 public class TrajectoryLoader {
 
 	public bool forceStartAtZero = true;
 	private bool timeSubstractTaken = false;
 
-	public void loadTrajectories(string trajFilePath) {
+	public void loadTrajectories(string resFolderPath) {
+        string outFolder = Path.Combine(resFolderPath, "out");
+        string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
+        XmlDocument simXmlDoc = new XmlDocument();
+        simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
+        XmlNode output = simXmlDoc.SelectSingleNode("//output");
+        string trajFilePath = "";
+        foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
+            trajFilePath = Path.Combine(outFolder, floorCsvAtEl.GetAttribute("csvAt")); // TODO multiple floors
+        }
+
         //if (trajFilePath.EndsWith(".gz")) // TODO
 
         PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();

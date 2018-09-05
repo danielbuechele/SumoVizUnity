@@ -2,7 +2,6 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using System.IO;
-using System.Xml;
 
 public class ScenarioImporter {
 
@@ -36,16 +35,9 @@ public class ScenarioImporter {
 
             ScenarioLoader sl = new ScenarioLoader ();
             sl.loadScenario (crowditFilePath, resFolderPath);
-			ri.boundingPoints = sl.getBoundingPoints ();
 
-            string outFolder = Path.Combine(resFolderPath, "out");
-            string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
-            XmlDocument simXmlDoc = new XmlDocument();
-            simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
-            XmlNode output = simXmlDoc.SelectSingleNode("//output");
-            foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
-                ri.trajFilePath = Path.Combine(outFolder, floorCsvAtEl.GetAttribute("csvAt")); // TODO multiple floors
-            }
+			ri.boundingPoints = sl.getBoundingPoints ();
+            ri.setCrowditFileAndResFolder(crowditFilePath, resFolderPath);
 
             //string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid
             //ri.relativeTrajFilePath = sl.getRelativeTrajFilePath () != "" ? "Assets/StreamingAssets/Scenarios" + projectFolderName + sl.getRelativeTrajFilePath () : "no_path_to_trajectory_file";
