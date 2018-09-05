@@ -25,15 +25,33 @@ public class ScenarioLoader {
             wunderZoneIdToMorphosisEntry[wunderZoneId] = morphosisEntry;
         }
 
+        // store floorProps entries
+        Dictionary<string, XmlElement> floorPropsEntries = new Dictionary<string, XmlElement>();
+        XmlNode floorProps = xmlDoc.SelectSingleNode("//floorProps");
+        foreach (XmlElement floorPropEl in floorProps) {
+            string floorId = floorPropEl.GetAttribute("floor");
+            floorPropsEntries[floorId] = floorPropEl;
+        }
+
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
+        int level = 0;
+        double nextFloorElevation = 0;
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 
-            Floor floor = new Floor(floorId);
+            Floor floor = new Floor(floorId, level ++);
+
+            double elevation = Double.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
+            if (elevation == 0) {
+                elevation = nextFloorElevation; // fallback value: means ceiling between floors has height 0
+            }
+            double height = Double.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            floor.setFloorElevationAndHeight(elevation, height);
+            nextFloorElevation += height;
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
             foreach (XmlElement layerEl in root.SelectNodes("layer")) {
