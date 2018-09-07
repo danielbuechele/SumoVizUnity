@@ -51,7 +51,7 @@ public class FileLoader : MonoBehaviour {
 				int.TryParse(v[1], out id);
 				float.TryParse(v[2], out x);
 				float.TryParse(v[3], out y);
-				pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
+				//pl.addPedestrianPosition(new PedestrianPosition(id,time,x,y));
 			}
 		}
 

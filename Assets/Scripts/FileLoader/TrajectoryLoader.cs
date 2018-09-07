@@ -43,12 +43,13 @@ public class TrajectoryLoader {
 				if (values.Length >= 4) {
 					decimal time;
 					int id;
-					float x, y;
+					float x, y, z;
 					decimal.TryParse(values[0], out time);
 					int.TryParse(values[1], out id);
 					float.TryParse(values[2], out x);
 					float.TryParse(values[3], out y);
-					pl.addPedestrianPosition(new PedestrianPosition(id, time - timeSubtract, x, y));
+                    float.TryParse(values[4], out z);
+                    pl.addPedestrianPosition(new PedestrianPosition(id, time - timeSubtract, x, y, z));
 				}
 				line = reader.ReadLine ();
 			}
