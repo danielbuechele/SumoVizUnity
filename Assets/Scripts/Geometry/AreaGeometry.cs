@@ -7,10 +7,10 @@ public class AreaGeometry : Geometry  {
 
 
 	public static void createOriginTarget (string name, List<Vector2> verticesList) {
-		createOriginTarget (name, verticesList, new Color (1, 0, 0, .3f));
+		createOriginTarget (name, verticesList, new Color (1, 0, 0, .3f), 0);
 	}
 
-	public static void createOriginTarget (string name, List<Vector2> verticesList, Color color) {
+	public static void createOriginTarget (string name, List<Vector2> verticesList, Color color, float floorElevation) {
 		if (verticesList.First() == verticesList.Last()) { //otherwise circular boundary definitions won't be rendered
 			verticesList.Remove (verticesList.Last());
 		}
@@ -22,7 +22,7 @@ public class AreaGeometry : Geometry  {
 		var renderer = obstacle.GetComponent<Renderer>();
 		renderer.sharedMaterial = new Material (Shader.Find ("Transparent/Diffuse"));
 		renderer.sharedMaterial.color = color;
-		create (obstacle, verticesList);
+		create (obstacle, verticesList, floorElevation);
 	}
 
 	public static void createPlane(string name, List<Vector2> verticesList, Material material) {
@@ -30,10 +30,10 @@ public class AreaGeometry : Geometry  {
 		obstacle.transform.position = new Vector3 (0, 0.01f, 0);
 		var renderer = obstacle.GetComponent<Renderer>();
 		renderer.sharedMaterial = material;
-		create (obstacle, verticesList);
+		create (obstacle, verticesList, 0);
 	}
 
-	public static void create(GameObject obstacle, List<Vector2> verticesList) {
+	public static void create(GameObject obstacle, List<Vector2> verticesList, float floorElevation) {
 		Vector2[] vertices2D = verticesList.ToArray();
 
 		// Use the triangulator to get indices for creating triangles

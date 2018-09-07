@@ -2,7 +2,7 @@
 public class ClosedWall : Wall {
 
     public override void createObject() {
-        ObstacleExtrudeGeometry.create(this.id + "-ExtrudeObject", points, 1);
+        ObstacleExtrudeGeometry.create(this.id + "-ExtrudeObject", points, 1, floor.elevation);
     }
 
 }

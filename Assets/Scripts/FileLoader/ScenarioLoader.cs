@@ -34,7 +34,7 @@ public class ScenarioLoader {
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         int level = 0;
-        double nextFloorElevation = 0;
+        float nextFloorElevation = 0;
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
@@ -43,11 +43,11 @@ public class ScenarioLoader {
 
             Floor floor = new Floor(floorId, level ++);
 
-            double elevation = Double.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
+            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
             if (elevation == 0) {
                 elevation = nextFloorElevation; // fallback value: means ceiling between floors has height 0
             }
-            double height = Double.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
             floor.setFloorElevationAndHeight(elevation, height);
             nextFloorElevation += height;
 
@@ -102,6 +102,7 @@ public class ScenarioLoader {
                         continue;
                     }
 
+                    actualization.setFloor(floor);
                     actualization.setId(morphosisEntry.GetAttribute("id"));
                     actualization.setLayerId(layerEl.GetAttribute("id"));
                     actualization.setMorphosisEntry(morphosisEntry);
@@ -122,6 +123,7 @@ public class ScenarioLoader {
                     } else {
                         wall = new OpenWall();
                     }
+                    wall.setFloor(floor);
                     wall.setId(wallEl.GetAttribute("id"));
                     wall.setLayerId(layerEl.GetAttribute("id"));
                     wall.setPoints(parsePoints(wallEl));

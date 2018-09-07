@@ -7,8 +7,8 @@ public class Floor {
     private List<WunderZone> wunderZones = new List<WunderZone>();
     private string floorId;
     private int level;
-    private double elevation;
-    private double height;
+    internal float elevation;
+    private float height;
 
     internal Floor(string floorId, int level) {
         this.floorId = floorId;
@@ -33,7 +33,7 @@ public class Floor {
         }
     }
 
-    internal void setFloorElevationAndHeight(double height, double elevation) {
+    internal void setFloorElevationAndHeight(float height, float elevation) {
         this.elevation = elevation;
         this.height = height;
     }

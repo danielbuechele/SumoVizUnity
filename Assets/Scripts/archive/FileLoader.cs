@@ -87,10 +87,10 @@ public class FileLoader : MonoBehaviour {
 					}
 
 					string type = v[v.Length-2+indexCorrection];
-					if (type == "wall") WallExtrudeGeometry.create(name, list, height, -0.2f);
+					/*if (type == "wall") WallExtrudeGeometry.create(name, list, height, -0.2f);
 					else if (type == "obstacle") ObstacleExtrudeGeometry.create(name, list, height);
 					else if (type == "tree") TreeGeometry.create(name, list[0]);
-					else AreaGeometry.createOriginTarget(name, list);
+					else AreaGeometry.createOriginTarget(name, list);*/
 				}
 			}
 		}

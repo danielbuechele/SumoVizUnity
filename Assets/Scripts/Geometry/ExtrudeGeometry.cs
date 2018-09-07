@@ -7,7 +7,7 @@ public class ExtrudeGeometry : Geometry  {
 	//info about generating meshes: http://docs.unity3d.com/Manual/AnatomyofaMesh.html
 
 
-	public static void create (string name, List<Vector2> verticesList, float height, Material topMaterial, Material sideMaterial) {
+	public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial) {
 		GameObject obstacle = new GameObject (name); // = parent object to top and side planes
 		(GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
 

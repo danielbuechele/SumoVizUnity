@@ -19,6 +19,6 @@ public class WunderZone : GeometryElement {
     }
 
     public void createSurfaceObject(Color color) {
-        AreaGeometry.createOriginTarget(this.id + "-SurfaceObject", this.points, color);
+        AreaGeometry.createOriginTarget(this.id + "-SurfaceObject", this.points, color, floor.elevation);
     }
 }

@@ -31,11 +31,11 @@ public class FileLoaderXML {
 				switch (geomObj.GetAttribute("type")) {
 
 				case "openWall":
-					WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
+					//WallExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height, -0.2f);
 					break;
 
 				case "wall":
-					ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
+					//ObstacleExtrudeGeometry.create(geomObj.GetAttribute("name"), parsePoints(geomObj), height);
 					break;
 
 				case "origin":

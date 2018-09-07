@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessarily closed, width is set here, not in verticesList
 
-	public static void create (string name, List<Vector2> verticesList, float height, float width) {
+	public static void create (string name, List<Vector2> verticesList, float height, float width, float elevation) {
 		int wallpoints = verticesList.Count;
 		float wall = width;
 		
@@ -44,7 +44,7 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		Material topMaterial = gl.theme.getOpenWallMaterial ();
 		Material sideMaterial = topMaterial;
-		ExtrudeGeometry.create (name, verticesList, height, topMaterial, sideMaterial);
+		ExtrudeGeometry.create (name, verticesList, height, elevation, topMaterial, sideMaterial);
 	}
 		
 }
