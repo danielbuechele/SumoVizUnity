@@ -42,6 +42,19 @@ public class Floor {
     }
 
     internal void createObjects() {
+
+        List<Vector2> plane = new List<Vector2>();
+        float minX = boundingPoints[0],
+              minY = boundingPoints[1],
+              maxX = boundingPoints[2],
+              maxY = boundingPoints[3];
+        plane.Add(new Vector2(minX, minY));
+        plane.Add(new Vector2(minX, maxY));
+        plane.Add(new Vector2(maxX, maxY));
+        plane.Add(new Vector2(maxX, minY));
+
+        AreaGeometry.createOriginTarget(floorId + "_ground", plane, new Color(1.0f, 1.0f, 1.0f, 0.3f), elevation - 0.01f);
+
         foreach (WunderZone wz in wunderZones) {
             wz.createObject();
         }
