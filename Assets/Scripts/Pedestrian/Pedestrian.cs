@@ -144,7 +144,7 @@ public class Pedestrian : MonoBehaviour {
 		rendererEnabled (true);
 		targetReached = false;
 		PedestrianPosition pos = positions[0];
-		transform.position = new Vector3 (pos.getX (), 0, pos.getY ());
+		transform.position = new Vector3 (pos.getX (), pos.getZ(), pos.getY ());
 	}
 
 	private void rendererEnabled(bool truefalse) {
@@ -197,8 +197,8 @@ public class Pedestrian : MonoBehaviour {
 
 			PedestrianPosition pos = (PedestrianPosition)positions [index];
 			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
-			start = new Vector3 (pos.getX (), 0, pos.getY ());
-			target = new Vector3 (pos2.getX (), 0, pos2.getY ());
+			start = new Vector3 (pos.getX (), pos.getZ(), pos.getY ()); // the y-coord in Unity is the z-coord from the kernel: the up and down direction
+			target = new Vector3 (pos2.getX (), pos2.getZ(), pos2.getY ());
 			float time = (float)pc.current_time;
 			float timeStepLength = Mathf.Clamp ((float)pos2.getTime () - (float)pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
 			float movement_percentage = ((float)time - (float)pos.getTime ()) / timeStepLength;
