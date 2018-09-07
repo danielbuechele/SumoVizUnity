@@ -25,7 +25,7 @@ public class ExtrudeGeometry : Geometry  {
 		GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
 		top.transform.SetParent (obstacle.transform);
 		top.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-		top.transform.position = new Vector3 (0, height, 0);
+		top.transform.position = new Vector3 (0, elevation + height, 0);
 		top.GetComponent<Renderer>().sharedMaterial = topMaterial;
 
 		MeshFilter mesh_filter_top = top.GetComponent<MeshFilter> ();
@@ -64,10 +64,10 @@ public class ExtrudeGeometry : Geometry  {
 		List<int> indices_walls = new List<int>();
 
 		foreach (Vector3 v in vertices) {
-			vertices_walls.Add(new Vector3(v.x, v.y, v.z));
-			vertices_walls.Add(new Vector3(v.x, v.y, v.z));
-			vertices_walls.Add(new Vector3(v.x, height, v.z));
-			vertices_walls.Add(new Vector3(v.x, height, v.z));
+			vertices_walls.Add(new Vector3(v.x, elevation + v.y, v.z));
+			vertices_walls.Add(new Vector3(v.x, elevation + v.y, v.z));
+			vertices_walls.Add(new Vector3(v.x, elevation + height, v.z));
+			vertices_walls.Add(new Vector3(v.x, elevation + height, v.z));
 		}
 
 		int verticesWallsCount = vertices_walls.Count;

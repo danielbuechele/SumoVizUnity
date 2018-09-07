@@ -47,7 +47,7 @@ public class AreaGeometry : Geometry  {
 		// Create the Vector3 vertices
 		List<Vector3> vertices = new List<Vector3>();
 		for (int i = 0; i < vertices2D.Length; i ++) {
-			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
+			vertices.Add (new Vector3(vertices2D[i].x, floorElevation, vertices2D[i].y));
 		}
 
 		// Create the mesh

@@ -48,7 +48,7 @@ public class ScenarioLoader {
                 elevation = nextFloorElevation; // fallback value: means ceiling between floors has height 0
             }
             float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
-            floor.setFloorElevationAndHeight(elevation, height);
+            floor.setFloorElevationAndHeight(height, elevation);
             nextFloorElevation += height;
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
