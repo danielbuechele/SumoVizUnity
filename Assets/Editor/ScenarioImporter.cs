@@ -36,7 +36,7 @@ public class ScenarioImporter {
             ScenarioLoader sl = new ScenarioLoader ();
             sl.loadScenario (crowditFilePath, resFolderPath);
 
-			ri.boundingPoints = sl.getBoundingPoints ();
+			//ri.boundingPoints = sl.getBoundingPoints (); // if needed again, like in the camera tour for instance, re-create this list. currently only each floor knows their bounding points
             ri.setCrowditFileAndResFolder(crowditFilePath, resFolderPath);
 
             //string projectFolderName = path.Substring (scenariosPath.Length, path.Length - scenariosPath.Length - Path.GetFileName (path).Length); // TODO make this more solid

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Floor {
 
@@ -9,10 +10,10 @@ public class Floor {
     private int level;
     internal float elevation;
     private float height;
+    internal List<float> boundingPoints;
 
-    internal Floor(string floorId, int level) {
+    internal Floor(string floorId) {
         this.floorId = floorId;
-        this.level = level;
     }
 
     internal void addWunderZone(WunderZone wz) {
@@ -33,8 +34,19 @@ public class Floor {
         }
     }
 
-    internal void setFloorElevationAndHeight(float height, float elevation) {
-        this.elevation = elevation;
+    internal void setMetaData(int level, float height, float elevation, List<float> boundingPoints) {
+        this.level = level;
         this.height = height;
+        this.elevation = elevation;
+        this.boundingPoints = boundingPoints;
+    }
+
+    internal void createObjects() {
+        foreach (WunderZone wz in wunderZones) {
+            wz.createObject();
+        }
+        foreach (Wall wall in walls) {
+            wall.createObject();
+        }
     }
 }

@@ -34,22 +34,14 @@ public class ScenarioLoader {
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         int level = 0;
-        float nextFloorElevation = 0;
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 
-            Floor floor = new Floor(floorId, level ++);
-
-            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
-            if (elevation == 0) {
-                elevation = nextFloorElevation; // fallback value: means ceiling between floors has height 0
-            }
-            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
-            floor.setFloorElevationAndHeight(height, elevation);
-            nextFloorElevation += height;
+            Floor floor = new Floor(floorId);
+            resetFloorBoundingValues();
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
             foreach (XmlElement layerEl in root.SelectNodes("layer")) {
@@ -109,9 +101,6 @@ public class ScenarioLoader {
                     actualization.setWunderZoneId(wunderZoneId);
                     actualization.setPoints(parsePoints(wunderZoneEl));
 
-                    // create 3D object
-                    actualization.createObject();
-
                     floor.addWunderZone(actualization);
                     simData.addWunderZoneToMap(wunderZoneId, actualization);
                 }
@@ -128,25 +117,33 @@ public class ScenarioLoader {
                     wall.setLayerId(layerEl.GetAttribute("id"));
                     wall.setPoints(parsePoints(wallEl));
 
-                    // create 3D object
-                    wall.createObject();
-
                     floor.addWall(wall);
                 }
             }
+
+            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
+            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            floor.setMetaData(level++, height, elevation, getBoundingPoints());
+
+            // create 3D objects
+            floor.createObjects();
 
             simData.addFloor(floor);
             //simData.printFloors();
         }
     }
 
-    static float minX = float.MaxValue;
-    static float maxX = 0;
-    static float minY = float.MaxValue;
-    static float maxY = 0;
+    float minX, maxX, minY, maxY;
+
+    private void resetFloorBoundingValues() {
+        minX = float.MaxValue;
+        maxX = 0;
+        minY = float.MaxValue;
+        maxY = 0;
+    }
 
     // Parse an XmlElement full of <point> XmlElements into a coordinate list 
-    static List<Vector2> parsePoints(XmlElement polyPoints) {
+    private List<Vector2> parsePoints(XmlElement polyPoints) {
         List<Vector2> list = new List<Vector2>();
         foreach (XmlElement point in polyPoints.SelectNodes("point")) {
             float x = 0;
@@ -154,7 +151,6 @@ public class ScenarioLoader {
             if (float.TryParse(point.GetAttribute("x"), out x) && float.TryParse(point.GetAttribute("y"), out y)) {
                 list.Add(new Vector2(x, y));
             }
-
             if (x < minX)
                 minX = x;
             if (x > maxX)
