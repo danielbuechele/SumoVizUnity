@@ -25,7 +25,6 @@ public class ScenarioImporter {
 				return;
 
 			new GameObject("World");
-			new GameObject ("Pedestrians");
 
 			RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
 			ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();

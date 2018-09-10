@@ -9,6 +9,9 @@ public class TrajectoryLoader {
 	private bool timeSubstractTaken = false;
 
 	public void loadTrajectories(string resFolderPath) {
+
+        new GameObject("Pedestrians");
+
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
         XmlDocument simXmlDoc = new XmlDocument();
