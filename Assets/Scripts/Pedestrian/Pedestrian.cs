@@ -67,20 +67,39 @@ public class Pedestrian : MonoBehaviour {
 
 		resetPedestrian ();
 	}
-		
-	public int getPositionsCount() {
+
+    internal void dev() {
+        foreach (PedestrianPosition pos in positions) {
+            Debug.Log(pos.getTime() + ": " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ());
+        }
+    }
+
+    public int getPositionsCount() {
 		return positions.Count;
 	}
 
 	public void init(int id, PedestrianPosition pos) {
 		this.name = "Pedestrian_" + id;
-		positions.Add (pos);
-	}
+        addOrderedPos(pos);
+    }
 
 	public void addPos(PedestrianPosition pos) {
 		//if(!positions[positions.Count - 1].equals(pos)) // add only if pos is different to the previously added one
-			positions.Add (pos);
-	}
+		addOrderedPos(pos);
+    }
+
+    private void addOrderedPos(PedestrianPosition pos) {
+        if (positions.Count == 0) {
+            positions.Add(pos);
+            return;
+        }
+        int i = 0;
+        while (i < positions.Count && positions[i].getTime() < pos.getTime()) {
+            i += 1;
+        }
+        positions.Insert(i, pos);
+
+    }
 
 	/*
 	void OnMouseDown(){

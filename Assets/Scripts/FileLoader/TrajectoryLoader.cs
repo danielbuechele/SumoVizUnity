@@ -5,7 +5,7 @@ using System.Xml;
 
 public class TrajectoryLoader {
 
-	public bool forceStartAtZero = true;
+	public bool forceStartAtZero = false;
 	private bool timeSubstractTaken = false;
 
 	public void loadTrajectories(string resFolderPath) {

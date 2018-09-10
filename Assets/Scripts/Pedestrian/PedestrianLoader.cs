@@ -51,7 +51,8 @@ public class PedestrianLoader : MonoBehaviour {
 			pc.total_time = pos.getTime ();
 	}
 
-	public void init (){
+	public void init() {
+        //peds[0].dev();
 		List<int> removeList = new List<int> ();
 		foreach(KeyValuePair<int, Pedestrian> ped in peds)
 			if (ped.Value.getPositionsCount () < 2)
