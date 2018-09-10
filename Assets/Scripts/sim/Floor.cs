@@ -55,6 +55,19 @@ public class Floor {
 
         AreaGeometry.createOriginTarget(floorId + "_ground", plane, new Color(1.0f, 1.0f, 1.0f, 0.3f), elevation - 0.01f);
 
+        /*
+        float planeHeight = 0.2f;
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.name = "FloorPlane_" + floorId;
+        Material floorPlaneMaterial = Resources.Load("Materials/FloorPlaneMaterial.mat", typeof(Material)) as Material;
+        cube.GetComponent<Renderer>().sharedMaterial = floorPlaneMaterial;
+        //floorPlaneMaterial.shader = Shader.Find("Standard");
+        cube.transform.position = new Vector3((minX + maxX) / 2, elevation - planeHeight / 2 - 0.01f, (minY + maxY) / 2);
+        cube.transform.localScale = new Vector3(minX + maxX, planeHeight, minY + maxY);
+        GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+        gl.setWorldAsParent(cube);
+        */
+
         foreach (WunderZone wz in wunderZones) {
             wz.createObject();
         }
