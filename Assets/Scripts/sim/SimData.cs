@@ -5,11 +5,15 @@ using System;
 
 public class SimData {
 
-    private List<Floor> floors = new List<Floor>();
+    private Dictionary<string, Floor> floorsMap = new Dictionary<string, Floor>();
     private Dictionary<string, WunderZone> wunderZoneMap = new Dictionary<string, WunderZone>();
 
     internal void addFloor(Floor floor) {
-        this.floors.Add(floor);
+        floorsMap[floor.floorId] = floor;
+    }
+
+    internal Floor getFloor(string floorId) {
+        return floorsMap[floorId];
     }
 
     internal void addWunderZoneToMap(string wzId, WunderZone wz) {
@@ -20,8 +24,8 @@ public class SimData {
     }
 
     internal void printFloors() {
-        foreach (var floor in floors) {
-            floor.printGeometryElements();
-        }
+        //foreach (var floor in floors) {
+        //    floor.printGeometryElements();
+        //}
     }
 }

@@ -9,11 +9,16 @@ public class Stair : WunderZone {
             float.Parse(morphosisEntry.GetAttribute("dirY")),
             float.Parse(morphosisEntry.GetAttribute("dirZ")));
         int noOfTreads = int.Parse(morphosisEntry.GetAttribute("noOfTreads"));
-        string connectsTo = morphosisEntry.GetAttribute("connectsTo");
 
-        // TODO
+        float height = floor.height;
+        if (morphosisEntry.HasAttribute("connectsTo")) {
+            string connectsTo = morphosisEntry.GetAttribute("connectsTo");
+            Floor connectsToFloor = floor.simData.getFloor(connectsTo);
 
-        StairExtrudeGeometry.create(this.id + "-Stair", this.points, floor.height, floor.elevation, dirVect, noOfTreads);
+            // TODO
+        }
+
+        StairExtrudeGeometry.create(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads);
     }
 
 }

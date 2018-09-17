@@ -6,14 +6,17 @@ public class Floor {
 
     private List<Wall> walls = new List<Wall>();
     private List<WunderZone> wunderZones = new List<WunderZone>();
-    private string floorId;
+    internal string floorId;
     private int level;
     internal float elevation;
     internal float height;
     internal List<float> boundingPoints;
 
-    internal Floor(string floorId) {
+    internal SimData simData;
+
+    internal Floor(string floorId, SimData simData) {
         this.floorId = floorId;
+        this.simData = simData;
     }
 
     internal void addWunderZone(WunderZone wz) {

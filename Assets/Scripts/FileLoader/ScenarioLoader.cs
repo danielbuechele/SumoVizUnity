@@ -40,7 +40,7 @@ public class ScenarioLoader {
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 
-            Floor floor = new Floor(floorId);
+            Floor floor = new Floor(floorId, simData);
             resetFloorBoundingValues();
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
