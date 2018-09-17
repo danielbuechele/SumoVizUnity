@@ -9,7 +9,7 @@ public class Floor {
     private string floorId;
     private int level;
     internal float elevation;
-    private float height;
+    internal float height;
     internal List<float> boundingPoints;
 
     internal Floor(string floorId) {

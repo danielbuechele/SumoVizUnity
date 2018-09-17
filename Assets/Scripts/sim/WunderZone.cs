@@ -4,7 +4,7 @@ using System.Xml;
 public class WunderZone : GeometryElement {
 
     private string wunderZoneId;
-    private XmlElement morphosisEntry;
+    internal XmlElement morphosisEntry;
 
     internal void setWunderZoneId(string wunderZoneId) {
         this.wunderZoneId = wunderZoneId;
