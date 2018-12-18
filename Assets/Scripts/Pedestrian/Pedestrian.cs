@@ -32,7 +32,8 @@ public class Pedestrian : MonoBehaviour {
 	private Animation animation;
 	#pragma warning restore 108
 	private LODGroup lodGroup;
-	private int index;
+    private GameObject pedestrianNew;
+    private int index;
 	private bool targetReached = true;
 
 
@@ -47,16 +48,17 @@ public class Pedestrian : MonoBehaviour {
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
 
 		animation = GetComponentInChildren<Animation> ();
-		lodGroup = GetComponentInChildren<LODGroup> ();
+		lodGroup = GetComponentInChildren<LODGroup>();
 
-		if (lodGroup == null) { // "Pedestrian" model
+       if (lodGroup == null) { // "Pedestrian" model
 			r = GetComponentInChildren<Renderer>() as Renderer;
-			r.materials [1].color = myColor;
+			r.materials [0].color = myColor;
 		} else { // "LOD_Ped" model
 			Transform PedModelsTransform = transform.GetChild (0).transform;
 			PedModelsTransform.GetChild (0).GetComponent<Renderer> ().materials [1].color = myColor;
 			PedModelsTransform.GetChild (1).GetComponent<Renderer> ().materials [1].color = myColor;
 		}
+        
 
 		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
 		//gp = gl.groundplane;
@@ -225,8 +227,9 @@ public class Pedestrian : MonoBehaviour {
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
 			animation ["walking"].speed = speed / timeStepLength;
-			if (start != target)
-				transform.rotation = Quaternion.LookRotation (relativePos);
+            // TODO: not needed for cylinders
+            //			if (start != target)
+//				transform.rotation = Quaternion.LookRotation (relativePos);
 			transform.position = newPosition;
 
 			if (index >= positions.Count - 2) { // = target reached

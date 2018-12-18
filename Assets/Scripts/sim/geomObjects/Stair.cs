@@ -13,9 +13,9 @@ public class Stair : WunderZone {
         float height = floor.height;
         if (morphosisEntry.HasAttribute("connectsTo")) {
             string connectsTo = morphosisEntry.GetAttribute("connectsTo");
-            Floor connectsToFloor = floor.simData.getFloor(connectsTo);
+           Floor connectsToFloor = floor.simData.getFloor(connectsTo);
+           height = connectsToFloor.elevation;
 
-            // TODO
         }
 
         StairExtrudeGeometry.create(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads);

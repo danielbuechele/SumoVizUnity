@@ -37,13 +37,17 @@ public class Floor {
         }
     }
 
-    internal void setMetaData(int level, float height, float elevation, List<float> boundingPoints) {
+    internal void setMetaData(int level, float height, float elevation) {
         this.level = level;
         this.height = height;
         this.elevation = elevation;
-        this.boundingPoints = boundingPoints;
-    }
+     }
 
+    internal void setBoundingPoints( List<float> boundingPoints)
+    {
+        this.boundingPoints = boundingPoints;
+
+    }
     internal void createObjects() {
 
         List<Vector2> plane = new List<Vector2>();

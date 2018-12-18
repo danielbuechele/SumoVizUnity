@@ -34,13 +34,33 @@ public class ScenarioLoader {
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
         int level = 0;
+
+        List<Floor> floors = new List<Floor>();
+
+        // first, create floors
+        foreach (XmlElement floorEl in spatial.SelectNodes("floor"))
+        {
+            string floorId = floorEl.GetAttribute("id");
+            Floor floor = new Floor(floorId, simData);
+            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
+            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            floor.setMetaData(level++, height, elevation);
+            simData.addFloor(floor);
+
+            floors.Add(floor);
+
+        }
+
+        // now, populate floors
+        level = 0;
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
             XmlDocument floorXmlDoc = new XmlDocument();
             floorXmlDoc.LoadXml(utils.loadFileIntoEditor(floorAtFullPath));
 
-            Floor floor = new Floor(floorId, simData);
+            Floor floor = floors[level++];
+
             resetFloorBoundingValues();
 
             XmlNode root = floorXmlDoc.SelectSingleNode("//floor");
@@ -93,7 +113,6 @@ public class ScenarioLoader {
                     if (actualization == null) {
                         continue;
                     }
-
                     actualization.setFloor(floor);
                     actualization.setId(morphosisEntry.GetAttribute("id"));
                     actualization.setLayerId(layerEl.GetAttribute("id"));
@@ -104,6 +123,8 @@ public class ScenarioLoader {
                     floor.addWunderZone(actualization);
                     simData.addWunderZoneToMap(wunderZoneId, actualization);
                 }
+
+
                 // WALLS
                 foreach (XmlElement wallEl in layerEl.SelectNodes("wall")) {
                     Wall wall = null;
@@ -121,16 +142,10 @@ public class ScenarioLoader {
                 }
             }
 
-            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
-            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
-            floor.setMetaData(level++, height, elevation, getBoundingPoints());
-
             // create 3D objects
+            floor.setBoundingPoints(getBoundingPoints());
             floor.createObjects();
-
-            simData.addFloor(floor);
-            //simData.printFloors();
-        }
+       }
     }
 
     float minX, maxX, minY, maxY;

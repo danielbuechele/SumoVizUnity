@@ -15,9 +15,9 @@ public class PedestrianLoader : MonoBehaviour {
 
 	// creates a dropdown choice in the inspector
 	public enum PedModel {
-		Pedestrian, LOD_Ped
+		CylinderPed
 	}
-	public PedModel pedestrianModel = PedModel.LOD_Ped;
+	public PedModel pedestrianModel = PedModel.CylinderPed;
 
 	private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian> ();
 
@@ -36,8 +36,9 @@ public class PedestrianLoader : MonoBehaviour {
 		peds.TryGetValue (id, out ped);
 
 		if (ped == null) {
-			GameObject newPedGameObj = (GameObject)Instantiate (Resources.Load (pedestrianModel.ToString ()));
-			setPedestriansAsParent (newPedGameObj);
+            GameObject newPedGameObj = (GameObject)Instantiate (Resources.Load (pedestrianModel.ToString ()));
+ //           GameObject newPedGameObj = (GameObject)Instantiate(Resources.Load(pedestrianModel.ToString()));
+            setPedestriansAsParent(newPedGameObj);
 			ped = newPedGameObj.GetComponent<Pedestrian> ();
 			ped.init (id, pos);
 			peds.Add (id, ped);
