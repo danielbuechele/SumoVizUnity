@@ -53,6 +53,8 @@ public class ScenarioLoader {
 
         // now, populate floors
         level = 0;
+        List<Elevator> elevators = new List<Elevator>();
+
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
@@ -73,7 +75,6 @@ public class ScenarioLoader {
                     }
                     XmlElement morphosisEntry = wunderZoneIdToMorphosisEntry[wunderZoneId];
                     WunderZone actualization = null;
-
                     switch (morphosisEntry.Name) {
                         case "destination":
                             actualization = new Destination();
@@ -83,6 +84,7 @@ public class ScenarioLoader {
                             break;
                         case "elevator":
                             actualization = new Elevator();
+                            elevators.Add((Elevator)actualization);
                             break;
                         case "escalator":
                             actualization = new Escalator();
@@ -142,10 +144,35 @@ public class ScenarioLoader {
                 }
             }
 
+
+        }
+
+        XmlNode elevatorMatrices = xmlDoc.SelectSingleNode("//elevatorMatrices");
+
+        foreach (XmlElement elevatorMatrix in elevatorMatrices)
+        {
+            foreach (Elevator elev in elevators)
+            {
+                string elevatorID = elevatorMatrix.GetAttribute("ref");
+                if (elevatorID.Equals(elev.getId()))
+                {
+
+                    string[] floorIDs = elevatorMatrix.GetAttribute("floors").Split(',');
+                    foreach (String floorID in floorIDs)
+                    {
+                        elev.addFloor(simData.getFloor(floorID));
+                    }
+                }
+
+            }
+        }
+
+        foreach (Floor floor in floors)
+        {
             // create 3D objects
             floor.setBoundingPoints(getBoundingPoints());
             floor.createObjects();
-       }
+        }
     }
 
     float minX, maxX, minY, maxY;

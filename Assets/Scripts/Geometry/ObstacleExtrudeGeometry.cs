@@ -18,7 +18,7 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 		} else {*/
 			topMaterial = gl.theme.getWallMaterial();
 			sideMaterial = topMaterial;
-			height = 1f;//2.2f + Random.value * 1.2f;
+//			height = 1f;//2.2f + Random.value * 1.2f;
 		//}
 
 		if(verticesList[verticesList.Count - 1] == verticesList[0])

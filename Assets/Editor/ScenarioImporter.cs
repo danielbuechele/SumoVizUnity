@@ -3,7 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using System.IO;
 
-public class ScenarioImporter {
+public class ScenarioImporter : MonoBehaviour {
 
 	[MenuItem("Assets/Import crowd:it project")]
 	

@@ -32,13 +32,13 @@ public class Pedestrian : MonoBehaviour {
 	private Animation animation;
 	#pragma warning restore 108
 	private LODGroup lodGroup;
-    private GameObject pedestrianNew;
     private int index;
 	private bool targetReached = true;
 
+    public void move() {
 
-	void Start () {
-		gameObject.AddComponent<BoxCollider>(); // TODO what for?
+        //	void Start () {
+        gameObject.AddComponent<BoxCollider>(); // TODO what for?
 		transform.Rotate (0, 90, 0);
 		myColor = new Color (Random.value, Random.value, Random.value);
 		//GetComponentInChildren<Renderer>().materials[1].color = myColor;
@@ -46,8 +46,9 @@ public class Pedestrian : MonoBehaviour {
 		//it = GameObject.Find ("InfoText").GetComponent<InfoText> ();
 		//pl = GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ();
 		pc = GameObject.Find ("PlaybackControl").GetComponent<PlaybackControl> ();
+        //GameObject world = GameObject.Find("World").GetComponent<RuntimeInitializer>();
 
-		animation = GetComponentInChildren<Animation> ();
+        animation = GetComponentInChildren<Animation> ();
 		lodGroup = GetComponentInChildren<LODGroup>();
 
        if (lodGroup == null) { // "Pedestrian" model

@@ -9,14 +9,19 @@ public class RuntimeInitializer : MonoBehaviour {
     public string resFolderPath;
     public List<float> boundingPoints;
 		
-	void Start () { // = Play button was pressed in unity
-        TrajectoryLoader tl = new TrajectoryLoader();
-        tl.loadTrajectories(resFolderPath);
-    }
+	//void Start () { // = Play button was pressed in unity
+ //       TrajectoryLoader tl = new TrajectoryLoader();
+ //       tl.loadTrajectories(resFolderPath);
+ //   }
 
     public void setCrowditFileAndResFolder(string crowditFilePath, string resFolderPath) {
         this.crowditFilePath = crowditFilePath;
         this.resFolderPath = resFolderPath;
+    }
+
+    public string getResFolderPath()
+    {
+        return resFolderPath;
     }
 
     /*

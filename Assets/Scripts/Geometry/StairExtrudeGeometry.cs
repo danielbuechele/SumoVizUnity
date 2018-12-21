@@ -10,9 +10,11 @@ public class StairExtrudeGeometry : Geometry
     public static void create(string name, List<Vector2> verticesList, float height, float elevation,  Vector3 dirVect, int noOfTreads)
     {
         int wallpoints = verticesList.Count;
- 
+        GameObject stair = new GameObject(name); // = parent object to top and side planes
+
         GameObject tread = createTreads(verticesList, dirVect, elevation, noOfTreads, height);
-        GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>().setWorldAsParent(tread);
+        tread.transform.SetParent(stair.transform);
+        GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>().setWorldAsParent(stair);
 
         Vector3 firstTreadPos = tread.transform.position;
         for (int i = 1; i <= noOfTreads - 1; i++)
@@ -22,7 +24,7 @@ public class StairExtrudeGeometry : Geometry
                 firstTreadPos.y + dirVect.z * i* (height / noOfTreads),
                 firstTreadPos.z + dirVect.y * i * treadWidth), Quaternion.identity);
             nextTread.name = "tread " + i;
-            GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>().setWorldAsParent(nextTread);
+            nextTread.transform.SetParent(stair.transform);
         }
     }
 

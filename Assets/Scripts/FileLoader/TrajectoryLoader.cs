@@ -3,13 +3,15 @@ using System.IO;
 using System.IO.Compression;
 using System.Xml;
 
-public class TrajectoryLoader {
+public class TrajectoryLoader : MonoBehaviour{
 
 	public bool forceStartAtZero = false;
 	private bool timeSubstractTaken = false;
+    private string resFolderPath;
 
-	public void loadTrajectories(string resFolderPath) {
-
+    public void loadTrajectories() {
+        RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+        resFolderPath = ri.getResFolderPath();
         new GameObject("Pedestrians");
 
         string outFolder = Path.Combine(resFolderPath, "out");
