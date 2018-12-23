@@ -147,7 +147,7 @@ public class StairExtrudeGeometry : Geometry
 
         GameObject tread = GameObject.CreatePrimitive(PrimitiveType.Cube);
         float xOffset = 0, yOffset = 0;
-        if (dirVect.x == 0)
+        if (Mathf.Abs(dirVect.x - 0) < 0.1)
         {
             xOffset = firstTread.magnitude * sign;
             yOffset = stairLength.magnitude / noOfTreads * signForLength;
