@@ -84,31 +84,31 @@ public class CameraTour : MonoBehaviour {
 
 
 	public void setWaypoints() {
-		List<float> boundingPoints = GameObject.Find ("RuntimeInitializer").GetComponent<RuntimeInitializer> ().boundingPoints;
-		float minX = boundingPoints[0];
-		float minY = boundingPoints[1];
-		float maxX  = boundingPoints[2];
-		float maxY = boundingPoints[3];
-		//Debug.Log (minX + " / " + maxX + " / " + minY + " / " + maxY);
+		//List<float> boundingPoints = SimData.boundingPoints;
+		//float minX = SimData.getMinX;
+		//float minY = boundingPoints[1];
+		//float maxX  = boundingPoints[2];
+		//float maxY = boundingPoints[3];
+		////Debug.Log (minX + " / " + maxX + " / " + minY + " / " + maxY);
 
-		float middleX = minX + (maxX - minX) / 2;
-		float middleY = minY + (maxY - minY) / 2;
-		Vector3 focusPoint = new Vector3 (middleX, 0, middleY);
+		//float middleX = minX + (maxX - minX) / 2;
+		//float middleY = minY + (maxY - minY) / 2;
+		//Vector3 focusPoint = new Vector3 (middleX, 0, middleY);
 
-		float velocReduce = 0;
-		float wait = 0;
-		float height = 5f;
+		//float velocReduce = 0;
+		//float wait = 0;
+		//float height = 5f;
 
-		Vector3 point1 = new Vector3 (minX, height, minY);
-		Vector3 point2 = new Vector3 (minX, height, maxY);
-		Vector3 point3 = new Vector3 (maxX, height, maxY);
-		Vector3 point4 = new Vector3 (maxX, height, minY);
+		//Vector3 point1 = new Vector3 (minX, height, minY);
+		//Vector3 point2 = new Vector3 (minX, height, maxY);
+		//Vector3 point3 = new Vector3 (maxX, height, maxY);
+		//Vector3 point4 = new Vector3 (maxX, height, minY);
 
-		waypoints.Add (new Waypoint (waypoints.Count, point1, velocReduce, wait, focusPoint));
-		waypoints.Add (new Waypoint (waypoints.Count, point2, velocReduce, wait, focusPoint));
-		waypoints.Add (new Waypoint (waypoints.Count, point3, velocReduce, wait, focusPoint));
-		waypoints.Add (new Waypoint (waypoints.Count, point4, velocReduce, wait, focusPoint));
-		waypoints.Add (waypoints[0]);
+		//waypoints.Add (new Waypoint (waypoints.Count, point1, velocReduce, wait, focusPoint));
+		//waypoints.Add (new Waypoint (waypoints.Count, point2, velocReduce, wait, focusPoint));
+		//waypoints.Add (new Waypoint (waypoints.Count, point3, velocReduce, wait, focusPoint));
+		//waypoints.Add (new Waypoint (waypoints.Count, point4, velocReduce, wait, focusPoint));
+		//waypoints.Add (waypoints[0]);
 	}
 
 	private void importWaypoints() {	

@@ -34,6 +34,7 @@ public class Elevator : WunderZone {
         }
         height = Math.Abs(maxElev - minElev);
         ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev);
+
     }
 
     internal void addFloors(List<Floor> floors)

@@ -35,9 +35,10 @@ public class Pedestrian : MonoBehaviour {
     private int index;
 	private bool targetReached = true;
 
-    public void move() {
+    public void init() {
 
         //	void Start () {
+        gameObject.SetActive(true);
         gameObject.AddComponent<BoxCollider>(); // TODO what for?
 		transform.Rotate (0, 90, 0);
 		myColor = new Color (Random.value, Random.value, Random.value);
@@ -60,15 +61,11 @@ public class Pedestrian : MonoBehaviour {
 			PedModelsTransform.GetChild (1).GetComponent<Renderer> ().materials [1].color = myColor;
 		}
         
-
-		//gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		//gp = gl.groundplane;
-
 		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
 		if (agentViewComponent.enabled)
 			agentView = agentViewComponent;
 
-		resetPedestrian ();
+		resetPedestrian();
 	}
 
     internal void dev() {
@@ -184,7 +181,7 @@ public class Pedestrian : MonoBehaviour {
 		return true;
 	}
 
-	void Update () {
+	public void move () {
 		if (!targetReached) {
 			if (showPed ())
 				rendererEnabled (true);

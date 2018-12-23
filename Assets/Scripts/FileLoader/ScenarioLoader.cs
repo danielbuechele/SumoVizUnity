@@ -173,6 +173,13 @@ public class ScenarioLoader {
             floor.setBoundingPoints(getBoundingPoints());
             floor.createObjects();
         }
+        simData.setBounds();
+
+    }
+
+    internal SimData getSimData()
+    {
+        return simData;
     }
 
     float minX, maxX, minY, maxY;

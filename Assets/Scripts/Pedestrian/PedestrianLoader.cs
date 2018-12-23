@@ -1,23 +1,25 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
 public class PedestrianLoader : MonoBehaviour {
 
-	//private List<PedestrianPosition> positions = new List<PedestrianPosition>();
-	//public List<GameObject> pedestrians = new List<GameObject>();
-	//public int[] population;
-	private PlaybackControl pc;
-	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
+    //private List<PedestrianPosition> positions = new List<PedestrianPosition>();
+    //public List<GameObject> pedestrians = new List<GameObject>();
+    //public int[] population;
+
+    // this is the prefab we are using to render our pedestrians - is set via the inspector
+    public GameObject pedPrefab;
+
+    private PlaybackControl pc;
+//	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
 	//public float pedScaleFactor = 1f; // 1 is default size
 
 	// creates a dropdown choice in the inspector
 	public enum PedModel {
-		CylinderPed
+		ConePed
 	}
-	public PedModel pedestrianModel = PedModel.CylinderPed;
+	public PedModel pedestrianModel = PedModel.ConePed;
 
 	private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian> ();
 
@@ -27,22 +29,27 @@ public class PedestrianLoader : MonoBehaviour {
 	}
 
 	public List<Pedestrian> getPedestrians (){
-		return pedestrians;
+		return peds.Values.ToList<Pedestrian>();
 	}
 
 	public void addPedestrianPosition(PedestrianPosition pos) {
-		int id = pos.getID ();
+
+
+        int id = pos.getID ();
 		Pedestrian ped = null;
 		peds.TryGetValue (id, out ped);
 
 		if (ped == null) {
-            GameObject newPedGameObj = (GameObject)Instantiate (Resources.Load (pedestrianModel.ToString ()));
- //           GameObject newPedGameObj = (GameObject)Instantiate(Resources.Load(pedestrianModel.ToString()));
+            GameObject newPedGameObj = Instantiate (pedPrefab, transform.position, Quaternion.identity);
+ //           float height = 0.8f + Random.value * 0.8f;
+ //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);
+            //           GameObject newPedGameObj = (GameObject)Instantiate(Resources.Load(pedestrianModel.ToString()));
             setPedestriansAsParent(newPedGameObj);
 			ped = newPedGameObj.GetComponent<Pedestrian> ();
 			ped.init (id, pos);
 			peds.Add (id, ped);
-			pedestrians.Add (ped); // TODO remove this and go through Dictionary if all peds are needed elsewhere? performance?
+            newPedGameObj.SetActive(false);
+            // TODO remove this and go through Dictionary if all peds are needed elsewhere? performance?
 		} else {
 			ped.addPos (pos);
 		}
@@ -52,7 +59,15 @@ public class PedestrianLoader : MonoBehaviour {
 			pc.total_time = pos.getTime ();
 	}
 
-	public void init() {
+    internal void reset()
+    {
+        peds = new Dictionary<int, Pedestrian>();
+        // reset the playback control in case a scenario was loaded with different time
+        pc.Reset();
+
+    }
+
+    public void init() {
         //peds[0].dev();
 		List<int> removeList = new List<int> ();
 		foreach(KeyValuePair<int, Pedestrian> ped in peds)

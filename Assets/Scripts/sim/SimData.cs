@@ -7,9 +7,19 @@ public class SimData {
 
     private Dictionary<string, Floor> floorsMap = new Dictionary<string, Floor>();
     private Dictionary<string, WunderZone> wunderZoneMap = new Dictionary<string, WunderZone>();
+    public float minElev = float.PositiveInfinity; 
+    public float maxElev = float.NegativeInfinity;
+    public float minX = float.PositiveInfinity;
+    public float minY = float.PositiveInfinity;
 
     internal void addFloor(Floor floor) {
         floorsMap[floor.floorId] = floor;
+        if (minElev > floor.elevation)
+            minElev = floor.elevation;
+
+        if (maxElev < floor.elevation)
+            maxElev = floor.elevation;
+
     }
 
     internal Floor getFloor(string floorId) {
@@ -27,5 +37,17 @@ public class SimData {
         //foreach (var floor in floors) {
         //    floor.printGeometryElements();
         //}
+    }
+
+    internal void setBounds()
+    {
+        foreach (Floor floor in floorsMap.Values)
+        {
+            if (minX > floor.boundingPoints[0])
+                minX = floor.boundingPoints[0];
+
+            if (minY > floor.boundingPoints[1])
+                minY = floor.boundingPoints[1];
+        }
     }
 }

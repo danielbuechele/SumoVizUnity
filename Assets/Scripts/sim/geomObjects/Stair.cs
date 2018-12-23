@@ -6,19 +6,18 @@ public class Stair : WunderZone {
 
         Vector3 dirVect = new Vector3(
             float.Parse(morphosisEntry.GetAttribute("dirX")),
-            float.Parse(morphosisEntry.GetAttribute("dirY")),
-            float.Parse(morphosisEntry.GetAttribute("dirZ")));
+            float.Parse(morphosisEntry.GetAttribute("dirZ")),
+            float.Parse(morphosisEntry.GetAttribute("dirY")));
         int noOfTreads = int.Parse(morphosisEntry.GetAttribute("noOfTreads"));
 
-        float height = floor.height;
+        float height = 0;
         if (morphosisEntry.HasAttribute("connectsTo")) {
             string connectsTo = morphosisEntry.GetAttribute("connectsTo");
-           Floor connectsToFloor = floor.simData.getFloor(connectsTo);
-           height = connectsToFloor.elevation;
-
+            Floor connectsToFloor = floor.simData.getFloor(connectsTo);
+            height = Mathf.Abs(connectsToFloor.elevation - floor.elevation);
         }
 
-        StairExtrudeGeometry.create(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads);
+        StairExtrudeGeometry.createStair(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads);
     }
 
 }

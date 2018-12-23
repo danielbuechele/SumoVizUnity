@@ -6,69 +6,98 @@ using System.Collections.Generic;
 using System.IO;
 using Vectrosity;
 
-public class PlaybackControl : MonoBehaviour {
+public class PlaybackControl : MonoBehaviour
+{
 
-	private bool playing = true;
-	public decimal current_time = 0;
-	public decimal total_time = 0;
-	/*
-	public decimal slider_value;
-	public int tiles = 0;
-	public bool drawLine;
-	public TileColoringMode tileColoringMode = TileColoringMode.TileColoringNone;
-	public bool trajectoriesShown;
-	public float threshold;
-	bool lineIsDrawn;
+    public bool playing = false;
+    public decimal current_time;
+    public decimal total_time;
+    private GameObject peds;
 
-	public struct Label {
-		public Rect rect;
-		public string label;
-		public Label (Rect r, string s) {
-			label = s;
-			rect = r;
-		}
-	}
-	*/
+ 
+    /*
+     public decimal slider_value;
+     public int tiles = 0;
+     public bool drawLine;
+     public TileColoringMode tileColoringMode = TileColoringMode.TileColoringNone;
+     public bool trajectoriesShown;
+     public float threshold;
+     bool lineIsDrawn;
 
-	[Header("automate start/end signal for CapturePanorama script")]
-	public bool pressPMode = false;
-	private bool pressP = false;
-	private int roundCounter;
+     public struct Label {
+         public Rect rect;
+         public string label;
+         public Label (Rect r, string s) {
+             label = s;
+             rect = r;
+         }
+     }
+     */
+
+    [Header("automate start/end signal for CapturePanorama script")]
+    public bool pressPMode = false;
+    private bool pressP = false;
+    private int roundCounter;
 
 
-	public int cameraMode = 0;
+    public int cameraMode = 0;
 
-	void Start () {
-		checkSettings ();
-		roundCounter = 0;
-		//threshold = 2.0f;
-		pressP = true;
-	}
+    void Start()
+    {
+        checkSettings();
+        roundCounter = 0;
+        //threshold = 2.0f;
+        pressP = true;
+        total_time = 0;
+        current_time = 0;
+        peds = GameObject.Find("Pedestrians");
+    }
 
-	public bool inFirstRound() {
-		return roundCounter == 0;
-	}
 
-	private void checkSettings() {
-		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
-		CameraTour cameraTourComponent = GameObject.Find("CameraMode").GetComponent<CameraTour>();
-		if (agentViewComponent.enabled && cameraTourComponent.enabled)
-			throw new UnityException ("AgentView and CameraTour are both enabled, only one can be active.");
-		
-		//TODO check other settings... check here that files are existing?
-	}
+    internal void init()
+    {
+        peds = GameObject.Find("Pedestrians");
+        playing = true;
+    }
 
-	public bool getPressP() {
-		if (!pressPMode)
-			return false;
-		if (pressP) {
-			pressP = false;
-			return true;
-		}
-		return false;
-	}
+    public bool inFirstRound()
+    {
+        return roundCounter == 0;
+    }
 
-	/*
+    public void Reset()
+    {
+        roundCounter = 0;
+        //threshold = 2.0f;
+        pressP = true;
+        total_time = 0;
+        current_time = 0;
+
+    }
+
+    private void checkSettings()
+    {
+        AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
+        CameraTour cameraTourComponent = GameObject.Find("CameraMode").GetComponent<CameraTour>();
+        if (agentViewComponent.enabled && cameraTourComponent.enabled)
+            throw new UnityException("AgentView and CameraTour are both enabled, only one can be active.");
+
+        //TODO check other settings... check here that files are existing?
+    }
+
+    public bool getPressP()
+    {
+        if (!pressPMode)
+            return false;
+        if (pressP)
+        {
+            pressP = false;
+            return true;
+        }
+        return false;
+    }
+
+    /*
 	void OnGUI () {
 		playing = GUI.Toggle(new Rect(30, 25, 100, 30), playing, " PLAY");
 		current_time = (decimal) GUI.HorizontalSlider (new Rect (100, 30, 400, 30), (float) current_time, 0.0f, (float) total_time);
@@ -140,45 +169,54 @@ public class PlaybackControl : MonoBehaviour {
 	*/
 
 
-	void Update () {
-		if (playing) {
-			try {
-				current_time = (current_time + (decimal) Time.deltaTime);// % total_time; // modulo, ha ha! nobody will ever notice that this leads to current_time = 0
+    void Update()
+    {
+        if (playing)
+        {
+            try
+            {
+                current_time = (current_time + (decimal)Time.deltaTime);// % total_time; // modulo, ha ha! nobody will ever notice that this leads to current_time = 0
 
-				if(current_time >= total_time) { // new round
-					current_time = 0;
-					if(roundCounter == 0)
-						pressP = true;
-					foreach (Pedestrian ped in GameObject.Find ("PedestrianLoader").GetComponent<PedestrianLoader> ().getPedestrians ())
-						ped.resetPedestrian();
-					roundCounter ++;
-				}	
-			} catch (DivideByZeroException) {
-				current_time = 0;
-			}
-		}
-		/*
+                if (current_time >= total_time)
+                { // new round
+                    current_time = 0;
+                    if (roundCounter == 0)
+                        pressP = true;
+
+                    foreach (Transform ped in peds.transform)
+                    {
+                        ped.GetComponent<Pedestrian>().resetPedestrian();
+                    }
+                    roundCounter++;
+                }
+            }
+            catch (DivideByZeroException)
+            {
+                current_time = 0;
+            }
+        }
+        
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			playing = !playing;
 		}
-		*/
-
-		if (Input.GetKeyDown (KeyCode.C) && GameObject.Find("Pedestrians") != null) {
+		
+  
+        if (Input.GetKeyDown (KeyCode.C) && peds != null) {
 			if (++ cameraMode > 2) {
 				cameraMode = 0;
 			}
 			switch (cameraMode) {
 				case 0:
-					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = false;
-					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = false;
+					GameObject.Find("CameraMode").GetComponent<AgentView>().enabled = false;
+					GameObject.Find("CameraMode").GetComponent<CameraTour>().enabled = false;
 					break;
 				case 1:
-					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = true;
-					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = false;
+					GameObject.Find("CameraMode").GetComponent<AgentView>().enabled = true;
+					GameObject.Find("CameraMode").GetComponent<CameraTour>().enabled = false;
 					break;
 				case 2:
-					GameObject.Find ("CameraMode").GetComponent <AgentView>().enabled = false;
-					GameObject.Find ("CameraMode").GetComponent <CameraTour>().enabled = true;
+					GameObject.Find("CameraMode").GetComponent<AgentView>().enabled = false;
+					GameObject.Find("CameraMode").GetComponent<CameraTour>().enabled = true;
 					break;
 			}
 		}

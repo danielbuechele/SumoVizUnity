@@ -8,19 +8,37 @@ public class TrajectoryLoader : MonoBehaviour{
 	public bool forceStartAtZero = false;
 	private bool timeSubstractTaken = false;
     private string resFolderPath;
+    private PedestrianLoader pl;
+    private RuntimeInitializer ri;
+
+
+    public void Start()
+    {
+        pl = GetComponent<PedestrianLoader>();
+        ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+    }
 
     public void loadTrajectories() {
-        RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+
         resFolderPath = ri.getResFolderPath();
         new GameObject("Pedestrians");
 
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
         XmlDocument simXmlDoc = new XmlDocument();
-        simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
+        try
+        {
+            simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
+        }
+        catch (XmlException ex)
+        {
+            Debug.Log("no results for this scenario have been found");
+            return;
+
+        }
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
 
-        PedestrianLoader pl = GameObject.Find("PedestrianLoader").GetComponent<PedestrianLoader>();
+        pl.reset();
 
         foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
             string trajFilePath = Path.Combine(outFolder, floorCsvAtEl.GetAttribute("csvAt"));
@@ -59,7 +77,6 @@ public class TrajectoryLoader : MonoBehaviour{
                 }
                 reader.Close();
             }
-
         }
 
 		//TODO find mechanism to not show peds (for quick camera-tour dev)

@@ -7,12 +7,12 @@ public class RuntimeInitializer : MonoBehaviour {
 	public GeometryLoader geometryLoader;
     public string crowditFilePath;
     public string resFolderPath;
-    public List<float> boundingPoints;
-		
-	//void Start () { // = Play button was pressed in unity
- //       TrajectoryLoader tl = new TrajectoryLoader();
- //       tl.loadTrajectories(resFolderPath);
- //   }
+    internal List<float> boundingPoints;
+
+    void Start()
+    { 
+
+    }
 
     public void setCrowditFileAndResFolder(string crowditFilePath, string resFolderPath) {
         this.crowditFilePath = crowditFilePath;
@@ -23,6 +23,7 @@ public class RuntimeInitializer : MonoBehaviour {
     {
         return resFolderPath;
     }
+}
 
     /*
     [Header("load trajectories at editing time:")] // false means to load them at runtime
@@ -47,4 +48,3 @@ public class RuntimeInitializer : MonoBehaviour {
 		Debug.LogError ("no path to trajectory file -> set one in RuntimeInitializer relative to the StreamingAssets directory");
 	}
    */
-}

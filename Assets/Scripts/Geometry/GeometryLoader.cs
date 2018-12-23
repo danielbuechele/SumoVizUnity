@@ -25,4 +25,9 @@ public class GeometryLoader : MonoBehaviour {
 	public void addObject(Geometry obj) {
 		geometry.Add(obj);
 	}
+
+    public void Reset()
+    {
+        geometry.Clear();
+    }
 }
