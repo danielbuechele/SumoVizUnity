@@ -1,0 +1,1590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario xmlFormat="0.8" name="pss" isoDate="2018-08-28T16:45:13.386Z">
+	<spatial>
+		<floor id="Ebene-6" floorAt="geometry/Ebene-6_20180905115314.floor" />
+		<floor id="Ebene-Z6" floorAt="geometry/Ebene-Z6_20180905174725.floor" />
+		<floor id="Ebene-5" floorAt="geometry/Ebene-5_20180905181251.floor" />
+		<floor id="Ebene-Z5" floorAt="geometry/Ebene-Z5_20180905180639.floor" />
+		<floor id="Ebene-4" floorAt="geometry/Ebene-4_20180907115533.floor" />
+		<floor id="Ebene-Z4" floorAt="geometry/Ebene-Z4_20180830094735.floor" />
+		<floor id="Ebene-3" floorAt="geometry/Ebene-3_20180910142848.floor" />
+		<floor id="Ebene-Z3" floorAt="geometry/Ebene-Z3_20180910095030.floor" />
+		<floor id="Ebene-2" floorAt="geometry/Ebene-2_20180910144006.floor" />
+		<floor id="Ebene-1" floorAt="geometry/Ebene-1_20180910082555.floor" />
+		<floor id="Ebene-0" floorAt="geometry/Ebene-0_20180910082630.floor" />
+	</spatial>
+	<meta>
+		<intervals>
+			<interval id="i0-origin_simObj-343421" value="0,1:80" />
+			<interval id="i0-origin_simObj-343402" value="0,1:10" />
+			<interval id="i0-origin_simObj-343420" value="0,1:80" />
+			<interval id="i0-origin_simObj-343403" value="0,1:10" />
+			<interval id="i0-origin_simObj-256844" value="0,1:1" />
+			<interval id="i0-origin_simObj-256846" value="0,1:1" />
+			<interval id="i0-origin_simObj-354469" value="0,1:25" />
+			<interval id="i0-origin_simObj-354470" value="0,1:25" />
+			<interval id="i0-origin_simObj-354471" value="0,1:25" />
+			<interval id="i0-origin_simObj-354472" value="0,1:25" />
+			<interval id="i0-origin_simObj-354650" value="0,1:10" />
+			<interval id="i0-origin_simObj-354744" value="0,1:10" />
+			<interval id="i0-origin_simObj-354745" value="0,1:10" />
+			<interval id="i0-origin_simObj-354743" value="0,1:10" />
+			<interval id="i0-origin_simObj-354649" value="0,1:10" />
+		</intervals>
+		<intervalMatrix>
+			<row>langzug-stadteinwärts,i0-origin_simObj-343421</row>
+			<row>vollzug-stadteinwärts,i0-origin_simObj-343402</row>
+			<row>langzug-stadtauswärts,i0-origin_simObj-343420</row>
+			<row>vollzug-stadtauswärts,i0-origin_simObj-343403</row>
+			<row>u1-2-4-5-wechsler-1,i0-origin_simObj-256844</row>
+			<row>u1-2-4-5-wechsler-2,i0-origin_simObj-256846</row>
+			<row>origin-u9-stadteinwärts,i0-origin_simObj-354469</row>
+			<row>origin-u29-stadteinwärts,i0-origin_simObj-354470</row>
+			<row>origin-u9-stadtauswärts,i0-origin_simObj-354471</row>
+			<row>origin-u29-stadtauswärts,i0-origin_simObj-354472</row>
+			<row>tram-nord-1sbss-e0,i0-origin_simObj-354650</row>
+			<row>tram-nord-1sbss-e1,i0-origin_simObj-354744</row>
+			<row>tram-sued-u4-u5-e1,i0-origin_simObj-354745</row>
+			<row>1sbss-tram-bus-mitte-e1,i0-origin_simObj-354743</row>
+			<row>DB,i0-origin_simObj-354649</row>
+		</intervalMatrix>
+		<paths>
+			<path id="langzug-aussteiger-stadtauswärts-nach-u9u29-stadtauswärts" ratio="0.5">origin-stadtauswärts,set-e6-e5-u9,set-e5-e4-u9u29-stadtauswärts,destination-u29-stadtauswärts</path>
+			<path id="langzug-aussteiger-stadteinwärts-nach-u9u29-stadtauswärts" ratio="0.5">origin-stadteinwärts,set-e6-e5-u9,set-e5-e4-u9u29-stadtauswärts,dest-u9u29-stadtauswärts</path>
+			<path id="langzug-aussteiger-stadtauswärts-nach-u9u29-stadteinwärts" ratio="0.5">origin-stadtauswärts,set-e6-e5-u9,set-e5-e4-u9u29-stadteinwärts,destination-u29-stadteinwärts</path>
+			<path id="langzug-aussteiger-stadteinwärts-nach-u9u29-stadteinwärts" ratio="0.5">origin-stadteinwärts,set-e6-e5-u9,set-e5-e4-u9u29-stadteinwärts,dest-u9u29-stadteinwärts</path>
+			<path id="aussteiger-u9u29-nach-langzug-stadtauswärts" ratio="0.09">aussteiger-u9u29,set-e4-e5-u9u29,set-e5-e6-west,abfahrt-langzug-stadtauswärts</path>
+			<path id="aussteiger-u9u29-nach-vollzug-stadtauswärts" ratio="0.09">aussteiger-u9u29,set-e4-e5-u9u29,set-e5-e6-west,abfahrt-vollzug-stadtauswärts</path>
+			<path id="aussteiger-u9u29-nach-langzug-stadteinwärts" ratio="0.09">aussteiger-u9u29,set-e4-e5-u9u29,set-e5-e6-west,abfahrt-langzug-stadteinwärts</path>
+			<path id="aussteiger-u9u29-nach-vollzug-stadteinwärts" ratio="0.09">aussteiger-u9u29,set-e4-e5-u9u29,set-e5-e6-west,abfahrt-vollzug-stadteinwärts</path>
+			<path id="aussteiger-u9u29-nach-tram-nord" ratio="0.09">aussteiger-u9u29,set-e4-e3-nord,set-e3-e2-nord,set-e2-e1,ziel-tram-nord-e1</path>
+			<path id="aussteiger-u9u29-nach-1sbss" ratio="0.09">aussteiger-u9u29,set-e4-e3-nord,set-e3-e2-nord,set-e2-e1,ziel-tram-nord-e1</path>
+			<path id="aussteiger-u9u29-nach-tram-sued" ratio="0.09">aussteiger-u9u29,set-e4-e3-sued,set-e3-e1-sued,ziel-tram-sued-u4-u5-e1</path>
+			<path id="aussteiger-u9u29-nach-u4u5" ratio="0.09">aussteiger-u9u29,set-e4-e3-sued,set-e3-e1-sued,ziel-tram-sued-u4-u5-e1</path>
+			<path id="aussteiger-u9u29-nach-tram-bus-mitte" ratio="0.09">aussteiger-u9u29,set-e4-e3-u9u29-mitte,set-e3-e1-west,set-e1-e0-ost,ziel-tram-bus-mitte-e0</path>
+			<path id="aussteiger-u9u29-nach-DB" ratio="0.1">aussteiger-u9u29,set-e4-e5-u9u29,set-e3-e1-west,set-e1-e0-west,ziel-DB</path>
+			<path id="aussteiger-u9u29-nach-u1u2" ratio="0.09">aussteiger-u9u29,set-e4-e3-u9u29-mitte,set-ziel-u1-u2-u4-u5</path>
+			<path id="einsteiger-u9u29-von-tram-nord-1sbss-stadteinwärts" ratio="1.0">tram-nord-1sbss-e1,set-e1-e2-nord,middest-e2,set-e2-e3-nord,middest-nord-e3,pathSnippet-fahrtreppe-u9-e3-e4-nord-1,dest-u9u29-stadteinwärts</path>
+			<path id="einsteiger-u9u29-von-tram-nord-1sbss-stadtauswärts" ratio="1.0">tram-nord-1sbss-e1,set-e1-e2-nord,middest-e2,set-e2-e3-nord,middest-nord-e3,pathSnippet-fahrtreppe-u9-e3-e4-nord-2,dest-u9u29-stadtauswärts</path>
+			<path id="einsteiger-u9u29-von-tram-sued-u4u5-stadteinwärts" ratio="1.0">tram-sued-u4-u5-e1,set-e1-e3-sued,middest-sued-1,middest-sued-2,middest-sued-3,pathSnippet-fahrtreppe-u9-e3-e4-sued-1,dest-u9u29-stadteinwärts</path>
+			<path id="einsteiger-u9u29-von-tram-sued-u4u5-stadtauswärts" ratio="1.0">tram-sued-u4-u5-e1,set-e1-e3-sued,middest-sued-1,middest-sued-2,middest-sued-4,pathSnippet-fahrtreppe-u9-e3-e4-sued-2,dest-u9u29-stadtauswärts</path>
+			<path id="einsteiger-u9u29-von-tram-bus-mitte-stadteinwärts" ratio="1.0">1sbss-tram-bus-mitte-e1,pathSnippet-fahrtreppe-e1-e3-nord,set-e3-e4-stadteinwärts,dest-u9u29-stadteinwärts</path>
+			<path id="einsteiger-u9u29-von-tram-bus-mitte-stadtauswärts" ratio="1.0">1sbss-tram-bus-mitte-e1,set-e1-e3-nukleus,set-e3-e4-stadtauswärts,dest-u9u29-stadtauswärts</path>
+			<path id="einsteiger-u9u29-von-u1u2u4u5-stadteinwärts" ratio="1.0">origin-u-1-2-4-5,set-e3-e4-stadteinwärts,dest-u9u29-stadteinwärts</path>
+			<path id="einsteiger-u9u29-von-u1u2u4u5-stadtauswärts" ratio="1.0">origin-u-1-2-4-5,set-e3-e4-stadtauswärts,dest-u9u29-stadtauswärts</path>
+			<path id="einsteiger-u9u29-von-DB-stadteinwärts" ratio="1.0">DB,set-e0-e1-west,set-e1-e3-west,middest-e3,set-e3-e4-stadteinwärts,dest-u9u29-stadteinwärts</path>
+			<path id="einsteiger-u9u29-von-DB-stadtauswärts" ratio="1.0">DB,set-e0-e1-west,set-e1-e3-west,middest-e3,set-e3-e4-stadtauswärts,dest-u9u29-stadtauswärts</path>
+		</paths>
+		<backgroundImages />
+		<pedCharacters>
+			<type name="FPLMWalking" ratio="1.0" />
+		</pedCharacters>
+		<morphosis>
+			<elevator id="waitingZone_elevators-e-6-1" wunderZone="simObj-210853" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-2" wunderZone="simObj-210946" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-3" wunderZone="simObj-210947" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-4" wunderZone="simObj-210948" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-5" wunderZone="simObj-210949" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-6" wunderZone="simObj-210977" boardingTime="10.0" capacity="6" />
+			<elevator id="waitingZone_elevators-e-6-7" wunderZone="simObj-210978" boardingTime="10.0" capacity="6" />
+			<elevator id="waitingZone_elevators-e-6-8" wunderZone="simObj-210954" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-9" wunderZone="simObj-210953" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-10" wunderZone="simObj-210952" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-11" wunderZone="simObj-210951" boardingTime="11.0" capacity="18" />
+			<elevator id="waitingZone_elevators-e-6-12" wunderZone="simObj-210950" boardingTime="11.0" capacity="18" />
+			<destination id="middest-e6-aufzuege-nord" wunderZone="simObj-352077" disableDynamicFlooding="false" />
+			<destination id="middest-e6-aufzuege-sued" wunderZone="simObj-352078" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-nord-1" wunderZone="simObj-351511" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-nord-2" wunderZone="simObj-351912" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-west-1" wunderZone="simObj-351513" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-west-2" wunderZone="simObj-351913" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-ost-1" wunderZone="simObj-351509" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-ost-2" wunderZone="simObj-351510" disableDynamicFlooding="false" />
+			<destination id="middest-bahnsteig-6-4-nord" wunderZone="simObj-352074" disableDynamicFlooding="false" />
+			<destination id="middest-bahnsteig-6-5-nord-west" wunderZone="simObj-352075" disableDynamicFlooding="false" />
+			<destination id="middest-bahnsteig-6-5-nord-ost" wunderZone="simObj-352076" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-6-4-nord-1" wunderZone="simObj-257251" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-4-nord-2" wunderZone="simObj-257253" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-nord-west-1" wunderZone="simObj-257247" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-nord-west-2" wunderZone="simObj-257249" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-nord-ost-1" wunderZone="simObj-257243" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-nord-ost-2" wunderZone="simObj-257245" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<destination id="middest-bahnsteig-6-4-sued" wunderZone="simObj-352071" disableDynamicFlooding="false" />
+			<destination id="middest-bahnsteig-6-5-sued-west" wunderZone="simObj-352072" disableDynamicFlooding="false" />
+			<destination id="middest-bahnsteig-6-5-sued-ost" wunderZone="simObj-352073" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-sued-1" wunderZone="simObj-351061" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-sued-2" wunderZone="simObj-351062" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-6-4-sued-1" wunderZone="simObj-257235" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-4-sued-2" wunderZone="simObj-257237" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<destination id="middest-fahrtreppe-6-5-sued-west-1" wunderZone="simObj-351063" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-west-2" wunderZone="simObj-351064" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-6-5-sued-west-1" wunderZone="simObj-257231" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-sued-west-2" wunderZone="simObj-257233" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<destination id="middest-fahrtreppe-6-5-sued-ost-1" wunderZone="simObj-351067" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-ost-2" wunderZone="simObj-351068" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-6-5-sued-ost-1" wunderZone="simObj-257239" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-6-5-sued-ost-2" wunderZone="simObj-257241" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z6" />
+			<destination id="ziel-langzug-stadteinwärts" wunderZone="simObj-343477" disableDynamicFlooding="false" />
+			<destination id="ziel-vollzug-stadteinwärts" wunderZone="simObj-343474" disableDynamicFlooding="false" />
+			<origin id="langzug-stadteinwärts" wunderZone="simObj-343421" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="vollzug-stadteinwärts" wunderZone="simObj-343402" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="ziel-langzug-stadtauswärts" wunderZone="simObj-343476" disableDynamicFlooding="false" />
+			<origin id="langzug-stadtauswärts" wunderZone="simObj-343420" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="vollzug-stadtauswärts" wunderZone="simObj-343403" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="ziel-vollzug-stadtauswärts" wunderZone="simObj-343475" disableDynamicFlooding="false" />
+			<waitingZone id="warten-stadtauswärts-langzug-vorne" wunderZone="simObj-352036" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadteinwärts-langzug-hinten" wunderZone="simObj-352037" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadtauswärts-vollzug-vorne" wunderZone="simObj-352045" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadtauswärts-langzug-mitte" wunderZone="simObj-352043" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadteinwärts-vollzug-hinten" wunderZone="simObj-352046" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadteinwärts-langzug-mitte" wunderZone="simObj-352044" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadtauswärts-langzug-hinten" wunderZone="simObj-352052" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadtauswärts-vollzug-hinten" wunderZone="simObj-352050" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadteinwärts-vollzug-vorne" wunderZone="simObj-352053" interval="0.0" capacity="-1" timeToWait="10" />
+			<waitingZone id="warten-stadteinwärts-langzug-vorne" wunderZone="simObj-352051" interval="0.0" capacity="-1" timeToWait="10" />
+			<scaledArea id="scaledArea_sicherheitsstreifen-2" wunderZone="simObj-352147" scale="0.8" />
+			<scaledArea id="scaledArea_sicherheitsstreifen-1" wunderZone="simObj-352148" scale="0.8" />
+			<escalator id="fahrtreppe-6-4-nord-1" wunderZone="simObj-210589" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="65" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-6-4-nord-2" wunderZone="simObj-210590" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="65" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-6-4-sued-1" wunderZone="simObj-210587" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="65" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-6-4-sued-2" wunderZone="simObj-210588" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="65" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-6-5-nord-west-1" wunderZone="simObj-210646" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-nord-west-2" wunderZone="simObj-210647" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-sued-west-1" wunderZone="simObj-210464" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-sued-west-2" wunderZone="simObj-210465" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-nord-ost-1" wunderZone="simObj-210735" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-nord-ost-2" wunderZone="simObj-210736" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-sued-ost-1" wunderZone="simObj-210732" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-6-5-sued-ost-2" wunderZone="simObj-210734" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-e5-e4-nord-1" wunderZone="simObj-216214" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-e5-e4-sued-1" wunderZone="simObj-216210" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-e5-e3-sued-1" wunderZone="simObj-216211" dirX="0.9999999999999701" dirY="-2.441067906647736E-7" dirZ="1.0" noOfTreads="72" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e3-e5" wunderZone="simObj-216212" dirX="0.9999999999999701" dirY="-2.441088857708587E-7" dirZ="1.0" noOfTreads="72" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e5-e3-sued-2" wunderZone="simObj-216213" dirX="0.9999999999999701" dirY="-2.441088857708587E-7" dirZ="1.0" noOfTreads="72" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e4-e3-nord-1" wunderZone="simObj-242830" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e4-e3-nord-2" wunderZone="simObj-242831" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e4-e3-sued-1" wunderZone="simObj-242860" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e4-e3-sued-2" wunderZone="simObj-242861" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e3-e1-nord" wunderZone="simObj-248585" dirX="-1.0" dirY="-2.4492935982947064E-16" dirZ="1.0" noOfTreads="57" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-e1-e3-nord" wunderZone="simObj-248584" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="57" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-e1-e3-sued" wunderZone="simObj-248587" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="57" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-e3-e1-sued" wunderZone="simObj-248586" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="57" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e5-e4-ost-nord" wunderZone="simObj-216220" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e5-e4-west-nord" wunderZone="simObj-218821" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e5-e4-west-sued" wunderZone="simObj-218823" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e5-e4-ost-sued" wunderZone="simObj-216217" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e4-e5-west-nord" wunderZone="simObj-218820" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-u9-e4-e5-ost-nord" wunderZone="simObj-216219" dirX="-0.0" dirY="-1.0" dirZ="-1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-u9-e4-e5-west-sued" wunderZone="simObj-218822" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-u9-e4-e5-ost-sued" wunderZone="simObj-216218" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="-1.0" noOfTreads="31" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-5" />
+			<escalator id="fahrtreppe-u9-e4-e3-west-nord" wunderZone="simObj-242915" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e4-e3-ost-nord" wunderZone="simObj-242916" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e4-e3-west-sued" wunderZone="simObj-236037" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e4-e3-ost-sued" wunderZone="simObj-236038" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e4-west-sued" wunderZone="simObj-236036" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e4-ost-sued" wunderZone="simObj-236039" dirX="-0.0" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e4-west-nord" wunderZone="simObj-242914" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e4-ost-nord" wunderZone="simObj-242917" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<elevator id="elevator_u9-west-nord" wunderZone="simObj-267938" boardingTime="10.0" capacity="6" />
+			<elevator id="elevator_u9-west-mitte" wunderZone="simObj-267940" boardingTime="10.0" capacity="6" />
+			<elevator id="elevator_u9-ost-mitte" wunderZone="simObj-267941" boardingTime="10.0" capacity="6" />
+			<elevator id="elevator_u9-ost-nord" wunderZone="simObj-267939" boardingTime="10.0" capacity="6" />
+			<elevator id="elevator_u9-west-sued" wunderZone="simObj-267936" boardingTime="10.0" capacity="6" />
+			<elevator id="elevator_u9-ost-sued" wunderZone="simObj-267937" boardingTime="10.0" capacity="6" />
+			<escalator id="fahrtreppe-u9-e3-e1-west-nord" wunderZone="simObj-248714" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e3-e1-west-sued" wunderZone="simObj-248717" dirX="1.0" dirY="1.2246467991473532E-16" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e1-e3-west-nord" wunderZone="simObj-248715" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="-1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e1-e3-west-sued" wunderZone="simObj-248716" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e0-e1-west-nord" wunderZone="simObj-256212" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="30" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e0-e1-west-sued" wunderZone="simObj-256215" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="30" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-west-nord" wunderZone="simObj-256213" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="30" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-west-sued" wunderZone="simObj-256214" dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="1.0" noOfTreads="30" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-ost-mitte-1" wunderZone="simObj-256216" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="34" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-ost-mitte-2" wunderZone="simObj-256219" dirX="1.0" dirY="1.2246467991473532E-16" dirZ="1.0" noOfTreads="34" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e0-e1-ost-mitte-1" wunderZone="simObj-256217" dirX="1.0" dirY="1.2246467991473532E-16" dirZ="1.0" noOfTreads="34" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e0-e1-ost-mitte-2" wunderZone="simObj-256218" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="34" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e0-e1-ost-nord" wunderZone="simObj-303644" dirX="-0.9999999962321005" dirY="8.680897986928167E-5" dirZ="1.0" noOfTreads="34" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-ost-nord" wunderZone="simObj-303645" dirX="-0.9999999960154282" dirY="8.927005917411993E-5" dirZ="1.0" noOfTreads="34" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e1-e0-ost-sued" wunderZone="simObj-303674" dirX="-0.9999999962321005" dirY="8.680897986915921E-5" dirZ="1.0" noOfTreads="34" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e0-e1-ost-sued" wunderZone="simObj-303675" dirX="-0.9999999962321005" dirY="8.680897986703959E-5" dirZ="1.0" noOfTreads="34" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-0" />
+			<escalator id="fahrtreppe-u9-e4-e3-nord-1" wunderZone="simObj-236508" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e4-e3-nord-2" wunderZone="simObj-236509" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e3-e4-nord-1" wunderZone="simObj-236510" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e4-e3-nord-3" wunderZone="simObj-236512" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e4-e3-nord-4" wunderZone="simObj-236513" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e3-e4-nord-2" wunderZone="simObj-236511" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e2-nord-1" wunderZone="simObj-248369" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e3-e2-nord-2" wunderZone="simObj-248370" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e3-e2-nord-3" wunderZone="simObj-248371" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e3-e2-nord-4" wunderZone="simObj-248372" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e2-e3-nord-1" wunderZone="simObj-248368" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e2-e3-nord-2" wunderZone="simObj-248373" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="24" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-2" />
+			<escalator id="fahrtreppe-u9-e4-e3-sued-1" wunderZone="simObj-236269" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e4-e3-sued-2" wunderZone="simObj-236270" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e4-e3-sued-3" wunderZone="simObj-236271" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e4-e3-sued-4" wunderZone="simObj-236272" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e3-e4-sued-1" wunderZone="simObj-236268" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e4-sued-2" wunderZone="simObj-236273" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<escalator id="fahrtreppe-u9-e3-e1-sued-1" wunderZone="simObj-247908" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e3-e1-sued-2" wunderZone="simObj-247909" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e3-e1-sued-3" wunderZone="simObj-247910" dirX="0.0" dirY="-1.0" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e3-e1-sued-4" wunderZone="simObj-247911" dirX="1.2246467991473532E-16" dirY="-1.0" dirZ="1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e1-e3-sued-1" wunderZone="simObj-247907" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e1-e3-sued-2" wunderZone="simObj-247912" dirX="-0.0" dirY="1.0" dirZ="-1.0" noOfTreads="51" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-u9-e2-e1-nord-1" wunderZone="simObj-248124" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e2-e1-nord-2" wunderZone="simObj-248125" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e2-e1-nord-3" wunderZone="simObj-248128" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e2-e1-nord-4" wunderZone="simObj-248129" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e1-e2-nord-1" wunderZone="simObj-248126" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-u9-e1-e2-nord-2" wunderZone="simObj-248127" dirX="-1.2246467991473532E-16" dirY="1.0" dirZ="1.0" noOfTreads="27" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-1" />
+			<escalator id="fahrtreppe-e5-e6-mitte-west-1" wunderZone="simObj-210648" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<escalator id="fahrtreppe-e5-e6-mitte-west-2" wunderZone="simObj-210671" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<escalator id="fahrtreppe-e5-e6-mitte-west-3" wunderZone="simObj-210672" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="33" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<escalator id="fahrtreppe-e5-e6-mitte-ost-1" wunderZone="simObj-210684" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<escalator id="fahrtreppe-e5-e6-mitte-ost-2" wunderZone="simObj-210685" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<escalator id="fahrtreppe-e5-e6-mitte-ost-3" wunderZone="simObj-210686" dirX="-1.0" dirY="0.0" dirZ="-1.0" noOfTreads="37" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-6" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-west-nord" wunderZone="simObj-352539" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-west-sued" wunderZone="simObj-352543" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-ost-nord" wunderZone="simObj-352540" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-ost-sued" wunderZone="simObj-352544" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-1" wunderZone="simObj-352912" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-2" wunderZone="simObj-352913" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-3" wunderZone="simObj-352914" disableDynamicFlooding="false" />
+			<escalator id="fahrtreppe-e5-e4-mitte-ost" wunderZone="simObj-216216" dirX="1.0" dirY="1.2246467991473532E-16" dirZ="1.0" noOfTreads="32" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<destination id="middest-fahrtreppe-e5-e4-mitte-ost" wunderZone="simObj-352916" disableDynamicFlooding="false" />
+			<escalator id="fahrtreppe-e4-e5-mitte-ost" wunderZone="simObj-216215" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="32" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost-ende" wunderZone="simObj-352915" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-west-nord-ende" wunderZone="simObj-352538" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-west-sued-ende" wunderZone="simObj-352542" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-ost-nord-ende" wunderZone="simObj-352541" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-ost-sued-ende" wunderZone="simObj-352545" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e4-nord-1" wunderZone="simObj-352917" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e4-sued-1" wunderZone="simObj-352920" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e3-sued-1" wunderZone="simObj-352535" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e3-sued-2" wunderZone="simObj-352537" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e5-ende" wunderZone="simObj-352536" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-1" wunderZone="simObj-352921" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-2" wunderZone="simObj-352922" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-3" wunderZone="simObj-352923" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-ost-1" wunderZone="simObj-261736" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-ost-2" wunderZone="simObj-261738" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-ost-3" wunderZone="simObj-261740" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-west-1" wunderZone="simObj-261730" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-west-2" wunderZone="simObj-261732" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<portal id="portal-fahrtreppe-e5-e6-mitte-west-3" wunderZone="simObj-261734" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z6" />
+			<destination id="middest-Ebene-5" wunderZone="simObj-352534" disableDynamicFlooding="false" />
+			<escalator id="fahrtreppe-e4-e5-mitte-ost-1" wunderZone="simObj-216208" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost-1-ende" wunderZone="simObj-352918" disableDynamicFlooding="false" />
+			<escalator id="fahrtreppe-e4-e5-mitte-ost-2" wunderZone="simObj-216209" dirX="-1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-4" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost-2-ende" wunderZone="simObj-352919" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-1-ende" wunderZone="simObj-351503" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-2-ende" wunderZone="simObj-351504" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-ost-3-ende" wunderZone="simObj-351505" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-1-ende" wunderZone="simObj-351506" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-2-ende" wunderZone="simObj-351507" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e6-mitte-west-3-ende" wunderZone="simObj-351508" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e5-e4-west-nord" wunderZone="simObj-261744" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e5-e4-ost-nord" wunderZone="simObj-261746" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e5-e4-west-sued" wunderZone="simObj-261752" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e5-e4-ost-sued" wunderZone="simObj-261754" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z5" />
+			<destination id="middest-fahrtreppe-6-5-nord-west-1-ende" wunderZone="simObj-353220" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-west-2-ende" wunderZone="simObj-353221" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-west-1-ende" wunderZone="simObj-353222" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-west-2-ende" wunderZone="simObj-353223" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-ost-1-ende" wunderZone="simObj-353216" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-nord-ost-2-ende" wunderZone="simObj-353217" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-ost-1-ende" wunderZone="simObj-353218" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-5-sued-ost-2-ende" wunderZone="simObj-353219" disableDynamicFlooding="false" />
+			<escalator id="fahrtreppe-e3-e4-nord" wunderZone="simObj-242832" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<escalator id="fahrtreppe-e3-e4-sued" wunderZone="simObj-242859" dirX="1.0" dirY="-0.0" dirZ="1.0" noOfTreads="36" transport="againstDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="Ebene-3" />
+			<destination id="middest-fahrtreppe-e5-e4-nord-1-ende" wunderZone="simObj-353284" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost-1" wunderZone="simObj-353285" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost-2" wunderZone="simObj-353286" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e4-sued-1-ende" wunderZone="simObj-353287" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-nord-1" wunderZone="simObj-352634" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-nord-2" wunderZone="simObj-352635" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e4-nord-ende" wunderZone="simObj-353283" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e4-sued-ende" wunderZone="simObj-353282" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-sued-1" wunderZone="simObj-352636" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-sued-2" wunderZone="simObj-352637" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-nord-1-ende" wunderZone="simObj-353278" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-nord-2-ende" wunderZone="simObj-353279" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-sued-1-ende" wunderZone="simObj-353280" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-6-4-sued-2-ende" wunderZone="simObj-353281" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e5-mitte-ost" wunderZone="simObj-352638" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e4-mitte-ost-ende" wunderZone="simObj-352639" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-west-nord" wunderZone="simObj-352644" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-west-nord-ende" wunderZone="simObj-352645" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-ost-nord-ende" wunderZone="simObj-352646" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-ost-nord" wunderZone="simObj-352647" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-west-sued" wunderZone="simObj-352648" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-west-sued-ende" wunderZone="simObj-352649" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e5-e4-ost-sued-ende" wunderZone="simObj-352652" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e5-ost-sued" wunderZone="simObj-352653" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-sued-1-ende" wunderZone="simObj-352656" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-1" wunderZone="simObj-352657" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-2" wunderZone="simObj-352658" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-sued-2" wunderZone="simObj-267900" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-sued-1" wunderZone="simObj-267898" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-3" wunderZone="simObj-352659" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-4" wunderZone="simObj-352660" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-sued-2-ende" wunderZone="simObj-352661" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-west-sued-ende" wunderZone="simObj-352650" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-west-sued" wunderZone="simObj-352651" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-ost-sued" wunderZone="simObj-352654" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-ost-sued-ende" wunderZone="simObj-352655" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-west-nord-ende" wunderZone="simObj-352640" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-west-nord" wunderZone="simObj-352641" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-ost-nord" wunderZone="simObj-352642" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-ost-nord-ende" wunderZone="simObj-352643" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-nord-1" wunderZone="simObj-267852" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-1" wunderZone="simObj-352662" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-nord-2" wunderZone="simObj-267854" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-2" wunderZone="simObj-352663" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-nord-1-ende" wunderZone="simObj-352664" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-nord-2-ende" wunderZone="simObj-352665" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-nord-3" wunderZone="simObj-267860" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-3" wunderZone="simObj-352666" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-nord-4" wunderZone="simObj-267862" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-4" wunderZone="simObj-352667" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e4-nord-1" wunderZone="simObj-280378" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-nord-1" wunderZone="simObj-352787" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e4-nord-2" wunderZone="simObj-280380" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-nord-2" wunderZone="simObj-352788" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-1-ende" wunderZone="simObj-352785" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-2-ende" wunderZone="simObj-352786" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-3-ende" wunderZone="simObj-352789" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-nord-4-ende" wunderZone="simObj-352790" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e3-sued-1-ende" wunderZone="simObj-352794" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e5" wunderZone="simObj-352795" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e5-e3-sued-2-ende" wunderZone="simObj-352796" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e1-e3-nord-ende" wunderZone="simObj-352797" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e1-nord" wunderZone="simObj-352798" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-nord-1-ende" wunderZone="simObj-352806" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-nord-2-ende" wunderZone="simObj-352805" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e4-nord" wunderZone="simObj-352804" disableDynamicFlooding="false" />
+			<destination id="middest-Ebene-3-ost-1" wunderZone="simObj-352757" disableDynamicFlooding="false" />
+			<destination id="middest-Ebene-3-ost-2" wunderZone="simObj-352756" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e4-sued" wunderZone="simObj-352802" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-sued-1-ende" wunderZone="simObj-352803" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e4-e3-sued-2-ende" wunderZone="simObj-352801" disableDynamicFlooding="false" />
+			<origin id="u1-2-4-5-wechsler-1" wunderZone="simObj-256844" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="u1-2-4-5-wechsler-2" wunderZone="simObj-256846" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="ziel-u1-u2-u4-u5-1" wunderZone="simObj-256882" disableDynamicFlooding="false" />
+			<destination id="ziel-u1-u2-u4-u5-2" wunderZone="simObj-256883" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e1-sued" wunderZone="simObj-352799" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e1-e3-sued-ende" wunderZone="simObj-352800" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-sued-3" wunderZone="simObj-267902" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<portal id="portal-fahrtreppe-u9-e4-e3-sued-4" wunderZone="simObj-267904" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-Ebene-3-west-1" wunderZone="simObj-353362" disableDynamicFlooding="false" />
+			<destination id="middest-Ebene-3-west-2" wunderZone="simObj-353421" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-west-nord" wunderZone="simObj-352762" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-west-nord-ende" wunderZone="simObj-352763" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-ost-nord-ende" wunderZone="simObj-352764" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-ost-nord" wunderZone="simObj-352765" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-west-sued" wunderZone="simObj-352758" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-west-sued-ende" wunderZone="simObj-352759" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-ost-sued-ende" wunderZone="simObj-352760" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-ost-sued" wunderZone="simObj-352761" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-west-nord" wunderZone="simObj-352769" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-west-nord-ende" wunderZone="simObj-352768" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-west-sued-ende" wunderZone="simObj-352767" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-west-sued" wunderZone="simObj-352766" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e4-sued-1" wunderZone="simObj-274563" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-sued-1" wunderZone="simObj-352770" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-1-ende" wunderZone="simObj-352771" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-2-ende" wunderZone="simObj-352772" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-3-ende" wunderZone="simObj-352773" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e4-e3-sued-4-ende" wunderZone="simObj-352774" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e4-sued-2" wunderZone="simObj-274573" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z4" />
+			<destination id="middest-fahrtreppe-u9-e3-e4-sued-2" wunderZone="simObj-352775" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-sued-1-ende" wunderZone="simObj-352776" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-1" wunderZone="simObj-352777" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-2" wunderZone="simObj-352778" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-3" wunderZone="simObj-352779" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-4" wunderZone="simObj-352780" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-sued-2-ende" wunderZone="simObj-352781" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-sued-1" wunderZone="simObj-274577" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z3" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-sued-2" wunderZone="simObj-274579" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z3" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-sued-3" wunderZone="simObj-274581" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z3" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-sued-4" wunderZone="simObj-274583" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z3" />
+			<destination id="middest-fahrtreppe-u9-e2-e3-nord-1-ende" wunderZone="simObj-352782" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-1" wunderZone="simObj-352783" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-2" wunderZone="simObj-352784" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-3" wunderZone="simObj-352791" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-4" wunderZone="simObj-352792" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e3-nord-2-ende" wunderZone="simObj-352793" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-west-nord" wunderZone="simObj-274559" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z3" />
+			<portal id="portal-fahrtreppe-u9-e3-e1-west-sued" wunderZone="simObj-274557" dirX="1.0" dirY="0.0" connectsTo="Ebene-Z3" />
+			<destination id="middest-fahrtreppe-u9-e2-e3-nord-1" wunderZone="simObj-353511" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-1-ende" wunderZone="simObj-353512" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-2-ende" wunderZone="simObj-353513" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-3-ende" wunderZone="simObj-353514" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e2-nord-4-ende" wunderZone="simObj-353515" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e3-nord-2" wunderZone="simObj-353516" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-1" wunderZone="simObj-353520" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-2" wunderZone="simObj-353521" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e2-nord-1-ende" wunderZone="simObj-353522" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e2-nord-2-ende" wunderZone="simObj-353517" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-3" wunderZone="simObj-353518" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-4" wunderZone="simObj-353519" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-west-nord-ende" wunderZone="simObj-353713" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-west-nord" wunderZone="simObj-353714" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-west-sued" wunderZone="simObj-353715" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-west-sued-ende" wunderZone="simObj-353716" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-mitte-1" wunderZone="simObj-353717" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-mitte-1-ende" wunderZone="simObj-353718" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-mitte-2-ende" wunderZone="simObj-353719" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-mitte-2" wunderZone="simObj-353720" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-west-nord-ende" wunderZone="simObj-353721" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e1-e3-west-nord" wunderZone="simObj-353763" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z3" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-west-nord" wunderZone="simObj-353722" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e1-e3-west-sued" wunderZone="simObj-353765" dirX="-1.0" dirY="-0.0" connectsTo="Ebene-Z3" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-west-sued" wunderZone="simObj-353723" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-west-sued-ende" wunderZone="simObj-353724" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e1-e3-nord" wunderZone="simObj-353785" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e1-nord-ende" wunderZone="simObj-353786" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e3-e1-sued-ende" wunderZone="simObj-353787" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-e1-e3-sued" wunderZone="simObj-353788" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-nord-ende" wunderZone="simObj-353789" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-nord" wunderZone="simObj-353790" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-sued" wunderZone="simObj-353791" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-sued-ende" wunderZone="simObj-353792" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-sued-1" wunderZone="simObj-353707" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-1-ende" wunderZone="simObj-353708" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-2-ende" wunderZone="simObj-353709" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-3-ende" wunderZone="simObj-353710" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e3-e1-sued-4-ende" wunderZone="simObj-353711" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e3-sued-2" wunderZone="simObj-353712" disableDynamicFlooding="false" />
+			<destination id="ziel-tram-sued-u4-u5-e1" wunderZone="simObj-353795" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-1-ende" wunderZone="simObj-353796" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-2-ende" wunderZone="simObj-353797" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e2-nord-1" wunderZone="simObj-353798" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e2-nord-2" wunderZone="simObj-353799" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-3-ende" wunderZone="simObj-353800" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e2-e1-nord-4-ende" wunderZone="simObj-353801" disableDynamicFlooding="false" />
+			<destination id="ziel-tram-nord-e1" wunderZone="simObj-353802" disableDynamicFlooding="false" />
+			<destination id="ziel-1sbss-tram-bus-mitte-e1" wunderZone="simObj-353794" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-nord" wunderZone="simObj-354294" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-nord-ende" wunderZone="simObj-354295" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-mitte-1-ende" wunderZone="simObj-354298" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-mitte-1" wunderZone="simObj-354299" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-mitte-2" wunderZone="simObj-354300" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-mitte-2-ende" wunderZone="simObj-354301" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-ost-sued-ende" wunderZone="simObj-354296" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-ost-sued" wunderZone="simObj-354297" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-west-nord" wunderZone="simObj-354290" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-west-nord-ende" wunderZone="simObj-354291" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e1-e0-west-sued-ende" wunderZone="simObj-354292" disableDynamicFlooding="false" />
+			<destination id="middest-fahrtreppe-u9-e0-e1-west-sued" wunderZone="simObj-354293" disableDynamicFlooding="false" />
+			<scaledArea id="scaledArea_simObj-354232" wunderZone="simObj-354232" scale="0.9" />
+			<scaledArea id="scaledArea_simObj-354235" wunderZone="simObj-354235" scale="0.9" />
+			<scaledArea id="scaledArea_simObj-354228" wunderZone="simObj-354228" scale="0.9" />
+			<scaledArea id="scaledArea_simObj-354230" wunderZone="simObj-354230" scale="0.9" />
+			<destination id="ziel-tram-sued-e0" wunderZone="simObj-341457" disableDynamicFlooding="false" />
+			<destination id="ziel-tram-nord-1sbss-e0" wunderZone="simObj-341456" disableDynamicFlooding="false" />
+			<destination id="ziel-tram-bus-mitte-e0" wunderZone="simObj-354182" disableDynamicFlooding="false" />
+			<destination id="ziel-DB" wunderZone="simObj-354183" disableDynamicFlooding="false" />
+			<portal id="portal-fahrtreppe-u9-e4-e5-west-nord" wunderZone="simObj-267872" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e4-e5-ost-nord" wunderZone="simObj-267878" dirX="-0.0" dirY="-1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e4-e5-west-sued" wunderZone="simObj-267880" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e4-e5-ost-sued" wunderZone="simObj-267886" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z5" />
+			<portal id="portal-fahrtreppe-u9-e1-e3-sued-1" wunderZone="simObj-354357" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z3" />
+			<portal id="portal-fahrtreppe-u9-e1-e3-sued-2" wunderZone="simObj-354359" dirX="0.0" dirY="1.0" connectsTo="Ebene-Z3" />
+			<origin id="origin-u9-stadteinwärts" wunderZone="simObj-354469" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="destination-u9-stadteinwärts" wunderZone="simObj-354508" disableDynamicFlooding="false" />
+			<origin id="origin-u29-stadteinwärts" wunderZone="simObj-354470" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="destination-u29-stadteinwärts" wunderZone="simObj-354509" disableDynamicFlooding="false" />
+			<destination id="middest-e4-nord" wunderZone="simObj-354535" disableDynamicFlooding="false" />
+			<destination id="middest-e4-sued" wunderZone="simObj-354536" disableDynamicFlooding="false" />
+			<origin id="origin-u9-stadtauswärts" wunderZone="simObj-354471" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="origin-u29-stadtauswärts" wunderZone="simObj-354472" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="destination-u9-stadtauswärts" wunderZone="simObj-354510" disableDynamicFlooding="false" />
+			<destination id="destination-u29-stadtauswärts" wunderZone="simObj-354511" disableDynamicFlooding="false" />
+			<origin id="tram-nord-1sbss-e0" wunderZone="simObj-354650" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="tram-nord-1sbss-e1" wunderZone="simObj-354744" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<destination id="middest-e2-1" wunderZone="simObj-354817" disableDynamicFlooding="false" />
+			<destination id="middest-e2-2" wunderZone="simObj-354818" disableDynamicFlooding="false" />
+			<destination id="middest-nord-1" wunderZone="simObj-354890" disableDynamicFlooding="false" />
+			<destination id="middest-nord-2" wunderZone="simObj-354893" disableDynamicFlooding="false" />
+			<destination id="middest-sued-1" wunderZone="simObj-354898" disableDynamicFlooding="false" />
+			<destination id="middest-sued-2" wunderZone="simObj-354899" disableDynamicFlooding="false" />
+			<destination id="middest-sued-3" wunderZone="simObj-354900" disableDynamicFlooding="false" />
+			<destination id="middest-sued-4" wunderZone="simObj-354903" disableDynamicFlooding="false" />
+			<origin id="tram-sued-u4-u5-e1" wunderZone="simObj-354745" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="1sbss-tram-bus-mitte-e1" wunderZone="simObj-354743" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<origin id="DB" wunderZone="simObj-354649" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+		</morphosis>
+		<sets>
+			<set id="fahrtreppe-6-4-nord" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-4-nord-1</member>
+				<member>pathSnippet-fahrtreppe-6-4-nord-2</member>
+			</set>
+			<set id="fahrtreppe-6-5-nord-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-5-nord-west-1</member>
+				<member>pathSnippet-fahrtreppe-6-5-nord-west-2</member>
+			</set>
+			<set id="fahrtreppe-6-5-nord-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-5-nord-ost-1</member>
+				<member>pathSnippet-fahrtreppe-6-5-nord-ost-2</member>
+			</set>
+			<set id="fahrtreppe-6-4-sued" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-4-sued-2</member>
+				<member>pathSnippet-fahrtreppe-6-4-sued-1</member>
+			</set>
+			<set id="fahrtreppe-6-5-sued-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-5-sued-west-1</member>
+				<member>pathSnippet-fahrtreppe-6-5-sued-west-2</member>
+			</set>
+			<set id="fahrtreppe-6-5-sued-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-6-5-sued-ost-1</member>
+				<member>pathSnippet-fahrtreppe-6-5-sued-ost-2</member>
+			</set>
+			<set id="fahrtreppe-u9-stadteinwärts-e5-e4" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-west-sued</member>
+			</set>
+			<set id="fahrtreppe-u9-stadtauswärts-e5-e4" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-ost-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-ost-sued</member>
+			</set>
+			<set id="fahrtreppe-e5-e6-mitte-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-2</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-3</member>
+			</set>
+			<set id="fahrtreppe-e5-e6-mitte-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-2</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-3</member>
+			</set>
+			<set id="set-e5-e3-closest" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e5-e3-sued-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e3-sued-2</member>
+			</set>
+			<set id="fahrtreppe-e4-e3-nord" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e4-e3-nord-1</member>
+				<member>pathSnippet-fahrtreppe-e4-e3-nord-2</member>
+			</set>
+			<set id="fahrtreppe-e4-e3-sued" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e4-e3-sued-1</member>
+				<member>pathSnippet-fahrtreppe-e4-e3-sued-2</member>
+			</set>
+			<set id="set-e6-e5-nukleus" heuristic="closest">
+				<member>e6-nach-e5-ost-stadtauswärts</member>
+				<member>e6-nach-e5-ost-stadteinwärts</member>
+			</set>
+			<set id="set-e6-e5-u9" heuristic="closest">
+				<member>e6-nach-e5-west-stadtauswärts</member>
+				<member>e6-nach-e5-west-stadteinwärts</member>
+			</set>
+			<set id="set-e4-e3-nukleus" heuristic="closest">
+				<member>e4-e3-nord</member>
+				<member>e4-e3-sued</member>
+			</set>
+			<set id="set-e5-e4-nukleus" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e5-e4-sued-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e4-nord-1</member>
+			</set>
+			<set id="set-e3-e1-nukleus" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e3-e1-nord</member>
+				<member>pathSnippet-fahrtreppe-e3-e1-sued</member>
+			</set>
+			<set id="set-e1-e0" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-west-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-nord</member>
+			</set>
+			<set id="set-e6-e4-nukleus" heuristic="closest">
+				<member>e6-nach-e4-stadtauswärts</member>
+				<member>pathSnippet-fahrtreppe-6-5-4-nord</member>
+				<member>e6-nach-e4-stadteinwärts</member>
+				<member>pathSnippet-fahrtreppe-6-5-4-sued</member>
+			</set>
+			<set id="set-e1-e0-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-west-sued</member>
+			</set>
+			<set id="set-ziel-u1-u2-u4-u5" heuristic="closest">
+				<member>ziel-u1-u2-u4-u5-1</member>
+				<member>ziel-u1-u2-u4-u5-2</member>
+			</set>
+			<set id="origin-stadtauswärts" heuristic="closest">
+				<member>langzug-stadtauswärts</member>
+				<member>vollzug-stadtauswärts</member>
+			</set>
+			<set id="origin-stadteinwärts" heuristic="closest">
+				<member>langzug-stadteinwärts</member>
+				<member>vollzug-stadteinwärts</member>
+			</set>
+			<set id="set-e1-e0-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-2</member>
+			</set>
+			<set id="set-e5-e4-u9u29-stadteinwärts" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-west-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-west-nord</member>
+			</set>
+			<set id="set-e5-e4-u9u29-stadtauswärts" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-ost-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e5-e4-ost-nord</member>
+			</set>
+			<set id="dest-u9u29-stadtauswärts" heuristic="distributed">
+				<member>destination-u9-stadtauswärts</member>
+				<member>destination-u29-stadtauswärts</member>
+			</set>
+			<set id="dest-u9u29-stadteinwärts" heuristic="distributed">
+				<member>destination-u29-stadteinwärts</member>
+				<member>destination-u9-stadteinwärts</member>
+			</set>
+			<set id="origin-u9u29-stadteinwärts" heuristic="closest">
+				<member>origin-u9-stadteinwärts</member>
+				<member>origin-u29-stadteinwärts</member>
+			</set>
+			<set id="origin-u9u29-stadtauswärts" heuristic="closest">
+				<member>origin-u9-stadtauswärts</member>
+				<member>origin-u29-stadtauswärts</member>
+			</set>
+			<set id="set-e4-e5-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-west-sued</member>
+			</set>
+			<set id="set-e4-e5-ost" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-ost-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-ost-sued</member>
+			</set>
+			<set id="set-e4-e5-u9u29" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-west-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-ost-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e5-ost-sued</member>
+			</set>
+			<set id="set-e5-e6-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-2</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-west-3</member>
+			</set>
+			<set id="set-e4-e3-nord-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-2</member>
+			</set>
+			<set id="set-e4-e3-nord-ost" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-4</member>
+			</set>
+			<set id="set-e4-e3-nord" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-nord-4</member>
+			</set>
+			<set id="set-e4-e3-sued" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-4</member>
+			</set>
+			<set id="set-e4-e3-sued-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-2</member>
+			</set>
+			<set id="set-e4-e3-sued-ost" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-sued-4</member>
+			</set>
+			<set id="set-e3-e1-sued-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-1</member>
+			</set>
+			<set id="set-e3-e1-sued" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-4</member>
+			</set>
+			<set id="set-e3-e1-sued-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-sued-4</member>
+			</set>
+			<set id="set-e1-e3-sued" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e1-e3-sued-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e3-sued-2</member>
+			</set>
+			<set id="set-e3-e4-sued" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-sued-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-sued-2</member>
+			</set>
+			<set id="set-e4-e3-stadteinwärts" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-west-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-ost-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-ost-nord</member>
+			</set>
+			<set id="set-e3-e4-stadteinwärts" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-west-sued</member>
+			</set>
+			<set id="set-e3-e4-stadtauswärts" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-ost-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-ost-sued</member>
+			</set>
+			<set id="set-e3-e1-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e1-west-sued</member>
+			</set>
+			<set id="set-e1-e3-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e1-e3-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e3-west-sued</member>
+			</set>
+			<set id="set-e0-e1-ost-mitte" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e0-e1-ost-mitte-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e0-e1-ost-mitte-2</member>
+				<member>fahrtreppe-u9-e0-e1-ost-nord</member>
+				<member>fahrtreppe-u9-e0-e1-ost-mitte-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e0-e1-ost-sued</member>
+			</set>
+			<set id="set-e1-e3-nukleus" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e1-e3-nord</member>
+				<member>pathSnippet-fahrtreppe-e1-e3-sued</member>
+			</set>
+			<set id="set-e3-e4-nukleus" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e3-e4-sued</member>
+				<member>pathSnippet-fahrtreppe-e3-e4-nord</member>
+			</set>
+			<set id="set-e5-e6-nukleus" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-1</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-2</member>
+				<member>pathSnippet-fahrtreppe-e5-e6-mitte-ost-3</member>
+			</set>
+			<set id="wartebereich-stadtauswärts-langzug" heuristic="distributed">
+				<member>warten-stadtauswärts-langzug-vorne</member>
+				<member>warten-stadtauswärts-langzug-mitte</member>
+				<member>warten-stadtauswärts-langzug-hinten</member>
+			</set>
+			<set id="wartebereich-stadteinwärts-langzug" heuristic="distributed">
+				<member>warten-stadteinwärts-langzug-hinten</member>
+				<member>warten-stadteinwärts-langzug-mitte</member>
+				<member>warten-stadteinwärts-langzug-vorne</member>
+			</set>
+			<set id="wartebereich-stadtauswärts-vollzug" heuristic="distributed">
+				<member>warten-stadtauswärts-vollzug-vorne</member>
+				<member>warten-stadtauswärts-vollzug-hinten</member>
+			</set>
+			<set id="wartebereich-stadteinwärts-vollzug" heuristic="distributed">
+				<member>warten-stadteinwärts-vollzug-hinten</member>
+				<member>warten-stadteinwärts-vollzug-vorne</member>
+			</set>
+			<set id="aussteiger-u9u29" heuristic="closest">
+				<member>origin-u9-stadteinwärts</member>
+				<member>origin-u29-stadteinwärts</member>
+				<member>origin-u9-stadtauswärts</member>
+				<member>origin-u29-stadtauswärts</member>
+			</set>
+			<set id="set-e3-e2-nord-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-2</member>
+			</set>
+			<set id="set-e3-e2-nord-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-4</member>
+			</set>
+			<set id="set-e3-e2-nord" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e2-nord-4</member>
+			</set>
+			<set id="set-e2-e1-west" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-2</member>
+			</set>
+			<set id="set-e2-e1-ost" heuristic="lessCrowded">
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-4</member>
+			</set>
+			<set id="set-e2-e1" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-2</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-3</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e1-nord-4</member>
+			</set>
+			<set id="set-e4-e3-u9u29-mitte" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-ost-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-ost-sued</member>
+				<member>pathSnippet-fahrtreppe-u9-e4-e3-west-sued</member>
+			</set>
+			<set id="set-e1-e2-nord" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e1-e2-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e1-e2-nord-2</member>
+			</set>
+			<set id="set-e2-e3-nord" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e2-e3-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e2-e3-nord-2</member>
+			</set>
+			<set id="set-e3-e4-nord" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-nord-1</member>
+				<member>pathSnippet-fahrtreppe-u9-e3-e4-nord-2</member>
+			</set>
+			<set id="middest-nord-e3" heuristic="closest">
+				<member>middest-nord-1</member>
+				<member>middest-nord-2</member>
+			</set>
+			<set id="origin-u-1-2-4-5" heuristic="closest">
+				<member>u1-2-4-5-wechsler-1</member>
+				<member>u1-2-4-5-wechsler-2</member>
+			</set>
+			<set id="set-e0-e1-west" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-u9-e0-e1-west-nord</member>
+				<member>pathSnippet-fahrtreppe-u9-e0-e1-west-sued</member>
+			</set>
+			<set id="middest-e3" heuristic="closest">
+				<member>middest-Ebene-3-west-1</member>
+				<member>middest-Ebene-3-west-2</member>
+			</set>
+			<set id="set-e4-e5-nukleus" heuristic="closest">
+				<member>pathSnippet-fahrtreppe-e4-e5-mitte-ost-1</member>
+				<member>pathSnippet-fahrtreppe-e4-e5-mitte-ost-2</member>
+			</set>
+			<set id="middest-e3-nukleus" heuristic="closest">
+				<member>middest-Ebene-3-ost-1</member>
+				<member>middest-Ebene-3-ost-2</member>
+			</set>
+			<set id="zug-stadtauswärts" heuristic="distributed">
+				<member>abfahrt-langzug-stadtauswärts</member>
+				<member>abfahrt-vollzug-stadtauswärts</member>
+			</set>
+			<set id="zug-stadteinwärts" heuristic="lessCrowded">
+				<member>abfahrt-langzug-stadteinwärts</member>
+				<member>abfahrt-vollzug-stadteinwärts</member>
+			</set>
+			<set id="middest-e2" heuristic="closest">
+				<member>middest-e2-1</member>
+				<member>middest-e2-2</member>
+			</set>
+		</sets>
+		<pathSnippets>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-4-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-4-nord-1</member>
+				<member>portal-fahrtreppe-6-4-nord-1</member>
+				<member>fahrtreppe-6-4-nord-1</member>
+				<member>middest-fahrtreppe-6-4-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-4-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-4-nord-2</member>
+				<member>portal-fahrtreppe-6-4-nord-2</member>
+				<member>fahrtreppe-6-4-nord-2</member>
+				<member>middest-fahrtreppe-6-4-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-nord-west-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-nord-west-1</member>
+				<member>portal-fahrtreppe-6-5-nord-west-1</member>
+				<member>fahrtreppe-6-5-nord-west-1</member>
+				<member>middest-fahrtreppe-6-5-nord-west-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-nord-west-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-nord-west-2</member>
+				<member>portal-fahrtreppe-6-5-nord-west-2</member>
+				<member>fahrtreppe-6-5-nord-west-2</member>
+				<member>middest-fahrtreppe-6-5-nord-west-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-nord-ost-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-nord-ost-1</member>
+				<member>portal-fahrtreppe-6-5-nord-ost-1</member>
+				<member>fahrtreppe-6-5-nord-ost-1</member>
+				<member>middest-fahrtreppe-6-5-nord-ost-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-nord-ost-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-nord-ost-2</member>
+				<member>portal-fahrtreppe-6-5-nord-ost-2</member>
+				<member>fahrtreppe-6-5-nord-ost-2</member>
+				<member>middest-fahrtreppe-6-5-nord-ost-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-4-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-4-sued-2</member>
+				<member>portal-fahrtreppe-6-4-sued-2</member>
+				<member>fahrtreppe-6-4-sued-2</member>
+				<member>middest-fahrtreppe-6-4-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-4-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-4-sued-1</member>
+				<member>portal-fahrtreppe-6-4-sued-1</member>
+				<member>fahrtreppe-6-4-sued-1</member>
+				<member>middest-fahrtreppe-6-4-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-sued-west-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-sued-west-2</member>
+				<member>portal-fahrtreppe-6-5-sued-west-2</member>
+				<member>fahrtreppe-6-5-sued-west-2</member>
+				<member>middest-fahrtreppe-6-5-sued-west-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-sued-west-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-sued-west-1</member>
+				<member>portal-fahrtreppe-6-5-sued-west-1</member>
+				<member>fahrtreppe-6-5-sued-west-1</member>
+				<member>middest-fahrtreppe-6-5-sued-west-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-sued-ost-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-sued-ost-1</member>
+				<member>portal-fahrtreppe-6-5-sued-ost-1</member>
+				<member>fahrtreppe-6-5-sued-ost-1</member>
+				<member>middest-fahrtreppe-6-5-sued-ost-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-sued-ost-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-6-5-sued-ost-2</member>
+				<member>portal-fahrtreppe-6-5-sued-ost-2</member>
+				<member>fahrtreppe-6-5-sued-ost-2</member>
+				<member>middest-fahrtreppe-6-5-sued-ost-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-west-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-west-1</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-west-1</member>
+				<member>fahrtreppe-e5-e6-mitte-west-1</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-west-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-west-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-west-2</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-west-2</member>
+				<member>fahrtreppe-e5-e6-mitte-west-2</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-west-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-west-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-west-3</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-west-3</member>
+				<member>fahrtreppe-e5-e6-mitte-west-3</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-west-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-ost-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-1</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-ost-1</member>
+				<member>fahrtreppe-e5-e6-mitte-ost-1</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-ost-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-2</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-ost-2</member>
+				<member>fahrtreppe-e5-e6-mitte-ost-2</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e6-mitte-ost-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-3</member>
+				<member>portal-fahrtreppe-e5-e6-mitte-ost-3</member>
+				<member>fahrtreppe-e5-e6-mitte-ost-3</member>
+				<member>middest-fahrtreppe-e5-e6-mitte-ost-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e5-e4-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e5-e4-west-nord</member>
+				<member>portal-fahrtreppe-u9-e5-e4-west-nord</member>
+				<member>fahrtreppe-u9-e5-e4-west-nord</member>
+				<member>middest-fahrtreppe-u9-e5-e4-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e5-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e5-west-nord</member>
+				<member>portal-fahrtreppe-u9-e4-e5-west-nord</member>
+				<member>fahrtreppe-u9-e4-e5-west-nord</member>
+				<member>middest-fahrtreppe-u9-e4-e5-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e5-e4-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e5-e4-ost-nord</member>
+				<member>portal-fahrtreppe-u9-e5-e4-ost-nord</member>
+				<member>fahrtreppe-u9-e5-e4-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e5-e4-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e5-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e5-ost-nord</member>
+				<member>portal-fahrtreppe-u9-e4-e5-ost-nord</member>
+				<member>fahrtreppe-u9-e4-e5-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e4-e5-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e5-e4-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e5-e4-west-sued</member>
+				<member>portal-fahrtreppe-u9-e5-e4-west-sued</member>
+				<member>fahrtreppe-u9-e5-e4-west-sued</member>
+				<member>middest-fahrtreppe-u9-e5-e4-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e5-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e5-west-sued</member>
+				<member>portal-fahrtreppe-u9-e4-e5-west-sued</member>
+				<member>fahrtreppe-u9-e4-e5-west-sued</member>
+				<member>middest-fahrtreppe-u9-e4-e5-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e5-e4-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e5-e4-ost-sued</member>
+				<member>portal-fahrtreppe-u9-e5-e4-ost-sued</member>
+				<member>fahrtreppe-u9-e5-e4-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e5-e4-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e5-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e5-ost-sued</member>
+				<member>portal-fahrtreppe-u9-e4-e5-ost-sued</member>
+				<member>fahrtreppe-u9-e4-e5-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e4-e5-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e4-mitte-ost" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e4-mitte-ost</member>
+				<member>fahrtreppe-e5-e4-mitte-ost</member>
+				<member>middest-fahrtreppe-e5-e4-mitte-ost-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e5-mitte-ost" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e5-mitte-ost</member>
+				<member>fahrtreppe-e4-e5-mitte-ost</member>
+				<member>middest-fahrtreppe-e4-e5-mitte-ost-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e4-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e4-nord-1</member>
+				<member>fahrtreppe-e5-e4-nord-1</member>
+				<member>middest-fahrtreppe-e5-e4-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e5-mitte-ost-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e5-mitte-ost-1</member>
+				<member>fahrtreppe-e4-e5-mitte-ost-1</member>
+				<member>middest-fahrtreppe-e4-e5-mitte-ost-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e5-mitte-ost-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e5-mitte-ost-2</member>
+				<member>fahrtreppe-e4-e5-mitte-ost-2</member>
+				<member>middest-fahrtreppe-e4-e5-mitte-ost-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e4-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e4-sued-1</member>
+				<member>fahrtreppe-e5-e4-sued-1</member>
+				<member>middest-fahrtreppe-e5-e4-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e3-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e3-sued-1</member>
+				<member>fahrtreppe-e5-e3-sued-1</member>
+				<member>middest-fahrtreppe-e5-e3-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e5-e3-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e5-e3-sued-2</member>
+				<member>fahrtreppe-e5-e3-sued-2</member>
+				<member>middest-fahrtreppe-e5-e3-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e3-e5" heuristic="inOrder">
+				<member>middest-fahrtreppe-e3-e5</member>
+				<member>fahrtreppe-e3-e5</member>
+				<member>middest-fahrtreppe-e3-e5-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-west-nord</member>
+				<member>fahrtreppe-u9-e3-e4-west-nord</member>
+				<member>middest-fahrtreppe-u9-e3-e4-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-west-nord</member>
+				<member>fahrtreppe-u9-e4-e3-west-nord</member>
+				<member>middest-fahrtreppe-u9-e4-e3-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-ost-nord</member>
+				<member>fahrtreppe-u9-e4-e3-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e4-e3-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-ost-nord</member>
+				<member>fahrtreppe-u9-e3-e4-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e3-e4-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-west-sued</member>
+				<member>fahrtreppe-u9-e3-e4-west-sued</member>
+				<member>middest-fahrtreppe-u9-e3-e4-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-west-sued</member>
+				<member>fahrtreppe-u9-e4-e3-west-sued</member>
+				<member>middest-fahrtreppe-u9-e4-e3-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-ost-sued</member>
+				<member>fahrtreppe-u9-e4-e3-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e4-e3-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-ost-sued</member>
+				<member>fahrtreppe-u9-e3-e4-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e3-e4-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-sued-1</member>
+				<member>portal-fahrtreppe-u9-e3-e4-sued-1</member>
+				<member>fahrtreppe-u9-e3-e4-sued-1</member>
+				<member>middest-fahrtreppe-u9-e3-e4-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-sued-1</member>
+				<member>portal-fahrtreppe-u9-e4-e3-sued-1</member>
+				<member>fahrtreppe-u9-e4-e3-sued-1</member>
+				<member>middest-fahrtreppe-u9-e4-e3-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-sued-2</member>
+				<member>portal-fahrtreppe-u9-e4-e3-sued-2</member>
+				<member>fahrtreppe-u9-e4-e3-sued-2</member>
+				<member>middest-fahrtreppe-u9-e4-e3-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-sued-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-sued-3</member>
+				<member>portal-fahrtreppe-u9-e4-e3-sued-3</member>
+				<member>fahrtreppe-u9-e4-e3-sued-3</member>
+				<member>middest-fahrtreppe-u9-e4-e3-sued-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-sued-4" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-sued-4</member>
+				<member>portal-fahrtreppe-u9-e4-e3-sued-4</member>
+				<member>fahrtreppe-u9-e4-e3-sued-4</member>
+				<member>middest-fahrtreppe-u9-e4-e3-sued-4-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-sued-2</member>
+				<member>portal-fahrtreppe-u9-e3-e4-sued-2</member>
+				<member>fahrtreppe-u9-e3-e4-sued-2</member>
+				<member>middest-fahrtreppe-u9-e3-e4-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-nord-1</member>
+				<member>portal-fahrtreppe-u9-e4-e3-nord-1</member>
+				<member>fahrtreppe-u9-e4-e3-nord-1</member>
+				<member>middest-fahrtreppe-u9-e4-e3-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-nord-2</member>
+				<member>portal-fahrtreppe-u9-e4-e3-nord-2</member>
+				<member>fahrtreppe-u9-e4-e3-nord-2</member>
+				<member>middest-fahrtreppe-u9-e4-e3-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-nord-1</member>
+				<member>portal-fahrtreppe-u9-e3-e4-nord-1</member>
+				<member>fahrtreppe-u9-e3-e4-nord-1</member>
+				<member>middest-fahrtreppe-u9-e3-e4-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e4-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e4-nord-2</member>
+				<member>portal-fahrtreppe-u9-e3-e4-nord-2</member>
+				<member>fahrtreppe-u9-e3-e4-nord-2</member>
+				<member>middest-fahrtreppe-u9-e3-e4-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-nord-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-nord-3</member>
+				<member>portal-fahrtreppe-u9-e4-e3-nord-3</member>
+				<member>fahrtreppe-u9-e4-e3-nord-3</member>
+				<member>middest-fahrtreppe-u9-e4-e3-nord-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e4-e3-nord-4" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e4-e3-nord-4</member>
+				<member>portal-fahrtreppe-u9-e4-e3-nord-4</member>
+				<member>fahrtreppe-u9-e4-e3-nord-4</member>
+				<member>middest-fahrtreppe-u9-e4-e3-nord-4-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e3-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e3-nord-1</member>
+				<member>fahrtreppe-e4-e3-nord-1</member>
+				<member>middest-fahrtreppe-e4-e3-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e3-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e3-nord-2</member>
+				<member>fahrtreppe-e4-e3-nord-2</member>
+				<member>middest-fahrtreppe-e4-e3-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e3-e4-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-e3-e4-nord</member>
+				<member>fahrtreppe-e3-e4-nord</member>
+				<member>middest-fahrtreppe-e3-e4-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e3-e4-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-e3-e4-sued</member>
+				<member>fahrtreppe-e3-e4-sued</member>
+				<member>middest-fahrtreppe-e3-e4-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e3-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e3-sued-1</member>
+				<member>fahrtreppe-e4-e3-sued-1</member>
+				<member>middest-fahrtreppe-e4-e3-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e4-e3-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-e4-e3-sued-2</member>
+				<member>fahrtreppe-e4-e3-sued-2</member>
+				<member>middest-fahrtreppe-e4-e3-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e1-e3-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-e1-e3-nord</member>
+				<member>fahrtreppe-e1-e3-nord</member>
+				<member>middest-fahrtreppe-e1-e3-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e3-e1-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-e3-e1-nord</member>
+				<member>fahrtreppe-e3-e1-nord</member>
+				<member>middest-fahrtreppe-e3-e1-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e3-e1-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-e3-e1-sued</member>
+				<member>fahrtreppe-e3-e1-sued</member>
+				<member>middest-fahrtreppe-e3-e1-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-e1-e3-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-e1-e3-sued</member>
+				<member>fahrtreppe-e1-e3-sued</member>
+				<member>middest-fahrtreppe-e1-e3-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-west-nord</member>
+				<member>portal-fahrtreppe-u9-e3-e1-west-nord</member>
+				<member>fahrtreppe-u9-e3-e1-west-nord</member>
+				<member>middest-fahrtreppe-u9-e3-e1-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e3-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e3-west-nord</member>
+				<member>portal-fahrtreppe-u9-e1-e3-west-nord</member>
+				<member>fahrtreppe-u9-e1-e3-west-nord</member>
+				<member>middest-fahrtreppe-u9-e1-e3-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e3-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e3-west-sued</member>
+				<member>portal-fahrtreppe-u9-e1-e3-west-sued</member>
+				<member>fahrtreppe-u9-e1-e3-west-sued</member>
+				<member>middest-fahrtreppe-u9-e1-e3-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-west-sued</member>
+				<member>portal-fahrtreppe-u9-e3-e1-west-sued</member>
+				<member>fahrtreppe-u9-e3-e1-west-sued</member>
+				<member>middest-fahrtreppe-u9-e3-e1-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e3-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e3-nord-1</member>
+				<member>fahrtreppe-u9-e2-e3-nord-1</member>
+				<member>middest-fahrtreppe-u9-e2-e3-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e2-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e2-nord-1</member>
+				<member>fahrtreppe-u9-e3-e2-nord-1</member>
+				<member>middest-fahrtreppe-u9-e3-e2-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e2-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e2-nord-2</member>
+				<member>fahrtreppe-u9-e3-e2-nord-2</member>
+				<member>middest-fahrtreppe-u9-e3-e2-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e2-nord-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e2-nord-3</member>
+				<member>fahrtreppe-u9-e3-e2-nord-3</member>
+				<member>middest-fahrtreppe-u9-e3-e2-nord-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e2-nord-4" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e2-nord-4</member>
+				<member>fahrtreppe-u9-e3-e2-nord-4</member>
+				<member>middest-fahrtreppe-u9-e3-e2-nord-4-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e3-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e3-nord-2</member>
+				<member>fahrtreppe-u9-e2-e3-nord-2</member>
+				<member>middest-fahrtreppe-u9-e2-e3-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e3-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e3-sued-1</member>
+				<member>portal-fahrtreppe-u9-e1-e3-sued-1</member>
+				<member>fahrtreppe-u9-e1-e3-sued-1</member>
+				<member>middest-fahrtreppe-u9-e1-e3-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-sued-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-sued-1</member>
+				<member>portal-fahrtreppe-u9-e3-e1-sued-1</member>
+				<member>fahrtreppe-u9-e3-e1-sued-1</member>
+				<member>middest-fahrtreppe-u9-e3-e1-sued-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-sued-2</member>
+				<member>portal-fahrtreppe-u9-e3-e1-sued-2</member>
+				<member>fahrtreppe-u9-e3-e1-sued-2</member>
+				<member>middest-fahrtreppe-u9-e3-e1-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-sued-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-sued-3</member>
+				<member>portal-fahrtreppe-u9-e3-e1-sued-3</member>
+				<member>fahrtreppe-u9-e3-e1-sued-3</member>
+				<member>middest-fahrtreppe-u9-e3-e1-sued-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e3-e1-sued-4" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e3-e1-sued-4</member>
+				<member>portal-fahrtreppe-u9-e3-e1-sued-4</member>
+				<member>fahrtreppe-u9-e3-e1-sued-4</member>
+				<member>middest-fahrtreppe-u9-e3-e1-sued-4-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e3-sued-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e3-sued-2</member>
+				<member>portal-fahrtreppe-u9-e1-e3-sued-2</member>
+				<member>fahrtreppe-u9-e1-e3-sued-2</member>
+				<member>middest-fahrtreppe-u9-e1-e3-sued-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e1-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e1-nord-1</member>
+				<member>fahrtreppe-u9-e2-e1-nord-1</member>
+				<member>middest-fahrtreppe-u9-e2-e1-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e1-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e1-nord-2</member>
+				<member>fahrtreppe-u9-e2-e1-nord-2</member>
+				<member>middest-fahrtreppe-u9-e2-e1-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e2-nord-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e2-nord-1</member>
+				<member>fahrtreppe-u9-e1-e2-nord-1</member>
+				<member>middest-fahrtreppe-u9-e1-e2-nord-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e2-nord-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e2-nord-2</member>
+				<member>fahrtreppe-u9-e1-e2-nord-2</member>
+				<member>middest-fahrtreppe-u9-e1-e2-nord-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e1-nord-3" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e1-nord-3</member>
+				<member>fahrtreppe-u9-e2-e1-nord-3</member>
+				<member>middest-fahrtreppe-u9-e2-e1-nord-3-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e2-e1-nord-4" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e2-e1-nord-4</member>
+				<member>fahrtreppe-u9-e2-e1-nord-4</member>
+				<member>middest-fahrtreppe-u9-e2-e1-nord-4-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-west-nord</member>
+				<member>fahrtreppe-u9-e0-e1-west-nord</member>
+				<member>middest-fahrtreppe-u9-e0-e1-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-west-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-west-nord</member>
+				<member>fahrtreppe-u9-e1-e0-west-nord</member>
+				<member>middest-fahrtreppe-u9-e1-e0-west-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-west-sued</member>
+				<member>fahrtreppe-u9-e1-e0-west-sued</member>
+				<member>middest-fahrtreppe-u9-e1-e0-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-west-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-west-sued</member>
+				<member>fahrtreppe-u9-e0-e1-west-sued</member>
+				<member>middest-fahrtreppe-u9-e0-e1-west-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-ost-mitte-1</member>
+				<member>fahrtreppe-u9-e1-e0-ost-mitte-1</member>
+				<member>middest-fahrtreppe-u9-e1-e0-ost-mitte-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-ost-mitte-1" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-ost-mitte-1</member>
+				<member>fahrtreppe-u9-e0-e1-ost-mitte-1</member>
+				<member>middest-fahrtreppe-u9-e0-e1-ost-mitte-1-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-ost-mitte-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-ost-mitte-2</member>
+				<member>fahrtreppe-u9-e0-e1-ost-mitte-2</member>
+				<member>middest-fahrtreppe-u9-e0-e1-ost-mitte-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-ost-mitte-2" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-ost-mitte-2</member>
+				<member>fahrtreppe-u9-e1-e0-ost-mitte-2</member>
+				<member>middest-fahrtreppe-u9-e1-e0-ost-mitte-2-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-ost-sued</member>
+				<member>fahrtreppe-u9-e0-e1-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e0-e1-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-ost-sued" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-ost-sued</member>
+				<member>fahrtreppe-u9-e1-e0-ost-sued</member>
+				<member>middest-fahrtreppe-u9-e1-e0-ost-sued-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e1-e0-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e1-e0-ost-nord</member>
+				<member>fahrtreppe-u9-e1-e0-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e1-e0-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-u9-e0-e1-ost-nord" heuristic="inOrder">
+				<member>middest-fahrtreppe-u9-e0-e1-ost-nord</member>
+				<member>fahrtreppe-u9-e0-e1-ost-nord</member>
+				<member>middest-fahrtreppe-u9-e0-e1-ost-nord-ende</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e4-stadtauswärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-4-nord</member>
+				<member>fahrtreppe-6-4-nord</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e5-west-stadtauswärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-5-nord-west</member>
+				<member>fahrtreppe-6-5-nord-west</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e5-ost-stadtauswärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-5-nord-ost</member>
+				<member>fahrtreppe-6-5-nord-ost</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e4-stadteinwärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-4-sued</member>
+				<member>fahrtreppe-6-4-sued</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e5-west-stadteinwärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-5-sued-west</member>
+				<member>fahrtreppe-6-5-sued-west</member>
+			</pathSnippet>
+			<pathSnippet id="e6-nach-e5-ost-stadteinwärts" heuristic="inOrder">
+				<member>middest-bahnsteig-6-5-sued-ost</member>
+				<member>fahrtreppe-6-5-sued-ost</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-4-nord" heuristic="inOrder">
+				<member>e6-nach-e5-ost-stadtauswärts</member>
+				<member>pathSnippet-fahrtreppe-e5-e4-nord-1</member>
+			</pathSnippet>
+			<pathSnippet id="pathSnippet-fahrtreppe-6-5-4-sued" heuristic="inOrder">
+				<member>e6-nach-e5-ost-stadteinwärts</member>
+				<member>pathSnippet-fahrtreppe-e5-e4-sued-1</member>
+			</pathSnippet>
+			<pathSnippet id="e4-e3-nord" heuristic="inOrder">
+				<member>middest-e4-nord</member>
+				<member>fahrtreppe-e4-e3-nord</member>
+			</pathSnippet>
+			<pathSnippet id="e4-e3-sued" heuristic="inOrder">
+				<member>middest-e4-sued</member>
+				<member>fahrtreppe-e4-e3-sued</member>
+			</pathSnippet>
+			<pathSnippet id="abfahrt-langzug-stadteinwärts" heuristic="inOrder">
+				<member>wartebereich-stadteinwärts-langzug</member>
+				<member>ziel-langzug-stadteinwärts</member>
+			</pathSnippet>
+			<pathSnippet id="abfahrt-langzug-stadtauswärts" heuristic="inOrder">
+				<member>wartebereich-stadtauswärts-langzug</member>
+				<member>ziel-langzug-stadtauswärts</member>
+			</pathSnippet>
+			<pathSnippet id="abfahrt-vollzug-stadteinwärts" heuristic="inOrder">
+				<member>wartebereich-stadteinwärts-vollzug</member>
+				<member>ziel-vollzug-stadteinwärts</member>
+			</pathSnippet>
+			<pathSnippet id="abfahrt-vollzug-stadtauswärts" heuristic="inOrder">
+				<member>wartebereich-stadtauswärts-vollzug</member>
+				<member>ziel-vollzug-stadtauswärts</member>
+			</pathSnippet>
+		</pathSnippets>
+		<floorProps>
+			<floorProp floor="Ebene-6" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-Z6" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-5" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-Z5" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-4" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-Z4" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-3" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-Z3" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-2" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-1" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+			<floorProp floor="Ebene-0" cellDist="0.1" discretizationType="1" elevation="0.0" height="2.0" />
+		</floorProps>
+		<groups>
+			<row>1,1.0</row>
+		</groups>
+		<elevatorMatrices>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-1" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,22.18,36.02</row>
+				<row>22.18,0.0,22.59</row>
+				<row>25.02,0.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-2" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-3" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-4" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-5" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-6" floors="Ebene-6,Ebene-1">
+				<row>0.0,5.0</row>
+				<row>5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-7" floors="Ebene-6,Ebene-1">
+				<row>0.0,5.0</row>
+				<row>5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-8" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-9" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-10" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-11" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="waitingZone_elevators-e-6-12" floors="Ebene-6,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0</row>
+				<row>5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-west-nord" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-west-mitte" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-ost-mitte" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-ost-nord" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-west-sued" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+			<elevatorMatrix ref="elevator_u9-ost-sued" floors="Ebene-4,Ebene-3,Ebene-1,Ebene-0">
+				<row>0.0,5.0,5.0,5.0</row>
+				<row>5.0,0.0,5.0,5.0</row>
+				<row>5.0,5.0,0.0,5.0</row>
+				<row>5.0,5.0,5.0,0.0</row>
+			</elevatorMatrix>
+		</elevatorMatrices>
+	</meta>
+	<settings />
+	<evaluations>
+		<measurements />
+	</evaluations>
+	<visualization>
+		<colorings />
+	</visualization>
+</scenario>

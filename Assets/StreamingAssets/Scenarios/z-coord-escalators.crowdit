@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario xmlFormat="0.8" name="z-coord-escalators" isoDate="2018-07-31T09:08:41.063Z">
+	<spatial>
+		<floor id="generic-escalator-small" floorAt="geometry/generic-stair-small.floor" />
+		<floor id="generic-escalator-small-2" floorAt="geometry/generic-stair-small-2.floor" />
+	</spatial>
+	<meta>
+		<intervals>
+			<interval id="i0-origin_simObj-56" value="0,1:1" />
+		</intervals>
+		<intervalMatrix>
+			<row>origin_simObj-56,i0-origin_simObj-56</row>
+		</intervalMatrix>
+		<paths>
+			<path id="path0" ratio="1.0">origin_simObj-56,escalator_simObj-57,destination_simObj-62</path>
+		</paths>
+		<backgroundImages />
+		<pedCharacters>
+			<type name="FPLMWalking" ratio="1.0" />
+		</pedCharacters>
+		<morphosis>
+			<destination id="destination_simObj-62" wunderZone="simObj-62" disableDynamicFlooding="false" />
+			<origin id="origin_simObj-56" wunderZone="simObj-56" minPremovementTime="0" sortedBirthCells="false" maxPremovementTime="0" />
+			<escalator id="escalator_simObj-57" wunderZone="simObj-57" dirX="0.0" dirY="1.0" dirZ="1.0" noOfTreads="16" transport="withDir" speed="0.5" noOfHorizontalTreads="2" connectsTo="generic-escalator-small-2" />
+		</morphosis>
+		<sets />
+		<pathSnippets />
+		<floorProps>
+			<floorProp floor="generic-escalator-small" cellDist="0.1" discretizationType="1" elevation="0.0" height="20.0" />
+			<floorProp floor="generic-escalator-small-2" cellDist="0.1" discretizationType="1" elevation="20.0" height="2.0" />
+		</floorProps>
+		<groups>
+			<row>1,1.0</row>
+		</groups>
+		<elevatorMatrices />
+	</meta>
+	<settings />
+	<evaluations>
+		<measurements />
+	</evaluations>
+	<visualization>
+		<colorings />
+	</visualization>
+</scenario>

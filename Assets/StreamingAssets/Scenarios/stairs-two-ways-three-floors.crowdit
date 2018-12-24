@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario isoDate="2017-01-03T12:46:20Z" name="stairs-two-ways-three-floors" xmlFormat="0.8">
+	<spatial>
+		<floor floorAt="geometry/0.floor" id="0" />
+		<floor floorAt="geometry/1.floor" id="1" />
+		<floor floorAt="geometry/2.floor" id="2" />
+		<floor floorAt="geometry/3.floor" id="3" />
+	</spatial>
+	<meta>
+		<morphosis>
+			<origin id="s-UG" wunderZone="s-UG-WZ" />
+			<destination id="d-UG" wunderZone="d-UG-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v-UG-6-up" noOfTreads="4" wunderZone="v-UG-6-up-WZ" />
+			<portal connectsTo="1" dirX="0.0" dirY="1.0" id="p-UG-nach-EG" wunderZone="p-UG-nach-EG-WZ" />
+			<stair dirX="0" dirY="-1" dirZ="1.0" id="v22-up-OG1" noOfTreads="6" wunderZone="v22-up-OG1-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v31-up-OG1" noOfTreads="4" wunderZone="v31-up-OG1-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v23-up-OG1" noOfTreads="4" wunderZone="v23-up-EG-WZ" />
+			<portal connectsTo="0" dirX="0.0" dirY="-1.0" id="p-EG-nach-UG" wunderZone="p-EG-nach-UG-WZ" />
+			<portal connectsTo="2" dirX="0.0" dirY="1.0" id="p-EG-nach-OG1" wunderZone="p-EG-nach-OG1-WZ" />
+			<stair dirX="0" dirY="-1" dirZ="1.0" id="v22-up-OG2" noOfTreads="6" wunderZone="v22-up-OG2-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v31-up-OG2" noOfTreads="4" wunderZone="v31-up-OG2-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v23-up-OG2" noOfTreads="4" wunderZone="v23-up-OG2-WZ" />
+			<portal connectsTo="1" dirX="0.0" dirY="-1.0" id="p-OG1-nach-EG" wunderZone="p-OG1-nach-EG-WZ" />
+			<portal connectsTo="3" dirX="0.0" dirY="1.0" id="p-OG1-nach-OG2" wunderZone="p-OG1-nach-OG2-WZ" />
+			<origin id="s-OG2" wunderZone="s-OG2-WZ" />
+			<destination id="d-OG2" wunderZone="d-OG2-WZ" />
+			<stair dirX="0" dirY="1" dirZ="1.0" id="v23-up-OG3" noOfTreads="4" wunderZone="v23-up-OG3-WZ" />
+			<portal connectsTo="2" dirX="0.0" dirY="-1.0" id="p-OG2-nach-OG1" wunderZone="p-OG2-nach-OG1-WZ" />
+		</morphosis>
+		<pedCharacters>
+			<type name="FPLMWalking" ratio="1" />
+		</pedCharacters>
+		<intervals>
+			<interval id="i1" value="0,1:1" />
+			<interval id="i2" value="4,5:1" />
+			<interval id="j1" value="0,?:1000" />
+		</intervals>
+		<intervalMatrix>
+			<row>s-UG,i1</row>
+			<row>d-UG,j1</row>
+			<row>s-OG2,i2</row>
+			<row>d-OG2,j1</row>
+			<row>p-UG-nach-EG,j1</row>
+			<row>p-EG-nach-UG,j1</row>
+			<row>p-EG-nach-OG1,j1</row>
+			<row>p-OG1-nach-EG,j1</row>
+			<row>p-OG1-nach-OG2,j1</row>
+			<row>p-OG2-nach-OG1,j1</row>
+		</intervalMatrix>
+		<floorProps>
+			<floorProp cellDist="0.1" discretizationType="1" floor="0" height="2.5" elevation="0.0" />
+			<floorProp cellDist="0.1" discretizationType="1" floor="1" elevation="2.5" height="2.5" />
+			<floorProp cellDist="0.1" discretizationType="1" floor="2" elevation="5.0" height="2.5" />
+			<floorProp cellDist="0.1" discretizationType="1" floor="3" elevation="7.5" height="2.5" />
+		</floorProps>
+		<paths>
+			<path id="path1" ratio="1.0">s-UG,v-UG-6-up,p-UG-nach-EG,v23-up-OG1,v22-up-OG1,v31-up-OG1,p-EG-nach-OG1,v23-up-OG2,v22-up-OG2,v31-up-OG2,p-OG1-nach-OG2,v23-up-OG3,d-OG2</path>
+			<path id="path2" ratio="1.0">s-OG2,v23-up-OG3,p-OG2-nach-OG1,v31-up-OG2,v22-up-OG2,v23-up-OG2,p-OG1-nach-EG,v31-up-OG1,v22-up-OG1,v23-up-OG1,p-EG-nach-UG,v-UG-6-up,d-UG</path>
+		</paths>
+		<backgroundImages />
+		<sets />
+		<pathSnippets />
+		<groups />
+		<elevatorMatrices />
+	</meta>
+	<evaluations>
+		<measurements />
+	</evaluations>
+	<settings />
+	<visualization>
+		<colorings />
+	</visualization>
+</scenario>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<floor xmlFormat="0.8" isoDate="2018-02-16T13:20:05.858Z">
+	<layer id="walls">
+		<wall id="w1" closed="true">
+			<point x="0.00" y="0.00"/>
+			<point x="12.40" y="0.00"/>
+			<point x="12.40" y="9.44"/>
+			<point x="0.00" y="9.44"/>
+		</wall>
+		<wall id="w2" closed="true">
+			<point x="-0.03" y="18.85"/>
+			<point x="17.96" y="18.85"/>
+			<point x="17.96" y="11.38"/>
+			<point x="-0.03" y="11.38"/>
+		</wall>
+		<wall id="w3" closed="true">
+			<point x="14.29" y="9.51"/>
+			<point x="18.00" y="9.51"/>
+			<point x="18.00" y="1.31"/>
+			<point x="14.29" y="1.31"/>
+		</wall>
+		<wall id="w4" closed="false">
+			<point x="14.21" y="0.00"/>
+			<point x="18.00" y="0.00"/>
+			<point x="18.00" y="1.23"/>
+			<point x="18.00" y="1.56"/>
+		</wall>
+	</layer>
+	<layer id="simObjects">
+		<wunderZone id="simObject-EG">
+			<point x="14.21" y="1.24"/>
+			<point x="16.57" y="1.24"/>
+			<point x="16.57" y="0.00"/>
+			<point x="14.21" y="0.00"/>
+		</wunderZone>
+		<wunderZone id="dest_EG">
+			<point x="11.78" y="-0.48"/>
+			<point x="15.55" y="-0.48"/>
+			<point x="15.55" y="-3.47"/>
+			<point x="11.78" y="-3.47"/>
+		</wunderZone>
+	</layer>
+</floor>

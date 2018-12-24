@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<floor xmlFormat="0.8" isoDate="2017-08-22T22:09:08.923Z">
+	<layer id="geometry-of-floor2">
+		<wall closed="false" id="ow1">
+			<point x="36.5260" y="19.1080"/>
+			<point x="36.6060" y="19.1080"/>
+			<point x="36.6060" y="17.1080"/>
+			<point x="36.5260" y="17.1080"/>
+			<point x="36.5260" y="19.1080"/>
+		</wall>
+		<wall closed="false" id="ow2">
+			<point x="35.6073" y="14"/>
+			<point x="35.6073" y="20.0834"/>
+			<point x="37.5814" y="20.0834"/>
+			<point x="37.5814" y="14"/>
+			<point x="35.6073" y="14"/>
+		</wall>
+	</layer>
+	<layer id="trafficObjects-of-floor2">
+		<wunderZone id="v22-up-OG2-WZ">
+			<point x="36.606" y="19.108"/>
+			<point x="37.5523" y="19.108"/>
+			<point x="37.5523" y="17.608"/>
+			<point x="36.606" y="17.608"/>
+		</wunderZone>
+		<wunderZone id="v31-up-OG2-WZ">
+			<point x="36.526" y="17.008"/>
+			<point x="35.6073" y="17.008"/>
+			<point x="35.6073" y="18.008"/>
+			<point x="36.526" y="18.008"/>
+		</wunderZone>
+		<wunderZone id="v23-up-OG2-WZ">
+			<point x="36.526" y="18.008"/>
+			<point x="35.6073" y="18.008"/>
+			<point x="35.6073" y="19.008"/>
+			<point x="36.526" y="19.008"/>
+		</wunderZone>
+		<wunderZone id="p-OG1-nach-EG-WZ">
+			<point x="35.6073" y="18.008"/>
+			<point x="36.5260" y="18.008"/>
+		</wunderZone>
+		<wunderZone id="p-OG1-nach-OG2-WZ">
+			<point x="35.6073" y="18.008"/>
+			<point x="36.5260" y="18.008"/>
+		</wunderZone>
+	</layer>
+</floor>

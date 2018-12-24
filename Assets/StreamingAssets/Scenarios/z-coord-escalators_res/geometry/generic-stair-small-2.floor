@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<floor isoDate="2018-07-31T09:08:52.964Z" srcFile="generic-stair-small-2.dxf" xmlFormat="0.8">
+    <layer id="crowdit-floor2">
+        <wunderZone id="simObj-62">
+            <point x="0.0" y="3.0"/>
+            <point x="0.0" y="0.0"/>
+            <point x="2.5" y="0.0"/>
+            <point x="2.5" y="3.0"/>
+            <point x="0.0" y="3.0"/>
+        </wunderZone>
+    </layer>
+    <layer id="floor2">
+        <wall closed="false" id="w2">
+            <point x="0.0" y="0.0"/>
+            <point x="0.0" y="10.0"/>
+            <point x="2.5" y="10.0"/>
+            <point x="2.5" y="0.0"/>
+            <point x="0.0" y="0.0"/>
+        </wall>
+    </layer>
+</floor>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphs xmlFormat="0.8">
+  <graph floorID="generic-escalator-small">
+    <vertices>Escalator1:escalator_simObj-57=[1.25, 5.25];
+Origin0:origin_simObj-56=[1.25, 1.0];
+</vertices>
+    <edges/>
+  </graph>
+  <graph floorID="generic-escalator-small-2">
+    <vertices>Destination0:destination_simObj-62=[1.25, 1.5];
+</vertices>
+    <edges/>
+  </graph>
+</graphs>

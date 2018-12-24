@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
-public class ExtrudeGeometry : Geometry  {
-
-	//info about generating meshes: http://docs.unity3d.com/Manual/AnatomyofaMesh.html
+public class ExtrudeGeometry : Geometry {
 
 
-	public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial) {
-		GameObject obstacle = new GameObject (name); // = parent object to top and side planes
-		(GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
+    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial) {
+        GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 
-		Vector2[] vertices2D = verticesList.ToArray();
+        GameObject obstacle = new GameObject(); // = parent object to top and side planes
+        (GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
+        obstacle.name = name;
+
+        Vector2[] vertices2D = verticesList.ToArray();
 		List<Vector3> vertices = new List<Vector3>();
 		for (int i = 0; i < vertices2D.Length; i ++) {
 			if (!isValidPoint (vertices2D[i])) {
@@ -21,9 +21,11 @@ public class ExtrudeGeometry : Geometry  {
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
 
-		// TOP
-		GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
-		top.transform.SetParent (obstacle.transform);
+        // TOP
+        GameObject top = Instantiate(gl.obstaclePrefab, gl.obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
+//        GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
+        top.name = name + "_top";
+        top.transform.SetParent (obstacle.transform);
 		top.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 		top.transform.position = new Vector3 (0, elevation + height, 0);
 		top.GetComponent<Renderer>().sharedMaterial = topMaterial;
@@ -52,11 +54,13 @@ public class ExtrudeGeometry : Geometry  {
 		mesh_filter_top.mesh = mesh_top;
 
 
-		// SIDE WALLS
-		GameObject walls = new GameObject (name + "_walls", typeof(MeshFilter), typeof(MeshRenderer));
+        // SIDE WALLS
+        GameObject walls = Instantiate(gl.obstaclePrefab, gl.obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
 		walls.transform.SetParent(obstacle.transform);
+        walls.name = name + "_walls";
 
-		MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
+
+        MeshFilter mesh_filter_walls = walls.GetComponent<MeshFilter> ();
 		walls.GetComponent<Renderer>().sharedMaterial = sideMaterial;
 
 		List<Vector2> uvs_walls = new List<Vector2>();

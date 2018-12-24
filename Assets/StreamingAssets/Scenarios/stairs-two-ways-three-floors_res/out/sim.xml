@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<output isoDate="2018-12-15T17:55:05.191Z" xmlFormat="0.8">
+  <author email="ak@accu-rate.de" name="Angelika Kneidl"/>
+  <kernelVersion branch="(no branch info)" buildhost="(no buildhost info)" gitDescribe="(no version number info)" isoDate="(no date info)"/>
+  <usedSettings EUKLID="0" FLOORFIELD="1" alphaDerivAngle="1.0" alphaForAStar="1.5" alphaPheromone="1.0" betaDistToDest="1.0" betaMaxDir="1.0" cellSize="0.5" comfortDistanceForOrigins="0.2" comfortDistanceInQueue="0.1" compressOutput="true" deviation="0.26" distBetweenTwoPts="0.15" errorRatio="0.9" haloDistance="2.0" heightNeighborSeitzPotential="1.05" heightObstacleSeitzPotential="2.0" lastStep="50" maxAlpha="60.0" maxQueueDerivation="30.0" maxTorsoSize="0.44" maxVeloc="1.61" meanVeloc="1.34" minDistanceBetweenVertices="0.5" minTorsoSize="0.4" minVeloc="0.46" navPointDistance="0.5" navPointName="nP_" navPointSize="0.5" newOutputWriteInterval="5.0" perceptionRadius="2.0" queueWidthFactor="1.0" randForAStar="true" rhoAngle="1.0" rhoRelEnh="1.0" statisticRuns="false" stayInDestDefault="false" updateRateFloorField="1" useDynamicFloorField="true" useUndirectedFloorField="false" useVisibilityGraph="false" widthNeighborSeitzPotential="0.33" widthObstacleSeitzPotential="0.25"/>
+  <statistics>
+    <noOfPeds>2</noOfPeds>
+    <simTime>49.527070310559004</simTime>
+  </statistics>
+  <floor csvAt="floor-0.csv.gz" elevation="0.0" id="0" microTimeStepLength="0.5268837267080745"/>
+  <floor csvAt="floor-1.csv.gz" elevation="2.5" id="1" microTimeStepLength="0.5268837267080745"/>
+  <floor csvAt="floor-2.csv.gz" elevation="5.0" id="2" microTimeStepLength="0.5268837267080745"/>
+  <floor csvAt="floor-3.csv.gz" elevation="7.5" id="3" microTimeStepLength="0.5268837267080745"/>
+</output>

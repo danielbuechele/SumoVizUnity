@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario isoDate="2016-08-23T14:52:13Z" name="8731669254081060722_DemoHouse_convertedToV06" xmlFormat="0.8">
+	<spatial>
+		<floor floorAt="geometry/OG2.floor" id="OG2" />
+		<floor floorAt="geometry/OG1.floor" id="OG1" />
+		<floor floorAt="geometry/EG.floor" id="EG" />
+	</spatial>
+	<meta>
+		<intervals>
+			<interval id="i_origin_simObjects-OG1-5" value="0,1:10" />
+			<interval id="i_origin_simObjects-OG1-4" value="0,1:10" />
+			<interval id="i_destination_dest_EG" value="0,?:30" />
+			<interval id="i_origin_simObjects-OG2-9" value="0,1:10" />
+		</intervals>
+		<intervalMatrix>
+			<row>origin_simObjects-OG1-5,i_origin_simObjects-OG1-5</row>
+			<row>origin_simObjects-OG1-4,i_origin_simObjects-OG1-4</row>
+			<row>destination_dest_EG,i_destination_dest_EG</row>
+			<row>origin_simObjects-OG2-9,i_origin_simObjects-OG2-9</row>
+		</intervalMatrix>
+		<backgroundImages />
+		<pedCharacters>
+			<type name="FPLMWalking" ratio="1.0" />
+		</pedCharacters>
+		<morphosis>
+			<origin id="origin_simObjects-OG1-5" maxPremovementTime="0" minPremovementTime="0" sortedBirthCells="false" wunderZone="simObjects-OG1-5" />
+			<origin id="origin_simObjects-OG1-4" maxPremovementTime="0" minPremovementTime="0" sortedBirthCells="false" wunderZone="simObjects-OG1-4" />
+			<stair dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="0.0" id="stair_simObjects-OG1-9" noOfTreads="10" wunderZone="simObjects-OG1-9" />
+			<stair dirX="1.0" dirY="-0.0" dirZ="1.0" id="stair_simObject-EG" noOfTreads="8" wunderZone="simObject-EG" connectsTo="OG1" />
+			<destination capacityRestriction="false" disableDynamicFlooding="false" id="destination_dest_EG" wunderZone="dest_EG" />
+			<stair dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="0.0" id="stair_simObjects-OG2-10" noOfTreads="10" wunderZone="simObjects-OG2-10" />
+			<stair dirX="1.0" dirY="1.2246467991473532E-16" dirZ="1.0" id="stair_stair-OG1" noOfTreads="8" wunderZone="stair-OG1" connectsTo="OG2" />
+			<origin id="origin_simObjects-OG2-9" maxPremovementTime="0" minPremovementTime="0" sortedBirthCells="false" wunderZone="simObjects-OG2-9" />
+		</morphosis>
+		<sets />
+		<floorProps>
+			<floorProp cellDist="0.1" discretizationType="1" floor="EG" elevation="0.0" height="2.5" />
+			<floorProp cellDist="0.1" discretizationType="1" floor="OG1" elevation="2.5" height="2.5" />
+			<floorProp cellDist="0.1" discretizationType="1" floor="OG2" elevation="5.0" height="2.5" />
+		</floorProps>
+		<paths>
+			<path id="path-0" ratio="1.0">origin_simObjects-OG2-9,stair_simObjects-OG2-10,stair_stair-OG1,stair_simObjects-OG1-9,stair_simObject-EG,destination_dest_EG</path>
+			<path id="path-1" ratio="1.0">origin_simObjects-OG1-5,stair_simObjects-OG1-9,stair_simObject-EG,destination_dest_EG</path>
+		</paths>
+		<pathSnippets />
+		<groups>
+			<row>1,1.0</row>
+		</groups>
+		<elevatorMatrices />
+	</meta>
+	<settings cellSize="2.0" comfortDistanceForOrigins="0.2" comfortDistanceInQueue="0.1" deviation="0.26" distBetweenTwoPts="0.15" haloDistance="2.0" maxAlpha="30.0" maxQueueDerivation="30.0" maxTorsoSize="0.60" maxVeloc="1.61" meanVeloc="1.34" minDistanceBetweenVertices="1.0" minTorsoSize="0.44" minVeloc="0.46" navPointDistance="1.0" navPointSize="1.0" perceptionRadius="2.0" useDynamicFloorField="true" useVisibilityGraph="false" />
+	<evaluations>
+		<measurements />
+	</evaluations>
+	<visualization>
+		<colorings />
+	</visualization>
+</scenario>

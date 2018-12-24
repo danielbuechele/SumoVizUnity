@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<floor isoDate="2018-09-10T16:12:02.818Z" srcFile="flo0.dxf" xmlFormat="0.8">
+    <layer id="0">
+        <wunderZone id="obj-56">
+            <point x="0.5" y="0.5"/>
+            <point x="0.5" y="3.5"/>
+            <point x="4.5" y="3.5"/>
+            <point x="4.5" y="0.5"/>
+            <point x="0.5" y="0.5"/>
+        </wunderZone>
+        <wunderZone id="obj-58">
+            <point x="0.5" y="5.5"/>
+            <point x="4.5" y="5.5"/>
+            <point x="4.5" y="14.5"/>
+            <point x="0.5" y="14.5"/>
+            <point x="0.5" y="5.5"/>
+        </wunderZone>
+        <wall closed="false" id="w2">
+            <point x="0.0" y="20.5"/>
+            <point x="2.5" y="21.0"/>
+            <point x="5.0" y="20.5"/>
+        </wall>
+    </layer>
+</floor>

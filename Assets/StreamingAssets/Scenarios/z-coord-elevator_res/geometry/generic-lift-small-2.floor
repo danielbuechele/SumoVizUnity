@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<floor isoDate="2018-07-31T09:34:44.553Z" srcFile="generic-lift-small-2.dxf" xmlFormat="0.8">
+    <layer id="crowdit-floor2">
+        <wunderZone id="simObj-64">
+            <point x="0.0" y="0.0"/>
+            <point x="0.0" y="2.0"/>
+            <point x="3.0" y="2.0"/>
+            <point x="3.0" y="0.0"/>
+            <point x="0.0" y="0.0"/>
+        </wunderZone>
+    </layer>
+    <layer id="floor2">
+        <wall closed="false" id="w2">
+            <point x="0.0" y="0.0"/>
+            <point x="0.0" y="6.0"/>
+            <point x="3.0" y="6.0"/>
+            <point x="3.0" y="0.0"/>
+            <point x="0.0" y="0.0"/>
+        </wall>
+    </layer>
+</floor>

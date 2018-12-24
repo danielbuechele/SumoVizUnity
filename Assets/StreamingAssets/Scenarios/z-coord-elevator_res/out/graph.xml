@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphs xmlFormat="0.8">
+  <graph floorID="generic-lift-small-2">
+    <vertices>Destination0:destination_simObj-64=[1.5, 1.0];
+</vertices>
+    <edges/>
+  </graph>
+  <graph floorID="generic-lift-small">
+    <vertices>Elevator1:elevator_simObj-57=[1.5, 5.0];
+Origin0:origin_simObj-58=[1.5, 1.0];
+</vertices>
+    <edges/>
+  </graph>
+</graphs>

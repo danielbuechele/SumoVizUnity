@@ -4,14 +4,22 @@ using System.Collections.Generic;
 
 public class GeometryLoader : MonoBehaviour {
 
-	[HideInInspector]
-	public List<Geometry> geometry;
+    public GameObject obstaclePrefab;
+    [HideInInspector]
+	private List<Geometry> geometry;
 	[HideInInspector]
 	public ThemingMode theme;
 	[HideInInspector]
 	public Groundplane groundplane;
 
-	public void setTheme(ThemingMode mode) {
+
+    public void Start()
+    {
+        print("I'm attached to " + transform.name);
+    }
+
+
+    public void setTheme(ThemingMode mode) {
 		this.theme = mode;
 		GameObject terrain = theme.getTerrain ();
 		groundplane = terrain.GetComponent<Groundplane> ();
