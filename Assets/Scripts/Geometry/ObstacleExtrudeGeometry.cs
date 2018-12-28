@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
 
 
-	public static void  create (string name, List<Vector2> verticesList, float height, float elevation) {
+	public static void  create (string name, List<Vector2> verticesList, float height, float elevation, GameObject parent) {
 
 		GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 		Material topMaterial;
@@ -57,7 +57,7 @@ public class ObstacleExtrudeGeometry : ExtrudeGeometry  { // walls
             verticesList.Reverse();
         }
 
-        create (name, verticesList, height, elevation, topMaterial, sideMaterial);
+      create (name, verticesList, height, elevation, topMaterial, sideMaterial, parent);
 	}
 
     private static double getEdgeValue(List<Vector2> verticesList, int thisIdx, int nextIdx) {

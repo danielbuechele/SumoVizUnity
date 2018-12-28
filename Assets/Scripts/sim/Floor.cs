@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System;
 
-public class Floor {
+public class Floor : MonoBehaviour {
 
     private List<Wall> walls = new List<Wall>();
     private List<WunderZone> wunderZones = new List<WunderZone>();
+    private List<Pedestrian> peds = new List<Pedestrian>();
+    private GameObject floorPlane;
     internal string floorId;
     private int level;
     internal float elevation;
     internal float height;
     internal List<float> boundingPoints;
 
-    internal SimData simData;
 
-    internal Floor(string floorId, SimData simData) {
+    internal Floor(string floorId) {
         this.floorId = floorId;
-        this.simData = simData;
     }
 
     internal void addWunderZone(WunderZone wz) {
@@ -29,7 +29,7 @@ public class Floor {
 
     internal void printGeometryElements() {
         Debug.Log("Floor " + floorId);
-        foreach(var wz in wunderZones) {
+        foreach (var wz in wunderZones) {
             Debug.Log("    WunderZone: " + wz.getId());
         }
         foreach (var wall in walls) {
@@ -41,14 +41,13 @@ public class Floor {
         this.level = level;
         this.height = height;
         this.elevation = elevation;
-     }
+    }
 
-    internal void setBoundingPoints( List<float> boundingPoints)
-    {
+    internal void setBoundingPoints(List<float> boundingPoints) {
         this.boundingPoints = boundingPoints;
 
     }
-    internal void createObjects() {
+    internal void createObjects(SimData simData) {
 
         List<Vector2> plane = new List<Vector2>();
         float minX = boundingPoints[0],
@@ -60,7 +59,7 @@ public class Floor {
         plane.Add(new Vector2(maxX, maxY));
         plane.Add(new Vector2(maxX, minY));
 
-        AreaGeometry.createOriginTarget(floorId + "_ground", plane, new Color(1.0f, 1.0f, 1.0f, 0.3f), elevation - 0.01f);
+        floorPlane = AreaGeometry.createPlaneObject(floorId + "_ground", plane, new Color(1.0f, 1.0f, 1.0f, 0.3f), elevation - 0.01f, GameObject.Find("World"));
 
         /*
         float planeHeight = 0.2f;
@@ -76,10 +75,18 @@ public class Floor {
         */
 
         foreach (WunderZone wz in wunderZones) {
-            wz.createObject();
+            wz.createObject(floorPlane, simData);
         }
         foreach (Wall wall in walls) {
-            wall.createObject();
+            wall.createObject(floorPlane);
         }
+    }
+
+    public List<Pedestrian> getPeds() {
+        return peds;
+    }
+
+    internal void addPeds(List<Pedestrian> pedsPerFloor) {
+        peds = pedsPerFloor;
     }
 }

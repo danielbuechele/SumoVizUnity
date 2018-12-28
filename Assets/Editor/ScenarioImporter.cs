@@ -27,8 +27,8 @@ public class ScenarioImporter : MonoBehaviour {
 			new GameObject("World");
 
 			RuntimeInitializer ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
-			ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
-			ri.geometryLoader.setTheme (new MarketplaceThemingMode ()); // EvaktischThemingMode ());
+			//ri.geometryLoader = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
+			//ri.geometryLoader.setTheme (new MarketplaceThemingMode ()); // EvaktischThemingMode ());
 
             string resFolderPath = Path.Combine(Path.GetDirectoryName(crowditFilePath), Path.GetFileNameWithoutExtension(crowditFilePath)) + "_res";
 

@@ -6,23 +6,28 @@ using System.Linq;
 public class AreaGeometry : Geometry  {
 
 
-	public static void createOriginTarget (string name, List<Vector2> verticesList) {
-		createOriginTarget (name, verticesList, new Color (1, 0, 0, .3f), 0);
+    public static void createOriginTarget (string name, List<Vector2> verticesList, GameObject parent) {
+		createPlaneObject (name, verticesList, new Color (1, 0, 0, .3f), 0, parent);
 	}
 
-	public static void createOriginTarget (string name, List<Vector2> verticesList, Color color, float floorElevation) {
+	public static GameObject createPlaneObject (string name, List<Vector2> verticesList, Color color, float floorElevation, GameObject parent) {
 		if (verticesList.First() == verticesList.Last()) { //otherwise circular boundary definitions won't be rendered
 			verticesList.Remove (verticesList.Last());
 		}
 
-		GameObject obstacle = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
-		obstacle.transform.position = new Vector3 (0, 0.02f, 0);
-		//obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
-		//obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
-		var renderer = obstacle.GetComponent<Renderer>();
+		GameObject planeObject = new GameObject (name, typeof(MeshFilter), typeof(MeshRenderer));
+		planeObject.transform.position = new Vector3 (0, 0.02f, 0);
+        //obstacle.GetComponent<Renderer>().material.color = new Color (1, 0, 0, .3f);
+        //obstacle.GetComponent<Renderer>().material.shader = Shader.Find ("Transparent/Diffuse");
+
+        // set renderer
+        var renderer = planeObject.GetComponent<Renderer>();
 		renderer.sharedMaterial = new Material (Shader.Find ("Transparent/Diffuse"));
 		renderer.sharedMaterial.color = color;
-		create (obstacle, verticesList, floorElevation);
+        planeObject.transform.SetParent(parent.transform);
+
+        // set mesh
+        return create (planeObject, verticesList, floorElevation);
 	}
 
 	public static void createPlane(string name, List<Vector2> verticesList, Material material) {
@@ -33,7 +38,7 @@ public class AreaGeometry : Geometry  {
 		create (obstacle, verticesList, 0);
 	}
 
-	public static void create(GameObject obstacle, List<Vector2> verticesList, float floorElevation) {
+	public static GameObject create(GameObject planeObject, List<Vector2> verticesList, float floorElevation) {
 		Vector2[] vertices2D = verticesList.ToArray();
 
 		// Use the triangulator to get indices for creating triangles
@@ -64,10 +69,11 @@ public class AreaGeometry : Geometry  {
 			mesh.RecalculateNormals();
 		}
 
-		MeshFilter mesh_filter = obstacle.GetComponent<MeshFilter> ();
+		MeshFilter mesh_filter = planeObject.GetComponent<MeshFilter> ();
 		mesh_filter.mesh = mesh;
 
-		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		gl.setWorldAsParent (obstacle);
+		//GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
+		//gl.setWorldAsParent (planeObject);
+        return planeObject;
 	}
 }

@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class ExtrudeGeometry : Geometry {
 
 
-    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial) {
+    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial, GameObject parent) {
         GeometryLoader gl = GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>();
 
         GameObject obstacle = new GameObject(); // = parent object to top and side planes
         (GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ()).setWorldAsParent (obstacle);
         obstacle.name = name;
+        obstacle.transform.parent = parent.transform;
 
         Vector2[] vertices2D = verticesList.ToArray();
 		List<Vector3> vertices = new List<Vector3>();

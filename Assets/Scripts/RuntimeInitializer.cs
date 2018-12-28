@@ -4,10 +4,12 @@ using System.Collections.Generic;
 public class RuntimeInitializer : MonoBehaviour {
 
 	[HideInInspector]
-	public GeometryLoader geometryLoader;
     public string crowditFilePath;
     public string resFolderPath;
+
+    // TODO only needed from legacy code
     internal List<float> boundingPoints;
+    public GeometryLoader geometryLoader;
 
     void Start()
     { 

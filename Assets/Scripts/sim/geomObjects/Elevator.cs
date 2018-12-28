@@ -7,7 +7,7 @@ public class Elevator : WunderZone {
     internal List<Floor> floors = new List<Floor>();
 
 
-    public override void createObject()
+    public override void createObject(GameObject parent)
     {
 
         /*       float height = floor.height;
@@ -33,7 +33,7 @@ public class Elevator : WunderZone {
                 maxElev = floorstops.elevation;
         }
         height = Math.Abs(maxElev - minElev);
-        ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev);
+        ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev, parent);
 
     }
 

@@ -68,6 +68,10 @@ public class Pedestrian : MonoBehaviour {
 		resetPedestrian();
 	}
 
+    internal Renderer getRenderer() {
+        return r;
+    }
+
     internal void dev() {
         foreach (PedestrianPosition pos in positions) {
             Debug.Log(pos.getTime() + ": " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ());

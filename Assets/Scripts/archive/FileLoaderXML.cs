@@ -46,7 +46,7 @@ public class FileLoaderXML {
 				case "beamExit":
 				case "eofWall":
 				case "queuingArea":
-					AreaGeometry.createOriginTarget(geomObj.GetAttribute("name"), parsePoints(geomObj));
+//					AreaGeometry.createOriginTarget(geomObj.GetAttribute("name"), parsePoints(geomObj));
 					break;
 
 				default:

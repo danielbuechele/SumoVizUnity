@@ -2,7 +2,7 @@
 
 public class Stair : WunderZone {
 
-    public override void createObject() {
+    public override void createObject(GameObject parent, SimData simData) {
 
         Vector3 dirVect = new Vector3(
             float.Parse(morphosisEntry.GetAttribute("dirX")),
@@ -13,11 +13,11 @@ public class Stair : WunderZone {
         float height = 0;
         if (morphosisEntry.HasAttribute("connectsTo")) {
             string connectsTo = morphosisEntry.GetAttribute("connectsTo");
-            Floor connectsToFloor = floor.simData.getFloor(connectsTo);
+            Floor connectsToFloor = simData.getFloor(connectsTo);
             height = Mathf.Abs(connectsToFloor.elevation - floor.elevation);
         }
 
-        StairExtrudeGeometry.createStair(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads);
+        StairExtrudeGeometry.createStair(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads).transform.SetParent(parent.transform);
     }
 
 }

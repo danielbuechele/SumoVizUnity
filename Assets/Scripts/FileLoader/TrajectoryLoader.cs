@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Xml;
+using System.Collections.Generic;
 
 public class TrajectoryLoader : MonoBehaviour{
 
@@ -10,18 +11,18 @@ public class TrajectoryLoader : MonoBehaviour{
     private string resFolderPath;
     private PedestrianLoader pl;
     private RuntimeInitializer ri;
-
+    private ScenarioLoader sl;
 
     public void Start()
     {
         pl = GetComponent<PedestrianLoader>();
         ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+        sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
     }
 
     public void loadTrajectories() {
 
         resFolderPath = ri.getResFolderPath();
-        new GameObject("Pedestrians");
 
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
@@ -39,10 +40,17 @@ public class TrajectoryLoader : MonoBehaviour{
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
 
         pl.reset();
+        new GameObject("Pedestrians");
 
         foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
-            string trajFilePath = Path.Combine(outFolder, floorCsvAtEl.GetAttribute("csvAt"));
-            //if (trajFilePath.EndsWith(".gz")) // TODO
+            string trajFile = floorCsvAtEl.GetAttribute("csvAt");
+            string trajFilePath = Path.Combine(outFolder, trajFile);
+            string floorName = trajFile.Replace("floor-", "");
+            floorName = floorName.Substring(0, floorName.IndexOf("."));
+            Floor floor = sl.getFloor(floorName);
+
+            //GameObject floor = GameObject.Find(floorName);
+            List<Pedestrian> pedsPerFloor = new List<Pedestrian>();
 
             decimal timeSubtract = 0;
 
@@ -54,7 +62,7 @@ public class TrajectoryLoader : MonoBehaviour{
                 //using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
                 string line = reader.ReadLine(); // skip the 1st line = header
                 line = reader.ReadLine(); // 2nd line
-
+ 
                 if (forceStartAtZero && !timeSubstractTaken) {
                     decimal.TryParse(line.Split(',')[0], out timeSubtract);
                     timeSubstractTaken = true;
@@ -71,12 +79,14 @@ public class TrajectoryLoader : MonoBehaviour{
                         float.TryParse(values[2], out x);
                         float.TryParse(values[3], out y);
                         float.TryParse(values[4], out z);
-                        pl.addPedestrianPosition(new PedestrianPosition(id, time - timeSubtract, x, y, z));
-                    }
+                        Pedestrian ped = pl.createPedestrian(new PedestrianPosition(id, time - timeSubtract, x, y, z));
+                        pedsPerFloor.Add(ped);
+                     }
                     line = reader.ReadLine();
                 }
                 reader.Close();
             }
+            floor.addPeds(pedsPerFloor);
         }
 
 		//TODO find mechanism to not show peds (for quick camera-tour dev)

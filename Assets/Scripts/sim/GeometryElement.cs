@@ -29,6 +29,9 @@ public class GeometryElement {
         this.layerId = layerId;
     }
 
-    public virtual void createObject() {}
+    public virtual void createObject(GameObject floor) {}
+
+    public virtual void createObject(GameObject floor, SimData simData) {
+    }
 
 }

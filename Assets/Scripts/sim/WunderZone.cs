@@ -14,11 +14,16 @@ public class WunderZone : GeometryElement {
         this.morphosisEntry = morphosisEntry;
     }
 
-    public override void createObject() {
-        this.createSurfaceObject(new Color(1f, 0f, 0f, .3f));
+    public override void createObject(GameObject floor) {
+        this.createSurfaceObject(new Color(1f, 0f, 0f, .3f), floor);
     }
 
-    public void createSurfaceObject(Color color) {
-        AreaGeometry.createOriginTarget(this.id + "-SurfaceObject", this.points, color, floor.elevation);
+    public override void createObject(GameObject floor, SimData simData) {
+        this.createSurfaceObject(new Color(1f, 0f, 0f, .3f), floor);
+    }
+
+
+    public void createSurfaceObject(Color color, GameObject parent) {
+        AreaGeometry.createPlaneObject(this.id + "-SurfaceObject", this.points, color, floor.elevation, parent);
     }
 }

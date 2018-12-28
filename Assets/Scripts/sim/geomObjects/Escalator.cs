@@ -3,7 +3,7 @@ using System;
 
 public class Escalator : WunderZone {
 
-    public override void createObject()
+    public override void createObject(GameObject parent, SimData simData)
     {
 
         Vector3 dirVect = new Vector3(
@@ -24,7 +24,7 @@ public class Escalator : WunderZone {
         if (morphosisEntry.HasAttribute("connectsTo"))
         {
             string connectsTo = morphosisEntry.GetAttribute("connectsTo");
-            Floor connectsToFloor = floor.simData.getFloor(connectsTo);
+            Floor connectsToFloor = simData.getFloor(connectsTo);
             height = Mathf.Abs(connectsToFloor.elevation - floor.elevation);
             if (againstDir)
             {
@@ -32,6 +32,6 @@ public class Escalator : WunderZone {
  //               height = floor.elevation - connectsToFloor.elevation;
             } 
         }
-        StairExtrudeGeometry.createEscalator(this.id + "-Stair", this.points, height, elevation, dirVect, noOfTreads, noOfHorizontalTreads, againstDir);
+        StairExtrudeGeometry.createEscalator(this.id + "-Stair", this.points, height, elevation, dirVect, noOfTreads, noOfHorizontalTreads, againstDir).transform.SetParent(parent.transform);
     }
 }

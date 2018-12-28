@@ -7,17 +7,13 @@ public class PedestrianMover : MonoBehaviour {
     private GameObject peds;
     private PlaybackControl pc;
 
-    private void Start()
-    {
-        peds = GameObject.Find("Pedestrians");
+    private void Start() {
         pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
     }
 
-    public void movePedestrians()
-    {
+    public void movePedestrians() {
         peds = GameObject.Find("Pedestrians");
-        foreach (Transform ped in peds.transform)
-        {
+        foreach (Transform ped in peds.transform) {
             ped.GetComponent<Pedestrian>().init();
         }
 
@@ -26,12 +22,10 @@ public class PedestrianMover : MonoBehaviour {
         button_pressed = true;
     }
 
-    public void Update()
-    {
+    public void Update() {
         if (button_pressed) {
-             if (peds != null) {
-                foreach (Transform ped in peds.transform)
-                {
+            if (peds != null) {
+               foreach (Transform ped in peds.transform) {
                     ped.GetComponent<Pedestrian>().move();
                 }
             }
@@ -39,11 +33,10 @@ public class PedestrianMover : MonoBehaviour {
     }
 
 
-    public void pausePedestrians()
-    {
-       pc.playing = false;
-       button_pressed = false;
-     }
+    public void pausePedestrians() {
+        pc.playing = false;
+        button_pressed = false;
+    }
 
 
 

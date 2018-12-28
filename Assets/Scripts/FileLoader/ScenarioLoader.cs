@@ -4,19 +4,22 @@ using System;
 using System.IO;
 using System.Xml;
 
-public class ScenarioLoader {
+public class ScenarioLoader : MonoBehaviour {
 
     private XmlDocument xmlDoc = new XmlDocument();
     private SimData simData = new SimData();
-
-    public ScenarioLoader() {}
+    private List<String> floorIDs = new List<String>();
+    private List<Floor> floors = new List<Floor>();
+    private Dictionary<string, XmlElement> floorPropsEntries = new Dictionary<string, XmlElement>();
+    private Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
+    private List<Elevator> elevators = new List<Elevator>();
 
     public void loadScenario(string crowditFilePath, string resFolderPath) {
 
         xmlDoc.LoadXml(utils.loadFileIntoEditor(crowditFilePath));
 
         // store morphosis entries
-        Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
+
         XmlNode morphosis = xmlDoc.SelectSingleNode("//morphosis");
         foreach (XmlElement morphosisEntry in morphosis) {
             string wunderZoneId = morphosisEntry.GetAttribute("wunderZone");
@@ -24,7 +27,6 @@ public class ScenarioLoader {
         }
 
         // store floorProps entries
-        Dictionary<string, XmlElement> floorPropsEntries = new Dictionary<string, XmlElement>();
         XmlNode floorProps = xmlDoc.SelectSingleNode("//floorProps");
         foreach (XmlElement floorPropEl in floorProps) {
             string floorId = floorPropEl.GetAttribute("floor");
@@ -33,28 +35,65 @@ public class ScenarioLoader {
 
         // extract paths to .floor files and parse their content
         XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
-        int level = 0;
-
-        List<Floor> floors = new List<Floor>();
 
         // first, create floors
-        foreach (XmlElement floorEl in spatial.SelectNodes("floor"))
-        {
-            string floorId = floorEl.GetAttribute("id");
-            Floor floor = new Floor(floorId, simData);
-            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
-            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
-            floor.setMetaData(level++, height, elevation);
-            simData.addFloor(floor);
-
-            floors.Add(floor);
-
-        }
+        parseFloors(spatial, resFolderPath);
 
         // now, populate floors
-        level = 0;
-        List<Elevator> elevators = new List<Elevator>();
+        populateFloors(spatial, resFolderPath);
 
+        // create elevator elements
+        createElevators(xmlDoc);
+
+        // create game objects for each floor
+        foreach (Floor floor in floors) {
+            // create 3D objects
+            floor.setBoundingPoints(getBoundingPoints());
+            floor.createObjects(simData);
+        }
+
+        // for camera position
+        simData.setBounds();
+
+        // set dropdown options to display each floor
+        GameObject.Find("FloorChooser").GetComponent<ChooseOptions>().setOptions(floorIDs);
+    }
+
+    internal IEnumerable<Floor> getFloors() {
+        return floors;
+    }
+
+    internal void Reset() {
+        floors = new List<Floor>();
+        floorPropsEntries = new Dictionary<string, XmlElement>();
+        wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
+        elevators = new List<Elevator>();
+        xmlDoc = new XmlDocument();
+        simData = new SimData();
+        floorIDs = new List<String>();
+    }
+
+    internal Floor getFloor(string floorName) {
+        return simData.getFloor(floorName);
+    }
+
+    private void createElevators(XmlDocument xmlDoc) {
+        XmlNode elevatorMatrices = xmlDoc.SelectSingleNode("//elevatorMatrices");
+        foreach (XmlElement elevatorMatrix in elevatorMatrices) {
+            foreach (Elevator elev in elevators) {
+                string elevatorID = elevatorMatrix.GetAttribute("ref");
+                if (elevatorID.Equals(elev.getId())) {
+                    string[] floorIDs = elevatorMatrix.GetAttribute("floors").Split(',');
+                    foreach (String floorID in floorIDs) {
+                        elev.addFloor(getFloor(floorID));
+                    }
+                }
+            }
+        }
+    }
+
+    private void populateFloors(XmlNode spatial, string resFolderPath) {
+        int level = 0;
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             string floorAtFullPath = Path.Combine(resFolderPath, floorEl.GetAttribute("floorAt"));
@@ -91,7 +130,7 @@ public class ScenarioLoader {
                             break;
                         case "origin":
                             actualization = new Origin();
-                             break;
+                            break;
                         case "portal":
                             actualization = new Portal();
                             break;
@@ -146,39 +185,23 @@ public class ScenarioLoader {
 
 
         }
-
-        XmlNode elevatorMatrices = xmlDoc.SelectSingleNode("//elevatorMatrices");
-
-        foreach (XmlElement elevatorMatrix in elevatorMatrices)
-        {
-            foreach (Elevator elev in elevators)
-            {
-                string elevatorID = elevatorMatrix.GetAttribute("ref");
-                if (elevatorID.Equals(elev.getId()))
-                {
-
-                    string[] floorIDs = elevatorMatrix.GetAttribute("floors").Split(',');
-                    foreach (String floorID in floorIDs)
-                    {
-                        elev.addFloor(simData.getFloor(floorID));
-                    }
-                }
-
-            }
-        }
-
-        foreach (Floor floor in floors)
-        {
-            // create 3D objects
-            floor.setBoundingPoints(getBoundingPoints());
-            floor.createObjects();
-        }
-        simData.setBounds();
-
     }
 
-    internal SimData getSimData()
-    {
+    private void parseFloors(XmlNode spatial, string resFolderPath) {
+        int level = 0;
+        foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
+            string floorId = floorEl.GetAttribute("id");
+            Floor floor = new Floor(floorId);
+            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
+            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            floor.setMetaData(level++, height, elevation);
+            simData.addFloor(floor);
+            floorIDs.Add(floorId);
+            floors.Add(floor);
+        }
+    }
+
+    internal SimData getSimData() {
         return simData;
     }
 
@@ -226,60 +249,5 @@ public class ScenarioLoader {
 			}
 		}
 		return relativeTrajFilePath;
-	}
-		
-	public void loadScenarioOld() {
-		XmlNode spatial = xmlDoc.SelectSingleNode("//spatial");
-		foreach(XmlElement floor in spatial.SelectNodes("floor")) { // TODO: more floors
-			float height = 1f; // used 2.4 in disco scene
-			foreach (XmlElement collection in floor.SelectNodes("collection")) { // that's the new element in the XML format, added by DrGeli
-				foreach (XmlElement geomObj in collection.SelectNodes("object")) {
-					string name = collection.GetAttribute ("id") + "-" + geomObj.GetAttribute ("name");
-					switch (geomObj.GetAttribute("type")) {
-						case "openWall":
-							WallExtrudeGeometry.create(name, parsePoints(geomObj), height, -0.2f);
-							break;
-						case "wall":
-							ObstacleExtrudeGeometry.create(name, parsePoints(geomObj), height);
-							break;
-						case "origin":
-							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.61f, 0.04f, 0, .3f));
-							break;
-						case "destination":
-							AreaGeometry.createOriginTarget (name, parsePoints (geomObj), new Color (0.18f, 0.71f, 0, .3f));
-							break;
-						case "scaledArea":
-							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.43f, 0.98f, 0.39f, .3f));
-							break;
-						case "waitingZone":
-							AreaGeometry.createOriginTarget(name, parsePoints(geomObj), new Color (0.39f, 0.24f, 0, .3f));
-							break;
-						case "portal":
-						case "beamExit":
-						case "eofWall":
-						case "queuingArea":
-							AreaGeometry.createOriginTarget(name, parsePoints(geomObj));
-							break;
-						default:
-							Debug.Log("Warning: XML geometry parser: Don't know how to parse Object of type '" + geomObj.GetAttribute("type") + "'.");
-							break;
-					}
-				}
-			}
-		}
-
-		Debug.Log ("minX: " + minX);
-		Debug.Log ("maxX: " + maxX);
-		Debug.Log ("minY: " + minY);
-		Debug.Log ("maxY: " + maxY);
-	}
-
-	static string listToString(List<Vector2> list) {
-		string str = "";
-		foreach (Vector2 v in list) {
-			str += "x:" + v.x + "/y:" + v.y + "_";
-		}
-		return str;
-	}
-	*/
+	}*/
 }

@@ -12,55 +12,56 @@ public class PedestrianLoader : MonoBehaviour {
     public GameObject pedPrefab;
 
     private PlaybackControl pc;
-//	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
-	//public float pedScaleFactor = 1f; // 1 is default size
+    private ScenarioLoader sl;
+    //	private List<Pedestrian> pedestrians = new List<Pedestrian> ();
+    //public float pedScaleFactor = 1f; // 1 is default size
 
-	// creates a dropdown choice in the inspector
-	public enum PedModel {
-		ConePed
-	}
-	public PedModel pedestrianModel = PedModel.ConePed;
+    // creates a dropdown choice in the inspector
+    public enum PedModel {
+        ConePed
+    }
+    public PedModel pedestrianModel = PedModel.ConePed;
 
-	private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian> ();
-
-
-	void Start() {
-		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
-	}
-
-	public List<Pedestrian> getPedestrians (){
-		return peds.Values.ToList<Pedestrian>();
-	}
-
-	public void addPedestrianPosition(PedestrianPosition pos) {
+    private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian>();
 
 
-        int id = pos.getID ();
-		Pedestrian ped = null;
-		peds.TryGetValue (id, out ped);
+    void Start() {
+        pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+        sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
+    }
 
-		if (ped == null) {
-            GameObject newPedGameObj = Instantiate (pedPrefab, transform.position, Quaternion.identity);
- //           float height = 0.8f + Random.value * 0.8f;
- //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);
+    public List<Pedestrian> getPedestrians() {
+        return peds.Values.ToList<Pedestrian>();
+    }
+
+    public Pedestrian createPedestrian(PedestrianPosition pos) {
+        int id = pos.getID();
+        Pedestrian ped = null;
+        peds.TryGetValue(id, out ped);
+        GameObject newPedGameObj;
+        if (ped == null) {
+            newPedGameObj = Instantiate(pedPrefab, transform.position, Quaternion.identity);
+            // TODO: set different heights
+            //           float height = 0.8f + Random.value * 0.8f;
+            //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);
             //           GameObject newPedGameObj = (GameObject)Instantiate(Resources.Load(pedestrianModel.ToString()));
-            setPedestriansAsParent(newPedGameObj);
-			ped = newPedGameObj.GetComponent<Pedestrian> ();
-			ped.init (id, pos);
-			peds.Add (id, ped);
+            ped = newPedGameObj.GetComponent<Pedestrian>();
+            ped.init(id, pos);
+            peds.Add(id, ped);
             newPedGameObj.SetActive(false);
-            // TODO remove this and go through Dictionary if all peds are needed elsewhere? performance?
-		} else {
-			ped.addPos (pos);
-		}
+            newPedGameObj.transform.SetParent(GameObject.Find("Pedestrians").transform);
+        } else {
+            ped.addPos(pos);
+        }
 
-		//positions.Add (pos);
-		if (pos.getTime () > pc.total_time) 
-			pc.total_time = pos.getTime ();
-	}
+        //positions.Add (pos);
+        if (pos.getTime() > pc.total_time)
+            pc.total_time = pos.getTime();
 
-    internal void reset()
-    {
+        return ped;
+    }
+
+    internal void reset() {
         peds = new Dictionary<int, Pedestrian>();
         // reset the playback control in case a scenario was loaded with different time
         pc.Reset();
@@ -68,18 +69,18 @@ public class PedestrianLoader : MonoBehaviour {
     }
 
     public void init() {
-        //peds[0].dev();
-		List<int> removeList = new List<int> ();
-		foreach(KeyValuePair<int, Pedestrian> ped in peds)
-			if (ped.Value.getPositionsCount () < 2)
-				removeList.Add (ped.Key);
-		foreach (int id in removeList)
-			peds.Remove (id);
-	}
+        // remove all peds that only have one position
+        List<int> removeList = new List<int>();
+        foreach (KeyValuePair<int, Pedestrian> ped in peds)
+            if (ped.Value.getPositionsCount() < 2)
+                removeList.Add(ped.Key);
+        foreach (int id in removeList)
+            peds.Remove(id);
+    }
 
 
-	public void createPedestrians() {
-		/*
+    public void createPedestrians() {
+        /*
 		//pc.total_time += 1; // ~bd: attempt to avoid the while-loop in pedestrian update() ever to grab an index thats beyond positions
 
 		pedestrians.Clear ();
@@ -118,9 +119,5 @@ public class PedestrianLoader : MonoBehaviour {
 			}
 		}
 		*/
-	}
-
-	private void setPedestriansAsParent (GameObject obj){
-		obj.transform.SetParent (GameObject.Find ("Pedestrians").transform);
-	}
+    }
 }
