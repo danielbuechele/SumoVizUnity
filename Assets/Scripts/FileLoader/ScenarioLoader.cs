@@ -7,14 +7,17 @@ using System.Xml;
 public class ScenarioLoader : MonoBehaviour {
 
     private XmlDocument xmlDoc = new XmlDocument();
-    private SimData simData = new SimData();
-    private List<String> floorIDs = new List<String>();
-    private List<Floor> floors = new List<Floor>();
-    private Dictionary<string, XmlElement> floorPropsEntries = new Dictionary<string, XmlElement>();
-    private Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();
-    private List<Elevator> elevators = new List<Elevator>();
+    private SimData simData;
+    private List<String> floorIDs;
+    private List<Floor> floors;
+    private Dictionary<string, XmlElement> floorPropsEntries;
+    private Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry;
+    private List<Elevator> elevators;
 
     public void loadScenario(string crowditFilePath, string resFolderPath) {
+
+        // initialize all variables (could be that they are still set from a former scenario)
+        init();
 
         xmlDoc.LoadXml(utils.loadFileIntoEditor(crowditFilePath));
 
@@ -59,11 +62,7 @@ public class ScenarioLoader : MonoBehaviour {
         GameObject.Find("FloorChooser").GetComponent<ChooseOptions>().setOptions(floorIDs);
     }
 
-    internal IEnumerable<Floor> getFloors() {
-        return floors;
-    }
-
-    internal void Reset() {
+    internal void init() {
         floors = new List<Floor>();
         floorPropsEntries = new Dictionary<string, XmlElement>();
         wunderZoneIdToMorphosisEntry = new Dictionary<string, XmlElement>();

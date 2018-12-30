@@ -6,10 +6,9 @@ public class Floor : MonoBehaviour {
 
     private List<Wall> walls = new List<Wall>();
     private List<WunderZone> wunderZones = new List<WunderZone>();
-    private List<Pedestrian> peds = new List<Pedestrian>();
     private GameObject floorPlane;
     internal string floorId;
-    private int level;
+    internal int level;
     internal float elevation;
     internal float height;
     internal List<float> boundingPoints;
@@ -80,13 +79,5 @@ public class Floor : MonoBehaviour {
         foreach (Wall wall in walls) {
             wall.createObject(floorPlane);
         }
-    }
-
-    public List<Pedestrian> getPeds() {
-        return peds;
-    }
-
-    internal void addPeds(List<Pedestrian> pedsPerFloor) {
-        peds = pedsPerFloor;
     }
 }

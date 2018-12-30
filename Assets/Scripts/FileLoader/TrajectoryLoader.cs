@@ -40,7 +40,8 @@ public class TrajectoryLoader : MonoBehaviour{
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
 
         pl.reset();
-        new GameObject("Pedestrians");
+        GameObject peds = new GameObject("Pedestrians");
+        sl.getSimData().setPedestrianGameObject(peds);
 
         foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
             string trajFile = floorCsvAtEl.GetAttribute("csvAt");
@@ -48,9 +49,6 @@ public class TrajectoryLoader : MonoBehaviour{
             string floorName = trajFile.Replace("floor-", "");
             floorName = floorName.Substring(0, floorName.IndexOf("."));
             Floor floor = sl.getFloor(floorName);
-
-            //GameObject floor = GameObject.Find(floorName);
-            List<Pedestrian> pedsPerFloor = new List<Pedestrian>();
 
             decimal timeSubtract = 0;
 
@@ -79,19 +77,18 @@ public class TrajectoryLoader : MonoBehaviour{
                         float.TryParse(values[2], out x);
                         float.TryParse(values[3], out y);
                         float.TryParse(values[4], out z);
-                        Pedestrian ped = pl.createPedestrian(new PedestrianPosition(id, time - timeSubtract, x, y, z));
-                        pedsPerFloor.Add(ped);
+                        Pedestrian ped = pl.createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform);
                      }
                     line = reader.ReadLine();
                 }
                 reader.Close();
             }
-            floor.addPeds(pedsPerFloor);
         }
 
 		//TODO find mechanism to not show peds (for quick camera-tour dev)
 		//pl.createPedestrians ();
 		pl.init ();
+        GameObject.Find("Play").GetComponent<PedestrianMover>().init();
 	}
 
     /*

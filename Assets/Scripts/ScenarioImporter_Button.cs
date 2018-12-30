@@ -61,10 +61,8 @@ public class ScenarioImporter_Button : MonoBehaviour {
     }
 
     private void resetSceneAndPlayer() {
-        sl.Reset();
-        GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>().playing = false;
-
-        if (GameObject.Find("World") != null) {
+        FindObjectOfType<PedestrianMover>().Reset();
+         if (GameObject.Find("World") != null) {
             foreach (Transform child in GameObject.Find("World").transform) {
                 // Important: otherwise, garbage collector will destroy it at any time and that leads to awkward behavior
                 DestroyImmediate(child.gameObject);
@@ -75,7 +73,6 @@ public class ScenarioImporter_Button : MonoBehaviour {
             foreach (Transform child in GameObject.Find("Pedestrians").transform) {
                 DestroyImmediate(child.gameObject);
             }
-            // TODO: Why can't I destroy the object here?!
             DestroyImmediate(GameObject.Find("Pedestrians"));
         }
 

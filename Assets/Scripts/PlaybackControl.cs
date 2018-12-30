@@ -172,7 +172,7 @@ public class PlaybackControl : MonoBehaviour {
                         pressP = true;
 
                     foreach (Transform ped in peds.transform) {
-                        ped.GetComponent<Pedestrian>().resetPedestrian();
+                        ped.GetComponent<Pedestrian>().reset();
                     }
                     roundCounter++;
                 }

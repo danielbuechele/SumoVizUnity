@@ -6,8 +6,7 @@ public class Elevator : WunderZone {
 
     internal List<Floor> floors = new List<Floor>();
 
-
-    public override void createObject(GameObject parent)
+    public override void createObject(GameObject parent, SimData simData)
     {
 
         /*       float height = floor.height;

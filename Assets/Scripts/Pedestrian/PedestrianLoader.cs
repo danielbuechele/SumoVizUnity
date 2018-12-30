@@ -34,8 +34,8 @@ public class PedestrianLoader : MonoBehaviour {
         return peds.Values.ToList<Pedestrian>();
     }
 
-    public Pedestrian createPedestrian(PedestrianPosition pos) {
-        int id = pos.getID();
+    public Pedestrian createPedestrian(int pedID, PedestrianPosition pos, Transform parent) {
+        int id = pedID;
         Pedestrian ped = null;
         peds.TryGetValue(id, out ped);
         GameObject newPedGameObj;
@@ -49,14 +49,18 @@ public class PedestrianLoader : MonoBehaviour {
             ped.init(id, pos);
             peds.Add(id, ped);
             newPedGameObj.SetActive(false);
-            newPedGameObj.transform.SetParent(GameObject.Find("Pedestrians").transform);
+            newPedGameObj.transform.SetParent(parent);
         } else {
             ped.addPos(pos);
         }
 
+        if (pos.getTime() > sl.getSimData().getMaxTime())
+            sl.getSimData().setMaxTime(pos.getTime());
+
+        // TODO: old code
         //positions.Add (pos);
-        if (pos.getTime() > pc.total_time)
-            pc.total_time = pos.getTime();
+        //if (pos.getTime() > pc.total_time)
+        //    pc.total_time = pos.getTime();
 
         return ped;
     }
