@@ -2,7 +2,7 @@
 
 public class Stair : WunderZone {
 
-    public override void createObject(GameObject parent, SimData simData) {
+    public override void createObject(GameObject parent, SimData simData, GeometryLoader gl) {
 
         Vector3 dirVect = new Vector3(
             float.Parse(morphosisEntry.GetAttribute("dirX")),

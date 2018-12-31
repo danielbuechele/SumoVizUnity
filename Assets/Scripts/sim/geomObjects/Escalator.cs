@@ -3,7 +3,7 @@ using System;
 
 public class Escalator : WunderZone {
 
-    public override void createObject(GameObject parent, SimData simData)
+    public override void createObject(GameObject parent, SimData simData, GeometryLoader gl)
     {
 
         Vector3 dirVect = new Vector3(

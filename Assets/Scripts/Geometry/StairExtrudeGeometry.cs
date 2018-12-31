@@ -24,7 +24,6 @@ public class StairExtrudeGeometry : Geometry {
 
         GameObject tread = createFirstTread(sortedVertices, dirVect, elevation, noOfTreads, height);
         tread.transform.SetParent(stair.transform);
-        GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>().setWorldAsParent(stair);
 
         Vector3 firstTreadPos = tread.transform.position;
         for (int i = 1; i <= noOfTreads - 1; i++) {

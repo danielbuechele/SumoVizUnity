@@ -26,8 +26,8 @@ public class PedestrianLoader : MonoBehaviour {
 
 
     void Start() {
-        pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
-        sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
+        //pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+        //sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
     }
 
     public List<Pedestrian> getPedestrians() {

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessarily closed, width is set here, not in verticesList
 
-	public static void create (string name, List<Vector2> verticesList, float height, float width, float elevation, GameObject parent) {
+	public static void create (string name, List<Vector2> verticesList, float height, float width, float elevation, GameObject parent, GeometryLoader gl) {
 		int wallpoints = verticesList.Count;
 		float wall = width;
 		
@@ -41,10 +40,9 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 
 		verticesList.Reverse ();
 
-		GeometryLoader gl = GameObject.Find ("GeometryLoader").GetComponent<GeometryLoader> ();
-		Material topMaterial = gl.theme.getOpenWallMaterial ();
+		Material topMaterial = gl.getTheme().getOpenWallMaterial ();
 		Material sideMaterial = topMaterial;
-		ExtrudeGeometry.create (name, verticesList, height, elevation, topMaterial, sideMaterial, parent);
+		ExtrudeGeometry.create (name, verticesList, height, elevation, topMaterial, sideMaterial, parent, gl);
 	}
 		
 }

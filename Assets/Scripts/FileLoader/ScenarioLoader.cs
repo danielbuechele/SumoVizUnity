@@ -14,7 +14,13 @@ public class ScenarioLoader : MonoBehaviour {
     private Dictionary<string, XmlElement> wunderZoneIdToMorphosisEntry;
     private List<Elevator> elevators;
 
-    public void loadScenario(string crowditFilePath, string resFolderPath) {
+
+    // TODO: legacy
+    public void loadScenario(string crowditFilePath, string resFolderPath, GeometryLoader gl) {
+        getScenario(crowditFilePath, resFolderPath, gl);
+    }
+
+    public SimData getScenario(string crowditFilePath, string resFolderPath, GeometryLoader gl) {
 
         // initialize all variables (could be that they are still set from a former scenario)
         init();
@@ -52,14 +58,13 @@ public class ScenarioLoader : MonoBehaviour {
         foreach (Floor floor in floors) {
             // create 3D objects
             floor.setBoundingPoints(getBoundingPoints());
-            floor.createObjects(simData);
+            floor.createObjects(simData, gl);
         }
 
         // for camera position
         simData.setBounds();
 
-        // set dropdown options to display each floor
-        GameObject.Find("FloorChooser").GetComponent<ChooseOptions>().setOptions(floorIDs);
+        return simData;
     }
 
     internal void init() {

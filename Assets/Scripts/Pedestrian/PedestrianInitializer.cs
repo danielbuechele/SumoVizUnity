@@ -3,52 +3,39 @@ using System.IO;
 using System.IO.Compression;
 using System.Xml;
 using System.Collections.Generic;
+using System;
 
-public class TrajectoryLoader : MonoBehaviour{
+public class PedestrianInitializer : MonoBehaviour {
 
-	public bool forceStartAtZero = false;
-	private bool timeSubstractTaken = false;
-    private string resFolderPath;
-    private PedestrianLoader pl;
-    private RuntimeInitializer ri;
-    private ScenarioLoader sl;
+    private bool forceStartAtZero = false;
+    private bool timeSubstractTaken = false;
+    private Dictionary<int, Pedestrian> peds = new Dictionary<int, Pedestrian>();
 
-    public void Start()
-    {
-        pl = GetComponent<PedestrianLoader>();
-        ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
-        sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
-    }
+    // get pedestrian prefab
+    public GameObject pedPrefab;
 
-    public void loadTrajectories() {
-
-        resFolderPath = ri.getResFolderPath();
-
+    public void initializePeds(string resFolderPath, SimData simData) {
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
         XmlDocument simXmlDoc = new XmlDocument();
-        try
-        {
+        try {
             simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
-        }
-        catch (XmlException ex)
-        {
+        } catch (XmlException ex) {
             Debug.Log("no results for this scenario have been found");
             return;
 
         }
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
 
-        pl.reset();
         GameObject peds = new GameObject("Pedestrians");
-        sl.getSimData().setPedestrianGameObject(peds);
+        simData.setPedestrianGameObject(peds);
 
         foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
             string trajFile = floorCsvAtEl.GetAttribute("csvAt");
             string trajFilePath = Path.Combine(outFolder, trajFile);
             string floorName = trajFile.Replace("floor-", "");
             floorName = floorName.Substring(0, floorName.IndexOf("."));
-            Floor floor = sl.getFloor(floorName);
+            Floor floor = simData.getFloor(floorName);
 
             decimal timeSubtract = 0;
 
@@ -60,7 +47,7 @@ public class TrajectoryLoader : MonoBehaviour{
                 //using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
                 string line = reader.ReadLine(); // skip the 1st line = header
                 line = reader.ReadLine(); // 2nd line
- 
+
                 if (forceStartAtZero && !timeSubstractTaken) {
                     decimal.TryParse(line.Split(',')[0], out timeSubtract);
                     timeSubstractTaken = true;
@@ -77,36 +64,42 @@ public class TrajectoryLoader : MonoBehaviour{
                         float.TryParse(values[2], out x);
                         float.TryParse(values[3], out y);
                         float.TryParse(values[4], out z);
-                        Pedestrian ped = pl.createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform);
-                     }
+                        Pedestrian ped = createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform, simData);
+                    }
                     line = reader.ReadLine();
                 }
                 reader.Close();
             }
         }
-
-		//TODO find mechanism to not show peds (for quick camera-tour dev)
-		//pl.createPedestrians ();
-		pl.init ();
-        GameObject.Find("Play").GetComponent<PedestrianMover>().init();
-	}
-
-    /*
-    private StreamReader reader;
-
-    public TrajectoryLoader() {
-    //FileInfo fi = new FileInfo (utils.getStreamingAssetsPath (relativeTrajFilePath));
-
-    //FileInfo fi = new FileInfo (trajFilePath);
-    //reader = fi.OpenText ();
-
-
-    if (properStreamReading) {
-        FileInfo fi = new FileInfo ("Assets/Resources/Data/" + relativeTrajFilePath); //_ignore
-        reader = fi.OpenText ();
-    } else {
-        string filedata = utils.loadFileAtRuntimeIntoBuild ("Data/" + relativeTrajFilePath);
-        reader = new StreamReader (new MemoryStream (Encoding.UTF8.GetBytes (filedata)));
     }
-    */
+
+    public Pedestrian createPedestrian(int pedID, PedestrianPosition pos, Transform parent, SimData simData) {
+        int id = pedID;
+        Pedestrian ped = null;
+        peds.TryGetValue(id, out ped);
+        GameObject newPedGameObj;
+        if (ped == null) {
+            newPedGameObj = Instantiate(pedPrefab, transform.position, Quaternion.identity);
+            // TODO: set different heights
+            //           float height = 0.8f + Random.value * 0.8f;
+            //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);
+            //           GameObject newPedGameObj = (GameObject)Instantiate(Resources.Load(pedestrianModel.ToString()));
+            ped = newPedGameObj.GetComponent<Pedestrian>();
+            ped.init(id, pos);
+            peds.Add(id, ped);
+            newPedGameObj.SetActive(false);
+            newPedGameObj.transform.SetParent(parent);
+        } else {
+            ped.addPos(pos);
+        }
+
+        if (pos.getTime() > simData.getMaxTime())
+            simData.setMaxTime(pos.getTime());
+
+        return ped;
+    }
+
+    internal void Reset() {
+        peds = new Dictionary<int, Pedestrian>();
+    }
 }

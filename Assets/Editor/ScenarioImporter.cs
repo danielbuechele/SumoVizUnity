@@ -33,7 +33,7 @@ public class ScenarioImporter : MonoBehaviour {
             string resFolderPath = Path.Combine(Path.GetDirectoryName(crowditFilePath), Path.GetFileNameWithoutExtension(crowditFilePath)) + "_res";
 
             ScenarioLoader sl = new ScenarioLoader ();
-            sl.loadScenario (crowditFilePath, resFolderPath);
+            sl.loadScenario (crowditFilePath, resFolderPath, ri.geometryLoader);
 
 			//ri.boundingPoints = sl.getBoundingPoints (); // if needed again, like in the camera tour for instance, re-create this list. currently only each floor knows their bounding points
             ri.setCrowditFileAndResFolder(crowditFilePath, resFolderPath);

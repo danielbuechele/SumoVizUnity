@@ -46,7 +46,7 @@ public class Floor : MonoBehaviour {
         this.boundingPoints = boundingPoints;
 
     }
-    internal void createObjects(SimData simData) {
+    internal void createObjects(SimData simData, GeometryLoader gl) {
 
         List<Vector2> plane = new List<Vector2>();
         float minX = boundingPoints[0],
@@ -74,10 +74,10 @@ public class Floor : MonoBehaviour {
         */
 
         foreach (WunderZone wz in wunderZones) {
-            wz.createObject(floorPlane, simData);
+            wz.createObject(floorPlane, simData, gl);
         }
         foreach (Wall wall in walls) {
-            wall.createObject(floorPlane);
+            wall.createObject(floorPlane, gl);
         }
     }
 }

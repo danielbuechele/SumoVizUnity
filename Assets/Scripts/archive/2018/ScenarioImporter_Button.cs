@@ -40,7 +40,7 @@ public class ScenarioImporter_Button : MonoBehaviour {
             ri.geometryLoader = gl;
             ri.geometryLoader.setTheme(new MarketplaceThemingMode()); // EvaktischThemingMode ());
 
-            sl.loadScenario(crowditFilePath, resFolderPath);
+            sl.loadScenario(crowditFilePath, resFolderPath, gl);
 
             // set camera correctly
             float offset = 20;

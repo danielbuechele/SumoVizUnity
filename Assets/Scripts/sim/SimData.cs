@@ -41,6 +41,14 @@ public class SimData {
         return floorsMap.Values.ToList<Floor>();
     }
 
+    internal List<String> getFloorIDs() {
+        return new List<String>(floorsMap.Keys);
+    }
+
+    internal Dictionary<string, Floor> getFloorMap() {
+        return floorsMap;
+    }
+
     internal Floor getFloor(string floorId) {
         return floorsMap[floorId];
     }
