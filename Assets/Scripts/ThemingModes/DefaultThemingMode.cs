@@ -37,7 +37,11 @@ public class DefaultThemingMode : ThemingMode {
 		return null;
 	}
 
-	public override Material getHouseMaterial () {
+    public override Material getElevatorMaterial() {
+        return getRandomSolidColorMaterial();
+    }
+
+    public override Material getHouseMaterial () {
 		return (Material) Resources.Load("House", typeof(Material));
 	}
 

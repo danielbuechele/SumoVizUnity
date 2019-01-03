@@ -10,6 +10,8 @@ public class ChooseOptions : MonoBehaviour {
     Dropdown m_Dropdown;
     private List<int> hiddenFloorLevels;
     private SimData simData;
+    [SerializeField] GameObject Toggles;
+    [SerializeField] Transform MaskPanel;
 
     public ChooseOptions() { }
 
@@ -61,25 +63,25 @@ public class ChooseOptions : MonoBehaviour {
     }
 
     public void Update() {
-        if (simData == null)
-            return;
-        try {
-            foreach (Pedestrian ped in simData.getPedestrianGameObject().GetComponentsInChildren<Pedestrian>()) {
-                if (hiddenFloorLevels.Contains(ped.getCurrentFloorID())) {
-                    foreach (Renderer r in ped.GetComponentsInChildren<Renderer>()) {
-                        r.enabled = false;
-                    }
-                } else {
-                    if (!ped.reachedTarget()) {
-                        foreach (Renderer r in ped.GetComponentsInChildren<Renderer>()) {
-                            r.enabled = true;
-                        }
-                    }
-                }
-            }
-        } catch (NullReferenceException) {
+        //if (simData == null)
+        //    return;
+        //try {
+        //    foreach (Pedestrian ped in simData.getPedestrianGameObject().GetComponentsInChildren<Pedestrian>()) {
+        //        if (hiddenFloorLevels.Contains(ped.getCurrentFloorID())) {
+        //            foreach (Renderer r in ped.GetComponentsInChildren<Renderer>()) {
+        //                r.enabled = false;
+        //            }
+        //        } else {
+        //            if (!ped.reachedTarget()) {
+        //                foreach (Renderer r in ped.GetComponentsInChildren<Renderer>()) {
+        //                    r.enabled = true;
+        //                }
+        //            }
+        //        }
+        //    }
+        //} catch (NullReferenceException) {
 
-        }
+        //}
 
     }
 }

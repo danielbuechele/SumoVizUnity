@@ -16,7 +16,12 @@ public class EvaktischThemingMode : ThemingMode {
 		return (Material) Resources.Load("evaktisch/Wand2", typeof(Material));
 	}
 
-	public override Material getBoxMaterial () {
+    public override Material getElevatorMaterial() {
+        return null;
+    }
+
+
+    public override Material getBoxMaterial () {
 		return null;
 	}
 

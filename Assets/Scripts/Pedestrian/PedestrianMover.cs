@@ -36,17 +36,17 @@ public class PedestrianMover : MonoBehaviour {
     public void changePlaying() {
         if (playing) {
             playing = false;
-            but.image.sprite = PauseSprite;
+            but.image.sprite = PlaySprite;
         } else {
             playing = true;
-            but.image.sprite = PlaySprite;
+            but.image.sprite = PauseSprite;
         }
     }
 
     public void Reset() {
         playing = false;
         initialized = false;
-        but.image.sprite = PauseSprite;
+        but.image.sprite = PlaySprite;
     }
 
     public void Update() {

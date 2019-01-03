@@ -32,7 +32,8 @@ public class Elevator : WunderZone {
                 maxElev = floorstops.elevation;
         }
         height = Math.Abs(maxElev - minElev);
-        ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev, parent, gl);
+        ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev, parent, 
+            gl.getTheme().getElevatorMaterial(), gl.getTheme().getElevatorMaterial(), gl.obstaclePrefab);
 
     }
 

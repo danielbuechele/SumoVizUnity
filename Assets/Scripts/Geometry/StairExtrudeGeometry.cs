@@ -50,8 +50,6 @@ public class StairExtrudeGeometry : Geometry {
 
         GameObject tread = createFirstTread(sortedVertices, dirVect, elevation, noOfTreads - noOfHorizontalTreads, height);
         tread.transform.SetParent(escalator.transform);
-        GameObject.Find("GeometryLoader").GetComponent<GeometryLoader>().setWorldAsParent(escalator);
-
 
         // for the horizontal treads, let them stick inside the floor
         if (dirVect.y > 0)

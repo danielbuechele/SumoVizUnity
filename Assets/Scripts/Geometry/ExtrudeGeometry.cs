@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ExtrudeGeometry : Geometry {
 
 
-    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial, GameObject parent, GeometryLoader gl) {
+    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial, GameObject parent, GameObject obstaclePrefab) {
 
         GameObject obstacle = new GameObject(); // = parent object to top and side planes
         obstacle.name = name;
@@ -21,7 +21,7 @@ public class ExtrudeGeometry : Geometry {
 		}
 
         // TOP
-        GameObject top = Instantiate(gl.obstaclePrefab, gl.obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
+        GameObject top = Instantiate(obstaclePrefab, obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
 //        GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
         top.name = name + "_top";
         top.transform.SetParent (obstacle.transform);
@@ -54,7 +54,7 @@ public class ExtrudeGeometry : Geometry {
 
 
         // SIDE WALLS
-        GameObject walls = Instantiate(gl.obstaclePrefab, gl.obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
+        GameObject walls = Instantiate(obstaclePrefab, obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
 		walls.transform.SetParent(obstacle.transform);
         walls.name = name + "_walls";
 

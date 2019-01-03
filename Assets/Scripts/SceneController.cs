@@ -10,11 +10,11 @@ using System.IO.Compression;
 
 public class SceneController : MonoBehaviour {
     private static SceneController sceneController;
-    
+
     // UI elements
-    public Button loadButton;
-    public Button playButton;
-    public Dropdown floorChooser;
+    [SerializeField] Button loadButton;
+    [SerializeField] Button playButton;
+    [SerializeField] Dropdown floorChooser;
 
     // storage elements
     private string crowditFilePath;
@@ -92,7 +92,8 @@ public class SceneController : MonoBehaviour {
             
             // set dropdown options to display each floor
             floorChooser.GetComponent<ChooseOptions>().setOptions(simData);
-            
+            GetComponent<ToggleChooser>().setToggles(simData);
+
             // init pedestrian mover
             pm.init(simData);
         }
@@ -113,7 +114,13 @@ public class SceneController : MonoBehaviour {
             }
             DestroyImmediate(GameObject.Find("Pedestrians"));
         }
+        Canvas canvas = GetComponentInParent<Canvas>();
 
+             foreach (Toggle child in GetComponent<ToggleChooser>().getCanvas().GetComponentsInChildren<Toggle>()) {
+                DestroyImmediate(child.gameObject);
+            }
+ 
+        GetComponent<ToggleChooser>().Reset();
         floorChooser.GetComponent<ChooseOptions>().Reset();
         gameObject.GetComponent<PedestrianInitializer>().Reset();
         pm.Reset();

@@ -33,7 +33,11 @@ public class MarketplaceThemingMode : ThemingMode {
 		return getRandomSolidColorMaterial ();
 	}
 
-	public override Material getBoxMaterial () {
+    public override Material getElevatorMaterial() {
+        return (Material)Resources.Load("SolidColorMaterials/Gelb", typeof(Material));
+    }
+
+    public override Material getBoxMaterial () {
 		return null;
 	}
 
