@@ -6,8 +6,7 @@ public class Elevator : WunderZone {
 
     internal List<Floor> floors = new List<Floor>();
 
-    public override void createObject(GameObject parent, SimData simData, GeometryLoader gl)
-    {
+    public override void createObject(GameObject parent, SimData simData, GeometryLoader gl) {
 
         /*       float height = floor.height;
                 if (morphosisEntry.HasAttribute("connectsTo"))
@@ -23,8 +22,7 @@ public class Elevator : WunderZone {
         float minElev = float.PositiveInfinity;
         float maxElev = float.NegativeInfinity;
 
-        foreach (Floor floorstops in floors)
-        {
+        foreach (Floor floorstops in floors) {
             if (minElev > floorstops.elevation)
                 minElev = floorstops.elevation;
 
@@ -32,18 +30,21 @@ public class Elevator : WunderZone {
                 maxElev = floorstops.elevation;
         }
         height = Math.Abs(maxElev - minElev);
-        ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev, parent, 
-            gl.getTheme().getElevatorMaterial(), gl.getTheme().getElevatorMaterial(), gl.obstaclePrefab);
+        GameObject elevator = ObstacleExtrudeGeometry.create(this.id + "-elevator", this.points, height, minElev, parent,
+            gl.getTheme().getElevatorMaterial(), gl.getTheme().getElevatorMaterial(), gl.getObstaclePrefab());
 
+        foreach (Renderer renderer in elevator.GetComponentsInChildren<Renderer>()) {
+            renderer.sharedMaterial = new Material(Shader.Find("UI/Lit/Transparent"));
+            // greeenish
+            renderer.sharedMaterial.color = new Color(0.43f, 0.98f, 0.39f, .3f);
+        }
     }
 
-    internal void addFloors(List<Floor> floors)
-    {
+    internal void addFloors(List<Floor> floors) {
         this.floors = floors;
     }
 
-    internal void addFloor(Floor floor)
-    {
+    internal void addFloor(Floor floor) {
         floors.Add(floor);
     }
 }

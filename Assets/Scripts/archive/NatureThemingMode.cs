@@ -45,5 +45,9 @@ public class NatureThemingMode : ThemingMode {
         return (Material)Resources.Load("Woodbox", typeof(Material));
     }
 
+    public override Material getEscalatorTreadMaterial() {
+        throw new System.NotImplementedException();
+    }
+
     #endregion
 }

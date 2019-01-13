@@ -49,7 +49,12 @@ public class DefaultThemingMode : ThemingMode {
 		return (Material) Resources.Load("Roof", typeof(Material));
 	}
 
-	public override Vector2 getTextureScaleForHeight (float height) {
+
+    public override Material getEscalatorTreadMaterial() {
+        return (Material)Resources.Load("Roof", typeof(Material));
+    }
+
+    public override Vector2 getTextureScaleForHeight (float height) {
 		float y = 0;
 		if (height < 5) 
 			y = height / 0.44f;

@@ -17,7 +17,7 @@ public class EvaktischThemingMode : ThemingMode {
 	}
 
     public override Material getElevatorMaterial() {
-        return null;
+        return (Material)Resources.Load("SolidColorMaterials/Gelb", typeof(Material));
     }
 
 
@@ -37,5 +37,9 @@ public class EvaktischThemingMode : ThemingMode {
 		return new Vector2();
 	}
 
-	#endregion
+    public override Material getEscalatorTreadMaterial() {
+        throw new System.NotImplementedException();
+    }
+
+    #endregion
 }

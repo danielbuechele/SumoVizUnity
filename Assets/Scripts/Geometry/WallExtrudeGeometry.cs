@@ -42,7 +42,7 @@ public class WallExtrudeGeometry : ExtrudeGeometry  { // open walls, not necessa
 
 		Material topMaterial = gl.getTheme().getOpenWallMaterial();
 		Material sideMaterial = topMaterial;
-		ExtrudeGeometry.create (name, verticesList, height, elevation, topMaterial, sideMaterial, parent, gl.obstaclePrefab);
+		ExtrudeGeometry.create (name, verticesList, height, elevation, topMaterial, sideMaterial, parent, gl.getObstaclePrefab());
 	}
 		
 }

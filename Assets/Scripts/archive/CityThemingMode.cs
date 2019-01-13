@@ -45,5 +45,9 @@ public class CityThemingMode : ThemingMode {
         return null;
     }
 
+    public override Material getEscalatorTreadMaterial() {
+        throw new System.NotImplementedException();
+    }
+
     #endregion
 }

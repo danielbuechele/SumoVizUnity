@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ExtrudeGeometry : Geometry {
 
 
-    public static void create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial, GameObject parent, GameObject obstaclePrefab) {
+    public static GameObject create (string name, List<Vector2> verticesList, float height, float elevation, Material topMaterial, Material sideMaterial, GameObject parent, GameObject obstaclePrefab) {
 
         GameObject obstacle = new GameObject(); // = parent object to top and side planes
         obstacle.name = name;
@@ -15,7 +15,7 @@ public class ExtrudeGeometry : Geometry {
 		for (int i = 0; i < vertices2D.Length; i ++) {
 			if (!isValidPoint (vertices2D[i])) {
 				Debug.LogError (name + ", has an invalid geometry, skipping it");
-				return;
+				return obstacle;
 			}
 			vertices.Add (new Vector3(vertices2D[i].x, 0, vertices2D[i].y));
 		}
@@ -122,10 +122,10 @@ public class ExtrudeGeometry : Geometry {
 		mesh_walls.RecalculateBounds();
 		mesh_walls = TangentHelper.TangentSolver (mesh_walls);
 		mesh_filter_walls.mesh = mesh_walls;
+        return obstacle;
+    }
 
-	}
-
-	public static bool isValidPoint(Vector2 point) {
+    public static bool isValidPoint(Vector2 point) {
 		if (double.IsNaN (point.x) || double.IsInfinity (point.x) || double.IsNaN (point.y) || double.IsInfinity (point.y)) {
 			return false;
 		}

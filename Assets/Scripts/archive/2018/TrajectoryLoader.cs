@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Xml;
 using System.Collections.Generic;
 
+// deprecated
 public class TrajectoryLoader : MonoBehaviour{
 
 	public bool forceStartAtZero = false;
@@ -15,9 +16,9 @@ public class TrajectoryLoader : MonoBehaviour{
 
     public void Start()
     {
-        //pl = GetComponent<PedestrianLoader>();
-        //ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
-        //sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
+        pl = GetComponent<PedestrianLoader>();
+        ri = GameObject.Find("RuntimeInitializer").GetComponent<RuntimeInitializer>();
+        sl = GameObject.Find("ScenarioLoader").GetComponent<ScenarioLoader>();
     }
 
 
@@ -51,7 +52,7 @@ public class TrajectoryLoader : MonoBehaviour{
             floorName = floorName.Substring(0, floorName.IndexOf("."));
             Floor floor = sl.getFloor(floorName);
 
-            decimal timeSubtract = 0;
+            float timeSubtract = 0;
 
             // via https://stackoverflow.com/a/29372751
             using (FileStream fs = File.OpenRead(trajFilePath))
@@ -63,17 +64,17 @@ public class TrajectoryLoader : MonoBehaviour{
                 line = reader.ReadLine(); // 2nd line
  
                 if (forceStartAtZero && !timeSubstractTaken) {
-                    decimal.TryParse(line.Split(',')[0], out timeSubtract);
+                    float.TryParse(line.Split(',')[0], out timeSubtract);
                     timeSubstractTaken = true;
                 }
 
                 while (line != null) {
                     string[] values = line.Split(',');
                     if (values.Length >= 4) {
-                        decimal time;
+                        float time;
                         int id;
                         float x, y, z;
-                        decimal.TryParse(values[0], out time);
+                        float.TryParse(values[0], out time);
                         int.TryParse(values[1], out id);
                         float.TryParse(values[2], out x);
                         float.TryParse(values[3], out y);

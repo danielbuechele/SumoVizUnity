@@ -1,48 +1,75 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using UnityEngine.UI;
+using SFB;
+using System;
 
 public class NormalScreenshots : MonoBehaviour {
 
-	public int superSizeFactor = 1;
-	public int fps = 25;
+    public int superSizeFactor = 1;
+    public int fps = 25;
 
-	private PlaybackControl pc;
-	private int count = 0;
+    private PlaybackControl pc;
+    private PedestrianMover pm;
+    private int count = 0;
+    private bool render = false;
+
+    // set via inspector
+    [SerializeField] Button record;
+    [SerializeField] Sprite RecordStartSprite;
+    [SerializeField] Sprite RecordingSprite;
 
 
-	void Start () {
-		pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
-		Time.captureFramerate = fps;
-		Application.runInBackground = true;
+    void Start() {
+        pm = FindObjectOfType<PedestrianMover>();
+        //        pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
+        Time.captureFramerate = fps;
+        Application.runInBackground = true;
+        record.onClick.AddListener(delegate () { renderScreen(); });
+    }
 
-		Screenrecorder.init ();
-	}
-	
-	void OnPostRender () {
-	//void Update() {
-		if (pc.inFirstRound ()) {
-			//Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
+    private void renderScreen() {
+        // if already rendering, do not ask for file
+        if (!render) {
+            String outFile = StandaloneFileBrowser.SaveFilePanel("Save File", "", "", "mp4"); //Path.GetFileName(path))
+            if (outFile == "") // = cancel was clicked in open file dialog
+                return;
+            Screenrecorder.init(outFile);
+            record.image.sprite = RecordingSprite;
+            pm.changePlaying();
+        } else {
+            record.image.sprite = RecordStartSprite;
+            pm.changePlaying();
+        }
+        render = !render;
+    }
 
-			Texture2D screenshot = new Texture2D (Screen.width, Screen.height, TextureFormat.RGB24, false); // via http://answers.unity3d.com/answers/1190178/view.html
-			screenshot.ReadPixels (new Rect (0, 0, Screen.width, Screen.height), 0, 0);
-			screenshot.Apply ();
+    void OnPostRender() {
+        if (render && pm.isFirstRound()) {
+            //Application.CaptureScreenshot ("Screenshots/screenshot" + (count ++) + ".png", superSizeFactor);
 
-			byte[] bytes = screenshot.EncodeToJPG ();
-			//File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".jpg", bytes);
+            Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false); // via http://answers.unity3d.com/answers/1190178/view.html
+            screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            screenshot.Apply();
 
-			Screenrecorder.writeImg (bytes);
-			Object.Destroy (screenshot);
+            byte[] bytes = screenshot.EncodeToJPG();
+            //File.WriteAllBytes("Screenshots/screenshot" + (count ++) + ".jpg", bytes);
 
-			count ++;
+            Screenrecorder.writeImg(bytes);
+            UnityEngine.Object.Destroy(screenshot);
 
-			Debug.Log ("frame #" + count + " captured");
-		} else {
-			if (!Screenrecorder.isClosed) {
-				Debug.Log ("video exported with " + count + " frames");
-				Screenrecorder.close ();
-			}
-		}
-	}
+            count++;
+
+//            Debug.Log("frame #" + count + " captured");
+        } else {
+            if (!Screenrecorder.isClosed) {
+                Debug.Log("video exported with " + count + " frames");
+                Screenrecorder.close();
+                record.image.sprite = RecordStartSprite;
+                render = false;
+            }
+        }
+    }
 
 }

@@ -14,7 +14,8 @@ public class PedestrianInitializer : MonoBehaviour {
     // get pedestrian prefab
     public GameObject pedPrefab;
 
-    public void initializePeds(string resFolderPath, SimData simData) {
+    public Boolean initializePeds(string resFolderPath, SimData simData) {
+
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
         XmlDocument simXmlDoc = new XmlDocument();
@@ -22,7 +23,7 @@ public class PedestrianInitializer : MonoBehaviour {
             simXmlDoc.LoadXml(utils.loadFileIntoEditor(simXmlFilePath));
         } catch (XmlException ex) {
             Debug.Log("no results for this scenario have been found");
-            return;
+            return false;
 
         }
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
@@ -37,7 +38,7 @@ public class PedestrianInitializer : MonoBehaviour {
             floorName = floorName.Substring(0, floorName.IndexOf("."));
             Floor floor = simData.getFloor(floorName);
 
-            decimal timeSubtract = 0;
+            float timeSubtract = 0;
 
             // via https://stackoverflow.com/a/29372751
             using (FileStream fs = File.OpenRead(trajFilePath))
@@ -49,28 +50,34 @@ public class PedestrianInitializer : MonoBehaviour {
                 line = reader.ReadLine(); // 2nd line
 
                 if (forceStartAtZero && !timeSubstractTaken) {
-                    decimal.TryParse(line.Split(',')[0], out timeSubtract);
+                    float.TryParse(line.Split(',')[0], out timeSubtract);
                     timeSubstractTaken = true;
                 }
 
                 while (line != null) {
                     string[] values = line.Split(',');
                     if (values.Length >= 4) {
-                        decimal time;
+                        float time;
                         int id;
                         float x, y, z;
-                        decimal.TryParse(values[0], out time);
+                        float.TryParse(values[0], out time);
                         int.TryParse(values[1], out id);
                         float.TryParse(values[2], out x);
                         float.TryParse(values[3], out y);
-                        float.TryParse(values[4], out z);
-                        Pedestrian ped = createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform, simData);
+                        // if no z coordinate is given, just take zero as default
+                        try {
+                            float.TryParse(values[4], out z);
+                         } catch(IndexOutOfRangeException e) {
+                            z = 0.0f;
+                        }
+                         Pedestrian ped = createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform, simData);
                     }
                     line = reader.ReadLine();
                 }
                 reader.Close();
             }
         }
+        return true;
     }
 
     public Pedestrian createPedestrian(int pedID, PedestrianPosition pos, Transform parent, SimData simData) {
@@ -79,7 +86,8 @@ public class PedestrianInitializer : MonoBehaviour {
         peds.TryGetValue(id, out ped);
         GameObject newPedGameObj;
         if (ped == null) {
-            newPedGameObj = Instantiate(pedPrefab, transform.position, Quaternion.identity);
+            newPedGameObj = Instantiate(pedPrefab, pedPrefab.transform.position, Quaternion.identity);
+            newPedGameObj.transform.rotation = pedPrefab.transform.rotation;
             // TODO: set different heights
             //           float height = 0.8f + Random.value * 0.8f;
             //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);

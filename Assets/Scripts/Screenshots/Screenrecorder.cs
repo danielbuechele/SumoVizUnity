@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Diagnostics;
-
+using System;
 
 public static class Screenrecorder {
 
-	public static Process process;
-	public static StreamWriter writer;
+	private static Process process;
+	private static StreamWriter writer;
 
 	public static bool isClosed = true;
 
 
-	public static void init() {
+	public static void init(string filename) {
 		isClosed = false;
 		process = new Process ();
 
-		var absoluteFfmpegExeLoc = Application.dataPath + "/Plugins/other/ffmpeg/bin/ffmpeg.exe";
-		var relativeOutFileLoc = "out.mp4"; // TODO a smarter name?
-		var ffmpegCommand = "-y -f image2pipe -i - -vf scale=trunc(iw/2)*2:trunc(ih/2)*2 -r 25 -c:v libx264 -pix_fmt yuv420p -crf 18 " + relativeOutFileLoc;
+		String absoluteFfmpegExeLoc = Application.dataPath + "/Plugins/other/ffmpeg/bin/ffmpeg.exe";
+        String relativeOutFileLoc = filename; // TODO a smarter name?
+        String ffmpegCommand = "-y -f image2pipe -i - -vf scale=trunc(iw/2)*2:trunc(ih/2)*2 -r 25 -c:v libx264 -pix_fmt yuv420p -crf 18 " + relativeOutFileLoc;
 
 		process.StartInfo.UseShellExecute = false;
 		process.StartInfo.RedirectStandardInput = true;

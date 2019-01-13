@@ -17,7 +17,7 @@ public class Stair : WunderZone {
             height = Mathf.Abs(connectsToFloor.elevation - floor.elevation);
         }
 
-        StairExtrudeGeometry.createStair(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads).transform.SetParent(parent.transform);
+        StairExtrudeGeometry.createStair(this.id + "-Stair", this.points, height, floor.elevation, dirVect, noOfTreads, gl.getTreadPrefab()).transform.SetParent(parent.transform);
     }
 
 }

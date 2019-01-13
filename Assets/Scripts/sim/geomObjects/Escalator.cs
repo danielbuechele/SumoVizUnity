@@ -32,6 +32,7 @@ public class Escalator : WunderZone {
  //               height = floor.elevation - connectsToFloor.elevation;
             } 
         }
-        StairExtrudeGeometry.createEscalator(this.id + "-Stair", this.points, height, elevation, dirVect, noOfTreads, noOfHorizontalTreads, againstDir).transform.SetParent(parent.transform);
+        StairExtrudeGeometry.createEscalator(this.id + "-Stair", this.points, height, elevation, dirVect, 
+            noOfTreads, noOfHorizontalTreads, againstDir, gl.getTreadPrefab(), gl.getTheme().getEscalatorTreadMaterial()).transform.SetParent(parent.transform);
     }
 }

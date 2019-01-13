@@ -1,7 +1,4 @@
-﻿//Create a new Dropdown GameObject by going to the Hierarchy and clicking Create>UI>Dropdown. Attach this script to the Dropdown GameObject.
-//Set your own Text in the Inspector window
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +7,6 @@ public class ChooseOptions : MonoBehaviour {
     Dropdown m_Dropdown;
     private List<int> hiddenFloorLevels;
     private SimData simData;
-    [SerializeField] GameObject Toggles;
-    [SerializeField] Transform MaskPanel;
 
     public ChooseOptions() { }
 

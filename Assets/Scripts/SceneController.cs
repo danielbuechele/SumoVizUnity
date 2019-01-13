@@ -11,10 +11,13 @@ using System.IO.Compression;
 public class SceneController : MonoBehaviour {
     private static SceneController sceneController;
 
-    // UI elements
+    // UI elements, set via inspector
     [SerializeField] Button loadButton;
-    [SerializeField] Button playButton;
-    [SerializeField] Dropdown floorChooser;
+    [SerializeField] GameObject floorPanel;
+
+    private Button recordButton;
+    private Button playButton;
+    private Transform camera;
 
     // storage elements
     private string crowditFilePath;
@@ -28,18 +31,28 @@ public class SceneController : MonoBehaviour {
     private SimData simData;
 
 
+
     public void Start() {
         gl = gameObject.GetComponent<GeometryLoader>();
         pm = gameObject.GetComponent<PedestrianMover>();
+        camera = GameObject.Find("Flycam").transform;
+        recordButton = GameObject.Find("Record").GetComponent<Button>() as Button;
+        playButton = GameObject.Find("Play").GetComponent<Button>() as Button;
+        
+        // do not display the panel for the floors if no scenario is loaded
+        foreach (Renderer r in floorPanel.GetComponentsInChildren<Renderer>()) {
+            r.enabled = false;
+        }
 
         loadButton.onClick.AddListener(delegate () { this.importCrowditFiles(); });
-        playButton.onClick.AddListener(delegate () { this.startMovePeds(); });
+
+        // do not display the play button as long as there are no pedestrians
+        playButton.gameObject.SetActive(false);
+        recordButton.gameObject.SetActive(false);
+        floorPanel.SetActive(false);
     }
 
-    private void startMovePeds() {
-        pm.changePlaying();
-    }
-
+ 
     public static SceneController Instance() {
         if (!sceneController) {
             sceneController = FindObjectOfType(typeof(SceneController)) as SceneController;
@@ -51,7 +64,6 @@ public class SceneController : MonoBehaviour {
 
     public void importCrowditFiles() {
 
-        Transform camera = GameObject.Find("Flycam").transform;
         camera.parent = GameObject.Find("MainCameraParent").transform;
 
         resetSceneAndPlayer();
@@ -73,7 +85,7 @@ public class SceneController : MonoBehaviour {
 
             resFolderPath = Path.Combine(Path.GetDirectoryName(crowditFilePath), Path.GetFileNameWithoutExtension(crowditFilePath)) + "_res";
  
-            gl.setTheme(new MarketplaceThemingMode());
+            gl.setTheme(new CrowditThemingMode());
             ScenarioLoader sl = new ScenarioLoader();
             simData = sl.getScenario(crowditFilePath, resFolderPath, gl);
 
@@ -85,22 +97,30 @@ public class SceneController : MonoBehaviour {
                 sl.getSimData().minY - offset);
             camera.parent = world.transform;
             camera.rotation = Quaternion.Euler(0, offset, 0);
+            GameObject.Find("CameraPivot").transform.position = camera.position;
+            GameObject.Find("LightSource").transform.position = camera.position;
 
-            gameObject.GetComponent<PedestrianInitializer>().initializePeds(resFolderPath, simData);
 
-            // init GUI elements: dropdown and play button
-            
-            // set dropdown options to display each floor
-            floorChooser.GetComponent<ChooseOptions>().setOptions(simData);
+            // init GUI elements: floors list and play button
+            if (gameObject.GetComponent<PedestrianInitializer>().initializePeds(resFolderPath, simData)) {
+                // do display the play button if there are pedestrians
+                playButton.gameObject.SetActive(true);
+                recordButton.gameObject.SetActive(true);
+
+                // init pedestrian mover
+                pm.init(simData);
+            }
+
             GetComponent<ToggleChooser>().setToggles(simData);
 
-            // init pedestrian mover
-            pm.init(simData);
+            // display the panel for the floors if no scenario is loaded
+            floorPanel.SetActive(true);
         }
     }
 
     private void resetSceneAndPlayer() {
         FindObjectOfType<PedestrianMover>().Reset();
+
         if (GameObject.Find("World") != null) {
             foreach (Transform child in GameObject.Find("World").transform) {
                 // Important: otherwise, garbage collector will destroy it at any time and that leads to awkward behavior
@@ -121,14 +141,15 @@ public class SceneController : MonoBehaviour {
             }
  
         GetComponent<ToggleChooser>().Reset();
-        floorChooser.GetComponent<ChooseOptions>().Reset();
         gameObject.GetComponent<PedestrianInitializer>().Reset();
         pm.Reset();
 
-    }
+        // do not display the panel for the floors if no scenario is loaded
+        floorPanel.SetActive(false);
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+        // do not display the play button as long as there are no pedestrians
+        playButton.gameObject.SetActive(false);
+        recordButton.gameObject.SetActive(true);
+        
+    }
 }

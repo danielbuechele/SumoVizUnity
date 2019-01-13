@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/stair-test.unity
     guid: d3ff6d728b843f843834b71b2318fab7
+  - enabled: 0
+    path: Assets/Scenes/crowdit.unity
+    guid: 1eb3455846d30d54ea558c14fdf00d38
   m_configObjects: {}

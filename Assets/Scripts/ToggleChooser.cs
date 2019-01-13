@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class ToggleChooser : MonoBehaviour {
     [SerializeField] Toggle togglePrefab;
-    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject toggleFrame
+        ;
     private SimData simData;
     private List<int> hiddenFloorLevels;
 
@@ -19,14 +20,12 @@ public class ToggleChooser : MonoBehaviour {
         int yOffset = 0;
         foreach (String floorID in simData.getFloorIDs()) {
             Vector3 pos = new Vector3(togglePrefab.transform.position.x, togglePrefab.transform.position.y - yOffset, togglePrefab.transform.position.z);
-            Toggle newToggle = Instantiate(togglePrefab, pos, Quaternion.identity);
+            Toggle newToggle = Instantiate(togglePrefab);
             newToggle.GetComponentInChildren<Text>().text = floorID;
-            newToggle.transform.parent = canvas.transform;
-            yOffset += 30;
+            newToggle.transform.parent = toggleFrame.transform;
             newToggle.onValueChanged.AddListener(delegate {
                 this.onUpdate(newToggle);
             });
-
         }
 
     }
@@ -81,6 +80,6 @@ public class ToggleChooser : MonoBehaviour {
     }
 
     internal GameObject getCanvas() {
-        return canvas;
+        return toggleFrame;
     }
 }

@@ -62,5 +62,9 @@ public class MarketplaceThemingMode : ThemingMode {
 		return new Vector2 (0.5f, 1 / y);
 	}
 
-	#endregion
+    public override Material getEscalatorTreadMaterial() {
+        return (Material)Resources.Load("SolidColorMaterials/Silver", typeof(Material));
+    }
+
+    #endregion
 }

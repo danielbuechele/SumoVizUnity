@@ -25,7 +25,7 @@
 		<morphosis>
 			<origin id="origin_simObjects-OG1-5" maxPremovementTime="0" minPremovementTime="0" sortedBirthCells="false" wunderZone="simObjects-OG1-5" />
 			<origin id="origin_simObjects-OG1-4" maxPremovementTime="0" minPremovementTime="0" sortedBirthCells="false" wunderZone="simObjects-OG1-4" />
-			<stair dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="0.0" id="stair_simObjects-OG1-9" noOfTreads="10" wunderZone="simObjects-OG1-9" />
+			<stair dirX="-1.0" dirY="-8.572527594031473E-16" dirZ="0.0" id="stair_simObjects-OG1-9" noOfTreads="10" wunderZone="simObjects-OG1-9" />
 			<stair dirX="1.0" dirY="-0.0" dirZ="1.0" id="stair_simObject-EG" noOfTreads="8" wunderZone="simObject-EG" connectsTo="OG1" />
 			<destination capacityRestriction="false" disableDynamicFlooding="false" id="destination_dest_EG" wunderZone="dest_EG" />
 			<stair dirX="-1.0" dirY="-1.2246467991473532E-16" dirZ="0.0" id="stair_simObjects-OG2-10" noOfTreads="10" wunderZone="simObjects-OG2-10" />
@@ -53,6 +53,8 @@
 		<measurements />
 	</evaluations>
 	<visualization>
-		<colorings />
+		<colorings>
+			<class rgba="64,64,64,15">stair</class>
+		</colorings>
 	</visualization>
 </scenario>

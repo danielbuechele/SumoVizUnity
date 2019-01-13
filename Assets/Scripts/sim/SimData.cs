@@ -13,7 +13,7 @@ public class SimData {
     public float maxElev;
     public float minX;
     public float minY;
-    decimal maxTime;
+    float maxTime;
     GameObject peds;
 
 
@@ -76,11 +76,11 @@ public class SimData {
         }
     }
 
-    internal decimal getMaxTime() {
+    internal float getMaxTime() {
         return maxTime;
     }
 
-    internal void setMaxTime(decimal maxTime) {
+    internal void setMaxTime(float maxTime) {
         this.maxTime = maxTime;
     }
 

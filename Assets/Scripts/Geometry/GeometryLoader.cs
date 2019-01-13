@@ -5,15 +5,22 @@ using System;
 
 public class GeometryLoader : MonoBehaviour {
 
-    public GameObject obstaclePrefab;
-	[HideInInspector]
+    // set via Inspector
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] GameObject treadPrefab;
+
+    [HideInInspector]
 	private ThemingMode theme;
 	[HideInInspector]
 	public Groundplane groundplane;
 
+    internal GameObject getObstaclePrefab() {
+        return obstaclePrefab;
+    }
 
-    public void Start()
-    {
+    internal GameObject getTreadPrefab() {
+        return treadPrefab;
+
     }
 
     public void setTheme(ThemingMode mode) {

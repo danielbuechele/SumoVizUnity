@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Random = UnityEngine.Random;
+using System.Linq;
 
 public class Pedestrian : MonoBehaviour {
 	
@@ -9,32 +10,33 @@ public class Pedestrian : MonoBehaviour {
 	Vector3 target;
 	private float speed;
 
-	//int id;
-	private List<PedestrianPosition> positions = new List<PedestrianPosition> ();
-	private Color myColor;
-	//bool trajectoryVisible;
-	//VectorLine trajectory;
-
-	//private InfoText it;
-	//private PedestrianLoader pl;
-	private PlaybackControl pc;
-	//private Renderer r;
-	//private GeometryLoader gl;
-	//private Groundplane gp;
-	//GameObject tile;
+    private List<PedestrianPosition> positions = new List<PedestrianPosition>();
+    private Color myColor;
+    private PlaybackControl pc;
 
 	private AgentView agentView = null;
 	#pragma warning disable 108
 	private Animation animation;
 	#pragma warning restore 108
 	private LODGroup lodGroup;
-    private int index;
+    private int index = 0;
 	private bool targetReached = true;
- 
+
+    // deprecated variables
+    //bool trajectoryVisible;
+    //VectorLine trajectory;
+    //int id;
+    //private InfoText it;
+    //private PedestrianLoader pl;
+    //private Renderer r;
+    //private GeometryLoader gl;
+    //private Groundplane gp;
+    //GameObject tile;
+
+
     public void init() {
         gameObject.SetActive(true);
-        gameObject.AddComponent<BoxCollider>(); // TODO what for?
-		transform.Rotate (0, 90, 0);
+
         gameObject.GetComponentInChildren<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
 
         animation = GetComponentInChildren<Animation> ();
@@ -46,6 +48,11 @@ public class Pedestrian : MonoBehaviour {
 
 		reset();
 	}
+
+    public void init(int id, PedestrianPosition pos) {
+        this.name = "Pedestrian_" + id;
+        positions.Add(pos);
+    }
 
     internal int getCurrentFloorID() {
         return positions[index].getFloorID();
@@ -61,28 +68,17 @@ public class Pedestrian : MonoBehaviour {
 		return positions.Count;
 	}
 
-	public void init(int id, PedestrianPosition pos) {
-		this.name = "Pedestrian_" + id;
-        addOrderedPos(pos);
+    public void addPos(PedestrianPosition pos) {
+        PedestrianPosition ceil = positions.FirstOrDefault(i => i.getTime() > pos.getTime());
+        PedestrianPosition floor = positions.LastOrDefault(i => i.getTime() < pos.getTime());
+        if (ceil != null)
+            positions.Insert(positions.IndexOf(ceil), pos);
+        else if (floor != null)
+            positions.Insert(positions.IndexOf(floor) + 1, pos);
+        else
+            positions.Insert(0, pos);
     }
 
-	public void addPos(PedestrianPosition pos) {
-		//if(!positions[positions.Count - 1].equals(pos)) // add only if pos is different to the previously added one
-		addOrderedPos(pos);
-    }
-
-    private void addOrderedPos(PedestrianPosition pos) {
-        if (positions.Count == 0) {
-            positions.Add(pos);
-            return;
-        }
-        int i = 0;
-        while (i < positions.Count && positions[i].getTime() < pos.getTime()) {
-            i += 1;
-        }
-        positions.Insert(i, pos);
-
-    }
 
     internal bool reachedTarget() {
         return targetReached;
@@ -146,18 +142,14 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
     public void reset() {
-		index = 0;
-		rendererEnabled (true);
-		targetReached = false;
-		PedestrianPosition pos = positions[0];
+        index = 0;
+        rendererEnabled(true);
+        targetReached = false;
+        PedestrianPosition pos = positions[0];
 		transform.position = new Vector3 (pos.getX (), pos.getZ(), pos.getY ());
 	}
 
 	private void rendererEnabled(bool truefalse) {
-		//if (lodGroup == null)
-		//	r.enabled = truefalse;
-		//else
-		//	lodGroup.enabled = truefalse;
 		if (truefalse)
 			animation.Play ();
 	}
@@ -168,14 +160,34 @@ public class Pedestrian : MonoBehaviour {
 		return true;
 	}
 
-	public void move (decimal currentTime) {
-		if (!targetReached) {
+    private int GetClosestPosition(float currentTime) {
+        PedestrianPosition nearest = positions.LastOrDefault(i => i.getTime() < currentTime);
+        if (nearest == null)
+            return 0;
+        return positions.IndexOf(nearest);
+    }
+
+    public void move (float currentTime) {
+        index = GetClosestPosition(currentTime);
+
+        if (index >= positions.Count - 2) { // = target reached
+            foreach (Renderer r in this.GetComponentsInChildren<Renderer>()) {
+                r.enabled = false;
+            }
+            animation.Stop();
+            targetReached = true;
+            return;
+        } else {
+            targetReached = false;
+        }
+
+        if (!targetReached) {
 			if (showPed ())
 				rendererEnabled (true);
 			else
 				rendererEnabled (false);
 
-			/*
+            /*
 			updateCalls ++;
 			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
 
@@ -198,17 +210,22 @@ public class Pedestrian : MonoBehaviour {
 			if (index < positions.Count - 1) {
 			*/
 
-			while (index <= positions.Count - 2 && currentTime >= positions [index + 1].getTime ()) // && index < positions.Count - 2
-			index += 1;
 
-            PedestrianPosition pos = (PedestrianPosition)positions [index];
-			PedestrianPosition pos2 = (PedestrianPosition)positions [index + 1];
-			start = new Vector3 (pos.getX (), pos.getZ(), pos.getY ()); // the y-coord in Unity is the z-coord from the kernel: the up and down direction
+   //         index = 0;
+			//while (index <= positions.Count - 2 && currentTime > positions [index + 1].getTime ()) // && index < positions.Count - 2
+			//index += 1;
+
+            
+
+            PedestrianPosition pos = positions[index];
+			PedestrianPosition pos2 = positions[index + 1];
+  			start = new Vector3 (pos.getX (), pos.getZ(), pos.getY ()); // the y-coord in Unity is the z-coord from the kernel: the up and down direction
 			target = new Vector3 (pos2.getX (), pos2.getZ(), pos2.getY ());
-			float time = (float)currentTime;
-			float timeStepLength = Mathf.Clamp ((float)pos2.getTime () - (float)pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
-			float movement_percentage = ((float)time - (float)pos.getTime ()) / timeStepLength;
-			Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
+			float time = currentTime;
+			float timeStepLength = Mathf.Clamp (pos2.getTime () - pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
+			float movement_percentage = (time - pos.getTime ()) / timeStepLength;
+
+            Vector3 newPosition = Vector3.Lerp (start, target, movement_percentage);
 			Vector3 relativePos = target - start;
 			speed = relativePos.magnitude;
 			animation ["walking"].speed = speed / timeStepLength;
@@ -217,13 +234,7 @@ public class Pedestrian : MonoBehaviour {
 //				transform.rotation = Quaternion.LookRotation (relativePos);
 			transform.position = newPosition;
 
-			if (index >= positions.Count - 2) { // = target reached
-                foreach (Renderer r in this.GetComponentsInChildren<Renderer>()) {
-                    r.enabled = false;
-                }
-                animation.Stop ();
-				targetReached = true;
-			}
+
 		}
 				/*
 				//check if line is crossed

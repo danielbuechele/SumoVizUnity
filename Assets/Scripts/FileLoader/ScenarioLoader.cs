@@ -83,13 +83,15 @@ public class ScenarioLoader : MonoBehaviour {
 
     private void createElevators(XmlDocument xmlDoc) {
         XmlNode elevatorMatrices = xmlDoc.SelectSingleNode("//elevatorMatrices");
-        foreach (XmlElement elevatorMatrix in elevatorMatrices) {
-            foreach (Elevator elev in elevators) {
-                string elevatorID = elevatorMatrix.GetAttribute("ref");
-                if (elevatorID.Equals(elev.getId())) {
-                    string[] floorIDs = elevatorMatrix.GetAttribute("floors").Split(',');
-                    foreach (String floorID in floorIDs) {
-                        elev.addFloor(getFloor(floorID));
+        if (elevatorMatrices != null) {
+            foreach (XmlElement elevatorMatrix in elevatorMatrices) {
+                foreach (Elevator elev in elevators) {
+                    string elevatorID = elevatorMatrix.GetAttribute("ref");
+                    if (elevatorID.Equals(elev.getId())) {
+                        string[] floorIDs = elevatorMatrix.GetAttribute("floors").Split(',');
+                        foreach (String floorID in floorIDs) {
+                            elev.addFloor(getFloor(floorID));
+                        }
                     }
                 }
             }
@@ -196,8 +198,14 @@ public class ScenarioLoader : MonoBehaviour {
         foreach (XmlElement floorEl in spatial.SelectNodes("floor")) {
             string floorId = floorEl.GetAttribute("id");
             Floor floor = new Floor(floorId);
-            float elevation = float.Parse(floorPropsEntries[floorId].GetAttribute("elevation"));
-            float height = float.Parse(floorPropsEntries[floorId].GetAttribute("height"));
+            float elevation;
+            float height;
+            if (!float.TryParse(floorPropsEntries[floorId].GetAttribute("elevation"), out elevation)) {
+                 elevation = 2.0f;
+            }
+            if (!float.TryParse(floorPropsEntries[floorId].GetAttribute("height"), out height)) {
+                height = 3f;
+            }
             floor.setMetaData(level++, height, elevation);
             simData.addFloor(floor);
             floorIDs.Add(floorId);
