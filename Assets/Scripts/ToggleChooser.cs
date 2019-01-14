@@ -10,11 +10,13 @@ public class ToggleChooser : MonoBehaviour {
         ;
     private SimData simData;
     private List<int> hiddenFloorLevels;
+    private PedestrianMover pm;
 
 
     public void setToggles(SimData simData) {
         this.simData = simData;
         hiddenFloorLevels = new List<int>();
+        pm = GetComponentInParent<PedestrianMover>();
 
         //Clear the old options of the Dropdown menu
         int yOffset = 0;
@@ -62,7 +64,7 @@ public class ToggleChooser : MonoBehaviour {
             return;
         try {
             foreach (Pedestrian ped in simData.getPedestrianGameObject().GetComponentsInChildren<Pedestrian>()) {
-                if (hiddenFloorLevels.Contains(ped.getCurrentFloorID())) {
+                if (hiddenFloorLevels.Contains(ped.getCurrentFloorID(pm.getCurrentTime()))){ 
                     foreach (Renderer r in ped.GetComponentsInChildren<Renderer>()) {
                         r.enabled = false;
                     }

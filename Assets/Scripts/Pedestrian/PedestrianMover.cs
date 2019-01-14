@@ -11,8 +11,10 @@ public class PedestrianMover : MonoBehaviour {
     private bool playing = false;
     private int roundCounter = 0;
     private PointerEventData eventData;
+    private float speedFactor = 1;
 
     private float currentTime;
+    private float currentRealTime;
     private float maxTime = 0;
     // for recording purpose: only first round is recorded
     private bool firstRound;
@@ -25,6 +27,9 @@ public class PedestrianMover : MonoBehaviour {
     [SerializeField] Slider slider;
     [SerializeField] Text startTime;
     [SerializeField] Text endTime;
+    [SerializeField] float renderStep = 1;
+    [SerializeField] Slider playbackSpeed;
+    [SerializeField] InputField renderSpeedField;
 
     public PedestrianMover() { }
 
@@ -46,6 +51,7 @@ public class PedestrianMover : MonoBehaviour {
         initialized = true;
         roundCounter = 0;
         currentTime = 0;
+        currentRealTime = 0;
         maxTime = simData.getMaxTime();
         firstRound = true;
 
@@ -71,11 +77,14 @@ public class PedestrianMover : MonoBehaviour {
     }
 
     public void Update() {
-        if (playing && initialized) {
-            currentTime = currentTime + Time.deltaTime;
 
+        if (playing && initialized) {
+            // old approach
+            currentRealTime = currentRealTime + Time.deltaTime;
+ 
             if (currentTime >= maxTime) { // new round
                 currentTime = 0;
+                currentRealTime = 0;
                 firstRound = false;
 
                 foreach (Transform ped in peds.transform) {
@@ -83,19 +92,26 @@ public class PedestrianMover : MonoBehaviour {
                 }
                 roundCounter++;
             }
-            updateSlider();
 
+
+            if (initialized && currentRealTime * speedFactor >= currentTime ) {
+                // render each second
+                currentTime = currentTime + renderStep;
+                foreach (Transform ped in peds.transform) {
+                    ped.GetComponent<Pedestrian>().move(currentTime);
+                }
+                updateSlider();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             playing = !playing;
         }
 
-        if (initialized) {
-            foreach (Transform ped in peds.transform) {
-                ped.GetComponent<Pedestrian>().move(currentTime);
-            }
-        }
+    }
+
+    internal float getCurrentTime() {
+        return currentTime;
     }
 
     private void updateSlider() {
@@ -107,5 +123,24 @@ public class PedestrianMover : MonoBehaviour {
     public void dragSlider(BaseEventData ev) {
         currentTime = slider.value * maxTime;
         startTime.text = currentTime.ToString("0.##");
+        if (initialized) {
+            foreach (Transform ped in peds.transform) {
+                ped.GetComponent<Pedestrian>().move(currentTime);
+            }
+        }
+    }
+
+    public void changeSpeed(BaseEventData ev) {
+        speedFactor = playbackSpeed.value;
+        currentRealTime = currentTime;
+    }
+
+    public void changeRenderSpeed(String newValue) {
+        if (!float.TryParse(newValue, out renderStep)) {
+            renderStep = 1;
+        }
+        if (renderStep < 0) {
+            renderStep = Math.Abs(renderStep);
+        }
     }
 }

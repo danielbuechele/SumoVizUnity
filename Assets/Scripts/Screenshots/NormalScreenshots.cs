@@ -37,10 +37,8 @@ public class NormalScreenshots : MonoBehaviour {
                 return;
             Screenrecorder.init(outFile);
             record.image.sprite = RecordingSprite;
-            pm.changePlaying();
         } else {
             record.image.sprite = RecordStartSprite;
-            pm.changePlaying();
         }
         render = !render;
     }

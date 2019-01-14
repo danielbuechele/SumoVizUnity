@@ -19,7 +19,6 @@ public class Pedestrian : MonoBehaviour {
 	private Animation animation;
 	#pragma warning restore 108
 	private LODGroup lodGroup;
-    private int index = 0;
 	private bool targetReached = true;
 
     // deprecated variables
@@ -54,8 +53,8 @@ public class Pedestrian : MonoBehaviour {
         positions.Add(pos);
     }
 
-    internal int getCurrentFloorID() {
-        return positions[index].getFloorID();
+    internal int getCurrentFloorID(float currentTime) {
+        return GetClosestPosition(currentTime).getFloorID();
     }
 
     internal void dev() {
@@ -142,7 +141,6 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
     public void reset() {
-        index = 0;
         rendererEnabled(true);
         targetReached = false;
         PedestrianPosition pos = positions[0];
@@ -160,17 +158,14 @@ public class Pedestrian : MonoBehaviour {
 		return true;
 	}
 
-    private int GetClosestPosition(float currentTime) {
-        PedestrianPosition nearest = positions.LastOrDefault(i => i.getTime() < currentTime);
-        if (nearest == null)
-            return 0;
-        return positions.IndexOf(nearest);
-    }
+    private PedestrianPosition GetClosestPosition(float currentTime) {
+        return positions.LastOrDefault(i => i.getTime() < currentTime);
+     }
 
     public void move (float currentTime) {
-        index = GetClosestPosition(currentTime);
+        PedestrianPosition pos = GetClosestPosition(currentTime);
 
-        if (index >= positions.Count - 2) { // = target reached
+        if (pos == null || positions.IndexOf(pos) >= positions.Count - 2) { // = target reached
             foreach (Renderer r in this.GetComponentsInChildren<Renderer>()) {
                 r.enabled = false;
             }
@@ -217,8 +212,7 @@ public class Pedestrian : MonoBehaviour {
 
             
 
-            PedestrianPosition pos = positions[index];
-			PedestrianPosition pos2 = positions[index + 1];
+            PedestrianPosition pos2 = positions[positions.IndexOf(pos)+1];
   			start = new Vector3 (pos.getX (), pos.getZ(), pos.getY ()); // the y-coord in Unity is the z-coord from the kernel: the up and down direction
 			target = new Vector3 (pos2.getX (), pos2.getZ(), pos2.getY ());
 			float time = currentTime;

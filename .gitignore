@@ -1,3 +1,10 @@
+# added by drGeli
+workspace.xml
+*.log
+
+# include meta files (https://stackoverflow.com/questions/19151247/ignoring-folder-meta-files-on-version-control)
+!*.*.meta
+
 
 # added by benjaminaaron
 Assets/StreamingAssets/Scenarios/_ignore
