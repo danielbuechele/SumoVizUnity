@@ -15,7 +15,8 @@ public static class Screenrecorder {
 		isClosed = false;
 		process = new Process ();
 
-		String absoluteFfmpegExeLoc = Path.Combine(@Application.dataPath, @"/StreamingAssets/plugins/other/ffmpeg/bin/ffmpeg.exe");
+		String absoluteFfmpegExeLoc = Application.dataPath + "/StreamingAssets/plugins/other/ffmpeg/bin/ffmpeg.exe";
+        absoluteFfmpegExeLoc = AddQuotesIfRequired(absoluteFfmpegExeLoc);
         String relativeOutFileLoc = @filename; // TODO a smarter name? 
         String ffmpegCommand = "-y -f image2pipe -i - -vf scale=trunc(iw/2)*2:trunc(ih/2)*2 -r 25 -c:v libx264 -pix_fmt yuv420p -crf 18 " + "\"" + relativeOutFileLoc + "\"";
 
@@ -33,7 +34,13 @@ public static class Screenrecorder {
 		writer.BaseStream.Write(img, 0, img.Length);
 	}
 
-	public static void close() {
+    private static String AddQuotesIfRequired(String path) {
+        return 
+            path.Contains(" ") && (!path.StartsWith("\"") && !path.EndsWith("\"")) ?
+                "\"" + path + "\"" : path;
+    }
+
+    public static void close() {
 		writer.Close ();
 		process.WaitForExit ();
 		//process.Close (); // this would be a force-close, shouldn't be necessary

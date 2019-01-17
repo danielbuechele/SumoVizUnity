@@ -74,7 +74,7 @@ public class CameraPositionRecorder : MonoBehaviour {
 
         //if no further camera points are stored, stay at this position and stop replaying
         if (pm.getCurrentTime() >= vals[vals.Count - 1].frame) {
-            replaying = false;
+            replayCamera();
             currentIndex = 0;
             currentPoint = vals[currentIndex];
             return;
@@ -96,10 +96,13 @@ public class CameraPositionRecorder : MonoBehaviour {
     void replayCamera() {
         replaying = !replaying;
 
-        if (replaying)
+        if (replaying) {
             replay.GetComponentInChildren<Text>().text = "Stop Replay";
-        else
+            addCameraPosition.enabled = false;
+        } else {
             replay.GetComponentInChildren<Text>().text = "Replay";
+            addCameraPosition.enabled = true;
+        }
     }
 }
 

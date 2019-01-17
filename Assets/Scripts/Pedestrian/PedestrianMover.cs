@@ -34,7 +34,7 @@ public class PedestrianMover : MonoBehaviour {
     public PedestrianMover() { }
 
     private void Start() {
-        currentTime = 0;
+        currentTime = 0.1f;
         playButton.onClick.AddListener(delegate () { this.changePlaying(); });
     }
 
@@ -50,7 +50,7 @@ public class PedestrianMover : MonoBehaviour {
 
         initialized = true;
         roundCounter = 0;
-        currentTime = 0;
+        currentTime = 0.1f;
         currentRealTime = 0;
         maxTime = simData.getMaxTime();
         firstRound = true;
@@ -83,7 +83,7 @@ public class PedestrianMover : MonoBehaviour {
             currentRealTime = currentRealTime + Time.deltaTime;
  
             if (currentTime >= maxTime) { // new round
-                currentTime = 0;
+                currentTime = 0.1f;
                 currentRealTime = 0;
                 firstRound = false;
 
@@ -122,6 +122,7 @@ public class PedestrianMover : MonoBehaviour {
 
     public void dragSlider(BaseEventData ev) {
         currentTime = slider.value * maxTime;
+        currentRealTime = slider.value * maxTime;
         startTime.text = currentTime.ToString("0.##");
         if (initialized) {
             foreach (Transform ped in peds.transform) {
