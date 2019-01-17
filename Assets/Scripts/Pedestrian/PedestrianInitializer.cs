@@ -14,7 +14,7 @@ public class PedestrianInitializer : MonoBehaviour {
     // get pedestrian prefab
     public GameObject pedPrefab;
 
-    public Boolean initializePeds(string resFolderPath, SimData simData) {
+    public bool initializePeds(string resFolderPath, SimData simData) {
 
         string outFolder = Path.Combine(resFolderPath, "out");
         string simXmlFilePath = Path.Combine(outFolder, "sim.xml");
@@ -28,8 +28,8 @@ public class PedestrianInitializer : MonoBehaviour {
         }
         XmlNode output = simXmlDoc.SelectSingleNode("//output");
 
-        GameObject peds = new GameObject("Pedestrians");
-        simData.setPedestrianGameObject(peds);
+        GameObject pedestrians = new GameObject("Pedestrians");
+        simData.setPedestrianGameObject(pedestrians);
 
         foreach (XmlElement floorCsvAtEl in output.SelectNodes("floor")) {
             string trajFile = floorCsvAtEl.GetAttribute("csvAt");
@@ -38,47 +38,57 @@ public class PedestrianInitializer : MonoBehaviour {
             floorName = floorName.Substring(0, floorName.IndexOf("."));
             Floor floor = simData.getFloor(floorName);
 
-            float timeSubtract = 0;
+            StreamReader reader;
+            if (trajFile.EndsWith(".csv")) {
+                reader = new StreamReader(trajFilePath);
+                readFile(reader, floor, pedestrians, simData);
+            } else {
+                // via https://stackoverflow.com/a/29372751
+                using (FileStream fs = File.OpenRead(trajFilePath))
+                using (GZipStream zip = new GZipStream(fs, CompressionMode.Decompress, true))
+                using (reader = new StreamReader(zip)) {
+                    //while (!unzip.EndOfStream) {}
+                    //using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
+                    readFile(reader, floor, pedestrians, simData);
 
-            // via https://stackoverflow.com/a/29372751
-            using (FileStream fs = File.OpenRead(trajFilePath))
-            using (GZipStream zip = new GZipStream(fs, CompressionMode.Decompress, true))
-            using (StreamReader reader = new StreamReader(zip)) {
-                //while (!unzip.EndOfStream) {}
-                //using (reader) { // fs: a bit complicated, but this should cope even with totally inconsistent line endings
-                string line = reader.ReadLine(); // skip the 1st line = header
-                line = reader.ReadLine(); // 2nd line
-
-                if (forceStartAtZero && !timeSubstractTaken) {
-                    float.TryParse(line.Split(',')[0], out timeSubtract);
-                    timeSubstractTaken = true;
                 }
-
-                while (line != null) {
-                    string[] values = line.Split(',');
-                    if (values.Length >= 4) {
-                        float time;
-                        int id;
-                        float x, y, z;
-                        float.TryParse(values[0], out time);
-                        int.TryParse(values[1], out id);
-                        float.TryParse(values[2], out x);
-                        float.TryParse(values[3], out y);
-                        // if no z coordinate is given, just take zero as default
-                        try {
-                            float.TryParse(values[4], out z);
-                         } catch(IndexOutOfRangeException e) {
-                            z = 0.0f;
-                        }
-                         Pedestrian ped = createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), peds.transform, simData);
-                    }
-                    line = reader.ReadLine();
-                }
-                reader.Close();
             }
         }
         return true;
     }
+
+    private void readFile(StreamReader reader, Floor floor, GameObject pedestrians, SimData simData) {
+        string line = reader.ReadLine(); // skip the 1st line = header
+        line = reader.ReadLine(); // 2nd line
+        float timeSubtract = 0;
+        if (forceStartAtZero && !timeSubstractTaken) {
+            float.TryParse(line.Split(',')[0], out timeSubtract);
+            timeSubstractTaken = true;
+        }
+
+        while (line != null) {
+            string[] values = line.Split(',');
+            if (values.Length >= 4) {
+                float time;
+                int id;
+                float x, y, z;
+                float.TryParse(values[0], out time);
+                int.TryParse(values[1], out id);
+                float.TryParse(values[2], out x);
+                float.TryParse(values[3], out y);
+                // if no z coordinate is given, just take zero as default
+                try {
+                    float.TryParse(values[4], out z);
+                } catch (IndexOutOfRangeException e) {
+                    z = 0.0f;
+                }
+                Pedestrian ped = createPedestrian(id, new PedestrianPosition(floor.level, time - timeSubtract, x, y, z), pedestrians.transform, simData);
+            }
+            line = reader.ReadLine();
+        }
+        reader.Close();
+    }
+
 
     public Pedestrian createPedestrian(int pedID, PedestrianPosition pos, Transform parent, SimData simData) {
         int id = pedID;

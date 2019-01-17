@@ -26,7 +26,7 @@
 		<sets />
 		<pathSnippets />
 		<floorProps>
-			<floorProp floor="generic-escalator-small" cellDist="0.1" discretizationType="1" elevation="0.0" height="20.0" />
+			<floorProp floor="generic-escalator-small" cellDist="0.1" discretizationType="1" elevation="-10.0" height="2.0" />
 			<floorProp floor="generic-escalator-small-2" cellDist="0.1" discretizationType="1" elevation="20.0" height="2.0" />
 		</floorProps>
 		<groups>

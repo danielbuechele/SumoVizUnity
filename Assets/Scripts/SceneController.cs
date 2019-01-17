@@ -18,6 +18,7 @@ public class SceneController : MonoBehaviour {
     private Button recordButton;
     private Button playButton;
     private Transform camera;
+    private GameObject controlsForLoadedScenario;
 
     // storage elements
     private string crowditFilePath;
@@ -35,6 +36,7 @@ public class SceneController : MonoBehaviour {
     public void Start() {
         gl = gameObject.GetComponent<GeometryLoader>();
         pm = gameObject.GetComponent<PedestrianMover>();
+        controlsForLoadedScenario = GameObject.Find("ControlsScenarioLoaded");
         camera = GameObject.Find("Flycam").transform;
         recordButton = GameObject.Find("Record").GetComponent<Button>() as Button;
         playButton = GameObject.Find("Play").GetComponent<Button>() as Button;
@@ -47,9 +49,7 @@ public class SceneController : MonoBehaviour {
         loadButton.onClick.AddListener(delegate () { this.importCrowditFiles(); });
 
         // do not display the play button as long as there are no pedestrians
-        playButton.gameObject.SetActive(false);
-        recordButton.gameObject.SetActive(false);
-        floorPanel.SetActive(false);
+        controlsForLoadedScenario.SetActive(false);
     }
 
  
@@ -104,14 +104,13 @@ public class SceneController : MonoBehaviour {
             // init GUI elements: floors list and play button
             if (gameObject.GetComponent<PedestrianInitializer>().initializePeds(resFolderPath, simData)) {
                 // do display the play button if there are pedestrians
-                playButton.gameObject.SetActive(true);
-                recordButton.gameObject.SetActive(true);
+                controlsForLoadedScenario.SetActive(true);
 
                 // init pedestrian mover
                 pm.init(simData);
             }
 
-            GetComponent<ToggleChooser>().setToggles(simData);
+            GetComponent<DisplayFloorToggler>().setToggles(simData);
 
             // display the panel for the floors if no scenario is loaded
             floorPanel.SetActive(true);
@@ -136,20 +135,16 @@ public class SceneController : MonoBehaviour {
         }
         Canvas canvas = GetComponentInParent<Canvas>();
 
-             foreach (Toggle child in GetComponent<ToggleChooser>().getCanvas().GetComponentsInChildren<Toggle>()) {
+             foreach (Toggle child in GetComponent<DisplayFloorToggler>().getCanvas().GetComponentsInChildren<Toggle>()) {
                 DestroyImmediate(child.gameObject);
             }
  
-        GetComponent<ToggleChooser>().Reset();
+        GetComponent<DisplayFloorToggler>().Reset();
         gameObject.GetComponent<PedestrianInitializer>().Reset();
         pm.Reset();
 
-        // do not display the panel for the floors if no scenario is loaded
-        floorPanel.SetActive(false);
 
-        // do not display the play button as long as there are no pedestrians
-        playButton.gameObject.SetActive(false);
-        recordButton.gameObject.SetActive(true);
-        
+        // do not display controls
+        controlsForLoadedScenario.SetActive(false);
     }
 }

@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToggleChooser : MonoBehaviour {
+public class DisplayFloorToggler : MonoBehaviour {
     [SerializeField] Toggle togglePrefab;
-    [SerializeField] GameObject toggleFrame
-        ;
+    [SerializeField] GameObject toggleFrame;
     private SimData simData;
     private List<int> hiddenFloorLevels;
     private PedestrianMover pm;

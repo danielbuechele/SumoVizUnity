@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
 
@@ -141,21 +140,6 @@ public class StairExtrudeGeometry : Geometry {
         }
  
         Vector2 lengthTread = verticesList[2] - verticesList[1];
-        //if (lengthTread.x < 0 || lengthTread.y < 0) {
-        //    sortedVertices[0] = verticesList[3];
-        //    sortedVertices[1] = verticesList[2];
-        //    sortedVertices[2] = verticesList[1];
-        //    sortedVertices[3] = verticesList[0];
-        //    verticesList = sortedVertices.ConvertAll(vertex => new Vector2(vertex.x, vertex.y));
-        //}
-        //if (firstTread.y < 0) {
-        //    sortedVertices[0] = verticesList[1];
-        //    sortedVertices[1] = verticesList[0];
-        //    sortedVertices[2] = verticesList[3];
-        //    sortedVertices[3] = verticesList[2];
-        //    verticesList = sortedVertices.ConvertAll(vertex => new Vector2(vertex.x, vertex.y));
-        //}
-
         return sortedVertices;
     }
 
@@ -182,13 +166,16 @@ public class StairExtrudeGeometry : Geometry {
         tread.transform.position = new Vector3(verticesList[0].x, elevation, verticesList[0].y);
 
         float angle = Vector2.SignedAngle(Vector2.right, firstTread);
-        if (angle != 180) {
+        
+        // only rotate if not already aligned
+        if (angle != 180 && angle != 0) {
             angle = angle * -1;
             tread.transform.Rotate(Vector3.up, angle);
+            sign = sign * -1;
         }
 
         tread.name = "first tread";
-        tread.transform.localScale = new Vector3(treadwidth, treadHeight, treadDepth * sign*-1);
+        tread.transform.localScale = new Vector3(treadwidth, treadHeight, treadDepth * sign);
 
         return tread;
     }
