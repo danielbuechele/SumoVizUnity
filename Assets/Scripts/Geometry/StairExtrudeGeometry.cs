@@ -19,7 +19,7 @@ public class StairExtrudeGeometry : Geometry {
         List<Vector2> sortedVertices = sortVertices(verticesList, dirVect, false);
 
         // set height if height is given, otherwise height is set when creating the first tread
-        treadHeight = height / (noOfTreads) * dirVect.y;
+        treadHeight = height / (noOfTreads);
 
         // TODO: this is only a work around, since stairs with no connected floor do not have a z direction vector:-/
         if (height == 0) {
@@ -175,7 +175,7 @@ public class StairExtrudeGeometry : Geometry {
         }
 
         tread.name = "first tread";
-        tread.transform.localScale = new Vector3(treadwidth, treadHeight, treadDepth * sign);
+        tread.transform.localScale = new Vector3(treadwidth, treadHeight*dirVect.y, treadDepth * sign);
 
         return tread;
     }
