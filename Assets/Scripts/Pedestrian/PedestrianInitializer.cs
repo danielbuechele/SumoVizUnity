@@ -96,8 +96,10 @@ public class PedestrianInitializer : MonoBehaviour {
         peds.TryGetValue(id, out ped);
         GameObject newPedGameObj;
         if (ped == null) {
-            newPedGameObj = Instantiate(pedPrefab, pedPrefab.transform.position, Quaternion.identity);
-            newPedGameObj.transform.rotation = pedPrefab.transform.rotation;
+//            newPedGameObj = (GameObject)Instantiate(Resources.Load(pedPrefab.ToString()));
+
+            newPedGameObj = Instantiate(pedPrefab, pedPrefab.transform.position, pedPrefab.transform.rotation);
+//            newPedGameObj.transform.rotation = pedPrefab.transform.rotation;
             // TODO: set different heights
             //           float height = 0.8f + Random.value * 0.8f;
             //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);

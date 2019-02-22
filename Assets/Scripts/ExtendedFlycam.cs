@@ -55,8 +55,7 @@ public class ExtendedFlycam : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -103,8 +102,10 @@ public class ExtendedFlycam : MonoBehaviour {
 			Cursor.visible = (Cursor.visible == false) ? true : false;
 		}
 
-
-		//if (transform.localPosition.y < 0)
-			//transform.localPosition = new Vector3 (transform.localPosition.x,0.3f,transform.localPosition.z);
-	}
+        // set light always at the same position as camera
+        GameObject.Find("LightSource").transform.position = transform.position;
+        GameObject.Find("LightSource").transform.rotation = transform.rotation;
+       //if (transform.localPosition.y < 0)
+        //transform.localPosition = new Vector3 (transform.localPosition.x,0.3f,transform.localPosition.z);
+    }
 }

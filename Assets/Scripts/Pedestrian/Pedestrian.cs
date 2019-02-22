@@ -36,12 +36,15 @@ public class Pedestrian : MonoBehaviour {
     public void init() {
         gameObject.SetActive(true);
 
-        gameObject.GetComponentInChildren<MeshRenderer>().material.color = new Color(Random.value, Random.value, Random.value);
+        // this is the pullover;-)
+        gameObject.GetComponentInChildren <SkinnedMeshRenderer>().materials[1].color = new Color(Random.value, Random.value, Random.value);
 
         animation = GetComponentInChildren<Animation> ();
-		lodGroup = GetComponentInChildren<LODGroup>();
-        
-		AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
+        animation.Stop();
+
+        lodGroup = GetComponentInChildren<LODGroup>();
+
+        AgentView agentViewComponent = GameObject.Find("CameraMode").GetComponent<AgentView>();
 		if (agentViewComponent.enabled)
 			agentView = agentViewComponent;
 
@@ -78,6 +81,12 @@ public class Pedestrian : MonoBehaviour {
             positions.Insert(0, pos);
     }
 
+    internal void pause(Boolean playing) {
+        if (playing)
+            animation.Play();
+        else
+            animation.Stop();
+    }
 
     internal bool reachedTarget() {
         return targetReached;
@@ -141,7 +150,7 @@ public class Pedestrian : MonoBehaviour {
 	*/
 
     public void reset() {
-        rendererEnabled(true);
+        animation.Stop();
         targetReached = false;
         PedestrianPosition pos = positions[0];
 		transform.position = new Vector3 (pos.getX (), pos.getZ(), pos.getY ());
@@ -177,45 +186,18 @@ public class Pedestrian : MonoBehaviour {
         }
 
         if (!targetReached) {
-			if (showPed ())
-				rendererEnabled (true);
-			else
-				rendererEnabled (false);
+            if (!showPed())
+                animation.Stop();
+            else
+                animation.Play();
 
-            /*
-			updateCalls ++;
-			float dist = Vector3.Distance (gameObject.transform.position, Camera.main.transform.position);
-
-			[...]
-
-			if (r.enabled) // pc.playing &&
-				animation.Play ();
-			else
-				animation.Stop ();
-
-			int index = _getTrait(positions, pc.current_time);
-
-			if (pc.current_time > positions [index + 1].getTime ()
-			    && index != positions.Count - 2) {
-				index += 1;
-			}
-			if (index < positions.Count - 2 && pc.current_time > positions[index + 1].getTime()) {
-				index += 1;
-			}
-			if (index < positions.Count - 1) {
-			*/
-
-
-   //         index = 0;
-			//while (index <= positions.Count - 2 && currentTime > positions [index + 1].getTime ()) // && index < positions.Count - 2
-			//index += 1;
-
-            
 
             PedestrianPosition pos2 = positions[positions.IndexOf(pos)+1];
   			start = new Vector3 (pos.getX (), pos.getZ(), pos.getY ()); // the y-coord in Unity is the z-coord from the kernel: the up and down direction
+            // it is on purpose that the y position stays the same as position to avoid kippen of peds
 			target = new Vector3 (pos2.getX (), pos2.getZ(), pos2.getY ());
-			float time = currentTime;
+            Vector3 targetForLook = new Vector3(pos2.getX(), pos.getZ(), pos2.getY());
+            float time = currentTime;
 			float timeStepLength = Mathf.Clamp (pos2.getTime () - pos.getTime (), 0.1f, 50f); // We don't want to divide by zero. OTOH, this results in pedestrians never standing still.
 			float movement_percentage = (time - pos.getTime ()) / timeStepLength;
 
@@ -224,11 +206,9 @@ public class Pedestrian : MonoBehaviour {
 			speed = relativePos.magnitude;
 			animation ["walking"].speed = speed / timeStepLength;
             // TODO: not needed for cylinders
-            //			if (start != target)
-//				transform.rotation = Quaternion.LookRotation (relativePos);
+            if (start != targetForLook)
+              transform.rotation = Quaternion.LookRotation (targetForLook - start);
 			transform.position = newPosition;
-
-
 		}
 				/*
 				//check if line is crossed

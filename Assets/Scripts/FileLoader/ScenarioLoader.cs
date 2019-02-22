@@ -121,12 +121,12 @@ public class ScenarioLoader : MonoBehaviour {
                     XmlElement morphosisEntry = wunderZoneIdToMorphosisEntry[wunderZoneId];
                     WunderZone actualization = null;
                     switch (morphosisEntry.Name) {
-                        case "destination":
-                            actualization = new Destination();
-                            break;
-                        case "directedScaledArea":
-                            actualization = new DirectedScaledArea();
-                            break;
+                    //    case "destination":
+                    //        actualization = new Destination();
+                    //        break;
+                    //    case "directedScaledArea":
+                    //        actualization = new DirectedScaledArea();
+                    //        break;
                         case "elevator":
                             actualization = new Elevator();
                             elevators.Add((Elevator)actualization);
@@ -134,24 +134,24 @@ public class ScenarioLoader : MonoBehaviour {
                         case "escalator":
                             actualization = new Escalator();
                             break;
-                        case "origin":
-                            actualization = new Origin();
-                            break;
-                        case "portal":
-                            actualization = new Portal();
-                            break;
-                        case "queueingArea":
-                            actualization = new QueueingArea();
-                            break;
-                        case "scaledArea":
-                            actualization = new ScaledArea();
-                            break;
+                        //case "origin":
+                        //    actualization = new Origin();
+                        //    break;
+                        //case "portal":
+                        //    actualization = new Portal();
+                        //    break;
+                        //case "queueingArea":
+                        //    actualization = new QueueingArea();
+                        //    break;
+                        //case "scaledArea":
+                        //    actualization = new ScaledArea();
+                        //    break;
                         case "stair":
                             actualization = new Stair();
                             break;
-                        case "waitingZone":
-                            actualization = new WaitingZone();
-                            break;
+                        //case "waitingZone":
+                        //    actualization = new WaitingZone();
+                        //    break;
                         default:
                             Debug.LogWarning("Scenario parser: unknown geometry element type " + morphosisEntry.Name);
                             break;

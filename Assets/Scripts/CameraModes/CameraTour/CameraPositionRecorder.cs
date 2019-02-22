@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.IO;
+using System;
+using SFB;
 
 
 // inspired from: https://answers.unity.com/questions/585314/record-camera-and-play-again.html
@@ -38,9 +41,13 @@ public class CameraPositionRecorder : MonoBehaviour {
 
     [SerializeField] Button addCameraPosition;
     [SerializeField] Button replay;
+    [SerializeField] Button loadCameraPosition;
+    [SerializeField] Button saveCameraPosition;
+    [SerializeField] Button resetPositions;
     private PedestrianMover pm;
     private GoVals currentPoint;
     private int currentIndex;
+    private StreamWriter writer;
 
     //cache of our transform
     Transform tf;
@@ -54,7 +61,68 @@ public class CameraPositionRecorder : MonoBehaviour {
         replay.onClick.AddListener(delegate () {
             this.replayCamera();
         });
+        loadCameraPosition.onClick.AddListener(delegate () {
+            this.loadCameraPositions();
+        });
+        saveCameraPosition.onClick.AddListener(delegate () {
+            this.saveCameraPositions();
+        });
+
+        resetPositions.onClick.AddListener(delegate () {
+            this.Reset();
+        });
         pm = FindObjectOfType<PedestrianMover>();
+    }
+
+    private void saveCameraPositions() {
+        String savedPositions = StandaloneFileBrowser.SaveFilePanel("Save File", "", "", "txt"); //Path.GetFileName(path))
+        if (savedPositions == "") // = cancel was clicked in open file dialog
+            return;
+        writer = new StreamWriter(savedPositions);
+        writer.AutoFlush = true;
+        foreach  (GoVals val in  vals) {
+            writer.WriteLine(val.position.x + ";" + val.position.y + ";" + val.position.z + ";" + val.rotation.x + ";" + val.rotation.y + ";" + val.rotation.z + ";" + val.rotation.w + ";" + val.frame.ToString());
+
+        }
+        writer.Close();
+    }
+
+    private void loadCameraPositions() {
+        String[] savedPositions = StandaloneFileBrowser.OpenFilePanel("", "", "txt;*.txt", false); 
+        if (savedPositions == null) // = cancel was clicked in open file dialog
+            return;
+        String savedPositionFile = savedPositions[0];
+         StreamReader file =
+          new StreamReader(savedPositionFile);
+        string line;
+        while ((line = file.ReadLine()) != null) {
+            string[] values = line.Split(';');
+            if (values.Length >= 4) {
+                Vector3 position;
+                Quaternion rotation;
+                float currentTime;
+                int id;
+                float x, y, z,r, t;
+                float.TryParse(values[0], out x);
+                float.TryParse(values[1], out y);
+                float.TryParse(values[2], out z);
+                position = new Vector3(x, y, z);
+
+                float.TryParse(values[3], out x);
+                float.TryParse(values[4], out y);
+                float.TryParse(values[5], out z);
+                float.TryParse(values[6], out r);
+                rotation = new Quaternion(x, y, z, r);
+
+                float.TryParse(values[7], out currentTime);
+
+                vals.Add(new GoVals(position, rotation, currentTime));
+                if (currentPoint == null) {
+                    currentPoint = vals[0];
+                    currentIndex = 0;
+                }
+            }
+        }
     }
 
     private void addPosition() {
@@ -74,7 +142,7 @@ public class CameraPositionRecorder : MonoBehaviour {
 
         //if no further camera points are stored, stay at this position and stop replaying
         if (pm.getCurrentTime() >= vals[vals.Count - 1].frame) {
-            replayCamera();
+//            replayCamera();
             currentIndex = 0;
             currentPoint = vals[currentIndex];
             return;
@@ -99,10 +167,22 @@ public class CameraPositionRecorder : MonoBehaviour {
         if (replaying) {
             replay.GetComponentInChildren<Text>().text = "Stop Replay";
             addCameraPosition.enabled = false;
+            saveCameraPosition.enabled = false;
+            loadCameraPosition.enabled = false;
+            resetPositions.enabled = false;
         } else {
             replay.GetComponentInChildren<Text>().text = "Replay";
             addCameraPosition.enabled = true;
+            saveCameraPosition.enabled = true;
+            loadCameraPosition.enabled = true;
+            resetPositions.enabled = true;
         }
+    }
+
+    public void Reset() {
+        replaying = false;
+        vals = new List<GoVals>();
+        currentPoint = null;
     }
 }
 

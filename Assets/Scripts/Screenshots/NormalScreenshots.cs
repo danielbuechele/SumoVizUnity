@@ -23,7 +23,6 @@ public class NormalScreenshots : MonoBehaviour {
 
     void Start() {
         pm = FindObjectOfType<PedestrianMover>();
-        //        pc = GameObject.Find("PlaybackControl").GetComponent<PlaybackControl>();
         Time.captureFramerate = fps;
         Application.runInBackground = true;
         record.onClick.AddListener(delegate () { renderScreen(); });

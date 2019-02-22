@@ -27,7 +27,7 @@ public class PedestrianMover : MonoBehaviour {
     [SerializeField] Slider slider;
     [SerializeField] Text startTime;
     [SerializeField] Text endTime;
-    [SerializeField] float renderStep = 1;
+    [SerializeField] float renderStep;
     [SerializeField] Slider playbackSpeed;
     [SerializeField] InputField renderSpeedField;
 
@@ -58,16 +58,21 @@ public class PedestrianMover : MonoBehaviour {
         endTime.text = maxTime.ToString();
         startTime.text = currentTime.ToString();
         slider.value = 0;
+        renderStep = 0.1f;
     }
 
     public void changePlaying() {
         if (playing) {
-            playing = false;
             playButton.image.sprite = PlaySprite;
+            playing = false;
         } else {
             playing = true;
             playButton.image.sprite = PauseSprite;
         }
+        foreach (Transform ped in peds.transform) {
+            ped.GetComponent<Pedestrian>().pause(playing);
+        }
+
     }
 
     public void Reset() {
@@ -127,6 +132,7 @@ public class PedestrianMover : MonoBehaviour {
         if (initialized) {
             foreach (Transform ped in peds.transform) {
                 ped.GetComponent<Pedestrian>().move(currentTime);
+                ped.GetComponent<Pedestrian>().pause(playing);
             }
         }
     }
@@ -138,7 +144,7 @@ public class PedestrianMover : MonoBehaviour {
 
     public void changeRenderSpeed(String newValue) {
         if (!float.TryParse(newValue, out renderStep)) {
-            renderStep = 1;
+            renderStep = 0.1f;
         }
         if (renderStep < 0) {
             renderStep = Math.Abs(renderStep);

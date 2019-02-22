@@ -15,14 +15,12 @@ public static class Screenrecorder {
 		isClosed = false;
 		process = new Process ();
 
-		String absoluteFfmpegExeLoc = Application.dataPath + "/StreamingAssets/plugins/other/ffmpeg/bin/ffmpeg.exe";
-        absoluteFfmpegExeLoc = AddQuotesIfRequired(absoluteFfmpegExeLoc);
-        String relativeOutFileLoc = @filename; // TODO a smarter name? 
+        String relativeOutFileLoc = @filename; 
         String ffmpegCommand = "-y -f image2pipe -i - -vf scale=trunc(iw/2)*2:trunc(ih/2)*2 -r 25 -c:v libx264 -pix_fmt yuv420p -crf 18 " + "\"" + relativeOutFileLoc + "\"";
 
 		process.StartInfo.UseShellExecute = false;
 		process.StartInfo.RedirectStandardInput = true;
-		process.StartInfo.FileName = absoluteFfmpegExeLoc;
+		process.StartInfo.FileName = "ffmpeg.exe";
 		process.StartInfo.Arguments = ffmpegCommand;
 
 		process.Start ();

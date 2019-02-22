@@ -40,7 +40,7 @@ public class PedestrianLoader : MonoBehaviour {
         peds.TryGetValue(id, out ped);
         GameObject newPedGameObj;
         if (ped == null) {
-            newPedGameObj = Instantiate(pedPrefab, transform.position, Quaternion.identity);
+            newPedGameObj = Instantiate(pedPrefab, transform.position, pedPrefab.transform.rotation);
             // TODO: set different heights
             //           float height = 0.8f + Random.value * 0.8f;
             //           newPedGameObj.transform.localScale = new Vector3(1, height, 1);

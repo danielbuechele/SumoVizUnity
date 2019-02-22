@@ -8,6 +8,7 @@ public class ExtrudeGeometry : Geometry {
 
         GameObject obstacle = new GameObject(); // = parent object to top and side planes
         obstacle.name = name;
+//        obstacle.isStatic = true;
         obstacle.transform.parent = parent.transform;
 
         Vector2[] vertices2D = verticesList.ToArray();
@@ -24,6 +25,7 @@ public class ExtrudeGeometry : Geometry {
         GameObject top = Instantiate(obstaclePrefab, obstaclePrefab.transform.position, Quaternion.identity); // = parent object to top and side planes
 //        GameObject top = new GameObject (name + "_top", typeof(MeshFilter), typeof(MeshRenderer));
         top.name = name + "_top";
+ //       top.isStatic = true;
         top.transform.SetParent (obstacle.transform);
 		top.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 		top.transform.position = new Vector3 (0, elevation + height, 0);
