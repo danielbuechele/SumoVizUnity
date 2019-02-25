@@ -75,6 +75,10 @@ public class PedestrianMover : MonoBehaviour {
 
     }
 
+    public bool isPlaying() {
+        return playing;
+    } 
+
     public void Reset() {
         playing = false;
         initialized = false;
@@ -126,6 +130,10 @@ public class PedestrianMover : MonoBehaviour {
     }
 
     public void dragSlider(BaseEventData ev) {
+        dragSlider();
+    }
+
+    private void dragSlider() {
         currentTime = slider.value * maxTime;
         currentRealTime = slider.value * maxTime;
         startTime.text = currentTime.ToString("0.##");
@@ -137,17 +145,36 @@ public class PedestrianMover : MonoBehaviour {
         }
     }
 
+    public void resetSlider() {
+        slider.value = slider.minValue;
+        dragSlider();
+    }
+
     public void changeSpeed(BaseEventData ev) {
         speedFactor = playbackSpeed.value;
         currentRealTime = currentTime;
     }
 
+    private void changeSpeed() {
+        speedFactor = playbackSpeed.value;
+        currentRealTime = currentTime;
+    }
+
+    public void resetSpeed() {
+        playbackSpeed.value = playbackSpeed.minValue;
+        changeSpeed();
+    }
+
     public void changeRenderSpeed(String newValue) {
+        renderSpeedField.text = newValue;
+
         if (!float.TryParse(newValue, out renderStep)) {
             renderStep = 0.1f;
+            renderSpeedField.text = "0.1";
         }
         if (renderStep < 0) {
             renderStep = Math.Abs(renderStep);
+            renderSpeedField.text = renderStep.ToString();
         }
     }
 }

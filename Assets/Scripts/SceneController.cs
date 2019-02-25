@@ -23,6 +23,10 @@ public class SceneController : MonoBehaviour {
     private GameObject controlsForLoadedScenario;
     private GameObject floorChooserPanel;
 
+    // scenario 
+    private ScenarioLoader sl = new ScenarioLoader();
+
+
     // storage elements
     public string crowditFilePath;
     private string resFolderPath;
@@ -34,7 +38,6 @@ public class SceneController : MonoBehaviour {
     private PedestrianMover pm;
     private CameraPositionRecorder cpr;
     private SimData simData;
-
 
     public void Start() {
         gl = gameObject.GetComponent<GeometryLoader>();
@@ -52,7 +55,7 @@ public class SceneController : MonoBehaviour {
         }
 
         loadScenarioButton.onClick.AddListener(delegate () { this.importCrowditFiles(); });
-        resetScenarioButton.onClick.AddListener(delegate () { this.resetSceneAndPlayer(); });
+        resetScenarioButton.onClick.AddListener(delegate () { this.resetScene(); });
         loadPedsButton.onClick.AddListener(delegate () { this.importPeds(); });
         loadPedsButton.gameObject.SetActive(false);
 
@@ -106,7 +109,7 @@ public class SceneController : MonoBehaviour {
             resFolderPath = Path.Combine(Path.GetDirectoryName(crowditFilePath), Path.GetFileNameWithoutExtension(crowditFilePath)) + "_res";
  
             gl.setTheme(new CrowditThemingMode());
-            ScenarioLoader sl = new ScenarioLoader();
+            sl = new ScenarioLoader();
             simData = sl.getScenario(crowditFilePath, resFolderPath, gl);
 
 
@@ -164,4 +167,21 @@ public class SceneController : MonoBehaviour {
         loadPedsButton.gameObject.SetActive(false);
         floorChooserPanel.SetActive(false);
     }
+
+    private void resetScene() {
+
+        // camera position
+        float offset = 20;
+        camera.position = new Vector3(sl.getSimData().minX - offset,
+            sl.getSimData().maxElev,
+            sl.getSimData().minY - offset);
+         camera.rotation = Quaternion.Euler(0, offset, 0);
+        GameObject.Find("CameraPivot").transform.position = camera.position;
+        GameObject.Find("LightSource").transform.position = camera.position;
+
+        pm.resetSlider();
+        pm.changeRenderSpeed("0.1");
+        pm.resetSpeed();
+    }
+
 }

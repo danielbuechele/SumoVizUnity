@@ -46,6 +46,8 @@ public class CameraPositionRecorder : MonoBehaviour {
     [SerializeField] Button resetPositions;
     private PedestrianMover pm;
     private GoVals currentPoint;
+    private float currentFrame;
+
     private int currentIndex;
     private StreamWriter writer;
 
@@ -78,7 +80,7 @@ public class CameraPositionRecorder : MonoBehaviour {
         String savedPositions = StandaloneFileBrowser.SaveFilePanel("Save File", "", "", "txt"); //Path.GetFileName(path))
         if (savedPositions == "") // = cancel was clicked in open file dialog
             return;
-        writer = new StreamWriter(savedPositions);
+        writer = new StreamWriter(savedPositions, false);
         writer.AutoFlush = true;
         foreach  (GoVals val in  vals) {
             writer.WriteLine(val.position.x + ";" + val.position.y + ";" + val.position.z + ";" + val.rotation.x + ";" + val.rotation.y + ";" + val.rotation.z + ";" + val.rotation.w + ";" + val.frame.ToString());
@@ -88,6 +90,7 @@ public class CameraPositionRecorder : MonoBehaviour {
     }
 
     private void loadCameraPositions() {
+        vals = new List<GoVals>();
         String[] savedPositions = StandaloneFileBrowser.OpenFilePanel("", "", "txt;*.txt", false); 
         if (savedPositions == null) // = cancel was clicked in open file dialog
             return;
@@ -138,13 +141,23 @@ public class CameraPositionRecorder : MonoBehaviour {
     }
 
     void ReplayPoints() {
-        if (!replaying) return;
+        if (!replaying || !pm.isPlaying()) return;
+
+        // reset for first point, if slider was dragged backwards
+        if (currentFrame > pm.getCurrentTime()) {
+            currentPoint = vals[0];
+            currentIndex = 0;
+        }
+        currentFrame = pm.getCurrentTime();
 
         //if no further camera points are stored, stay at this position and stop replaying
         if (pm.getCurrentTime() >= vals[vals.Count - 1].frame) {
-//            replayCamera();
             currentIndex = 0;
             currentPoint = vals[currentIndex];
+
+            // set to last camera position
+            tf.position = vals[vals.Count - 1].position;
+            tf.rotation = vals[vals.Count - 1].rotation;
             return;
         } else if (pm.getCurrentTime() >= currentPoint.frame) {
             //set our transform values

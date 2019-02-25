@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8970d1cf-d8cd-4be1-9c62-a744e7126cea" name="Default Changelist" comment="added camera tour for recording&#10;added support of non-zipped output&#10;coped with spaces in path">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/stair-test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/stair-test.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pedestrian/PedestrianMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pedestrian/PedestrianMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Screenshots/NormalScreenshots.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Screenshots/NormalScreenshots.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/z-coord-escalators_res/out/crowdit-kernel.0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/z-coord-escalators_res/out/crowdit-kernel.0.log" afterDir="false" />
-    </list>
+    <list default="true" id="8970d1cf-d8cd-4be1-9c62-a744e7126cea" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +12,9 @@
     <session id="-1148773959">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="5" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
@@ -30,7 +24,7 @@
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.39" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -61,29 +55,19 @@
         <counts>
           <entry key="cs" value="18" />
           <entry key="meta" value="1" />
-          <entry key="txt" value="1050" />
+          <entry key="txt" value="1090" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="C#" value="18" />
-          <entry key="PLAIN_TEXT" value="1051" />
+          <entry key="PLAIN_TEXT" value="1091" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2.crowdit.meta">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res.meta">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Prefabs/chooseFloorToggle.prefab.meta">
           <provider selected="true" editor-type-id="text-editor" />
@@ -123,7 +107,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1167" />
@@ -299,14 +283,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547826117316</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="updated project for first beta testing">
+      <created>1550856000806</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1550856000806</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1167" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30597016" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.6345733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -351,7 +342,8 @@
     <MESSAGE value="added camera tour for recording&#10;added support of non-zipped output&#10;coped with spaces in path" />
     <MESSAGE value="coped with spaces in path and GUI interaction" />
     <MESSAGE value="bugfix for zcoordinate with stair" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix for zcoordinate with stair" />
+    <MESSAGE value="updated project for first beta testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated project for first beta testing" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z3_20180910095030.floor">
