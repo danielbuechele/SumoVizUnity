@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8970d1cf-d8cd-4be1-9c62-a744e7126cea" name="Default Changelist" comment="" />
+    <list default="true" id="8970d1cf-d8cd-4be1-9c62-a744e7126cea" name="Default Changelist" comment="first bugs fixed" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +14,7 @@
         <counts>
           <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="5" />
-          <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="3" />
           <entry key="project.open.time.12" value="1" />
@@ -24,7 +24,7 @@
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.39" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -55,13 +55,13 @@
         <counts>
           <entry key="cs" value="18" />
           <entry key="meta" value="1" />
-          <entry key="txt" value="1090" />
+          <entry key="txt" value="1106" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="C#" value="18" />
-          <entry key="PLAIN_TEXT" value="1091" />
+          <entry key="PLAIN_TEXT" value="1107" />
         </counts>
       </usages-collector>
     </session>
@@ -107,7 +107,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1167" />
@@ -117,8 +117,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -290,14 +290,21 @@
       <option name="project" value="LOCAL" />
       <updated>1550856000806</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="first bugs fixed">
+      <created>1551115204631</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1551115204631</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1167" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.6345733" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.6487965" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -343,141 +350,56 @@
     <MESSAGE value="coped with spaces in path and GUI interaction" />
     <MESSAGE value="bugfix for zcoordinate with stair" />
     <MESSAGE value="updated project for first beta testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated project for first beta testing" />
+    <MESSAGE value="first bugs fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="first bugs fixed" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z3_20180910095030.floor">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z3_20180910095030.floor.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z4_20180830094735.floor">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z4_20180830094735.floor.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z5_20180905180639.floor">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z5_20180905180639.floor.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z6_20180905174725.floor">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z6_20180905174725.floor.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/crowdit-kernel.0.log">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/crowdit-kernel.0.log.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-0.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-0.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-1.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-1.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-2.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-2.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-3.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-3.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-4.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-4.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-5.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-5.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-6.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-6.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z3.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z3.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z4.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z4.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z5.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z5.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z6.csv.gz">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z6.csv.gz.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/graph.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/graph.xml.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/population.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/population.csv.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/sim.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/sim.xml.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2.crowdit">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z3_20180910095030.floor" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z3_20180910095030.floor.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z4_20180830094735.floor" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z4_20180830094735.floor.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z5_20180905180639.floor" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z5_20180905180639.floor.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z6_20180905174725.floor" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry/Ebene-Z6_20180905174725.floor.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/crowdit-kernel.0.log" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/crowdit-kernel.0.log.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-0.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-0.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-1.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-1.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-2.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-2.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-3.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-3.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-4.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-4.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-5.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-5.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-6.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-6.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z3.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z3.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z4.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z4.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z5.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z5.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z6.csv.gz" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/floor-Ebene-Z6.csv.gz.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/graph.xml" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/graph.xml.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/population.csv" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/population.csv.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/sim.xml" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out/sim.xml.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/geometry.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res/out.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2.crowdit" />
     <entry file="file://$PROJECT_DIR$/Assets/Prefabs/Floor.prefab.meta" />
     <entry file="file://$PROJECT_DIR$/Assets/Prefabs/stairTread.prefab" />
     <entry file="file://$PROJECT_DIR$/Assets/Prefabs/stairTread.prefab.meta" />
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2.crowdit.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res.meta">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2.crowdit.meta" />
+    <entry file="file://$PROJECT_DIR$/Assets/StreamingAssets/Scenarios/pss-u1u2_res.meta" />
     <entry file="file://$PROJECT_DIR$/Assets/Prefabs/chooseFloorToggle.prefab.meta">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
